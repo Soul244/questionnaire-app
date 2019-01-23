@@ -1,0 +1,134 @@
+import update from 'immutability-helper';
+import { arrayMove } from 'react-sortable-hoc';
+
+import {
+  ADD_QUESTION,
+  DELETE_QUESTION,
+  UPDATE_QUESTION_ORDER,
+  ON_CHANGE_QUESTION,
+  ON_CHANGE_TYPE_QUESTION,
+  ON_CLICK_RIGHT_ANSWER,
+  ON_CHANGE_QUESTION_DESC,
+} from '../../types';
+
+export function addQuestionAction(payload) {
+  return {
+    type: ADD_QUESTION,
+    payload,
+  };
+}
+
+export function deleteQuestionAction(payload) {
+  return {
+    type: DELETE_QUESTION,
+    payload,
+  };
+}
+
+export function updateQuestionOrderAction(payload) {
+  return {
+    type: UPDATE_QUESTION_ORDER,
+    payload,
+  };
+}
+
+export function onChangeQuestionAction(payload) {
+  return {
+    type: ON_CHANGE_QUESTION,
+    payload,
+  };
+}
+
+export function onChangeTypeQuestionAction(payload) {
+  return {
+    type: ON_CHANGE_TYPE_QUESTION,
+    payload,
+  };
+}
+
+export function OnClickRightAnswerAction(payload) {
+  return {
+    type: ON_CLICK_RIGHT_ANSWER,
+    payload,
+  };
+}
+
+export function handleOnChangeQuestionDescAction(payload) {
+  return {
+    type: ON_CHANGE_QUESTION_DESC,
+    payload,
+  };
+}
+
+
+export function handleAddQuestion(type) {
+  return (dispatch, getState) => {
+    const { questions } = getState().poll;
+    const newQuestion = {
+      order: questions.length,
+      type,
+      content: '',
+      rightAnswerOrder: '',
+    };
+    dispatch(addQuestionAction({ questions: [...questions, newQuestion] }));
+  };
+}
+
+export function handleDeleteQuestion(order) {
+  return (dispatch, getState) => {
+    const { questions } = getState().poll;
+    const newQuestions = questions.filter(question => question.order !== order);
+    dispatch(deleteQuestionAction(({ questions: newQuestions })));
+  };
+}
+
+export function handleUpdateQuestionOrder({ oldIndex, newIndex }) {
+  return (dispatch, getState) => {
+    const { questions } = getState().poll;
+    const q = arrayMove(questions, oldIndex, newIndex);
+    dispatch(updateQuestionOrderAction(({ questions: [...q] })));
+  };
+}
+
+export function handleOnChangeQuestion(content, order) {
+  return (dispatch, getState) => {
+    const { questions } = getState().poll;
+    const index = questions.findIndex(question => question.order === order);
+    const updatedQuestion = update(questions[index], { content: { $set: content } });
+    const newQuestions = update(questions, { $splice: [[index, 1, updatedQuestion]] });
+    dispatch(onChangeQuestionAction(({ newQuestions })));
+  };
+}
+
+export function handleOnChangeTypeQuestion(type, order) {
+  return (dispatch, getState) => {
+    const { questions } = getState().poll;
+    const index = questions.findIndex(question => question.order === order);
+    const updatedQuestion = update(questions[index], { type: { $set: type } });
+    const newQuestions = update(questions, { $splice: [[index, 1, updatedQuestion]] });
+    dispatch(onChangeTypeQuestionAction(({ newQuestions })));
+  };
+}
+
+export function handleOnChangeQuestionDesc(desc, order) {
+  return (dispatch, getState) => {
+    const { questions } = getState().poll;
+    const index = questions.findIndex(question => question.order === order);
+    const updatedQuestion = update(questions[index], { desc: { $set: desc } });
+    const newQuestions = update(questions, { $splice: [[index, 1, updatedQuestion]] });
+    dispatch(handleOnChangeQuestionDescAction(({ newQuestions })));
+  };
+}
+
+
+export function handleOnClickRightAnswer(order, rightAnswerOrder) {
+  return (dispatch, getState) => {
+    const { questions } = getState().poll;
+    const index = questions.findIndex(question => question.order === order);
+    const updatedQuestion = update(questions[index], {
+      rightAnswerOrder: { $set: rightAnswerOrder },
+    });
+    const newQuestions = update(questions, { $splice: [[index, 1, updatedQuestion]] });
+    dispatch(OnClickRightAnswerAction(({ newQuestions })));
+  };
+}

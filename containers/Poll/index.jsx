@@ -1,0 +1,149 @@
+/* eslint-disable class-methods-use-this */
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { withRouter } from 'next/router';
+import PropTypes from 'prop-types';
+
+import {
+  Container, Row, Col,
+} from 'reactstrap';
+
+import * as pollsActions from '../../redux/actions/pollsActions';
+import * as participantActions from '../../redux/actions/participantActions';
+import { Full, SideBySide, PollActive } from '../../components/Poll';
+
+class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      testStarted: false,
+      testFinished: false,
+    };
+    this.handleTestStarted = this.handleTestStarted.bind(this);
+    this.handleTestFinished = this.handleTestFinished.bind(this);
+  }
+
+  componentDidMount() {
+    const { slug, isPreview, poll } = this.props;
+    const { getPoll, getPreview } = this.props.pollsActions;
+    if (!isPreview) {
+      getPoll(slug);
+    } else {
+      getPreview(poll);
+    }
+  }
+
+  handleTestStarted() {
+    this.setState({
+      testStarted: true,
+    });
+  }
+
+  handleTestFinished() {
+    this.setState({
+      testFinished: true,
+    });
+  }
+
+  jsInject(js) {
+    const scriptTag = document.createElement('script');
+    scriptTag.setAttribute('type', 'text/javascript');
+    scriptTag.appendChild(document.createTextNode(js));
+    document.getElementsByTagName('head')[0].appendChild(scriptTag);
+  }
+
+  cssInject(css) {
+    const scriptTag = document.createElement('style');
+    scriptTag.setAttribute('type', 'text/css');
+    scriptTag.appendChild(document.createTextNode(css));
+    document.getElementsByTagName('head')[0].appendChild(scriptTag);
+  }
+
+  render() {
+    const { testStarted, testFinished } = this.state;
+    const { participantActions, participant } = this.props;
+    const { addParticipantAnswer, postParticipant } = participantActions;
+    const { poll } = this.props.polls;
+    const { settings } = poll;
+    if (settings === undefined) return null;
+    if (!settings.isPollActive) {
+      return <PollActive />;
+    }
+    this.jsInject(poll.js);
+    this.cssInject(poll.css);
+    return (
+      <>
+        <Container className="my-4">
+          <Row>
+            <Col>
+              {settings.showType === 'sideBySide' && (
+              <SideBySide
+                testStarted={testStarted}
+                testFinished={testFinished}
+                poll={poll}
+                handleTestStarted={this.handleTestStarted}
+                handleTestFinished={this.handleTestFinished}
+                addParticipantAnswer={addParticipantAnswer}
+                participant={participant}
+                postParticipant={postParticipant}
+              />
+              )}
+              {settings.showType === 'full' && (
+              <Full
+                testStarted={testStarted}
+                testFinished={testFinished}
+                poll={poll}
+                handleTestStarted={this.handleTestStarted}
+                handleTestFinished={this.handleTestFinished}
+                addParticipantAnswer={addParticipantAnswer}
+                participant={participant}
+                postParticipant={postParticipant}
+              />
+              )}
+            </Col>
+          </Row>
+        </Container>
+      </>
+    );
+  }
+}
+
+index.defaultProps = {
+  slug: null,
+};
+
+index.propTypes = {
+  participantActions: PropTypes.shape({
+    addParticipantAnswer: PropTypes.func.isRequired,
+    postParticipant: PropTypes.func.isRequired,
+  }).isRequired,
+  pollsActions: PropTypes.shape({
+    getPoll: PropTypes.func.isRequired,
+  }).isRequired,
+  participant: PropTypes.object.isRequired,
+  slug: PropTypes.string,
+  polls: PropTypes.shape({
+    poll: PropTypes.shape({
+      settings: PropTypes.object,
+    }).isRequired,
+  }).isRequired,
+};
+
+const mapStateToProps = state => ({
+  poll: state.poll,
+  polls: state.polls,
+  participant: state.participant,
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    participantActions: bindActionCreators(participantActions, dispatch),
+    pollsActions: bindActionCreators(pollsActions, dispatch),
+  };
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(index));

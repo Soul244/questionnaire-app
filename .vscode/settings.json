@@ -1,0 +1,10 @@
+{
+    "settings": {
+      "LineCount.excludes": [ 
+        "**/.vscode/**",
+       "**/node_modules/**",
+       "**/yarn.lock/**",
+       "**/api/node_modules/**",
+       ],
+    }
+  }
