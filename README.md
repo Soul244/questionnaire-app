@@ -1,4 +1,4 @@
-### `Bilemezsin Questionnaire`
+### `Questionnaire App`
 
 ### `INSTALLATION`
 
