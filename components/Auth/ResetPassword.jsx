@@ -6,12 +6,10 @@ import {
   CardTitle,
   FormGroup,
   InputGroup,
-  Input,
-  InputGroupText,
-  InputGroupAddon,
   Button,
 } from 'reactstrap';
 import styled from 'styled-components';
+import { CustomInput } from '../Shared';
 
 const Header = styled.div`
     margin: 1rem;
@@ -39,7 +37,6 @@ class ResetPassword extends Component {
           {(props) => {
             const {
               values,
-              touched,
               errors,
               handleChange,
               handleBlur,
@@ -49,28 +46,16 @@ class ResetPassword extends Component {
               <form onSubmit={handleSubmit}>
                 <FormGroup>
                   <InputGroup>
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText className="input-span">Email</InputGroupText>
-                    </InputGroupAddon>
-                    <Input
+                    <CustomInput
                       id="email"
-                      placeholder="mail adresinizi giriniz..."
                       type="email"
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={
-                        errors.email && touched.email
-                          ? 'input-with-span error'
-                          : 'input-with-span'
-                      }
+                      inputLabel="Mail Adresi"
+                      error={errors.email}
                     />
                   </InputGroup>
-                  {errors.email && touched.email && (
-                  <div className="input-feedback field-error">
-                    {errors.email}
-                  </div>
-                  )}
                 </FormGroup>
                 <Button type="submit" color="info">Şifremi Sıfırla</Button>
                 {' '}

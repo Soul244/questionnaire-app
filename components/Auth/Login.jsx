@@ -8,20 +8,17 @@ import {
   CardSubtitle,
   FormGroup,
   InputGroup,
-  Input,
-  InputGroupText,
-  InputGroupAddon,
   Button,
 } from 'reactstrap';
+import { CustomInput } from '../Shared';
 
 const ButtonList = styled.div`
     display:flex;
     flex-direction: column;
-    padding: 0.5rem;
 `;
 
 const Header = styled.div`
-    margin: 1rem;
+    margin: 1rem 1rem 2rem 1rem;
 `;
 
 class Login extends Component {
@@ -48,7 +45,6 @@ class Login extends Component {
           {(props) => {
             const {
               values,
-              touched,
               errors,
               handleChange,
               handleBlur,
@@ -58,54 +54,29 @@ class Login extends Component {
               <form onSubmit={handleSubmit}>
                 <FormGroup>
                   <InputGroup>
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText className="input-span">Email</InputGroupText>
-                    </InputGroupAddon>
-                    <Input
+                    <CustomInput
                       id="email"
-                      placeholder="mail adresinizi giriniz..."
                       type="email"
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={
-                        errors.email && touched.email
-                          ? 'input-with-span error'
-                          : 'input-with-span'
-                      }
+                      inputLabel="Mail Adresi"
+                      error={errors.email}
                     />
                   </InputGroup>
-                  {errors.email && touched.email && (
-                  <div className="input-feedback field-error">
-                    {errors.email}
-                  </div>
-                  )}
-
                 </FormGroup>
                 <FormGroup>
                   <InputGroup>
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText className="input-span">Şifre</InputGroupText>
-                    </InputGroupAddon>
-                    <Input
+                    <CustomInput
                       id="password"
-                      placeholder="şifrenizi giriniz..."
+                      inputLabel="Şifre"
                       type="password"
                       value={values.password}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={
-                        errors.password && touched.password
-                          ? 'input-with-span error'
-                          : 'input-with-span'
-                      }
+                      error={errors.password}
                     />
                   </InputGroup>
-                  {errors.password && touched.password && (
-                  <div className="input-feedback field-error">
-                    {errors.password}
-                  </div>
-                  )}
                 </FormGroup>
                 <ButtonList>
                   <div>

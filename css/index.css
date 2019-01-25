@@ -138,5 +138,5 @@ p {
 }
 
 .error {
-    border:2px solid red !important;
+    border-bottom:2px solid red !important;
 }
