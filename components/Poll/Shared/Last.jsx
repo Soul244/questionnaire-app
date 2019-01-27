@@ -13,6 +13,7 @@ import styled from 'styled-components';
 
 import { ParticipantSchema } from '../../../validation/validationSchemas';
 import SelectableLastMessage from './SelectableLastMessage';
+import { CustomInput } from '../../Shared';
 
 
 const ColStyled = styled(Col)` 
@@ -85,7 +86,9 @@ class Last extends React.Component {
             <Formik
               initialValues={{
                 email: '',
+                name: '',
                 password: '',
+                surname: '',
               }}
               validationSchema={ParticipantSchema}
               onSubmit={(values) => {
@@ -99,7 +102,6 @@ class Last extends React.Component {
               {(props) => {
                 const {
                   values,
-                  touched,
                   errors,
                   handleChange,
                   handleBlur,
@@ -109,54 +111,41 @@ class Last extends React.Component {
                   <form onSubmit={handleSubmit}>
                     <FormGroup>
                       <InputGroup>
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>Email</InputGroupText>
-                        </InputGroupAddon>
-                        <Input
+                        <CustomInput
                           id="email"
-                          placeholder="mail adresinizi giriniz..."
                           type="email"
                           value={values.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          className={errors.email && touched.email ? 'text-input error' : 'text-input'}
+                          inputLabel="Mail Adresi"
+                          error={errors.email}
                         />
-                        {errors.email && touched.email && <div className="input-feedback field-error">{errors.email}</div>}
                       </InputGroup>
                     </FormGroup>
                     <FormGroup>
                       <InputGroup>
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>İsim</InputGroupText>
-                        </InputGroupAddon>
-                        <Input
+                        <CustomInput
                           id="name"
-                          placeholder="isminizi giriniz..."
                           type="text"
                           value={values.name}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          className={errors.name && touched.name ? 'text-input error' : 'text-input'}
+                          inputLabel="İsminiz"
+                          error={errors.name}
                         />
-                        {errors.name && touched.name
-                        && <div className="input-feedback field-error">{errors.name}</div>}
                       </InputGroup>
                     </FormGroup>
                     <FormGroup>
                       <InputGroup>
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>Soyad</InputGroupText>
-                        </InputGroupAddon>
-                        <Input
+                        <CustomInput
                           id="surname"
-                          placeholder="Soyadınızı giriniz..."
                           type="text"
                           value={values.surname}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          className={errors.surname && touched.surname ? 'text-input error' : 'text-input'}
+                          inputLabel="Soyadınız"
+                          error={errors.surname}
                         />
-                        {errors.surname && touched.surname && <div className="input-feedback field-error">{errors.surname}</div>}
                       </InputGroup>
                     </FormGroup>
                     <Button type="submit" color="info">Kayıt Ol</Button>

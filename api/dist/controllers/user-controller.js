@@ -1,10 +1,10 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const generator = require('generate-password');
 const nodemailer = require('nodemailer');
 const User = require('../models/user');
-const { jwtKey } = require('../../config');
+const { jwtKey } = require('../../../config');
 
 exports.Post_Signup = (req, res) => {
   User.find({ email: req.body.email }).exec().then((user) => {

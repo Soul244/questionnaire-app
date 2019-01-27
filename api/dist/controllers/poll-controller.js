@@ -64,6 +64,25 @@ exports.Post_Poll = (req, res) => {
     });
 };
 
+
+exports.Get_All_Polls = (req, res) => {
+  Poll.find()
+    .select('name')
+    .sort({ createdAt: -1 })
+    .exec()
+    .then((polls) => {
+      res.status(200).json({
+        polls,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({
+        error,
+      });
+    });
+};
+
 exports.Get_Polls = (req, res) => {
   Poll.find({ userId: req.params.userId })
     .sort({ createdAt: -1 })

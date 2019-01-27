@@ -89,7 +89,7 @@ class Auth extends Component {
     return (
       <Container className="text-center">
         <Row>
-          <Col lg={{ size: 6, offset: 3 }}>
+          <Col lg={{ size: 6, offset: 3 }} md={{ size: 8, offset: 2 }}>
             <CardStyled>
               <CardBodyStyled>
                 <>

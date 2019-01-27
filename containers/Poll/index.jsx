@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import Parser from 'html-react-parser';
 
 import {
   Container, Row, Col,
@@ -31,6 +32,15 @@ class index extends Component {
       getPoll(slug);
     } else {
       getPreview(poll);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.polls.poll.js !== '') {
+      this.jsInject(nextProps.polls.poll.js);
+    }
+    if (nextProps.polls.poll.css !== '') {
+      this.cssInject(nextProps.polls.poll.css);
     }
   }
 
@@ -70,8 +80,6 @@ class index extends Component {
     if (!settings.isPollActive) {
       return <PollActive />;
     }
-    this.jsInject(poll.js);
-    this.cssInject(poll.css);
     return (
       <>
         <Container className="my-4">

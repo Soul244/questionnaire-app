@@ -9,5 +9,6 @@ router.get('/user/:userId', checkAuth, PollController.Get_Polls);
 router.delete('/:_id', checkAuth, PollController.Delete_Poll);
 router.post('/update', checkAuth, PollController.Update_Poll);
 router.get('/:slug', PollController.Get_Poll);
+router.get('/', PollController.Get_All_Polls);
 
 module.exports = router;

@@ -47,8 +47,8 @@ class SelectableLastMessage extends Component {
     this.onChangeFourth = this.onChangeFourth.bind(this);
   }
 
-  /* /
   componentWillReceiveProps(nextProps) {
+    /*
     if (nextProps.poll.selectableLastMessages !== this.props.poll.selectableLastMessages) {
       this.setState({
         first: nextProps.poll.selectableLastMessages[0].content,
@@ -56,8 +56,8 @@ class SelectableLastMessage extends Component {
         third: nextProps.poll.selectableLastMessages[2].content,
         fourth: nextProps.poll.selectableLastMessages[3].content,
       });
-    }
-  } */
+    } */
+  }
 
   onChangeFirst(e) {
     const content = e.target.value;

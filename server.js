@@ -2,14 +2,12 @@ const express = require('express');
 const next = require('next');
 
 const config = require('./config');
-const setupApi = require('./api');
+const setupApi = require('./api/dist');
 
 const app = next({ dev: config.isDev });
 const handle = app.getRequestHandler();
 
-const pageHandler = actualPath => (req, res) => {
-  return app.render(req, res, actualPath, req.params);
-};
+const pageHandler = actualPath => (req, res) => app.render(req, res, actualPath, req.params);
 const server = express();
 
 async function createServer() {
