@@ -95,7 +95,7 @@ class QuestionTool extends React.Component {
               </ButtonStyled>
               <ButtonStyled size="md" outline block color="secondary" id="gif" onClick={() => addQuestion('gif')}>GIF</ButtonStyled>
               <ButtonStyled size="md" outline block color="secondary" id="heading" onClick={() => addQuestion('heading')}>H1</ButtonStyled>
-              <Link as="/on-izleme/true" href={`/preview?ispreview=${true}`}>
+              <Link as="/on-izleme/true" href={`/poll/preview?ispreview=${true}`}>
                 <ButtonStyled size="md" outline block color="secondary" id="preview">
                   <Icon size="28px" icon={preview} />
                 </ButtonStyled>

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import update from 'immutability-helper';
-
-import { apiUrl } from '../../../config';
 import {
   ON_CHANGE_NAME, ON_CHANGE_DESC, ON_CHANGE_LAST_DESC,
   ON_CHANGE_SLUG, GET_UPDATE_POLL, ON_CHANGE_CSS, ON_CHANGE_JS, ON_CHANGE_SELECTABLE_LAST_MESSAGE, ADD_SELECTABLE_LAST_MESSAGE,
 } from '../../types';
+
+const { apiUrl } = process.env;
 
 export function getUpdatePollAction(payload) {
   return {

@@ -4,8 +4,6 @@ import {
   Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Col, Row, FormGroup, Label,
 } from 'reactstrap';
 
-import { baseUrl } from '../../config';
-
 class Iframe extends React.Component {
   constructor(props) {
     super(props);
@@ -32,6 +30,7 @@ class Iframe extends React.Component {
   render() {
     const { modal, toggle, pollName } = this.props;
     const { width, height } = this.state;
+    const { localhost } = process.env;
     return (
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Iframe Kodu</ModalHeader>
@@ -61,7 +60,7 @@ class Iframe extends React.Component {
           <Row>
             <Col>
               <FormGroup>
-                <Input type="textarea" defaultValue={`<iframe width=600 height=400 src=${baseUrl}anket/${pollName}></iframe>`} value={`<iframe width=${width} height=${height} src=${baseUrl}embed/${pollName}></iframe>`} />
+                <Input type="textarea" defaultValue={`<iframe width=600 height=400 src=${localhost}anket/${pollName}></iframe>`} value={`<iframe width=${width} height=${height} src=${localhost}embed/${pollName}></iframe>`} />
               </FormGroup>
             </Col>
           </Row>

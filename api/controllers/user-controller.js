@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const generator = require('generate-password');
 const nodemailer = require('nodemailer');
 const User = require('../models/user');
-const { jwtKey } = require('../../../config');
 
 exports.Post_Signup = (req, res) => {
   User.find({ email: req.body.email }).exec().then((user) => {
@@ -45,7 +44,7 @@ exports.Post_Signup = (req, res) => {
 
 exports.Token_Control = (req, res) => {
   try {
-    jwt.verify(req.body.token, jwtKey, null);
+    jwt.verify(req.body.token, process.env.JWT_KEY, null);
     res.status(200).json({
       isTokenValid: true,
     });
@@ -131,7 +130,7 @@ exports.Post_Login = (req, res) => {
           id: user._id,
           email: user.email,
         },
-        jwtKey,
+        process.env.JWT_KEY,
         {
           expiresIn: '30 days',
         });

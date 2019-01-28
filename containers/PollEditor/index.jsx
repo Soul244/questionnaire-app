@@ -21,7 +21,7 @@ import * as pollActions from '../../redux/actions/pollActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import { checkEmpty } from '../../validation/validationFunctions';
 
-class NewPoll extends Component {
+class PollEditor extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,9 +39,7 @@ class NewPoll extends Component {
     }
     const auth = localStorage.getItem('auth');
     if (auth === '' || auth === null) {
-      Router.push({
-        pathname: '/dashboard/login',
-      });
+      Router.push({ pathname: '/giris-yap' });
     }
   }
 
@@ -167,11 +165,11 @@ class NewPoll extends Component {
   }
 }
 
-NewPoll.defaultProps = {
+PollEditor.defaultProps = {
   slug: null,
 };
 
-NewPoll.propTypes = {
+PollEditor.propTypes = {
   slug: PropTypes.string,
   polls: PropTypes.object.isRequired,
   pollsActions: PropTypes.shape({
@@ -217,4 +215,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(NewPoll);
+)(PollEditor);

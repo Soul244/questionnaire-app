@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken');
-const { jwtKey } = require('../../../config');
+
+const { JWT_KEY } = process.env;
 
 module.exports = (req, res, next) => {
   try {
-    const decoded = jwt.verify(req.headers.authorization, jwtKey, null);
+    const decoded = jwt.verify(req.headers.authorization, JWT_KEY, null);
     req.userData = decoded;
     next();
   } catch (error) {

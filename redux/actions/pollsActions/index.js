@@ -1,9 +1,9 @@
 import axios from 'axios';
-
-import { apiUrl } from '../../../config';
 import {
   GET_POLL, POST_POLL, UPDATE_POLL, DELETE_POLL, GET_POLLS, GET_PREVIEW_POLL,
 } from '../../types';
+
+const { apiUrl } = process.env;
 
 export function getPollAction(payload) {
   return {

@@ -58,9 +58,7 @@ class Auth extends Component {
     const { isTokenValid } = nextProps.user;
     if (isTokenValid === true) {
       setTimeout(() => {
-        Router.push({
-          pathname: '/dashboard/polls',
-        });
+        Router.push({ pathname: '/anasayfa' });
       }, 2000);
     }
   }

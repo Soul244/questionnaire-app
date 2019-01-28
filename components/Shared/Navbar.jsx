@@ -72,7 +72,7 @@ class MyNavbar extends Component {
     return (
       <NavbarStyled color="light" light expand="md">
         <Container>
-          <NavbarBrandStyled href="/dashboard/polls">
+          <NavbarBrandStyled href="/">
             <img src="/static/bilemezsin-logo.jpg" style={{ width: '32px', height: '32px' }} alt="logo" />
             <LogoText>Bilemezsin Questionnaire</LogoText>
           </NavbarBrandStyled>
@@ -80,17 +80,17 @@ class MyNavbar extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Link href="/dashboard/polls">
+                <Link as="/anasayfa" href="/home">
                   <NavLinkCursor>Anketlerim</NavLinkCursor>
                 </Link>
               </NavItem>
               <NavItem>
-                <Link href="/dashboard/polls/editor">
+                <Link as="/yeni-anket" href="/new-poll">
                   <NavLinkCursor>Yeni Anket Oluştur</NavLinkCursor>
                 </Link>
               </NavItem>
               <NavItem>
-                <Link href="/dashboard/login">
+                <Link as="/giris-yap" href="/auth">
                   <NavLinkCursor onClick={this.onClick}>Çıkış Yap</NavLinkCursor>
                 </Link>
               </NavItem>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Preview from '../containers/Preview';
+import Preview from '../../containers/Preview';
 
 class preview extends Component {
   static getInitialProps = async function (context) {

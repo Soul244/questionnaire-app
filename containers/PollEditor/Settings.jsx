@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 
-import Setting from '../../components/NewPoll/Setting';
+import Setting from '../../components/PollEditor/Setting';
 import * as pollActions from '../../redux/actions/pollActions';
 import { settingsInfos } from './settingsInfos';
 

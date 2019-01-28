@@ -97,14 +97,14 @@ class PollList extends React.Component {
                   <td>{moment(item.createdAt).format('DD-MM-YYYY')}</td>
                   <td>
                     <ButtonList>
-                      <Link href={`/embed/${item.slug}`}>
+                      <Link as={`/anket/${item.slug}`} href={`/poll?slug=${item.slug}`}>
                         <a target="_blank">
                           <ButtonStyled outline color="success" id={`embed${item._id}`}>
                             <Icon size="24px" icon={showPoll} />
                           </ButtonStyled>
                         </a>
                       </Link>
-                      <Link href={`/dashboard/polls/${item.slug}/editor`}>
+                      <Link as={`/anket/editor/${item.slug}`} href={`/poll/editor?slug=${item.slug}`}>
                         <ButtonStyled outline color="info" id={`update${item._id}`}>
                           <Icon size="24px" icon={edit} />
                         </ButtonStyled>
@@ -121,7 +121,7 @@ class PollList extends React.Component {
                           <Button color="secondary" onClick={this.toggleDelete}>Hayır</Button>
                         </ModalFooter>
                       </Modal>
-                      <Link as={`/dashboard/polls/${item.slug}/stats`} href={`/statistics?slug=${item.slug}`}>
+                      <Link as={`/anket/istatistikler/${item.slug}`} href={`/poll/statistics?slug=${item.slug}`}>
                         <ButtonStyled outline color="secondary" id={`stats${item._id}`}>
                           <Icon size="24px" icon={stats} />
                         </ButtonStyled>

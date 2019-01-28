@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Statistics from '../../../containers/Statistics';
+import PollEditor from '../../containers/PollEditor';
 
-class statistics extends Component {
+class pollEditor extends Component {
   static getInitialProps = async function (context) {
     if (context.query !== undefined) {
       const { slug } = context.query;
@@ -13,9 +13,9 @@ class statistics extends Component {
 
   render() {
     return (
-      <Statistics slug={this.props.slug} />
+      <PollEditor slug={this.props.slug} />
     );
   }
 }
 
-export default statistics;
+export default pollEditor;

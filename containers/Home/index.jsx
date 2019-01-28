@@ -25,9 +25,7 @@ class Home extends Component {
   componentDidMount() {
     const auth = localStorage.getItem('auth');
     if (auth === '' || auth === null) {
-      Router.push({
-        pathname: '/dashboard/login',
-      });
+      Router.push({ pathname: '/giris-yap' });
     } else {
       const jsonAuth = JSON.parse(auth);
       const { getPolls } = this.props.pollsActions;

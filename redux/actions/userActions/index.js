@@ -1,9 +1,9 @@
 import axios from 'axios';
-
-import { apiUrl } from '../../../config';
 import {
   POST_SIGNUP, POST_LOGIN, POST_TOKEN_IS_VALID, POST_RESET_PASSWORD,
 } from '../../types';
+
+const { apiUrl } = process.env;
 
 export function postSignUpAction(payload) {
   return {

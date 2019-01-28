@@ -1,11 +1,12 @@
 import axios from 'axios';
 import _ from 'lodash';
-import { apiUrl } from '../../../config';
 
 import {
   GET_PARTICIPANTS, POST_PARTICIPANT, DELETE_PARTICIPANT,
   ADD_PARTICIPANT_ANSWER, ADD_PARTICIPANT_NAME, ADD_PARTICIPANT_SURNAME, ADD_PARTICIPANT_EMAIL,
 } from '../../types';
+
+const { apiUrl } = process.env;
 
 export function addParticipantAnswerAction(payload) {
   return {

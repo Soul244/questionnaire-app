@@ -2,7 +2,7 @@ import React from 'react';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import PropTypes from 'prop-types';
 
-import Question from '../../components/NewPoll/Question';
+import Question from '../../components/PollEditor/Question';
 
 const SortableItem = SortableElement(
   ({
