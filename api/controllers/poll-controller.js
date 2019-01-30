@@ -46,7 +46,6 @@ exports.Post_Poll = (req, res) => {
         answers: req.body.answers,
         settings: req.body.settings,
       });
-      console.log(poll);
       poll
         .save()
         .then((poll) => {
@@ -66,13 +65,22 @@ exports.Post_Poll = (req, res) => {
 
 
 exports.Get_All_Polls = (req, res) => {
+  const perPage = 10;
+  const { page } = req.params;
+  let count = 0;
+  Poll.count({}, (err, countItems) => {
+    count = countItems;
+  });
   Poll.find()
-    .select('name')
+    .select('name desc slug createdAt')
+    .limit(perPage)
+    .skip(perPage * page)
     .sort({ createdAt: -1 })
     .exec()
     .then((polls) => {
       res.status(200).json({
         polls,
+        count,
       });
     })
     .catch((error) => {

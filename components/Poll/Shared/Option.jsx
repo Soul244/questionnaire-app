@@ -6,6 +6,7 @@ import {
   CardBody,
   Input,
   Col,
+  Row,
 } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -22,7 +23,7 @@ const CardStyled = styled(Card)`
 `;
 
 const Text = styled.p`
-  display: ${props => (props.show ? 'block' : 'none')};
+  display: ${props => (props.show ? 'inline-block' : 'none')};
 `;
 
 function Option(props) {
@@ -56,13 +57,23 @@ function Option(props) {
             defaultChecked={checked === order}
             style={{ display: 'none' }}
           />
-          <ContentViewer type={type} content={content} />
-          {questionCount > 0 && answerCount > 0 && (
-            <Text show={showPercent}>{`${Math.round((answerCount / questionCount) * 100)} %`}</Text>
-          )}
-          {answerCount === 0 && (
-          <Text show={showPercent}>0%</Text>
-          )}
+          <Row>
+            <Col>
+              {questionCount > 0 && answerCount > 0 && (
+                <>
+                  <Text show={showPercent}>{`${Math.round((answerCount / questionCount) * 100)}%`}</Text>
+                  {' '}
+                </>
+              )}
+              {answerCount === 0 && (
+                <>
+                  <Text show={showPercent}>0%</Text>
+                  {' '}
+                </>
+              )}
+              <ContentViewer type={type} content={content} />
+            </Col>
+          </Row>
         </CardBody>
       </CardStyled>
     </Col>

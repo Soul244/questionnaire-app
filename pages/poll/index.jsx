@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Poll from '../../containers/Poll';
 
-class PollEmbed extends Component {
+class index extends Component {
   static getInitialProps = async (context) => {
     const { slug } = context.query;
     return { slug };
@@ -15,4 +15,4 @@ class PollEmbed extends Component {
   }
 }
 
-export default PollEmbed;
+export default index;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PollEditor from '../../containers/PollEditor';
 
-class pollEditor extends Component {
+class PollEditorPage extends Component {
   static getInitialProps = async function (context) {
     if (context.query !== undefined) {
       const { slug } = context.query;
@@ -18,4 +18,4 @@ class pollEditor extends Component {
   }
 }
 
-export default pollEditor;
+export default PollEditorPage;

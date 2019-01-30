@@ -170,6 +170,7 @@ class SideBySide extends React.Component {
               speed={400}
               slidesToScroll={0}
               slideIndex={slideIndex}
+              heightMode="max"
               withoutControls
               renderCenterLeftControls={null}
               renderCenterRightControls={null}

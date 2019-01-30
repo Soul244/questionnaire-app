@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Statistics from '../../containers/Statistics';
 
-class statistics extends Component {
+class StatisticsPage extends Component {
   static getInitialProps = async function (context) {
     if (context.query !== undefined) {
       const { slug } = context.query;
@@ -18,4 +18,4 @@ class statistics extends Component {
   }
 }
 
-export default statistics;
+export default StatisticsPage;

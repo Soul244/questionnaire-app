@@ -43,6 +43,12 @@ export const GET_UPDATE_POLL = 'GET_UPDATE_POLL';
 
 // POLL
 export const GET_POLL = 'GET_POLL';
+
+export const GET_ALL_POLLS = 'GET_ALL_POLLS';
+export const GET_ALL_POLLS_START = 'GET_ALL_POLLS_START';
+export const GET_ALL_POLLS_ERROR = 'GET_ALL_POLLS_ERROR';
+
+
 export const POST_POLL = 'POST_POLL';
 export const UPDATE_POLL = 'UPDATE_POLL';
 export const DELETE_POLL = 'DELETE_POLL';

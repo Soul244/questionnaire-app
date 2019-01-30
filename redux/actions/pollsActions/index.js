@@ -1,6 +1,9 @@
 import axios from 'axios';
 import {
   GET_POLL, POST_POLL, UPDATE_POLL, DELETE_POLL, GET_POLLS, GET_PREVIEW_POLL,
+  GET_ALL_POLLS,
+  GET_ALL_POLLS_START,
+  GET_ALL_POLLS_ERROR,
 } from '../../types';
 
 const { apiUrl } = process.env;
@@ -46,6 +49,29 @@ export function getPollsAction(payload) {
     payload,
   };
 }
+
+export function getAllPollsAction(payload) {
+  return {
+    type: GET_ALL_POLLS,
+    payload,
+  };
+}
+
+
+export function getAllPollsStartAction() {
+  return {
+    type: GET_ALL_POLLS_START,
+  };
+}
+
+
+export function getAllPollsErrorAction(payload) {
+  return {
+    type: GET_ALL_POLLS_ERROR,
+    payload,
+  };
+}
+
 
 export function getPoll(slug) {
   const endPoint = `${apiUrl}polls/${slug}`;
@@ -152,6 +178,19 @@ export function getPolls(userId) {
       dispatch(getPollsAction(response.data));
     } catch (error) {
       throw error;
+    }
+  };
+}
+
+export function getAllPolls(page) {
+  const endPoint = `${apiUrl}polls/all/${page}`;
+  return async (dispatch) => {
+    try {
+      dispatch(getAllPollsStartAction());
+      const response = await axios.get(endPoint);
+      dispatch(getAllPollsAction(response.data));
+    } catch (error) {
+      dispatch(getAllPollsErrorAction(error));
     }
   };
 }

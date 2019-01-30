@@ -9,7 +9,7 @@ const cors = require('cors');
 
 dotenv.config();
 
-const uri = process.env.DB_HOST;
+// const uri = process.env.DB_HOST;
 
 const options = {
   useNewUrlParser: true,
@@ -22,6 +22,8 @@ const options = {
   socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
   family: 4, // Use IPv4, skip trying IPv6
 };
+
+const uri = 'mongodb://test:142536@cluster0-shard-00-00-5ay32.mongodb.net:27017,cluster0-shard-00-01-5ay32.mongodb.net:27017,cluster0-shard-00-02-5ay32.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
 
 mongoose.set('useCreateIndex', true);
 mongoose.connect(uri, options);

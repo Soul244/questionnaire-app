@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Preview from '../../containers/Preview';
 
-class preview extends Component {
+class PreviewPage extends Component {
   static getInitialProps = async function (context) {
     const { ispreview } = context.query;
     return { ispreview };
@@ -15,4 +15,4 @@ class preview extends Component {
   }
 }
 
-export default preview;
+export default PreviewPage;

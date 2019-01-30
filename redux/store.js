@@ -3,6 +3,7 @@
 /* eslint-disable import/prefer-default-export */
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 import poll from './reducers/pollReducer';
 import polls from './reducers/pollsReducer';
@@ -18,5 +19,5 @@ const reducers = combineReducers({
 
 export const initStore = () => createStore(
   reducers,
-  applyMiddleware(thunk),
+  applyMiddleware(thunk, logger),
 );

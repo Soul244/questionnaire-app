@@ -85,7 +85,7 @@ class MyNavbar extends Component {
                 </Link>
               </NavItem>
               <NavItem>
-                <Link as="/yeni-anket" href="/new-poll">
+                <Link as="/anket/yeni-anket" href="/poll/editor">
                   <NavLinkCursor>Yeni Anket Oluştur</NavLinkCursor>
                 </Link>
               </NavItem>
