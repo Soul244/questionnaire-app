@@ -1,41 +1,9 @@
 /* eslint-disable no-param-reassign */
-import {
-  ANSWER_AUTO_CHANGE_TIME,
-  ANSWER_TIME,
-  POLL_TIME,
-  SHOW_TYPE,
-  TYPE,
-  USER_DATA_COLLECT_TYPE,
-  POLL_ACTIVE,
-  ANSWER_PERCENT,
-  ADD_POLL_TIME,
-  ADD_ANSWER_AUTO_CHANGE_TIME,
-  ADD_ANSWER_TIME,
-  ADD_QUESTION,
-  DELETE_QUESTION,
-  UPDATE_QUESTION_ORDER,
-  ON_CHANGE_QUESTION,
-  ON_CHANGE_TYPE_QUESTION,
-  ADD_ANSWER,
-  DELETE_ANSWER,
-  ON_CHANGE_ANSWER,
-  ON_CHANGE_TYPE_ANSWER,
-  ON_CLICK_RIGHT_ANSWER,
-  ON_CHANGE_NAME,
-  ON_CHANGE_DESC,
-  ON_CHANGE_LAST_DESC,
-  ON_CHANGE_SLUG,
-  GET_UPDATE_POLL,
-  ON_CHANGE_CSS,
-  ON_CHANGE_JS,
-  ON_CHANGE_QUESTION_DESC,
-  ON_CHANGE_SELECTABLE_LAST_MESSAGE,
-  ADD_SELECTABLE_LAST_MESSAGE,
-} from '../types';
+import { asyncTypes, syncTypes } from '../types';
 
 const initialState = {
   id: '',
-  userId: '',
+  user: '',
   css: '',
   js: '',
   slug: '',
@@ -62,46 +30,46 @@ const initialState = {
 
 const pollReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_UPDATE_POLL:
+    case asyncTypes.GET_UPDATE_POLL:
       state = action.payload;
       break;
-    case ON_CHANGE_CSS:
+    case syncTypes.ON_CHANGE_CSS:
       state = {
         ...state,
         css: action.payload,
       };
       break;
-    case ON_CHANGE_JS:
+    case syncTypes.ON_CHANGE_JS:
       state = {
         ...state,
         js: action.payload,
       };
       break;
-    case ON_CHANGE_NAME:
+    case syncTypes.ON_CHANGE_NAME:
       state = {
         ...state,
         name: action.payload,
       };
       break;
-    case ON_CHANGE_DESC:
+    case syncTypes.ON_CHANGE_DESC:
       state = {
         ...state,
         desc: action.payload,
       };
       break;
-    case ON_CHANGE_LAST_DESC:
+    case syncTypes.ON_CHANGE_LAST_DESC:
       state = {
         ...state,
         lastDesc: action.payload,
       };
       break;
-    case ON_CHANGE_SLUG:
+    case syncTypes.ON_CHANGE_SLUG:
       state = {
         ...state,
         slug: action.payload,
       };
       break;
-    case ANSWER_AUTO_CHANGE_TIME:
+    case syncTypes.ANSWER_AUTO_CHANGE_TIME:
       state = {
         ...state,
         settings: {
@@ -110,7 +78,7 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
-    case ADD_ANSWER_AUTO_CHANGE_TIME:
+    case syncTypes.ADD_ANSWER_AUTO_CHANGE_TIME:
       state = {
         ...state,
         settings: {
@@ -119,7 +87,7 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
-    case ANSWER_TIME:
+    case syncTypes.ANSWER_TIME:
       state = {
         ...state,
         settings: {
@@ -128,7 +96,7 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
-    case ADD_ANSWER_TIME:
+    case syncTypes.ADD_ANSWER_TIME:
       state = {
         ...state,
         settings: {
@@ -137,7 +105,7 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
-    case POLL_TIME:
+    case syncTypes.POLL_TIME:
       state = {
         ...state,
         settings: {
@@ -146,7 +114,7 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
-    case ADD_POLL_TIME:
+    case syncTypes.ADD_POLL_TIME:
       state = {
         ...state,
         settings: {
@@ -155,7 +123,7 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
-    case SHOW_TYPE:
+    case syncTypes.SHOW_TYPE:
       state = {
         ...state,
         settings: {
@@ -164,7 +132,7 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
-    case TYPE:
+    case syncTypes.TYPE:
       state = {
         ...state,
         settings: {
@@ -173,7 +141,7 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
-    case USER_DATA_COLLECT_TYPE:
+    case syncTypes.USER_DATA_COLLECT_TYPE:
       state = {
         ...state,
         settings: {
@@ -182,7 +150,7 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
-    case POLL_ACTIVE:
+    case syncTypes.POLL_ACTIVE:
       state = {
         ...state,
         settings: {
@@ -191,7 +159,7 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
-    case ANSWER_PERCENT:
+    case syncTypes.ANSWER_PERCENT:
       state = {
         ...state,
         settings: {
@@ -200,79 +168,79 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
-    case ON_CHANGE_SELECTABLE_LAST_MESSAGE:
+    case syncTypes.ON_CHANGE_SELECTABLE_LAST_MESSAGE:
       state = {
         ...state,
         selectableLastMessages: action.payload.newSelectableLastMessages,
       };
       break;
-    case ADD_SELECTABLE_LAST_MESSAGE:
+    case syncTypes.ADD_SELECTABLE_LAST_MESSAGE:
       state = {
         ...state,
         selectableLastMessages: action.payload.selectableLastMessages,
       };
       break;
-    case ADD_QUESTION:
+    case syncTypes.ADD_QUESTION:
       state = {
         ...state,
         questions: action.payload.questions,
       };
       break;
-    case DELETE_QUESTION:
+    case syncTypes.DELETE_QUESTION:
       state = {
         ...state,
         questions: action.payload.questions,
       };
       break;
-    case UPDATE_QUESTION_ORDER:
+    case syncTypes.UPDATE_QUESTION_ORDER:
       state = {
         ...state,
         questions: action.payload.questions,
       };
       break;
-    case ON_CHANGE_QUESTION:
+    case syncTypes.ON_CHANGE_QUESTION:
       state = {
         ...state,
         questions: action.payload.newQuestions,
       };
       break;
-    case ON_CHANGE_TYPE_QUESTION:
+    case syncTypes.ON_CHANGE_TYPE_QUESTION:
       state = {
         ...state,
         questions: action.payload.newQuestions,
       };
       break;
-    case ON_CLICK_RIGHT_ANSWER:
+    case syncTypes.ON_CLICK_RIGHT_ANSWER:
       state = {
         ...state,
         questions: action.payload.newQuestions,
       };
       break;
-    case ON_CHANGE_QUESTION_DESC:
+    case syncTypes.ON_CHANGE_QUESTION_DESC:
       state = {
         ...state,
         questions: action.payload.newQuestions,
       };
       break;
-    case ADD_ANSWER:
+    case syncTypes.ADD_ANSWER:
       state = {
         ...state,
         answers: action.payload.answers,
       };
       break;
-    case DELETE_ANSWER:
+    case syncTypes.DELETE_ANSWER:
       state = {
         ...state,
         answers: action.payload.answers,
       };
       break;
-    case ON_CHANGE_ANSWER:
+    case syncTypes.ON_CHANGE_ANSWER:
       state = {
         ...state,
         answers: action.payload.newAnswers,
       };
       break;
-    case ON_CHANGE_TYPE_ANSWER:
+    case syncTypes.ON_CHANGE_TYPE_ANSWER:
       state = {
         ...state,
         answers: action.payload.newAnswers,

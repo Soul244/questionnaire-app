@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 
-
 import {
   Container,
   Collapse,
@@ -10,16 +9,13 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
 } from 'reactstrap';
 import styled from 'styled-components';
 
-import * as userActions from '../../redux/actions/userActions';
+import * as userActions from '../../../redux/actions/userActions';
+import Logged from './Logged';
+import Anonim from './Anonim';
 
-const NavLinkCursor = styled(NavLink)`
-  cursor: pointer !important;
-`;
 
 const LogoText = styled.p`
   margin-left:0.5rem;
@@ -40,7 +36,7 @@ const NavbarStyled = styled(Navbar)`
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 `;
 
-class MyNavbar extends Component {
+class index extends Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -49,11 +45,26 @@ class MyNavbar extends Component {
     this.state = {
       isOpen: false,
       dropdownOpen: false,
+      isLogged: false,
     };
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem('auth') !== '') {
+      const auth = JSON.parse(localStorage.getItem('auth'));
+      if (auth.isTokenValid) {
+        this.setState({
+          isLogged: true,
+        });
+      }
+    }
   }
 
   onClick() {
     localStorage.setItem('auth', '');
+    this.setState({
+      isLogged: false,
+    });
   }
 
   toggle() {
@@ -69,6 +80,7 @@ class MyNavbar extends Component {
   }
 
   render() {
+    const { isLogged } = this.state;
     return (
       <NavbarStyled color="light" light expand="md">
         <Container>
@@ -79,21 +91,12 @@ class MyNavbar extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link as="/anasayfa" href="/home">
-                  <NavLinkCursor>Anketlerim</NavLinkCursor>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link as="/anket/yeni-anket" href="/poll/editor">
-                  <NavLinkCursor>Yeni Anket Oluştur</NavLinkCursor>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link as="/giris-yap" href="/auth">
-                  <NavLinkCursor onClick={this.onClick}>Çıkış Yap</NavLinkCursor>
-                </Link>
-              </NavItem>
+              {isLogged && (
+              <Logged logOut={this.onClick} />
+              )}
+              {!isLogged && (
+              <Anonim />
+              )}
             </Nav>
           </Collapse>
         </Container>
@@ -111,4 +114,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   userActions,
-)(MyNavbar);
+)(index);

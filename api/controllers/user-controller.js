@@ -157,7 +157,7 @@ exports.Post_Login = (req, res) => {
 
 exports.Delete_User = (req, res) => {
   User.remove({
-    _id: req.params.userId,
+    _id: req.params.user,
   })
     .exec()
     .then(user => res.status(201).json({
@@ -172,11 +172,12 @@ exports.Delete_User = (req, res) => {
 };
 
 exports.Get_User = (req, res) => {
-  User.find({ _id: req.params.userId })
+  User.find({ _id: req.params.user })
     .exec()
     .then((user) => {
       res.status(201).json({
-        user,
+        _id: user._id,
+        email: user.email,
       });
     })
     .catch((error) => {

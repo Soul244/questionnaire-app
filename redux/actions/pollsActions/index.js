@@ -1,58 +1,53 @@
 import axios from 'axios';
-import {
-  GET_POLL, POST_POLL, UPDATE_POLL, DELETE_POLL, GET_POLLS, GET_PREVIEW_POLL,
-  GET_ALL_POLLS,
-  GET_ALL_POLLS_START,
-  GET_ALL_POLLS_ERROR,
-} from '../../types';
+import { asyncTypes } from '../../types';
 
 const { apiUrl } = process.env;
 
 export function getPollAction(payload) {
   return {
-    type: GET_POLL,
+    type: asyncTypes.GET_POLL,
     payload,
   };
 }
 
 export function getPreviewAction(payload) {
   return {
-    type: GET_PREVIEW_POLL,
+    type: asyncTypes.GET_PREVIEW_POLL,
     payload,
   };
 }
 
 export function postPollAction(payload) {
   return {
-    type: POST_POLL,
+    type: asyncTypes.POST_POLL,
     payload,
   };
 }
 
 export function updatePollAction(payload) {
   return {
-    type: UPDATE_POLL,
+    type: asyncTypes.UPDATE_POLL,
     payload,
   };
 }
 
 export function deletePollAction(payload) {
   return {
-    type: DELETE_POLL,
+    type: asyncTypes.DELETE_POLL,
     payload,
   };
 }
 
 export function getPollsAction(payload) {
   return {
-    type: GET_POLLS,
+    type: asyncTypes.GET_POLLS,
     payload,
   };
 }
 
 export function getAllPollsAction(payload) {
   return {
-    type: GET_ALL_POLLS,
+    type: asyncTypes.GET_ALL_POLLS,
     payload,
   };
 }
@@ -60,14 +55,14 @@ export function getAllPollsAction(payload) {
 
 export function getAllPollsStartAction() {
   return {
-    type: GET_ALL_POLLS_START,
+    type: asyncTypes.GET_ALL_POLLS_START,
   };
 }
 
 
 export function getAllPollsErrorAction(payload) {
   return {
-    type: GET_ALL_POLLS_ERROR,
+    type: asyncTypes.GET_ALL_POLLS_ERROR,
     payload,
   };
 }
@@ -103,7 +98,7 @@ export function postPoll(poll) {
     try {
       const response = await axios.post(endPoint, {
         id: poll.id,
-        userId: auth.id,
+        user: auth.id,
         css: poll.css,
         js: poll.js,
         name: poll.name,
@@ -130,7 +125,7 @@ export function updatePoll(poll) {
     try {
       const response = await axios.post(endPoint, {
         _id: poll._id,
-        userId: auth.id,
+        user: auth.id,
         css: poll.css,
         js: poll.js,
         name: poll.name,
@@ -168,7 +163,7 @@ export function deletePoll(_id) {
 }
 
 // AXIOS
-export function getPolls(userId) {
+export function getPolls() {
   const auth = JSON.parse(localStorage.getItem('auth'));
   const endPoint = `${apiUrl}polls/user/${auth.id}`;
   axios.defaults.headers.authorization = auth.token;

@@ -1,50 +1,37 @@
 
-import {
-  ANSWER_AUTO_CHANGE_TIME,
-  ANSWER_TIME,
-  POLL_TIME,
-  SHOW_TYPE,
-  POLL_ACTIVE,
-  ANSWER_PERCENT,
-  TYPE,
-  USER_DATA_COLLECT_TYPE,
-
-  ADD_POLL_TIME,
-  ADD_ANSWER_AUTO_CHANGE_TIME,
-  ADD_ANSWER_TIME,
-} from '../../types';
+import { syncTypes } from '../../types';
 
 export function hasPollTimeAction(payload) {
   return {
-    type: POLL_TIME,
+    type: syncTypes.POLL_TIME,
     payload,
   };
 }
 
 export function hasAnswerTimeAction(payload) {
   return {
-    type: ANSWER_TIME,
+    type: syncTypes.ANSWER_TIME,
     payload,
   };
 }
 
 export function hasAnswerAutoChangeTimeAction(payload) {
   return {
-    type: ANSWER_AUTO_CHANGE_TIME,
+    type: syncTypes.ANSWER_AUTO_CHANGE_TIME,
     payload,
   };
 }
 
 export function hasAnswerPercentAction(payload) {
   return {
-    type: ANSWER_PERCENT,
+    type: syncTypes.ANSWER_PERCENT,
     payload,
   };
 }
 
 export function showTypeAction(payload) {
   return {
-    type: SHOW_TYPE,
+    type: syncTypes.SHOW_TYPE,
     payload,
   };
 }
@@ -52,42 +39,42 @@ export function showTypeAction(payload) {
 
 export function typeAction(payload) {
   return {
-    type: TYPE,
+    type: syncTypes.TYPE,
     payload,
   };
 }
 
 export function isPollActiveAction(payload) {
   return {
-    type: POLL_ACTIVE,
+    type: syncTypes.POLL_ACTIVE,
     payload,
   };
 }
 
 export function handlePollTimeAction(payload) {
   return {
-    type: ADD_POLL_TIME,
+    type: syncTypes.ADD_POLL_TIME,
     payload,
   };
 }
 
 export function handleAnswerAutoChangeTimeAction(payload) {
   return {
-    type: ADD_ANSWER_AUTO_CHANGE_TIME,
+    type: syncTypes.ADD_ANSWER_AUTO_CHANGE_TIME,
     payload,
   };
 }
 
 export function handleAnswerTimeAction(payload) {
   return {
-    type: ADD_ANSWER_TIME,
+    type: syncTypes.ADD_ANSWER_TIME,
     payload,
   };
 }
 
 export function userDataCollectTypeAction(payload) {
   return {
-    type: USER_DATA_COLLECT_TYPE,
+    type: syncTypes.USER_DATA_COLLECT_TYPE,
     payload,
   };
 }

@@ -1,37 +1,34 @@
 import axios from 'axios';
 import _ from 'lodash';
 
-import {
-  GET_PARTICIPANTS, POST_PARTICIPANT, DELETE_PARTICIPANT,
-  ADD_PARTICIPANT_ANSWER, ADD_PARTICIPANT_NAME, ADD_PARTICIPANT_SURNAME, ADD_PARTICIPANT_EMAIL,
-} from '../../types';
+import { syncTypes } from '../../types';
 
 const { apiUrl } = process.env;
 
 export function addParticipantAnswerAction(payload) {
   return {
-    type: ADD_PARTICIPANT_ANSWER,
+    type: syncTypes.ADD_PARTICIPANT_ANSWER,
     payload,
   };
 }
 
 export function addParticipantNameAction(payload) {
   return {
-    type: ADD_PARTICIPANT_NAME,
+    type: syncTypes.ADD_PARTICIPANT_NAME,
     payload,
   };
 }
 
 export function addParticipantSurnameAction(payload) {
   return {
-    type: ADD_PARTICIPANT_SURNAME,
+    type: syncTypes.ADD_PARTICIPANT_SURNAME,
     payload,
   };
 }
 
 export function addParticipantEmailAction(payload) {
   return {
-    type: ADD_PARTICIPANT_EMAIL,
+    type: syncTypes.ADD_PARTICIPANT_EMAIL,
     payload,
   };
 }
@@ -39,21 +36,21 @@ export function addParticipantEmailAction(payload) {
 
 export function getParticipantsAction(payload) {
   return {
-    type: GET_PARTICIPANTS,
+    type: syncTypes.GET_PARTICIPANTS,
     payload,
   };
 }
 
 export function postParticipantAction(payload) {
   return {
-    type: POST_PARTICIPANT,
+    type: syncTypes.POST_PARTICIPANT,
     payload,
   };
 }
 
 export function deleteParticipantAction(payload) {
   return {
-    type: DELETE_PARTICIPANT,
+    type: syncTypes.DELETE_PARTICIPANT,
     payload,
   };
 }

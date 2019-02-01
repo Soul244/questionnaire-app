@@ -34,7 +34,7 @@ exports.Post_Poll = (req, res) => {
       }
       const poll = new Poll({
         _id: new mongoose.Types.ObjectId(),
-        userId: req.body.userId,
+        user: req.body.user,
         css: req.body.css,
         js: req.body.js,
         name: req.body.name,
@@ -72,7 +72,8 @@ exports.Get_All_Polls = (req, res) => {
     count = countItems;
   });
   Poll.find()
-    .select('name desc slug createdAt')
+    .select('name desc slug user createdAt')
+    .populate('user', '_id email')
     .limit(perPage)
     .skip(perPage * page)
     .sort({ createdAt: -1 })
@@ -92,7 +93,7 @@ exports.Get_All_Polls = (req, res) => {
 };
 
 exports.Get_Polls = (req, res) => {
-  Poll.find({ userId: req.params.userId })
+  Poll.find({ user: req.params.user })
     .sort({ createdAt: -1 })
     .exec()
     .then((polls) => {
@@ -143,7 +144,7 @@ exports.Update_Poll = (req, res) => {
   Poll.update({ _id: req.body._id }, {
     $set: {
       name: req.body.name,
-      userId: req.body.userId,
+      user: req.body.user,
       css: req.body.css,
       js: req.body.js,
       desc: req.body.desc,

@@ -10,6 +10,16 @@ app
   .then(() => {
     const server = express();
 
+    server.get('/giris-yap', (req, res) => {
+      const actualPage = '/auth';
+      return app.render(req, res, actualPage);
+    });
+
+    server.get('/anasayfa', (req, res) => {
+      const actualPage = '/index';
+      return app.render(req, res, actualPage);
+    });
+
     server.get('/anket/:slug', (req, res) => {
       const actualPage = '/poll';
       const queryParams = { slug: req.params.slug };
@@ -26,20 +36,15 @@ app
       return app.render(req, res, actualPage, queryParams);
     });
 
-    server.get('/giris-yap', (req, res) => {
-      const actualPage = '/auth';
-      return app.render(req, res, actualPage);
-    });
-
-    server.get('/anasayfa', (req, res) => {
-      const actualPage = '/index';
-      return app.render(req, res, actualPage);
-    });
-
     server.get('/anket/on-izleme/:ispreview', (req, res) => {
       const actualPage = '/poll/preview';
       const queryParams = { ispreview: req.params.ispreview };
       return app.render(req, res, actualPage, queryParams);
+    });
+
+    server.get('/anket/anketlerim', (req, res) => {
+      const actualPage = '/poll/list';
+      return app.render(req, res, actualPage);
     });
 
     server.get('/anket/istatistikler/:slug', (req, res) => {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Link from 'next/link';
 
 import {
-  Card, CardBody, CardTitle, CardText, Button, Container, Row, Col,
+  Card, CardBody, CardTitle, CardText, CardHeader, Button, Container, Row, Col,
 } from 'reactstrap';
 
 import { Paginate, Loading } from '../../components/Shared';
@@ -56,6 +56,7 @@ class index extends Component {
           <Col md="6">
             {allPolls.map(poll => (
               <Card key={poll._id}>
+                <CardHeader>{poll.user.email}</CardHeader>
                 <CardBody>
                   <CardTitle>{poll.slug}</CardTitle>
                   <CardText>{poll.desc}</CardText>

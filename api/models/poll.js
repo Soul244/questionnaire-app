@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const pollSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  userId: { type: String, required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   css: { type: String },
   js: { type: String },
   name: { type: String, required: true },

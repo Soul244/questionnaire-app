@@ -1,37 +1,32 @@
 import update from 'immutability-helper';
 import _ from 'lodash';
 
-import {
-  ADD_ANSWER,
-  DELETE_ANSWER,
-  ON_CHANGE_ANSWER,
-  ON_CHANGE_TYPE_ANSWER,
-} from '../../types';
+import { syncTypes } from '../../types';
 
 export function addAnswerAction(payload) {
   return {
-    type: ADD_ANSWER,
+    type: syncTypes.ADD_ANSWER,
     payload,
   };
 }
 
 export function deleteAnswerAction(payload) {
   return {
-    type: DELETE_ANSWER,
+    type: syncTypes.DELETE_ANSWER,
     payload,
   };
 }
 
 export function onChangedAnswerAction(payload) {
   return {
-    type: ON_CHANGE_ANSWER,
+    type: syncTypes.ON_CHANGE_ANSWER,
     payload,
   };
 }
 
 export function onChangedTypeAnswerAction(payload) {
   return {
-    type: ON_CHANGE_TYPE_ANSWER,
+    type: syncTypes.ON_CHANGE_TYPE_ANSWER,
     payload,
   };
 }

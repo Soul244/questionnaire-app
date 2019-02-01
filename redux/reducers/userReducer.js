@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import {
-  POST_SIGNUP, POST_LOGIN, POST_TOKEN_IS_VALID, POST_RESET_PASSWORD,
+  asyncTypes,
 } from '../types';
 
 const initialState = {
@@ -13,13 +13,13 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case POST_SIGNUP:
+    case asyncTypes.POST_SIGNUP:
       state = {
         ...state,
         message: action.payload.message,
       };
       break;
-    case POST_LOGIN:
+    case asyncTypes.POST_LOGIN:
       state = {
         ...state,
         id: action.payload.id,
@@ -29,13 +29,13 @@ const userReducer = (state = initialState, action) => {
         message: action.payload.message,
       };
       break;
-    case POST_RESET_PASSWORD:
+    case asyncTypes.POST_RESET_PASSWORD:
       state = {
         ...state,
         message: action.payload.message,
       };
       break;
-    case POST_TOKEN_IS_VALID:
+    case asyncTypes.POST_TOKEN_IS_VALID:
       state = {
         ...state,
         isTokenValid: action.payload.isTokenValid,

@@ -10,7 +10,6 @@ import styled from 'styled-components';
 import * as userActions from '../../redux/actions/userActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import { PollList } from '../../components/UserPolls';
-import { Navbar } from '../../components/Shared';
 
 const RedirectContainer = styled.div`
   position: absolute;
@@ -27,9 +26,8 @@ class UserPolls extends Component {
     if (auth === '' || auth === null) {
       Router.push({ pathname: '/giris-yap' });
     } else {
-      const jsonAuth = JSON.parse(auth);
       const { getPolls } = this.props.pollsActions;
-      getPolls(jsonAuth.id);
+      getPolls();
     }
   }
 
@@ -38,7 +36,6 @@ class UserPolls extends Component {
     const { deletePoll } = this.props.pollsActions;
     return (
       <>
-        <Navbar />
         <Container className="my-4">
           <Row>
             <Col>

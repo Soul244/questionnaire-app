@@ -8,9 +8,9 @@ router.post('/signup', UserController.Post_Signup);
 router.post('/login', UserController.Post_Login);
 router.post('/token', UserController.Token_Control);
 router.post('/reset-password', UserController.Reset_Password);
-router.get('/:userId', UserController.Get_User);
+router.get('/:user', UserController.Get_User);
 
 /*
-router.delete('/:userId', checkAuth UserController.Delete_User);
+router.delete('/:user', checkAuth UserController.Delete_User);
 */
 module.exports = router;

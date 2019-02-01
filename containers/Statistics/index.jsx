@@ -12,7 +12,6 @@ import {
 
 import * as participantActions from '../../redux/actions/participantActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
-import { Navbar } from '../../components/Shared';
 import PercentTable from '../../components/Statistics/PercentTable';
 
 class index extends Component {
@@ -46,7 +45,6 @@ class index extends Component {
     const data = [{ name: 'Doğru Sayısı', value: percents.totalRight, fill: 'green' }, { name: 'Yanlış Sayısı', value: percents.totalWrong, fill: 'red' }];
     return (
       <>
-        <Navbar />
         <Container className="my-4">
           <Row>
             <Col md="6">

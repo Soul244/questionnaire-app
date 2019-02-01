@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 class UserController implements ICRUD {
   getOne(id: string): object {
     return (req:any, res:any) => {
-      User.find({ _id: req.params.userId })
+      User.find({ _id: req.params.user })
         .exec()
         .then((user:object) => {
           res.status(201).json({

@@ -1,15 +1,5 @@
 /* eslint-disable no-param-reassign */
-import {
-  GET_POLL,
-  POST_POLL,
-  UPDATE_POLL,
-  DELETE_POLL,
-  GET_POLLS,
-  GET_PREVIEW_POLL,
-  GET_ALL_POLLS,
-  GET_ALL_POLLS_START,
-  GET_ALL_POLLS_ERROR,
-} from '../types';
+import { asyncTypes } from '../types';
 
 const initialState = {
   polls: [],
@@ -24,7 +14,7 @@ const initialState = {
 
 const pollsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ALL_POLLS:
+    case asyncTypes.GET_ALL_POLLS:
       state = {
         ...state,
         allPolls: action.payload.polls,
@@ -33,50 +23,50 @@ const pollsReducer = (state = initialState, action) => {
         fethed: true,
       };
       break;
-    case GET_ALL_POLLS_START:
+    case asyncTypes.GET_ALL_POLLS_START:
       state = {
         ...state,
         fetching: true,
       };
       break;
-    case GET_ALL_POLLS_ERROR:
+    case asyncTypes.GET_ALL_POLLS_ERROR:
       state = {
         ...state,
         error: action.payload.error,
       };
       break;
-    case GET_POLL:
+    case asyncTypes.GET_POLL:
       state = {
         ...state,
         poll: action.payload,
       };
       break;
-    case GET_PREVIEW_POLL:
+    case asyncTypes.GET_PREVIEW_POLL:
       state = {
         ...state,
         poll: action.payload,
       };
       break;
-    case POST_POLL:
+    case asyncTypes.POST_POLL:
       state = {
         ...state,
         message: action.payload.message,
       };
       break;
-    case UPDATE_POLL:
+    case asyncTypes.UPDATE_POLL:
       state = {
         ...state,
         message: action.payload.message,
       };
       break;
-    case DELETE_POLL:
+    case asyncTypes.DELETE_POLL:
       state = {
         ...state,
         polls: action.payload.newPolls,
         message: action.payload.message,
       };
       break;
-    case GET_POLLS:
+    case asyncTypes.GET_POLLS:
       state = {
         ...state,
         polls: action.payload.polls,

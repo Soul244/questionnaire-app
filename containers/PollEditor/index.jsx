@@ -16,7 +16,7 @@ import PollHeader from './PollHeader';
 import Inject from './Inject';
 import SelectableLastMessage from './SelectableLastMessage';
 
-import { QuestionTool, Navbar } from '../../components/Shared';
+import { QuestionTool } from '../../components/Shared';
 import * as pollActions from '../../redux/actions/pollActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import { checkEmpty } from '../../validation/validationFunctions';
@@ -124,7 +124,6 @@ class PollEditor extends Component {
 
     return (
       <>
-        <Navbar />
         <Container className="my-4">
           <Row>
             <Col md={12}>

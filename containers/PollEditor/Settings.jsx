@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 import Setting from '../../components/PollEditor/Setting';
 import * as pollActions from '../../redux/actions/pollActions';
-import { settingsInfos } from './settingsInfos';
+import { settingsInfos } from '../settingsInfos';
 
 const CardStyled = styled(Card)`
 `;

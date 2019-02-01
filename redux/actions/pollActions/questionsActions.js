@@ -1,61 +1,53 @@
 import update from 'immutability-helper';
 import { arrayMove } from 'react-sortable-hoc';
 
-import {
-  ADD_QUESTION,
-  DELETE_QUESTION,
-  UPDATE_QUESTION_ORDER,
-  ON_CHANGE_QUESTION,
-  ON_CHANGE_TYPE_QUESTION,
-  ON_CLICK_RIGHT_ANSWER,
-  ON_CHANGE_QUESTION_DESC,
-} from '../../types';
+import { syncTypes } from '../../types';
 
 export function addQuestionAction(payload) {
   return {
-    type: ADD_QUESTION,
+    type: syncTypes.ADD_QUESTION,
     payload,
   };
 }
 
 export function deleteQuestionAction(payload) {
   return {
-    type: DELETE_QUESTION,
+    type: syncTypes.DELETE_QUESTION,
     payload,
   };
 }
 
 export function updateQuestionOrderAction(payload) {
   return {
-    type: UPDATE_QUESTION_ORDER,
+    type: syncTypes.UPDATE_QUESTION_ORDER,
     payload,
   };
 }
 
 export function onChangeQuestionAction(payload) {
   return {
-    type: ON_CHANGE_QUESTION,
+    type: syncTypes.ON_CHANGE_QUESTION,
     payload,
   };
 }
 
 export function onChangeTypeQuestionAction(payload) {
   return {
-    type: ON_CHANGE_TYPE_QUESTION,
+    type: syncTypes.ON_CHANGE_TYPE_QUESTION,
     payload,
   };
 }
 
 export function OnClickRightAnswerAction(payload) {
   return {
-    type: ON_CLICK_RIGHT_ANSWER,
+    type: syncTypes.ON_CLICK_RIGHT_ANSWER,
     payload,
   };
 }
 
 export function handleOnChangeQuestionDescAction(payload) {
   return {
-    type: ON_CHANGE_QUESTION_DESC,
+    type: syncTypes.ON_CHANGE_QUESTION_DESC,
     payload,
   };
 }

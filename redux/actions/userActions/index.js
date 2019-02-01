@@ -1,34 +1,32 @@
 import axios from 'axios';
-import {
-  POST_SIGNUP, POST_LOGIN, POST_TOKEN_IS_VALID, POST_RESET_PASSWORD,
-} from '../../types';
+import { asyncTypes } from '../../types';
 
 const { apiUrl } = process.env;
 
 export function postSignUpAction(payload) {
   return {
-    type: POST_SIGNUP,
+    type: asyncTypes.POST_SIGNUP,
     payload,
   };
 }
 
 export function postLoginAction(payload) {
   return {
-    type: POST_LOGIN,
+    type: asyncTypes.POST_LOGIN,
     payload,
   };
 }
 
 export function postIsTokenValidAction(payload) {
   return {
-    type: POST_TOKEN_IS_VALID,
+    type: asyncTypes.POST_TOKEN_IS_VALID,
     payload,
   };
 }
 
 export function postResetPasswordAction(payload) {
   return {
-    type: POST_RESET_PASSWORD,
+    type: asyncTypes.POST_RESET_PASSWORD,
     payload,
   };
 }

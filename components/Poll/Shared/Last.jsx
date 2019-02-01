@@ -74,10 +74,13 @@ class Last extends React.Component {
                 <hr />
               </Col>
               <Col>
-                <SelectableLastMessage
+                {/*
+                              <SelectableLastMessage
                   selectableLastMessages={selectableLastMessages}
                   result={rightPercent}
                 />
+              */}
+
               </Col>
             </>
           )}
