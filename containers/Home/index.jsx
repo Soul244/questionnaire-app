@@ -3,12 +3,27 @@ import { connect } from 'react-redux';
 import Link from 'next/link';
 
 import {
-  Card, CardBody, CardTitle, CardText, CardHeader, Button, Container, Row, Col,
+  Card, CardBody, CardTitle, CardText, CardHeader, CardFooter, Button, Container, Row, Col,
 } from 'reactstrap';
+import styled from 'styled-components';
 
+import Parser from 'html-react-parser';
 import { Paginate, Loading } from '../../components/Shared';
 
 import * as pollsActions from '../../redux/actions/pollsActions';
+
+const CardHeaderStyled = styled(CardHeader)` 
+  display:flex;
+  align-items: center;
+`;
+
+const FlexItem = styled.div` 
+  margin-left: 0.5rem;
+`;
+
+const ButtonContainer = styled.div` 
+  margin-top:0.5rem;
+`;
 
 class index extends Component {
   constructor() {
@@ -34,6 +49,7 @@ class index extends Component {
     const {
       allPolls, fetching, fetched, count,
     } = this.props.polls;
+    const { page } = this.state;
     if (fetching && !fetched) {
       return (
         <Loading />
@@ -56,23 +72,33 @@ class index extends Component {
           <Col md="6">
             {allPolls.map(poll => (
               <Card key={poll._id}>
-                <CardHeader>{poll.user.email}</CardHeader>
+                <CardHeaderStyled>
+                  <div className="svg-icon">
+                    <img src="https://image.flaticon.com/icons/svg/527/527489.svg" alt="" />
+                  </div>
+                  <FlexItem>
+                    {poll.user.email}
+                  </FlexItem>
+                </CardHeaderStyled>
                 <CardBody>
-                  <CardTitle>{poll.slug}</CardTitle>
-                  <CardText>{poll.desc}</CardText>
-                  <Link as={`/anket/${poll.slug}`} href={`/poll?slug=${poll.slug}`}>
-                    <a target="_blank">
-                      <Button>Anketi Çöz</Button>
-                    </a>
-                  </Link>
+                  <CardTitle>{poll.name}</CardTitle>
+                  <CardText>{Parser(poll.desc)}</CardText>
+                  <ButtonContainer>
+                    <Link as={`/anket/${poll.slug}`} href={`/poll?slug=${poll.slug}`}>
+                      <a target="_blank">
+                        <Button color="info">Anketi Çöz</Button>
+                      </a>
+                    </Link>
+                  </ButtonContainer>
+                </CardBody>
+                <CardFooter>
                   <CardText>
                     <small className="text-muted">{poll.createdAt}</small>
                   </CardText>
-                  <a />
-                </CardBody>
+                </CardFooter>
               </Card>
             ))}
-            <Paginate pageCount={count / 10} handlePageChange={this.handlePageChange} />
+            <Paginate itemsCount={count} handlePageChange={this.handlePageChange} page={page} />
           </Col>
           <Col md="3">
             <Card>

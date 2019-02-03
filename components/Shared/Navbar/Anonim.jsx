@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 const NavLinkCursor = styled(NavLink)`
   cursor: pointer !important;
+  color:white !important;
 `;
 
 function Anonim() {

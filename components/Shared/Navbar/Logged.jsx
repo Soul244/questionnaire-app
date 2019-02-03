@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 const NavLinkCursor = styled(NavLink)`
   cursor: pointer !important;
+  color:white !important;
 `;
 
 function Logged(props) {
@@ -20,7 +21,7 @@ function Logged(props) {
         </Link>
       </NavItem>
       <NavItem>
-        <Link as="/anket/yeni-anket" href="/poll/editor">
+        <Link as="/anket/editor/yeni-anket" href="/poll/editor">
           <NavLinkCursor>Yeni Anket Oluştur</NavLinkCursor>
         </Link>
       </NavItem>

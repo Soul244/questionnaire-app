@@ -36,6 +36,10 @@ const ButtonStyled = styled(Button)`
     }
 `;
 
+const TableStyled = styled(Table)` 
+  background-color: #fff;
+`;
+
 class PollList extends React.Component {
   constructor(props) {
     super(props);
@@ -79,7 +83,7 @@ class PollList extends React.Component {
       <>
         {this.notify(message)}
         <ToastContainer autoClose={2000} />
-        <Table bordered hover responsive>
+        <TableStyled bordered hover responsive>
           <thead>
             <tr>
               <th>Anket Başlığı</th>
@@ -121,7 +125,7 @@ class PollList extends React.Component {
                           <Button color="secondary" onClick={this.toggleDelete}>Hayır</Button>
                         </ModalFooter>
                       </Modal>
-                      <Link as={`/anket/istatistikler/${item.slug}`} href={`/poll/statistics?slug=${item.slug}`}>
+                      <Link as={`/anket/istatistikler/${item.slug}`} href={`/poll/stats?slug=${item.slug}`}>
                         <ButtonStyled outline color="secondary" id={`stats${item._id}`}>
                           <Icon size="24px" icon={stats} />
                         </ButtonStyled>
@@ -141,7 +145,7 @@ class PollList extends React.Component {
               ))
             )}
           </tbody>
-        </Table>
+        </TableStyled>
       </>
     );
   }

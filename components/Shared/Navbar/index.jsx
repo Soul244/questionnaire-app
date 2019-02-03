@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Link from 'next/link';
 import { connect } from 'react-redux';
 
 import {
@@ -82,11 +81,10 @@ class index extends Component {
   render() {
     const { isLogged } = this.state;
     return (
-      <NavbarStyled color="light" light expand="md">
+      <NavbarStyled className="nav-bg" light expand="md">
         <Container>
           <NavbarBrandStyled href="/">
             <img src="/static/bilemezsin-logo.jpg" style={{ width: '32px', height: '32px' }} alt="logo" />
-            <LogoText>Bilemezsin Questionnaire</LogoText>
           </NavbarBrandStyled>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

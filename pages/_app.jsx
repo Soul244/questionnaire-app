@@ -5,9 +5,8 @@ import withRedux from 'next-redux-wrapper';
 import Head from 'next/head';
 
 import { initStore } from '../redux/store';
-import '../css/bootstrap.min.css';
 import '../css/index.css';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import '../css/bootstrap.min.css';
 import * as $ from 'jquery';
 import 'react-toastify/dist/ReactToastify.css';
 import 'froala-editor/js/froala_editor.pkgd.min.js';

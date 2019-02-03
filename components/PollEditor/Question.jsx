@@ -46,7 +46,7 @@ const CardHeaderStyled = styled(CardHeader)`
   display: flex;
   align-items: center;
   position: sticky;
-  top: 58px;
+  top: 50px;
   z-index: 4;
   background-color: #f3f3f3;
   border-radius: 8px !important;

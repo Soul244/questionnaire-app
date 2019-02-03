@@ -26,10 +26,11 @@ app
       return app.render(req, res, actualPage, queryParams);
     });
 
-    server.get('/anket/editor', (req, res) => {
+    server.get('/anket/editor/yeni-anket', (req, res) => {
       const actualPage = '/poll/editor';
       return app.render(req, res, actualPage);
     });
+
     server.get('/anket/editor/:slug', (req, res) => {
       const actualPage = '/poll/editor';
       const queryParams = { slug: req.params.slug };
@@ -48,7 +49,7 @@ app
     });
 
     server.get('/anket/istatistikler/:slug', (req, res) => {
-      const actualPage = '/poll/statistics';
+      const actualPage = '/poll/stats';
       const queryParams = { slug: req.params.slug };
       return app.render(req, res, actualPage, queryParams);
     });

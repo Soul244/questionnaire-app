@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
+import dynamic from 'next/dynamic';
 
 import {
   Container, Row, Col,
@@ -16,10 +17,14 @@ import PollHeader from './PollHeader';
 import Inject from './Inject';
 import SelectableLastMessage from './SelectableLastMessage';
 
-import { QuestionTool } from '../../components/Shared';
+import { QuestionTool, StepWizardNav, Step } from '../../components/Shared';
 import * as pollActions from '../../redux/actions/pollActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import { checkEmpty } from '../../validation/validationFunctions';
+
+const StepWizard = dynamic(import('react-step-wizard'), {
+  ssr: false,
+});
 
 class PollEditor extends Component {
   constructor(props) {
@@ -137,24 +142,35 @@ class PollEditor extends Component {
           <Row>
             <Col md={12}>
               <form onSubmit={this.handleSubmit}>
-                <QuestionTool addQuestion={handleAddQuestion} />
-                <PollHeader />
-                <PollLast handleLastDescOnChange={handleLastDescOnChange} lastDesc={lastDesc} />
-                <Inject
-                  js={js}
-                  css={css}
-                  handleJsOnChange={handleJsOnChange}
-                  handleCssOnChange={handleCssOnChange}
-                />
-                <Settings />
-                {poll.settings.type === 'test' && (
-                <SelectableLastMessage />
-                )}
-                <Questions
-                  deleteQuestion={handleDeleteQuestion}
-                  questions={questions}
-                  updateQuestionOrder={handleUpdateQuestionOrder}
-                />
+                <StepWizard nav={<StepWizardNav />}>
+                  <Step header="Adım 1" desc="Anket adını, anket açıklamasını, anket linkini ve anket sonu mesajını girin">
+                    <PollHeader />
+                    <PollLast handleLastDescOnChange={handleLastDescOnChange} lastDesc={lastDesc} />
+                  </Step>
+                  <Step header="Adım 2" desc="Custom Css ve Javascript kodlarınızı ekleyin">
+                    <Inject
+                      js={js}
+                      css={css}
+                      handleJsOnChange={handleJsOnChange}
+                      handleCssOnChange={handleCssOnChange}
+                    />
+                  </Step>
+                  <Step header="Adım 3" desc="Anket ayarlarını girin">
+                    {' '}
+                    <Settings />
+                    {poll.settings.type === 'test' && (
+                    <SelectableLastMessage />
+                    )}
+                  </Step>
+                  <Step header="Adım 4" desc="Anket sorularınızı ve cevaplarınızı girin">
+                    <QuestionTool addQuestion={handleAddQuestion} />
+                    <Questions
+                      deleteQuestion={handleDeleteQuestion}
+                      questions={questions}
+                      updateQuestionOrder={handleUpdateQuestionOrder}
+                    />
+                  </Step>
+                </StepWizard>
               </form>
             </Col>
           </Row>

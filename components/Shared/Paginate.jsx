@@ -5,6 +5,7 @@ class Paginate extends React.Component {
   constructor() {
     super();
     this.state = {
+      page: 0,
       pageCount: 0,
     };
     this.createPaginateItems = this.createPaginateItems.bind(this);
@@ -13,26 +14,43 @@ class Paginate extends React.Component {
   createPaginateItems = (pageCount, handlePageChange) => {
     const paginationItems = [];
     // Outer loop to create parent
-    for (let i = 0; i <= pageCount; i++) {
+    for (let i = 0; i < pageCount; i += 1) {
       paginationItems.push(
         <PaginationItem key={i}>
-          <PaginationLink onClick={e => handlePageChange(e.target.value)} value={i}>{i}</PaginationLink>
+          <PaginationLink onClick={e => handlePageChange(e.target.value)} value={i}>{i + 1}</PaginationLink>
         </PaginationItem>,
       );
     }
     return paginationItems;
   };
 
+  componentDidMount() {
+    const { itemsCount } = this.props;
+    let pageCount = 1;
+    if (itemsCount > 10) {
+      pageCount = itemsCount / 10;
+    }
+    // last page
+    if (itemsCount > 10 && itemsCount % 10 !== 0) {
+      pageCount += 1;
+    }
+    this.setState({
+      pageCount,
+    });
+  }
+
   render() {
-    const { pageCount, handlePageChange } = this.props;
+    const { page, handlePageChange } = this.props;
+    const { pageCount } = this.state;
+    console.log(page);
     return (
-      <Pagination aria-label="Page navigation example">
-        <PaginationItem disabled>
-          <PaginationLink previous />
+      <Pagination>
+        <PaginationItem>
+          <PaginationLink previous onClick={e => handlePageChange(page - 1)} />
         </PaginationItem>
         {this.createPaginateItems(pageCount, handlePageChange)}
         <PaginationItem>
-          <PaginationLink next />
+          <PaginationLink next onClick={e => handlePageChange(page + 1)} />
         </PaginationItem>
       </Pagination>
     );
