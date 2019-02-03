@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Carousel from 'nuka-carousel';
 import {
-  Row, Button, Progress,
+  Row, Button, Progress, Col,
 } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -25,14 +25,20 @@ const CountContainer = styled.div`
   text-align: center;
   font-size: 1rem;
   font-weight: 500;
+  margin-right: 0.5rem;
 `;
 
-const Controls = styled(Row)`
+const Controls = styled.div`
+  display:flex;
   margin-bottom: 1rem;
 `;
 
 const ProgressContainer = styled.div`
   margin-bottom: 1rem;
+`;
+
+const QuestionContainer = styled.div` 
+  padding: 0.5rem;
 `;
 
 class SideBySide extends React.Component {
@@ -128,7 +134,7 @@ class SideBySide extends React.Component {
       type,
     } = poll.settings;
     return (
-      <div>
+      <>
         {/* IF POLL(TEST) IS NOT STARTED, SHOW START PAGE' */}
         {!testStarted && (
           <First
@@ -141,7 +147,7 @@ class SideBySide extends React.Component {
         {testStarted && !testFinished && (
           <>
             {/* IF THERE IS AUTO ANSWER CHANGE TIME, SHOW PROGRESS BAR */}
-            {hasAnswerAutoChangeTime && (
+              {hasAnswerAutoChangeTime && (
               <>
                 <ProgressContainer>
                   <Progress value={progressValue} max={100} />
@@ -150,7 +156,7 @@ class SideBySide extends React.Component {
                   {`${slideIndex + 1}/${questions.length} soru`}
                 </CountContainer>
               </>
-            )}
+              )}
             {/* IF NOT, SHOW BUTTONS */}
             {!hasAnswerAutoChangeTime && (
             <Controls>
@@ -176,7 +182,7 @@ class SideBySide extends React.Component {
               renderCenterRightControls={null}
             >
               {orderedQuestions.map((question, index) => (
-                <Fragment key={`poll${index}`}>
+                <QuestionContainer key={`poll${index}`}>
                   <Row>
                     <Question
                       type={question.type}
@@ -195,7 +201,7 @@ class SideBySide extends React.Component {
                       addParticipantAnswer={addParticipantAnswer}
                     />
                   </Row>
-                </Fragment>
+                </QuestionContainer>
               ))}
             </Carousel>
           </>
@@ -213,7 +219,7 @@ class SideBySide extends React.Component {
           type={type}
         />
         )}
-      </div>
+      </>
     );
   }
 }

@@ -83,34 +83,30 @@ class index extends Component {
     return (
       <>
         <Container className="my-4">
-          <Row>
-            <Col>
-              {settings.showType === 'sideBySide' && (
-              <SideBySide
-                testStarted={testStarted}
-                testFinished={testFinished}
-                poll={poll}
-                handleTestStarted={this.handleTestStarted}
-                handleTestFinished={this.handleTestFinished}
-                addParticipantAnswer={addParticipantAnswer}
-                participant={participant}
-                postParticipant={postParticipant}
-              />
-              )}
-              {settings.showType === 'full' && (
-              <Full
-                testStarted={testStarted}
-                testFinished={testFinished}
-                poll={poll}
-                handleTestStarted={this.handleTestStarted}
-                handleTestFinished={this.handleTestFinished}
-                addParticipantAnswer={addParticipantAnswer}
-                participant={participant}
-                postParticipant={postParticipant}
-              />
-              )}
-            </Col>
-          </Row>
+          {settings.showType === 'sideBySide' && (
+          <SideBySide
+            testStarted={testStarted}
+            testFinished={testFinished}
+            poll={poll}
+            handleTestStarted={this.handleTestStarted}
+            handleTestFinished={this.handleTestFinished}
+            addParticipantAnswer={addParticipantAnswer}
+            participant={participant}
+            postParticipant={postParticipant}
+          />
+          )}
+          {settings.showType === 'full' && (
+          <Full
+            testStarted={testStarted}
+            testFinished={testFinished}
+            poll={poll}
+            handleTestStarted={this.handleTestStarted}
+            handleTestFinished={this.handleTestFinished}
+            addParticipantAnswer={addParticipantAnswer}
+            participant={participant}
+            postParticipant={postParticipant}
+          />
+          )}
         </Container>
       </>
     );
