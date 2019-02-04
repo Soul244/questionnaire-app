@@ -280,17 +280,15 @@ class Question extends Component {
           <ContainerStyled>
             <Row>
               <Col md="12">
-                <Card>
-                  <CardBody>
-                    <HeaderContainer>
-                      <Input
-                        type="text"
-                        value={content}
-                        placeholder="soruyu giriniz..."
-                        onChange={this.onChange}
-                      />
-                      <DescContainer>
-                        {type !== 'heading'
+                <HeaderContainer>
+                  <Input
+                    type="text"
+                    value={content}
+                    placeholder="soruyu giriniz..."
+                    onChange={this.onChange}
+                  />
+                  <DescContainer>
+                    {type !== 'heading'
                           && (type !== 'text' && (
                             <PlusButtonContainer>
                               <button
@@ -304,17 +302,15 @@ class Question extends Component {
                               </button>
                             </PlusButtonContainer>
                           ))}
-                        <Desc
-                          type={type}
-                          show={showDesc}
-                          value={desc}
-                          onChange={this.onChangeDesc}
-                        />
-                      </DescContainer>
-                      <ContentViewer type={type} content={content} />
-                    </HeaderContainer>
-                  </CardBody>
-                </Card>
+                    <Desc
+                      type={type}
+                      show={showDesc}
+                      value={desc}
+                      onChange={this.onChangeDesc}
+                    />
+                  </DescContainer>
+                  <ContentViewer type={type} content={content} />
+                </HeaderContainer>
                 <Answers
                   answers={answers}
                   questionOrder={order}

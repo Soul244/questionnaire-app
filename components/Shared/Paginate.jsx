@@ -42,7 +42,6 @@ class Paginate extends React.Component {
   render() {
     const { page, handlePageChange } = this.props;
     const { pageCount } = this.state;
-    console.log(page);
     return (
       <Pagination>
         <PaginationItem>

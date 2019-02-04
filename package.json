@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "start nodemon api/server.js && start node server.js",
     "build": "next build",
+    "export": "next export",
+    "deploy": "yarn build && yarn export",
     "start": "node server.js "
   },
   "dependencies": {

@@ -182,7 +182,11 @@ export function getAllPolls(page) {
   return async (dispatch) => {
     try {
       dispatch(getAllPollsStartAction());
-      const response = await axios.get(endPoint);
+      const response = await axios.get(endPoint, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
       dispatch(getAllPollsAction(response.data));
     } catch (error) {
       dispatch(getAllPollsErrorAction(error));

@@ -6,6 +6,10 @@ const StyledText = styled.p`
     display: inline-block;
 `;
 
-const Text = ({ children }) => <StyledText>{children}</StyledText>;
+const Text = ({ children }) => (
+  <StyledText>
+    {children}
+  </StyledText>
+);
 
 export default Text;
