@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 
 import {
   Container, Row, Col, Card, CardBody, CardText, CardTitle,
@@ -20,15 +21,19 @@ class index extends Component {
     this.props.pollsActions.getPoll(this.props.slug);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   percents(participants) {
     let totalRight = 0;
     let totalWrong = 0;
     let totalhasNotRightAnswer = 0;
-    for (let index = 0; index < participants.length; index++) {
+    for (let index = 0; index < participants.length; index += 1) {
       const element = participants[index];
-      const right = _.filter(element.answers, (item) => { if (item.hasRightAnswer && item.isTrue) return item; }).length;
-      const wrong = _.filter(element.answers, (item) => { if (item.hasRightAnswer && item.isTrue === false) return item; }).length;
-      const hasNotRightAnswer = _.filter(element.answers, (item) => { if (!item.hasRightAnswer) return item; }).length;
+      const right = _.filter(element.answers,
+        (item) => { if (item.hasRightAnswer && item.isTrue) return item; }).length;
+      const wrong = _.filter(element.answers,
+        (item) => { if (item.hasRightAnswer && item.isTrue === false) return item; }).length;
+      const hasNotRightAnswer = _.filter(element.answers,
+        (item) => { if (!item.hasRightAnswer) return item; }).length;
       totalRight += right;
       totalWrong += wrong;
       totalhasNotRightAnswer += hasNotRightAnswer;
@@ -104,6 +109,14 @@ class index extends Component {
     );
   }
 }
+
+index.propTypes = {
+  pollsActions: PropTypes.object.isRequired,
+  participantActions: PropTypes.object.isRequired,
+  participant: PropTypes.object.isRequired,
+  polls: PropTypes.object.isRequired,
+  slug: PropTypes.string.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

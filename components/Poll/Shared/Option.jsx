@@ -88,6 +88,9 @@ Option.propTypes = {
   rightAnswerOrder: PropTypes.number.isRequired,
   checked: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   onClick: PropTypes.func.isRequired,
+  answerCount: PropTypes.number.isRequired,
+  showPercent: PropTypes.number.isRequired,
+  questionCount: PropTypes.number.isRequired,
 };
 
 export default Option;

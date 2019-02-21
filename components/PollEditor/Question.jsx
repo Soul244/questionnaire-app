@@ -49,7 +49,6 @@ const CardHeaderStyled = styled(CardHeader)`
   top: 50px;
   z-index: 4;
   background-color: #f3f3f3;
-  border-radius: 8px !important;
 `;
 
 const ContainerStyled = styled(Container)`
@@ -140,37 +139,30 @@ class Question extends Component {
       showDelete: false,
       answerToolShow: false,
     };
-    this.onChange = this.onChange.bind(this);
-    this.onChangeType = this.onChangeType.bind(this);
-    this.toggle = this.toggle.bind(this);
-    this.descToggle = this.descToggle.bind(this);
-    this.onChangeDesc = this.onChangeDesc.bind(this);
-    this.toggleDelete = this.toggleDelete.bind(this);
-    this.answerToolToggle = this.answerToolToggle.bind(this);
   }
 
-  onChange(e) {
+  onChange = e => {
     const { order } = this.state;
     const content = e.target.value;
     this.setState({ content });
     this.props.handleOnChangeQuestion(content, order);
   }
 
-  onChangeType(e) {
+  onChangeType = e => {
     const { order } = this.state;
     const type = e.target.value;
     this.setState({ type });
     this.props.handleOnChangeTypeQuestion(type, order);
   }
 
-  onChangeDesc(e) {
+  onChangeDesc = e => {
     const { order } = this.props;
     const content = e.target.value;
     this.setState({ desc: content });
     this.props.handleOnChangeQuestionDesc(content, order);
   }
 
-  descToggle() {
+  descToggle = () => {
     const { showDesc } = this.state;
     if (showDesc) {
       this.setState({
@@ -184,21 +176,21 @@ class Question extends Component {
   }
 
   // Hide-Show answer tool
-  answerToolToggle() {
+  answerToolToggle = () =>  {
     this.setState(prevState => ({
       answerToolShow: !prevState.answerToolShow,
     }));
   }
 
   // Hide-Show question div
-  toggle() {
+  toggle = () =>  {
     this.setState(prevState => ({
       show: !prevState.show,
     }));
   }
 
   // Hide-Show Delete Modal
-  toggleDelete() {
+  toggleDelete = () =>  {
     this.setState(prevState => ({
       showDelete: !prevState.showDelete,
     }));
@@ -312,7 +304,7 @@ class Question extends Component {
                   <ContentViewer type={type} content={content} />
                 </HeaderContainer>
                 <Answers
-                  answers={answers}
+                  answers={answers.filter(answer => answer.questionOrder === order)}
                   questionOrder={order}
                   rightAnswerOrder={rightAnswerOrder}
                 />
@@ -332,6 +324,9 @@ Question.propTypes = {
   handleOnChangeTypeQuestion: PropTypes.func.isRequired,
   handleOnChangeQuestionDesc: PropTypes.func.isRequired,
   poll: PropTypes.object.isRequired,
+  rightAnswerOrder: PropTypes.number.isRequired,
+  desc: PropTypes.string,
+  type: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

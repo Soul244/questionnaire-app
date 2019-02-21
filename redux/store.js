@@ -19,5 +19,5 @@ const reducers = combineReducers({
 
 export const initStore = () => createStore(
   reducers,
-  applyMiddleware(thunk, logger),
+  applyMiddleware(thunk),
 );

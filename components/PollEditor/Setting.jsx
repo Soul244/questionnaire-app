@@ -57,10 +57,9 @@ class Setting extends React.Component {
       id: uuidv1(),
       show: false,
     };
-    this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
+  toggle = () => {
     this.setState(prevState => ({
       show: !prevState.show,
     }));
@@ -68,8 +67,9 @@ class Setting extends React.Component {
 
   render() {
     const {
-      value,
+      values,
       labels,
+      checkedValue,
       name,
       header,
       onChange,
@@ -117,31 +117,28 @@ class Setting extends React.Component {
         </InfoContainer>
         <div>
           <CustomInput
+            id={`${values[0] + name}`}
             type="radio"
-            id={`${name}True`}
             name={name}
             label={labels[0]}
-            checked={
-              value === true || value === 'sideBySide' || value === 'test' || value === 'form'
-            }
-            value={value}
+            value={values[0]}
+            checked={values[0]===checkedValue}
             onChange={onChange}
           />
           <CustomInput
+            id={`${values[1] + name}`}
             type="radio"
-            id={`${name}False`}
             name={name}
             label={labels[1]}
-            checked={value === false || value === 'full' || value === 'poll' || value === 'anonim'}
-            value={value}
+            value={values[1]}
+            checked={values[1]===checkedValue}
             onChange={onChange}
           />
           {hasInput && (
             <InputShowAble
               type="number"
               placeholder={inputPlaceHolder}
-              show={value ? 1 : 0}
-              defaultValue={inputValue}
+              show={values[0] ? 1 : 0}
               value={inputValue}
               onChange={inputChange}
             />
@@ -156,11 +153,12 @@ class Setting extends React.Component {
 Setting.defaultProps = {
   header: '',
   labels: ['Evet', 'Hayır'],
+  values: [true, false],
   hasInput: false,
   inputValue: '',
   inputChange: undefined,
   inputPlaceHolder: '',
-  value: undefined,
+  checkedValue: undefined,
   tooltip: '',
   info: '',
 };

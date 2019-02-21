@@ -11,17 +11,15 @@ class Iframe extends React.Component {
       width: 600,
       height: 400,
     };
-    this.widthOnChangeHandle = this.widthOnChangeHandle.bind(this);
-    this.heightOnChangeHandle = this.heightOnChangeHandle.bind(this);
   }
 
-  widthOnChangeHandle(e) {
+  widthOnChangeHandle = (e) =>  {
     this.setState({
       width: e.target.value,
     });
   }
 
-  heightOnChangeHandle(e) {
+  heightOnChangeHandle = (e) =>  {
     this.setState({
       height: e.target.value,
     });

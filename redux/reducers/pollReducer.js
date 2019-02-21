@@ -21,7 +21,7 @@ const initialState = {
     hasPollTime: false,
     pollTime: '',
     showType: 'sideBySide',
-    isPollActive: true,
+    isPollActive: 'active',
     hasAnswerPercent: false,
     type: 'test',
     userDataCollectType: 'form',

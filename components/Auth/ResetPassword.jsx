@@ -16,6 +16,11 @@ const Header = styled.div`
 `;
 
 class ResetPassword extends Component {
+  static propTypes = {
+    validationSchema: PropTypes.object.isRequired,
+    postResetPassword: PropTypes.func.isRequired,
+    pageHandle: PropTypes.func.isRequired,
+  };
   render() {
     const {
       validationSchema, postResetPassword, pageHandle,
@@ -68,11 +73,5 @@ class ResetPassword extends Component {
     );
   }
 }
-
-ResetPassword.propTypes = {
-  validationSchema: PropTypes.objectOf.isRequired,
-  postResetPassword: PropTypes.func.isRequired,
-  pageHandle: PropTypes.func.isRequired,
-};
 
 export default ResetPassword;

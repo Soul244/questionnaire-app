@@ -1,7 +1,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 
-import { syncTypes } from '../../types';
+import { syncTypes, asyncTypes } from '../../types';
 
 const { apiUrl } = process.env;
 
@@ -36,21 +36,21 @@ export function addParticipantEmailAction(payload) {
 
 export function getParticipantsAction(payload) {
   return {
-    type: syncTypes.GET_PARTICIPANTS,
+    type: asyncTypes.GET_PARTICIPANTS,
     payload,
   };
 }
 
 export function postParticipantAction(payload) {
   return {
-    type: syncTypes.POST_PARTICIPANT,
+    type: asyncTypes.POST_PARTICIPANT,
     payload,
   };
 }
 
 export function deleteParticipantAction(payload) {
   return {
-    type: syncTypes.DELETE_PARTICIPANT,
+    type: asyncTypes.DELETE_PARTICIPANT,
     payload,
   };
 }

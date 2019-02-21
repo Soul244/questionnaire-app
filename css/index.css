@@ -5,7 +5,7 @@ body {
   font-family: 'Montserrat', sans-serif, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgba(70, 130, 180, 0.03) !important;
+  background-color: rgba(23, 162, 184, 0.03) !important;
 }
 
 html {
@@ -219,6 +219,11 @@ p {
   border-bottom: 2px solid red !important;
 }
 
+.masonry-card-list {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
 .lds-ellipsis {
   display: inline-block;
   position: relative;
@@ -336,7 +341,7 @@ p {
 }
 
 .nav-bg {
-  background-color: #4682B4;
+  background-color: #17a2b8;
 }
 
 .nav-link {

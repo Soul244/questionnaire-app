@@ -1,5 +1,5 @@
 $border-radius: 4px;
-$navbar-color: #4682B4;
+$navbar-color: #17a2b8;
 
 body {
     margin: 0;
@@ -212,6 +212,11 @@ p {
 
 .error {
     border-bottom: 2px solid red !important;
+}
+
+.masonry-card-list {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
 }
 
 .lds-ellipsis {

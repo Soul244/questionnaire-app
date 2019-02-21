@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import dynamic from 'next/dynamic';
 import PropTypes from 'prop-types';
 
@@ -20,6 +21,14 @@ const FroalaEditorInput = dynamic(import('react-froala-wysiwyg'), {
 });
 
 class PollLast extends React.Component {
+  static propTypes = {
+    poll: PropTypes.shape({
+      lastDesc: PropTypes.string,
+    }).isRequired,
+    pollActions: PropTypes.shape({
+      handleLastDescOnChange: PropTypes.func.isRequired,
+    })
+  }
   configText = {
     placeholderText: 'Anket sonu başlığınızı giriniz...',
     heightMin: 100,
@@ -31,14 +40,10 @@ class PollLast extends React.Component {
     pluginsEnabled: ['align', 'charCounter', 'codeBeautifier', 'codeView', 'colors', 'draggable', 'embedly', 'emoticons', 'entities', 'file', 'fontFamily', 'fontSize', 'fullscreen', 'image', 'imageManager', 'inlineStyle', 'lineBreaker', 'link', 'lists', 'paragraphFormat', 'paragraphStyle', 'quickInsert', 'quote', 'save', 'table', 'url', 'video', 'wordPaste'],
     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineClass', 'inlineStyle', 'paragraphStyle', 'lineHeight', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertTable', '|', 'emoticons', 'fontAwesome', 'specialCharacters', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'html', '|', 'undo', 'redo'],
   };
-
-  constructor(props) {
-    super(props);
-    this.onLastDescChange = this.onLastDescChange.bind(this);
-  }
-
-  onLastDescChange(lastDescContent) {
-    this.props.handleLastDescOnChange(lastDescContent);
+  
+  onLastDescChange = lastDescContent => {
+    const {handleLastDescOnChange} = this.props.pollActions;
+    handleLastDescOnChange(lastDescContent);
   }
 
   render() {
@@ -61,20 +66,15 @@ class PollLast extends React.Component {
   }
 }
 
-PollLast.propTypes = {
-  poll: PropTypes.shape({
-    lastDesc: PropTypes.string,
-  }).isRequired,
-  handleLastDescOnChange: PropTypes.func.isRequired,
-};
+const mapStateToProps = state => ({
+  poll: state.poll,
+})
 
-function mapStateToProps(state) {
-  return {
-    poll: state.poll,
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  pollActions: bindActionCreators(pollActions, dispatch)
+})
 
 export default connect(
   mapStateToProps,
-  pollActions,
+  mapDispatchToProps,
 )(PollLast);

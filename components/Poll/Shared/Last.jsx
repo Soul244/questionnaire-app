@@ -6,8 +6,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 import {
-  Col, Button, FormGroup, Progress, InputGroupAddon,
-  InputGroupText, InputGroup, Input, Card, CardBody, Alert,
+  Col, Button, FormGroup, Progress, InputGroup, Card, CardBody, Alert,
 } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -15,18 +14,13 @@ import { ParticipantSchema } from '../../../validation/validationSchemas';
 import SelectableLastMessage from './SelectableLastMessage';
 import { CustomInput } from '../../Shared';
 
-
 const ColStyled = styled(Col)` 
  margin-top: 1rem;
 `;
 
 class Last extends React.Component {
-  constructor() {
-    super();
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick() {
+  
+  onClick = () => {
     const {
       participant, pollId,
     } = this.props;

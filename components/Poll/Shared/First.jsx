@@ -29,11 +29,7 @@ class First extends React.Component {
   }
 
   render() {
-    const {
-      props,
-    } = this;
-
-    const { name, desc, handleTestStarted } = props;
+    const { name, desc, handleTestStarted } = this.props;
     return (
       <Card>
         <CardBody className="text-center">

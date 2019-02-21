@@ -12,8 +12,8 @@ import Icon, {
 } from '../../css/icons';
 
 const ButtonStyled = styled(Button)`
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
   margin: 0 auto;
   display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@ const CardStyled = styled(Card)`
 `;
 
 const CardBodyStyled = styled(CardBody)`
-  padding:0.5rem !important;
+  padding:0.25rem !important;
 `;
 
 const HideableContent = styled.div`
@@ -61,10 +61,9 @@ class QuestionTool extends React.Component {
     this.state = {
       show: true,
     };
-    this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
+  toggle = () =>  {
     this.setState(prevState => ({
       show: !prevState.show,
     }));
@@ -77,34 +76,34 @@ class QuestionTool extends React.Component {
       <Draggable>
         <CardStyled className="text-center">
           <CardBodyStyled>
-            <PlusIcon size="md" outline block onClick={this.toggle} show={show} id="toggle">
+            <PlusIcon size="md" outline block onClick={this.toggle} show={show? 1: 0} id="toggle">
               <Icon size="48px" icon={arrowUp} />
             </PlusIcon>
             <HideableContent show={show}>
               <ButtonStyled size="md" outline block color="warning" id="text" onClick={() => addQuestion('text')}>
-                <Icon size="28px" icon={text} />
+                <Icon size="24px" icon={text} />
               </ButtonStyled>
               <ButtonStyled size="md" outline block color="danger" id="video" onClick={() => addQuestion('external-media')}>
-                <Icon size="28px" icon={video} />
+                <Icon size="24px" icon={video} />
               </ButtonStyled>
               <ButtonStyled size="md" outline block color="info" id="image" onClick={() => addQuestion('image')}>
-                <Icon size="28px" icon={image} />
+                <Icon size="24px" icon={image} />
               </ButtonStyled>
               <ButtonStyled size="md" outline block color="primary" id="audio" onClick={() => addQuestion('audio')}>
-                <Icon size="28px" icon={audio} />
+                <Icon size="24px" icon={audio} />
               </ButtonStyled>
               <ButtonStyled size="md" outline block color="secondary" id="gif" onClick={() => addQuestion('gif')}>GIF</ButtonStyled>
               <ButtonStyled size="md" outline block color="secondary" id="heading" onClick={() => addQuestion('heading')}>H1</ButtonStyled>
               <Link as="/on-izleme/true" href={`/poll/preview?ispreview=${true}`}>
                 <ButtonStyled size="md" outline block color="secondary" id="preview">
-                  <Icon size="28px" icon={preview} />
+                  <Icon size="24px" icon={preview} />
                 </ButtonStyled>
               </Link>
               <ButtonStyled type="submit" outline block color="success" id="save">
-                <Icon size="28px" icon={save} />
+                <Icon size="24px" icon={save} />
               </ButtonStyled>
               <ButtonStyled type="button" outline block color="success" id="publish">
-                <Icon size="28px" icon={publish} />
+                <Icon size="24px" icon={publish} />
               </ButtonStyled>
             </HideableContent>
             <UncontrolledTooltip placement="left" target="toggle">Soru ekleme aracını aç veya kapa.</UncontrolledTooltip>

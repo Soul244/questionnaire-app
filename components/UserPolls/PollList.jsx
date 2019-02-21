@@ -47,9 +47,6 @@ class PollList extends React.Component {
       modal: false,
       showDelete: false,
     };
-    this.toggle = this.toggle.bind(this);
-    this.toggleDelete = this.toggleDelete.bind(this);
-    this.removePoll = this.removePoll.bind(this);
   }
 
   notify = (message) => {
@@ -60,19 +57,19 @@ class PollList extends React.Component {
     */
   };
 
-  toggle() {
+  toggle = () =>  {
     this.setState(prevState => ({
       modal: !prevState.modal,
     }));
   }
 
-  toggleDelete() {
+  toggleDelete = () =>  {
     this.setState(prevState => ({
       showDelete: !prevState.showDelete,
     }));
   }
 
-  removePoll(id) {
+  removePoll = (id) =>  {
     this.props.deletePoll(id);
     this.toggleDelete();
   }

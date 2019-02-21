@@ -21,8 +21,6 @@ class index extends Component {
       testStarted: false,
       testFinished: false,
     };
-    this.handleTestStarted = this.handleTestStarted.bind(this);
-    this.handleTestFinished = this.handleTestFinished.bind(this);
   }
 
   componentDidMount() {
@@ -44,13 +42,13 @@ class index extends Component {
     }
   }
 
-  handleTestStarted() {
+  handleTestStarted = () => {
     this.setState({
       testStarted: true,
     });
   }
 
-  handleTestFinished() {
+  handleTestFinished = () => {
     this.setState({
       testFinished: true,
     });
@@ -134,6 +132,7 @@ index.propTypes = {
   }).isRequired,
 };
 
+// We need to get poll because of preview.
 const mapStateToProps = state => ({
   poll: state.poll,
   polls: state.polls,

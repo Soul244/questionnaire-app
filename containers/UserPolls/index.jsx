@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import * as userActions from '../../redux/actions/userActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import { PollList } from '../../components/UserPolls';
+import { Loading } from '../../components/Shared';
 
 const RedirectContainer = styled.div`
   position: absolute;
@@ -32,8 +33,15 @@ class UserPolls extends Component {
   }
 
   render() {
-    const { polls, message } = this.props.polls;
+    const {
+      polls, message, fetching, fetched,
+    } = this.props.polls;
     const { deletePoll } = this.props.pollsActions;
+    if (fetching && !fetched) {
+      return (
+        <Loading />
+      );
+    }
     return (
       <>
         <Container className="my-4">
@@ -56,6 +64,8 @@ UserPolls.propTypes = {
   polls: PropTypes.shape({
     polls: PropTypes.array.isRequired,
     message: PropTypes.string.isRequired,
+    fetched: PropTypes.bool.isRequired,
+    fetching: PropTypes.bool.isRequired,
   }).isRequired,
   pollsActions: PropTypes.shape({
     getPolls: PropTypes.func.isRequired,

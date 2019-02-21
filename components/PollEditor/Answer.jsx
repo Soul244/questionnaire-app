@@ -73,15 +73,11 @@ class Answer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: this.props.content,
+      content: '',
       type: '',
-      rightAnswerOrder: this.props.rightAnswerOrder,
+      rightAnswerOrder: 0,
       showDelete: false,
     };
-    this.onChange = this.onChange.bind(this);
-    this.onChangeType = this.onChangeType.bind(this);
-    this.onChangeRightAnswer = this.onChangeRightAnswer.bind(this);
-    this.toggleDelete = this.toggleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -95,30 +91,31 @@ class Answer extends Component {
     }
     this.setState({
       type: this.props.type,
+      content: this.props.content,
     });
   }
 
-  onChange(e) {
+  onChange = (e) =>  {
     const { order, questionOrder } = this.props;
     const content = e.target.value;
     this.setState({ content });
     this.props.handleOnChangeAnswer(content, questionOrder, order);
   }
 
-  onChangeRightAnswer(e) {
+  onChangeRightAnswer = (e) =>  {
     const { questionOrder } = this.props;
     const rightAnswerOrder = e.target.value;
     this.props.handleOnClickRightAnswer(questionOrder, rightAnswerOrder);
   }
 
-  onChangeType(e) {
+  onChangeType = (e) =>  {
     const { order, questionOrder } = this.props;
     const type = e.target.value;
     this.setState({ type });
     this.props.handleOnChangeTypeAnswer(type, questionOrder, order);
   }
 
-  toggleDelete() {
+  toggleDelete = () =>  {
     this.setState(prevState => ({
       showDelete: !prevState.showDelete,
     }));
@@ -210,7 +207,9 @@ Answer.propTypes = {
   handleOnClickRightAnswer: PropTypes.func.isRequired,
   order: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   questionOrder: PropTypes.number.isRequired,
+  poll: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

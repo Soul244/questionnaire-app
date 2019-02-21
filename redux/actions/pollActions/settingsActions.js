@@ -36,7 +36,6 @@ export function showTypeAction(payload) {
   };
 }
 
-
 export function typeAction(payload) {
   return {
     type: syncTypes.TYPE,
@@ -80,67 +79,35 @@ export function userDataCollectTypeAction(payload) {
 }
 
 export function handleHasPollTime(e) {
-  const radioButton = e.target;
-  if (radioButton.id === 'hasPollTimeTrue') {
-    return dispatch => dispatch(hasPollTimeAction({ hasPollTime: true }));
-  }
-  return dispatch => dispatch(hasPollTimeAction({ hasPollTime: false }));
+  return dispatch => dispatch(hasPollTimeAction({ hasPollTime: e.target.value==="true" ? true : false }));
 }
 
 export function handleHasAnswerTime(e) {
-  const radioButton = e.target;
-  if (radioButton.id === 'hasAnswerTimeTrue') {
-    return dispatch => dispatch(hasAnswerTimeAction({ hasAnswerTime: true }));
-  }
-  return dispatch => dispatch(hasAnswerTimeAction({ hasAnswerTime: false }));
+  return dispatch => dispatch(hasAnswerTimeAction({ hasAnswerTime: e.target.value==="true" ? true : false }));
 }
 
 export function handleHasAnswerAutoChangeTime(e) {
-  const radioButton = e.target;
-  if (radioButton.id === 'hasAnswerAutoChangeTimeTrue') {
-    return dispatch => dispatch(hasAnswerAutoChangeTimeAction({ hasAnswerAutoChangeTime: true }));
-  }
-  return dispatch => dispatch(hasAnswerAutoChangeTimeAction({ hasAnswerAutoChangeTime: false }));
+  return dispatch => dispatch(hasAnswerAutoChangeTimeAction({ hasAnswerAutoChangeTime: e.target.value==="true" ? true : false }));
 }
 
 export function handleAnswerPercent(e) {
-  const radioButton = e.target;
-  if (radioButton.id === 'hasAnswerPercentTrue') {
-    return dispatch => dispatch(hasAnswerPercentAction({ hasAnswerPercent: true }));
-  }
-  return dispatch => dispatch(hasAnswerPercentAction({ hasAnswerPercent: false }));
+  return dispatch => dispatch(hasAnswerPercentAction({ hasAnswerPercent: e.target.value==="true" ? true : false }));
 }
 
 export function handleShowType(e) {
-  const radioButton = e.target;
-  if (radioButton.id === 'showTypeTrue') {
-    return dispatch => dispatch(showTypeAction({ showType: 'sideBySide' }));
-  }
-  return dispatch => dispatch(showTypeAction({ showType: 'full' }));
+  return dispatch => dispatch(showTypeAction({ showType: e.target.value }));
 }
 
 export function handleType(e) {
-  const radioButton = e.target;
-  if (radioButton.id === 'typeTrue') {
-    return dispatch => dispatch(typeAction({ type: 'test' }));
-  }
-  return dispatch => dispatch(typeAction({ type: 'poll' }));
+  return dispatch => dispatch(typeAction({ type: e.target.value }));
 }
 
 export function handleUserDataCollectType(e) {
-  const radioButton = e.target;
-  if (radioButton.id === 'userDataCollectTypeTrue') {
-    return dispatch => dispatch(userDataCollectTypeAction({ userDataCollectType: 'form' }));
-  }
-  return dispatch => dispatch(userDataCollectTypeAction({ userDataCollectType: 'anonim' }));
+  return dispatch => dispatch(userDataCollectTypeAction({ userDataCollectType: e.target.value}));
 }
 
 export function handleIsPollActive(e) {
-  const radioButton = e.target;
-  if (radioButton.id === 'isPollActiveTrue') {
-    return dispatch => dispatch(isPollActiveAction({ isPollActive: true }));
-  }
-  return dispatch => dispatch(isPollActiveAction({ isPollActive: false }));
+  return dispatch => dispatch(isPollActiveAction({ isPollActive: e.target.value}));
 }
 
 export function handlePollTime(value) {

@@ -14,6 +14,11 @@ const Header = styled.div`
 `;
 
 class SignUp extends Component {
+  static propTypes = {
+    validationSchema: PropTypes.object.isRequired,
+    postSignUp: PropTypes.func.isRequired,
+    pageHandle: PropTypes.func.isRequired,
+  }
   render() {
     const {
       validationSchema, postSignUp, pageHandle,
@@ -80,11 +85,5 @@ class SignUp extends Component {
     );
   }
 }
-
-SignUp.propTypes = {
-  validationSchema: PropTypes.object.isRequired,
-  postSignUp: PropTypes.func.isRequired,
-  pageHandle: PropTypes.func.isRequired,
-};
 
 export default SignUp;

@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 import Carousel from 'nuka-carousel';
 import {
-  Row, Button, Progress, Col,
+  Row, Button, Progress,
 } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -42,6 +42,22 @@ const QuestionContainer = styled.div`
 `;
 
 class SideBySide extends React.Component {
+  static propTypes = {
+    testStarted: PropTypes.bool.isRequired,
+    testFinished: PropTypes.bool.isRequired,
+    handleTestStarted: PropTypes.func.isRequired,
+    addParticipantAnswer: PropTypes.func.isRequired,
+    postParticipant: PropTypes.func.isRequired,
+    participant: PropTypes.object.isRequired,
+    handleTestFinished: PropTypes.func.isRequired,
+    poll: PropTypes.shape({
+      settings: PropTypes.shape({
+        answerAutoChangeTime: PropTypes.string.isRequired,
+        hasAnswerAutoChangeTime: PropTypes.bool.isRequired,
+      }).isRequired,
+    }).isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -49,13 +65,9 @@ class SideBySide extends React.Component {
       slidesToShow: 1,
       progressValue: 0,
     };
-    this.slideNext = this.slideNext.bind(this);
-    this.slidePrev = this.slidePrev.bind(this);
-    this.changeQuestion = this.changeQuestion.bind(this);
-    this.timer = this.timer.bind(this);
   }
 
-  timer() {
+  timer = () => {
     const { progressValue, interval } = this.state;
     this.setState(prevState => ({
       progressValue: prevState.progressValue + 1,
@@ -71,7 +83,7 @@ class SideBySide extends React.Component {
     }
   }
 
-  changeQuestion() {
+  changeQuestion = () => {
     // If counter still doesn't finish, won't change question
     if (this.state.progressValue !== 0) return;
 
@@ -84,7 +96,7 @@ class SideBySide extends React.Component {
     }
   }
 
-  slideNext() {
+  slideNext = () => {
     const { slideIndex } = this.state;
     const { poll } = this.props;
     const { questions } = poll;
@@ -98,7 +110,7 @@ class SideBySide extends React.Component {
     }
   }
 
-  slidePrev() {
+  slidePrev = () => {
     const { slideIndex } = this.state;
     if (slideIndex > 0) {
       this.setState({
@@ -223,21 +235,5 @@ class SideBySide extends React.Component {
     );
   }
 }
-
-SideBySide.propTypes = {
-  testStarted: PropTypes.bool.isRequired,
-  testFinished: PropTypes.bool.isRequired,
-  handleTestStarted: PropTypes.func.isRequired,
-  addParticipantAnswer: PropTypes.func.isRequired,
-  postParticipant: PropTypes.func.isRequired,
-  participant: PropTypes.object.isRequired,
-  handleTestFinished: PropTypes.func.isRequired,
-  poll: PropTypes.shape({
-    settings: PropTypes.shape({
-      answerAutoChangeTime: PropTypes.string.isRequired,
-      hasAnswerAutoChangeTime: PropTypes.bool.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
 
 export default SideBySide;

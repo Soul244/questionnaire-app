@@ -35,6 +35,27 @@ const pollsReducer = (state = initialState, action) => {
         error: action.payload.error,
       };
       break;
+    case asyncTypes.GET_POLLS:
+      state = {
+        ...state,
+        polls: action.payload.polls,
+        message: action.payload.message,
+        fetching: false,
+        fethed: true,
+      };
+      break;
+    case asyncTypes.GET_POLLS_START:
+      state = {
+        ...state,
+        fetching: true,
+      };
+      break;
+    case asyncTypes.GET_POLLS_ERROR:
+      state = {
+        ...state,
+        error: action.payload.error,
+      };
+      break;
     case asyncTypes.GET_POLL:
       state = {
         ...state,
@@ -63,13 +84,6 @@ const pollsReducer = (state = initialState, action) => {
       state = {
         ...state,
         polls: action.payload.newPolls,
-        message: action.payload.message,
-      };
-      break;
-    case asyncTypes.GET_POLLS:
-      state = {
-        ...state,
-        polls: action.payload.polls,
         message: action.payload.message,
       };
       break;

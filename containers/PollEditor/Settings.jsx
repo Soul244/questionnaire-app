@@ -1,74 +1,82 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import {
-  Card, CardBody, CardTitle, Row, Col, Badge,
-} from 'reactstrap';
+import { Card, CardBody, CardTitle, Row, Col, Badge } from 'reactstrap';
 import styled from 'styled-components';
 
 import Setting from '../../components/PollEditor/Setting';
 import * as pollActions from '../../redux/actions/pollActions';
 import { settingsInfos } from '../settingsInfos';
 
-const CardStyled = styled(Card)`
-`;
-
-const CardHideAble = styled(CardStyled)` 
-    pointer-events: ${props => (props.show ? '' : 'none')};
+const CardHideAble = styled(Card)`
+  pointer-events: ${props => (props.show ? '' : 'none')};
   opacity: ${props => (props.show ? 1 : 0.4)};
 `;
 
 class Settings extends React.Component {
+  static propTypes = {
+    poll: PropTypes.shape({
+      hasPollTime: PropTypes.bool,
+      hasAnswerTime: PropTypes.bool,
+      hasAnswerAutoChangeTime: PropTypes.bool,
+      isPollActive: PropTypes.bool,
+      showType: PropTypes.string,
+      pollTime: PropTypes.string,
+      answerTime: PropTypes.string,
+      answerAutoChangeTime: PropTypes.string
+    }).isRequired,
+    pollActions: PropTypes.shape({
+      handlePollTime: PropTypes.func.isRequired,
+      handleAnswerTime: PropTypes.func.isRequired,
+      handleAnswerAutoChangeTime: PropTypes.func.isRequired,
+    })
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       pollTime: '',
       answerTime: '',
-      answerAutoChangeTime: '',
+      answerAutoChangeTime: ''
     };
-    this.pollTimeOnChange = this.pollTimeOnChange.bind(this);
-    this.answerTimeOnChange = this.answerTimeOnChange.bind(this);
-    this.answerAutoChangeTime = this.answerAutoChangeTime.bind(this);
   }
 
-  pollTimeOnChange(e) {
+  pollTimeOnChange = e => {
     const pollTime = e.target.value;
     this.setState({ pollTime });
-    this.props.handlePollTime(pollTime);
-  }
+    this.props.pollActions.handlePollTime(pollTime);
+  };
 
-  answerTimeOnChange(e) {
+  answerTimeOnChange = e => {
     const answerTime = e.target.value;
     this.setState({ answerTime });
-    this.props.handleAnswerTime(answerTime);
-  }
+    this.props.pollActions.handleAnswerTime(answerTime);
+  };
 
-  answerAutoChangeTime(e) {
+  answerAutoChangeTime = e => {
     const answerAutoChangeTime = e.target.value;
     this.setState({ answerAutoChangeTime });
-    this.props.handleAnswerAutoChangeTime(answerAutoChangeTime);
-  }
+    this.props.pollActions.handleAnswerAutoChangeTime(answerAutoChangeTime);
+  };
 
   render() {
-    const { props, state } = this;
-
     // Inputs
-    const { pollTime, answerTime, answerAutoChangeTime } = state;
-
+    const { pollTime, answerTime, answerAutoChangeTime } = this.state;
+    const { poll } = this.props;
+    
     // Actions
     const {
       handleHasPollTime,
       handleHasAnswerTime,
       handleHasAnswerAutoChangeTime,
-
       handleShowType,
       handleIsPollActive,
       handleAnswerPercent,
       handleType,
-      handleUserDataCollectType,
-      poll,
-    } = props;
+      handleUserDataCollectType
+    } = this.props.pollActions;
 
     // Values
     const {
@@ -79,7 +87,7 @@ class Settings extends React.Component {
       showType,
       type,
       userDataCollectType,
-      hasAnswerPercent,
+      hasAnswerPercent
     } = poll.settings;
     return (
       <Card className="my-4">
@@ -87,78 +95,82 @@ class Settings extends React.Component {
           <CardTitle tag="h5">Ayarlar</CardTitle>
           <Row>
             <Col md={3}>
-              <CardStyled body show>
+              <Card body>
                 <Setting
-                  value={type}
+                  values={['test', 'poll']}
                   labels={['Test', 'Anket']}
+                  checkedValue={type}
                   name="type"
                   header="Çalışma Tipi"
                   onChange={handleType}
                   tooltip="Çalışma tipini seçin"
                   info={settingsInfos.type}
                 />
-              </CardStyled>
+              </Card>
             </Col>
             <Col md={3}>
-              <CardStyled body>
+              <Card body>
                 <Setting
-                  value={showType}
+                  values={['sideBySide', 'onePage']}
                   labels={['Yan yana', 'Tek Sayfada']}
+                  checkedValue={showType}
                   name="showType"
                   header="Görünüm"
                   onChange={handleShowType}
                   tooltip="Anket görünümünü seçin"
                   info={settingsInfos.showType}
                 />
-              </CardStyled>
+              </Card>
             </Col>
             <Col md={3}>
-              <CardStyled body>
+              <Card body>
                 <Setting
-                  value={isPollActive}
+                  values={['active', 'inactive']}
+                  labels={['Aktif', 'İnaktif']}
+                  checkedValue={isPollActive}
                   name="isPollActive"
                   header="Anket Durumu"
-                  labels={['Aktif', 'İnaktif']}
                   onChange={handleIsPollActive}
                   tooltip="Anket durumunu seçin"
                   info={settingsInfos.isPollActive}
                 />
-              </CardStyled>
+              </Card>
             </Col>
             <Col md={3}>
-              <CardStyled body>
+              <Card body>
                 <Setting
-                  value={hasAnswerPercent}
+                  checkedValue={hasAnswerPercent}
                   name="hasAnswerPercent"
                   header="Cevap Yüzdeleri"
                   onChange={handleAnswerPercent}
                   tooltip="Her cevap için verilen cevap yüzdelerini gösterecektir."
                   info={settingsInfos.hasAnswerPercent}
                 />
-              </CardStyled>
+              </Card>
             </Col>
           </Row>
           <Row>
             <Col md={3}>
-              <CardStyled>
+              <Card>
                 <CardBody>
                   <Setting
-                    value={userDataCollectType}
-                    name="userDataCollectType"
+                    values={['form', 'anonim']}
                     labels={['Form Sunulsun', 'Anonim']}
+                    checkedValue={userDataCollectType}
+                    name="userDataCollectType"
                     header="Kullanıcı Verisi"
                     onChange={handleUserDataCollectType}
                     info={settingsInfos.userDataCollectType}
                   />
                 </CardBody>
-              </CardStyled>
+              </Card>
             </Col>
             <Col md={3}>
-              <CardHideAble show={!hasAnswerTime}>
+              <CardHideAble show={!hasAnswerTime? 1: 0}>
                 <Badge color="warning">IN PROGRESS</Badge>
                 <CardBody>
                   <Setting
-                    value={hasPollTime}
+                    checkedValue={hasPollTime}
                     name="hasPollTime"
                     header="Test Süresi"
                     onChange={handleHasPollTime}
@@ -173,11 +185,11 @@ class Settings extends React.Component {
               </CardHideAble>
             </Col>
             <Col md={3}>
-              <CardHideAble show={showType === 'sideBySide' && !hasPollTime}>
+              <CardHideAble show={showType === 'sideBySide' && !hasPollTime? 1: 0}>
                 <Badge color="warning">IN PROGRESS</Badge>
                 <CardBody>
                   <Setting
-                    value={hasAnswerTime}
+                    checkedValue={hasAnswerTime}
                     name="hasAnswerTime"
                     header="Soru Süresi"
                     onChange={handleHasAnswerTime}
@@ -192,9 +204,9 @@ class Settings extends React.Component {
               </CardHideAble>
             </Col>
             <Col md={3}>
-              <CardHideAble body show={showType === 'sideBySide'}>
+              <CardHideAble body show={showType === 'sideBySide'? 1: 0}>
                 <Setting
-                  value={hasAnswerAutoChangeTime}
+                  checkedValue={hasAnswerAutoChangeTime}
                   name="hasAnswerAutoChangeTime"
                   header="Otomatik Geçiş"
                   onChange={handleHasAnswerAutoChangeTime}
@@ -214,27 +226,15 @@ class Settings extends React.Component {
   }
 }
 
-Settings.propTypes = {
-  handlePollTime: PropTypes.func.isRequired,
-  handleAnswerTime: PropTypes.func.isRequired,
-  handleAnswerAutoChangeTime: PropTypes.func.isRequired,
-  poll: PropTypes.shape({
-    hasPollTime: PropTypes.bool,
-    hasAnswerTime: PropTypes.bool,
-    hasAnswerAutoChangeTime: PropTypes.bool,
-    isPollActive: PropTypes.bool,
-    showType: PropTypes.string,
-    pollTime: PropTypes.string,
-    answerTime: PropTypes.string,
-    answerAutoChangeTime: PropTypes.string,
-  }).isRequired,
-};
-
 const mapStateToProps = state => ({
-  poll: state.poll,
+  poll: state.poll
+});
+
+const mapDispatchToProps = dispatch => ({
+  pollActions: bindActionCreators(pollActions, dispatch)
 });
 
 export default connect(
   mapStateToProps,
-  pollActions,
+  mapDispatchToProps
 )(Settings);

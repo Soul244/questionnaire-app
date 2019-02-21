@@ -4,17 +4,16 @@ import PropTypes from 'prop-types';
 import Answer from './Answer';
 
 const Answers = ({ answers, questionOrder, rightAnswerOrder }) => {
-  const filteredAnswers = answers.filter(answer => answer.questionOrder === questionOrder);
-  filteredAnswers.reverse();
+  answers.reverse();
   return (
     <ul>
-      {filteredAnswers.map((value, index) => (
+      {answers.map((answer, index) => (
         <Answer
           key={index}
-          order={value.order}
+          order={answer.order}
           questionOrder={questionOrder}
-          type={value.type}
-          content={value.content}
+          type={answer.type}
+          content={answer.content}
           rightAnswerOrder={rightAnswerOrder}
         />
       ))}
@@ -24,6 +23,8 @@ const Answers = ({ answers, questionOrder, rightAnswerOrder }) => {
 
 Answers.propTypes = {
   questionOrder: PropTypes.number.isRequired,
+  answers: PropTypes.array.isRequired,
+  rightAnswerOrder: PropTypes.number.isRequired,
 };
 
 export default Answers;

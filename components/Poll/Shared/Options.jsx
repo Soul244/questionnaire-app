@@ -1,18 +1,26 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import Option from './Option';
 
 class Options extends React.Component {
+  static propTypes= {
+    questionOrder: PropTypes.number.isRequired,
+    rightAnswerOrder: PropTypes.number.isRequired,
+    changeQuestion: PropTypes.func.isRequired,
+    questionCount: PropTypes.number.isRequired,
+    answers: PropTypes.array.isRequired,
+    addParticipantAnswer: PropTypes.func.isRequired,
+  };
   constructor() {
     super();
     this.state = {
       checked: '',
       showPercent: false,
     };
-    this.onClick = this.onClick.bind(this);
   }
 
-  onClick(value) {
+  onClick = (value) => {
     if (this.state.checked !== '') return;
     this.setState({
       checked: value,

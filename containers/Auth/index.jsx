@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
 
-import {
-  Container, Row, Col, Card, CardBody,
-} from 'reactstrap';
+import { Container, Row, Col, Card, CardBody } from 'reactstrap';
 import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -13,17 +12,13 @@ import * as userActions from '../../redux/actions/userActions';
 import {
   LoginSchema,
   SignUpSchema,
-  ResetPasswordSchema,
+  ResetPasswordSchema
 } from '../../validation/validationSchemas';
 import { SignUp, Login, ResetPassword } from '../../components/Auth';
 
 const Logo = styled.img`
   width: 75px;
   height: auto;
-`;
-
-const CardStyled = styled(Card)`
-
 `;
 
 const CardBodyStyled = styled(CardBody)`
@@ -34,13 +29,18 @@ const CardBodyStyled = styled(CardBody)`
 `;
 
 class Auth extends Component {
+  static propTypes = {
+    postLogin: PropTypes.func.isRequired,
+    postSignUp: PropTypes.func.isRequired,
+    postResetPassword: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired
+  };
+  
   constructor() {
     super();
     this.state = {
-      page: 'login',
+      page: 'login'
     };
-    this.pageHandle = this.pageHandle.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
   }
 
   componentDidMount() {
@@ -63,39 +63,34 @@ class Auth extends Component {
     }
   }
 
-  notify = (message) => {
+  notify = message => {
     if (message) {
       toast.info(message, { position: toast.POSITION.BOTTOM_RIGHT });
     }
     this.props.user.message = '';
   };
 
-  pageHandle(page) {
+  pageHandle = page => {
     this.setState({
-      page,
+      page
     });
-  }
-
-  handleLogin(values) {
-    this.props.postLogin(values);
-  }
+  };
 
   render() {
-    const { postSignUp, postResetPassword } = this.props;
+    const { postLogin, postSignUp, postResetPassword } = this.props.userActions;
     const { page } = this.state;
-
     return (
       <Container className="text-center">
         <Row>
           <Col lg={{ size: 6, offset: 3 }} md={{ size: 8, offset: 2 }}>
-            <CardStyled>
+            <Card>
               <CardBodyStyled>
                 <>
                   <Logo src="/static/bilemezsin-logo.jpg" />
                   <ToastContainer autoClose={2000} />
                   {page === 'login' && (
                     <Login
-                      postLogin={this.handleLogin}
+                      postLogin={postLogin}
                       pageHandle={this.pageHandle}
                       validationSchema={LoginSchema}
                     />
@@ -109,14 +104,14 @@ class Auth extends Component {
                   )}
                   {page === 'reset-password' && (
                     <ResetPassword
+                      postResetPassword={postResetPassword}
                       pageHandle={this.pageHandle}
                       validationSchema={ResetPasswordSchema}
-                      postResetPassword={postResetPassword}
                     />
                   )}
                 </>
               </CardBodyStyled>
-            </CardStyled>
+            </Card>
           </Col>
         </Row>
       </Container>
@@ -124,18 +119,15 @@ class Auth extends Component {
   }
 }
 
-Auth.propTypes = {
-  postLogin: PropTypes.func.isRequired,
-  postSignUp: PropTypes.func.isRequired,
-  postResetPassword: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-};
-
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state.user
 });
+
+const mapDispatchToProps = dispatch => ({
+  userActions: bindActionCreators(userActions, dispatch)
+})
 
 export default connect(
   mapStateToProps,
-  userActions,
+  mapDispatchToProps
 )(Auth);

@@ -36,13 +36,11 @@ function Controls(props) {
   );
 }
 
-
 Controls.propTypes = {
   slidePrev: PropTypes.func.isRequired,
   slideNext: PropTypes.func.isRequired,
   questionsLength: PropTypes.number.isRequired,
   slideIndex: PropTypes.number.isRequired,
 };
-
 
 export default Controls;

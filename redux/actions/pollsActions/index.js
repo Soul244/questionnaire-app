@@ -1,76 +1,124 @@
 import axios from 'axios';
-import { asyncTypes } from '../../types';
+import {
+  asyncTypes
+} from '../../types';
 
-const { apiUrl } = process.env;
+const {
+  apiUrl
+} = process.env;
 
+/* #region Get Poll */
 export function getPollAction(payload) {
   return {
     type: asyncTypes.GET_POLL,
-    payload,
+    payload
   };
 }
 
-export function getPreviewAction(payload) {
+export function getPollErrorAction(payload) {
   return {
-    type: asyncTypes.GET_PREVIEW_POLL,
-    payload,
-  };
+    type: asyncTypes.getAllPollsErrorAction,
+    payload
+  }
 }
-
+/* #endregion */
+/* #region Post Poll */
 export function postPollAction(payload) {
   return {
     type: asyncTypes.POST_POLL,
-    payload,
+    payload
   };
 }
 
+export function postPollErrorAction(payload) {
+  return {
+    type: asyncTypes.UPDATE_POLL_ERROR,
+    payload
+  }
+}
+/* #endregion */
+/* #region Update Poll */
 export function updatePollAction(payload) {
   return {
     type: asyncTypes.UPDATE_POLL,
-    payload,
+    payload
   };
 }
 
+export function updatePollErrorAction(payload) {
+  return {
+    type: asyncTypes.UPDATE_POLL_ERROR,
+    payload
+  };
+}
+/* #endregion */
+/* #region Delete Poll */
 export function deletePollAction(payload) {
   return {
     type: asyncTypes.DELETE_POLL,
-    payload,
+    payload
+  };
+}
+export function deleteErrorAction(payload) {
+  return {
+    type: asyncTypes.DELETE_POLL_ERROR,
+    payload
+  };
+}
+/* #endregion */
+/* #region Get User Polls */
+export function getPollsStartAction(payload) {
+  return {
+    type: asyncTypes.GET_POLLS_START,
+    payload
   };
 }
 
 export function getPollsAction(payload) {
   return {
     type: asyncTypes.GET_POLLS,
-    payload,
+    payload
   };
 }
 
+export function getPollsErrorAction(payload) {
+  return {
+    type: asyncTypes.GET_ALL_POLLS_ERROR,
+    payload
+  };
+}
+/* #endregion */
+/* #region Get All Polls */
 export function getAllPollsAction(payload) {
   return {
     type: asyncTypes.GET_ALL_POLLS,
-    payload,
+    payload
   };
 }
-
 
 export function getAllPollsStartAction() {
   return {
-    type: asyncTypes.GET_ALL_POLLS_START,
+    type: asyncTypes.GET_ALL_POLLS_START
   };
 }
-
 
 export function getAllPollsErrorAction(payload) {
   return {
     type: asyncTypes.GET_ALL_POLLS_ERROR,
-    payload,
+    payload
+  };
+}
+/* #endregion */
+export function getPreviewAction(payload) {
+  return {
+    type: asyncTypes.GET_PREVIEW_POLL,
+    payload
   };
 }
 
-
 export function getPoll(slug) {
   const endPoint = `${apiUrl}polls/${slug}`;
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const response = await axios.get(endPoint);
       dispatch(getPollAction(response.data.poll));
@@ -81,7 +129,7 @@ export function getPoll(slug) {
 }
 
 export function getPreview(poll) {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       dispatch(getPreviewAction(poll));
     } catch (error) {
@@ -94,10 +142,9 @@ export function postPoll(poll) {
   const endPoint = `${apiUrl}polls`;
   const auth = JSON.parse(localStorage.getItem('auth'));
   axios.defaults.headers.authorization = auth.token;
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const response = await axios.post(endPoint, {
-        id: poll.id,
         user: auth.id,
         css: poll.css,
         js: poll.js,
@@ -108,7 +155,7 @@ export function postPoll(poll) {
         questions: poll.questions,
         answers: poll.answers,
         settings: poll.settings,
-        selectableLastMessages: poll.selectableLastMessages,
+        selectableLastMessages: poll.selectableLastMessages
       });
       dispatch(postPollAction(response.data));
     } catch (error) {
@@ -121,7 +168,7 @@ export function updatePoll(poll) {
   const endPoint = `${apiUrl}polls/update`;
   const auth = JSON.parse(localStorage.getItem('auth'));
   axios.defaults.headers.authorization = auth.token;
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const response = await axios.post(endPoint, {
         _id: poll._id,
@@ -135,7 +182,7 @@ export function updatePoll(poll) {
         questions: poll.questions,
         answers: poll.answers,
         settings: poll.settings,
-        selectableLastMessages: poll.selectableLastMessages,
+        selectableLastMessages: poll.selectableLastMessages
       });
       dispatch(updatePollAction(response.data));
     } catch (error) {
@@ -144,34 +191,41 @@ export function updatePoll(poll) {
   };
 }
 
-// AXIOS
 export function deletePoll(_id) {
   const endPoint = `${apiUrl}polls/${_id}`;
   const auth = JSON.parse(localStorage.getItem('auth'));
   axios.defaults.headers.authorization = auth.token;
   return async (dispatch, getState) => {
     try {
-      const { polls } = getState().polls;
+      const {
+        polls
+      } = getState().polls;
       const newPolls = polls.filter(poll => poll._id !== _id);
       const response = await axios.delete(endPoint, _id);
-      const { message } = response.data;
-      dispatch(deletePollAction({ newPolls, message }));
+      const {
+        message
+      } = response.data;
+      dispatch(deletePollAction({
+        newPolls,
+        message
+      }));
     } catch (error) {
       throw error;
     }
   };
 }
 
-// AXIOS
 export function getPolls() {
   const auth = JSON.parse(localStorage.getItem('auth'));
   const endPoint = `${apiUrl}polls/user/${auth.id}`;
   axios.defaults.headers.authorization = auth.token;
-  return async (dispatch) => {
+  return async dispatch => {
     try {
+      dispatch(getPollsStartAction());
       const response = await axios.get(endPoint);
       dispatch(getPollsAction(response.data));
     } catch (error) {
+      dispatch(getPollsErrorAction(error));
       throw error;
     }
   };
@@ -179,14 +233,10 @@ export function getPolls() {
 
 export function getAllPolls(page) {
   const endPoint = `${apiUrl}polls/all/${page}`;
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       dispatch(getAllPollsStartAction());
-      const response = await axios.get(endPoint, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
-      });
+      const response = await axios.get(endPoint);
       dispatch(getAllPollsAction(response.data));
     } catch (error) {
       dispatch(getAllPollsErrorAction(error));

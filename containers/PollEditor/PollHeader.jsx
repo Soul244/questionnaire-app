@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import dynamic from 'next/dynamic';
 import slugify from 'slugify';
 import PropTypes from 'prop-types';
@@ -22,6 +23,19 @@ const FroalaEditorInput = dynamic(import('react-froala-wysiwyg'), {
 
 /* Note: not placeholder, We should use placeholderText. */
 class PollHeader extends React.Component {
+  static propTypes = {
+    poll: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      desc: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
+    pollAction: PropTypes.shape({
+      handleNameOnChange: PropTypes.func.isRequired,
+      handleDescOnChange: PropTypes.func.isRequired,
+      handleSlugOnChange: PropTypes.func.isRequired,
+    })
+  }
+
   config = {
     placeholderText: 'Anket açıklamanızı giriniz...',
     heightMin: 100,
@@ -34,17 +48,13 @@ class PollHeader extends React.Component {
     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineClass', 'inlineStyle', 'paragraphStyle', 'lineHeight', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertTable', '|', 'emoticons', 'fontAwesome', 'specialCharacters', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'html', '|', 'undo', 'redo'],
   };
 
-  constructor(props) {
-    super(props);
-    this.onDescChange = this.onDescChange.bind(this);
-  }
-
-  onDescChange(descContent) {
-    this.props.handleDescOnChange(descContent);
+  onDescChange = descContent => {
+    this.props.pollActions.handleDescOnChange(descContent);
   }
 
   render() {
     const { name, desc, slug } = this.props.poll;
+    const {handleNameOnChange, handleSlugOnChange, } = this.props.pollActions;
     return (
       <>
         <Card>
@@ -53,7 +63,7 @@ class PollHeader extends React.Component {
             <FormGroup>
               <Input
                 value={name}
-                onChange={e => this.props.handleNameOnChange(e.target.value)}
+                onChange={e => handleNameOnChange(e.target.value)}
                 placeholder="Anket başlığınızı giriniz..."
               />
             </FormGroup>
@@ -78,7 +88,7 @@ class PollHeader extends React.Component {
             <FormGroup>
               <Input
                 value={slug}
-                onChange={e => this.props.handleSlugOnChange(
+                onChange={e => handleSlugOnChange(
                   slugify(e.target.value,
                     {
                       replacement: '-',
@@ -96,25 +106,15 @@ class PollHeader extends React.Component {
   }
 }
 
-PollHeader.propTypes = {
-  poll: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    desc: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-  }).isRequired,
-  handleNameOnChange: PropTypes.func.isRequired,
-  handleDescOnChange: PropTypes.func.isRequired,
-  handleSlugOnChange: PropTypes.func.isRequired,
-};
+const mapStateToProps = state => ({
+  poll: state.poll,
+})
 
-
-function mapStateToProps(state) {
-  return {
-    poll: state.poll,
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  pollActions: bindActionCreators(pollActions, dispatch)
+})
 
 export default connect(
   mapStateToProps,
-  pollActions,
+  mapDispatchToProps,
 )(PollHeader);

@@ -1,6 +1,6 @@
 import QuestionTool from './QuestionTool';
 import AnswerTool from './AnswerTool';
-import ContentViewer from './Types';
+import ContentViewer from './ContentViewer';
 import Navbar from './Navbar/index';
 import CustomInput from './CustomInput';
 import Paginate from './Paginate';

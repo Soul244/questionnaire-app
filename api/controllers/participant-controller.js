@@ -1,37 +1,40 @@
-const mongoose = require('mongoose');
 const Participant = require('../models/participant');
 const Poll = require('../models/poll');
+const {
+  CreatePostObject
+} = require('../utils')
 
 exports.Get_Participants = (req, res) => {
   let pollId = '';
-  Poll.findOne({ slug: req.params.slug })
+  Poll
+    .findOne({
+      slug: req.params.slug
+    })
     .exec()
     .then((poll) => {
-      if (poll.length < 1) {
-        pollId = '-1';
-      }
-      pollId = poll._id;
-    }).then(() => {
-      Participant.find({ pollId })
+      if (poll.length < 1)
+        res.status(204).json({
+          message: "anket bulunamadı"
+        })
+    })
+    .then(() => {
+      Participant.find({
+          pollId
+        })
         .exec()
         .then((participants) => {
           if (participants.length > 0) {
-            res.status(201).json({
+            res.status(200).json({
               participants,
             });
           } else {
-            res.status(201).json({
+            res.status(204).json({
               pollId,
               participants: [],
               message: 'katılımcı bulunamadı...',
             });
           }
         })
-        .catch((error) => {
-          res.status(500).json({
-            error,
-          });
-        });
     })
     .catch((error) => {
       res.status(500).json({
@@ -41,27 +44,25 @@ exports.Get_Participants = (req, res) => {
 };
 
 exports.Post_Participant = (req, res) => {
-  const participant = new Participant({
-    _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
-    surname: req.body.surname,
-    email: req.body.email,
-    answers: req.body.answers,
-    pollId: req.body.pollId,
-  });
+  const participant = new Participant(CreatePostObject(req.body));
   participant
     .save()
-    .then((result) => {
+    .then(() => {
       res.status(201).json({
         message: 'Kaydınız alınmıştır...',
       });
     })
     .then(() => {
-      Poll.findOne({ _id: req.body.pollId })
+      Poll.findOne({
+          _id: req.body.pollId
+        })
         .exec()
         .then((poll) => {
           const pAnswers = req.body.answers;
-          const { answers, questions } = poll;
+          const {
+            answers,
+            questions
+          } = poll;
           for (let i = 0; i < pAnswers.length; i += 1) {
             for (let k = 0; k < answers.length; k += 1) {
               if (pAnswers[i].questionOrder === answers[k].questionOrder) {
@@ -72,9 +73,18 @@ exports.Post_Participant = (req, res) => {
             }
             questions[i].count += 1;
           }
-          return { answers, questions };
-        }).then(({ answers, questions }) => {
-          Poll.update({ _id: req.body.pollId }, {
+          return {
+            answers,
+            questions
+          };
+        })
+        .then(({
+          answers,
+          questions
+        }) => {
+          Poll.update({
+            _id: req.body.pollId
+          }, {
             $set: {
               answers,
               questions,
@@ -83,7 +93,6 @@ exports.Post_Participant = (req, res) => {
         });
     })
     .catch((error) => {
-      console.log(error);
       res.status(500).json({
         error,
       });

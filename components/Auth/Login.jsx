@@ -22,6 +22,11 @@ const Header = styled.div`
 `;
 
 class Login extends Component {
+  static propTypes = {
+    validationSchema: PropTypes.object.isRequired,
+    postLogin: PropTypes.func.isRequired,
+    pageHandle: PropTypes.func.isRequired,
+  }
   render() {
     const {
       validationSchema, postLogin, pageHandle,
@@ -96,11 +101,5 @@ class Login extends Component {
     );
   }
 }
-
-Login.propTypes = {
-  validationSchema: PropTypes.object.isRequired,
-  postLogin: PropTypes.func.isRequired,
-  pageHandle: PropTypes.func.isRequired,
-};
 
 export default Login;

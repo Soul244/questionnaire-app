@@ -1,22 +1,26 @@
-const mongoose = require('mongoose');
 const Poll = require('../models/poll');
 const Participant = require('../models/participant');
+const {
+  CreatePostObject
+} = require('../utils')
 
 exports.Get_Poll = (req, res) => {
-  Poll.findOne({ slug: req.params.slug })
+  Poll
+    .findOne({
+      slug: req.params.slug
+    })
     .exec()
     .then((poll) => {
       if (poll.length < 1) {
-        return res.status(404).json({
+        return res.status(204).json({
           error: 'anket bulunamadı ',
         });
       }
-      return res.status(201).json({
+      return res.status(200).json({
         poll,
       });
     })
     .catch((error) => {
-      console.log(error);
       res.status(500).json({
         error,
       });
@@ -24,32 +28,20 @@ exports.Get_Poll = (req, res) => {
 };
 
 exports.Post_Poll = (req, res) => {
-  Poll.find({ slug: req.body.slug })
+  Poll
+    .find({
+      slug: req.body.slug
+    })
     .exec()
     .then((filteredPoll) => {
       if (filteredPoll.length >= 1) {
-        return res.status(200).json({
-          message: 'Bu Slug Kullanılıyor',
-        });
+        res.statusText = "Bu slug kullanılıyor"
+        return res.status(500).json();
       }
-      const poll = new Poll({
-        _id: new mongoose.Types.ObjectId(),
-        user: req.body.user,
-        css: req.body.css,
-        js: req.body.js,
-        name: req.body.name,
-        desc: req.body.desc,
-        slug: req.body.slug,
-        selectableLastMessages: req.body.selectableLastMessages,
-        lastDesc: req.body.lastDesc,
-        questions: req.body.questions,
-        answers: req.body.answers,
-        settings: req.body.settings,
-      });
+      const poll = new Poll(CreatePostObject(req.body));
       poll
         .save()
-        .then((poll) => {
-          console.log('anket kaydedildi');
+        .then(() => {
           res.status(201).json({
             message: 'Anket Kaydedildi',
           });
@@ -63,20 +55,24 @@ exports.Post_Poll = (req, res) => {
     });
 };
 
-
 exports.Get_All_Polls = (req, res) => {
   const perPage = 10;
-  const { page } = req.params;
+  const {
+    page
+  } = req.params;
   let count = 0;
   Poll.count({}, (err, countItems) => {
     count = countItems;
   });
-  Poll.find()
+  Poll
+    .find()
     .select('name desc slug user createdAt')
     .populate('user', '_id email')
     .limit(perPage)
     .skip(perPage * page)
-    .sort({ createdAt: -1 })
+    .sort({
+      createdAt: -1
+    })
     .exec()
     .then((polls) => {
       res.status(200).json({
@@ -85,7 +81,6 @@ exports.Get_All_Polls = (req, res) => {
       });
     })
     .catch((error) => {
-      console.log(error);
       res.status(500).json({
         error,
       });
@@ -93,8 +88,12 @@ exports.Get_All_Polls = (req, res) => {
 };
 
 exports.Get_Polls = (req, res) => {
-  Poll.find({ user: req.params.user })
-    .sort({ createdAt: -1 })
+  Poll.find({
+      user: req.params.user
+    })
+    .sort({
+      createdAt: -1
+    })
     .exec()
     .then((polls) => {
       if (polls.length > 0) {
@@ -103,37 +102,36 @@ exports.Get_Polls = (req, res) => {
           message: 'Anketleri Getirdik...',
         });
       } else {
-        res.status(201).json({
+        res.status(204).json({
           polls: [],
           message: 'Anket Bulunamadı...',
         });
       }
     })
     .catch((error) => {
-      console.log(error);
       res.status(500).json({
         error,
       });
     });
 };
 
-
 exports.Delete_Poll = (req, res) => {
   Poll.remove({
-    _id: req.params._id,
-  })
+      _id: req.params._id,
+    })
     .exec()
-    .then(poll => res
-      .status(201)
+    .then(() =>
+      res.status(200)
       .json({
         message: 'Anket Silindi',
       }))
     .then(() => {
-      Participant.remove({ pollId: req.params._id })
+      Participant.remove({
+          pollId: req.params._id
+        })
         .exec();
     })
     .catch((error) => {
-      console.log(error);
       res.status(500).json({
         error,
       });
@@ -141,31 +139,27 @@ exports.Delete_Poll = (req, res) => {
 };
 
 exports.Update_Poll = (req, res) => {
-  Poll.update({ _id: req.body._id }, {
-    $set: {
-      name: req.body.name,
-      user: req.body.user,
-      css: req.body.css,
-      js: req.body.js,
-      desc: req.body.desc,
-      slug: req.body.slug,
-      lastDesc: req.body.lastDesc,
-      questions: req.body.questions,
-      answers: req.body.answers,
-      settings: req.body.settings,
-      selectableLastMessages: req.body.selectableLastMessages,
-    },
-  })
+  let updateOps = {};
+  const options = {
+    new: true
+  };
+  for (const [key, value] of Object.entries(req.body)) {
+    updateOps[key] = value;
+  }
+  Poll.update({
+      _id: req.body._id
+    }, {
+      $set: updateOps
+    }, options)
     .exec()
-    .then((result) => {
+    .then(() => {
       res.status(200).json({
         message: 'Anket Güncellendi',
       });
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
       res.status(500).json({
-        error: err,
+        error
       });
     });
 };

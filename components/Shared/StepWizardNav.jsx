@@ -28,7 +28,7 @@ class StepWizardNav extends React.Component {
       // Outer loop to create parent
       for (let i = 1; i <= totalSteps; i += 1) {
         items.push(
-          <StepButton type="button" onClick={() => goToStep(i)} step={i} currentStep={currentStep}>{i}</StepButton>,
+          <StepButton type="button" onClick={() => goToStep(i)} step={i} currentStep={currentStep} key={i}>{i}</StepButton>,
         );
       }
       return items;

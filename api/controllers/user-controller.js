@@ -6,35 +6,36 @@ const nodemailer = require('nodemailer');
 const User = require('../models/user');
 
 exports.Post_Signup = (req, res) => {
-  User.find({ email: req.body.email }).exec().then((user) => {
-    if (user.length >= 1) {
-      return res.status(201).json({
-        message: 'bu mail adresiyle başka bir kayıt var',
-      });
-    }
-    bcrypt.hash(req.body.password, 10, (error, hash) => {
-      if (error) {
-        return res.status(500).json({
-          error,
+  User.find({
+      email: req.body.email
+    })
+    .exec()
+    .then((user) => {
+      if (user.length >= 1) {
+        return res.status(204).json({
+          message: 'bu mail adresiyle başka bir kayıt var',
         });
       }
-      const user = new User({
-        _id: new mongoose.Types.ObjectId(),
-        email: req.body.email,
-        password: hash,
-      });
-      user.save().then((user) => {
-        res.status(200).json({
-          user,
-          message: 'kullanıcı oluşturuldu',
+      bcrypt.hash(req.body.password, 10, (error, hash) => {
+        if (error) {
+          return res.status(500).json({
+            error,
+          });
+        }
+        const user = new User({
+          _id: new mongoose.Types.ObjectId(),
+          email: req.body.email,
+          password: hash,
         });
-      }).catch((error) => {
-        res.status(500).json({
-          error,
-        });
+        user.save()
+          .then((user) => {
+            res.status(200).json({
+              user,
+              message: 'kullanıcı oluşturuldu',
+            });
+          })
       });
-    });
-  })
+    })
     .catch((error) => {
       res.status(500).json({
         error,
@@ -56,7 +57,9 @@ exports.Token_Control = (req, res) => {
 };
 
 exports.Reset_Password = (req, res) => {
-  const { email } = req.body;
+  const {
+    email
+  } = req.body;
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -64,10 +67,11 @@ exports.Reset_Password = (req, res) => {
       pass: '142536Xx',
     },
   });
-
-  User.find({ email }).exec().then((user) => {
-    if (user === null) {
-      return res.status(201).json({
+  User.find({
+    email
+  }).exec().then((user) => {
+    if (user.length < 1) {
+      return res.status(204).json({
         message: 'Mail adresi bulunamadı',
       });
     }
@@ -94,12 +98,14 @@ exports.Reset_Password = (req, res) => {
           error,
         });
       }
-      User.update({ email }, {
-        $set: {
-          password: hash,
-        },
-      }).exec()
-        .then((result) => {
+      User.update({
+          email
+        }, {
+          $set: {
+            password: hash,
+          },
+        }).exec()
+        .then(() => {
           res.status(200).json({
             message: 'Yeni şifreniz mail adresinize gönderildi.',
           });
@@ -113,41 +119,38 @@ exports.Reset_Password = (req, res) => {
 };
 
 exports.Post_Login = (req, res) => {
-  User.findOne({ email: req.body.email }).exec().then((user) => {
-    if (user === null) {
-      return res.status(201).json({
-        message: 'Mail adresi bulunamadı',
-      });
-    }
-    bcrypt.compare(req.body.password, user.password, (error, result) => {
-      if (error) {
-        return res.status(201).json({
-          message: 'Şifre geçersiz (Hata Kodu 0x01)',
-        });
+  User.findOne({
+      email: req.body.email
+    }).exec().then((user) => {
+      if (user === null) {
+        res.statusText = 'Mail adresi bulunamadı';
+        return res.status(500).json();
       }
-      if (result) {
-        const token = jwt.sign({
-          id: user._id,
-          email: user.email,
-        },
-        process.env.JWT_KEY,
-        {
-          expiresIn: '30 days',
-        });
-        return res.status(200).json({
-          id: user._id,
-          email: user.email,
-          token,
-          isTokenValid: true,
-          message: 'Başarıyla giriş yaptınız.',
-        });
-      }
-      res.status(201).json({
-        message: 'Şifre geçersiz (Hata Kodu 0x02)',
-        isTokenValid: false,
+      bcrypt.compare(req.body.password, user.password, (error, result) => {
+        if (error) {
+          res.statusText = "Şifre geçersiz (Hata Kodu 0x01)";
+          return res.status(500).json();
+        }
+        if (result) {
+          const token = jwt.sign({
+              id: user._id,
+              email: user.email,
+            },
+            process.env.JWT_KEY, {
+              expiresIn: '30 days',
+            });
+          return res.status(200).json({
+            id: user._id,
+            email: user.email,
+            token,
+            isTokenValid: true,
+            message: 'Başarıyla giriş yaptınız.',
+          });
+        }
+        res.statusText = "Şifre geçersiz (Hata Kodu 0x02)"
+        return res.status(500).json();
       });
-    });
-  })
+    })
     .catch((error) => {
       res.status(500).json({
         error,
@@ -157,13 +160,13 @@ exports.Post_Login = (req, res) => {
 
 exports.Delete_User = (req, res) => {
   User.remove({
-    _id: req.params.user,
-  })
-    .exec()
-    .then(user => res.status(201).json({
-      message: 'kullanıcı silindi',
-      user,
+      _id: req.params.user,
     })
+    .exec()
+    .then(user => res.status(200).json({
+        message: 'kullanıcı silindi',
+        user,
+      })
       .catch((error) => {
         res.status(500).json({
           error,
@@ -172,10 +175,12 @@ exports.Delete_User = (req, res) => {
 };
 
 exports.Get_User = (req, res) => {
-  User.find({ _id: req.params.user })
+  User.find({
+      _id: req.params.user
+    })
     .exec()
     .then((user) => {
-      res.status(201).json({
+      res.status(200).json({
         _id: user._id,
         email: user.email,
       });
