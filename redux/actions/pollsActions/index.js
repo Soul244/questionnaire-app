@@ -1,12 +1,9 @@
-import axios from 'axios';
+import axios from '../../axios';
 import {
   asyncTypes
 } from '../../types';
 
-const {
-  apiUrl
-} = process.env;
-
+/* #region Actions */
 /* #region Get Poll */
 export function getPollAction(payload) {
   return {
@@ -115,12 +112,13 @@ export function getPreviewAction(payload) {
     payload
   };
 }
+/* #endregion */
 
+/* #region Functions */
 export function getPoll(slug) {
-  const endPoint = `${apiUrl}polls/${slug}`;
   return async dispatch => {
     try {
-      const response = await axios.get(endPoint);
+      const response = await axios.get(`/polls/${slug}`);
       dispatch(getPollAction(response.data.poll));
     } catch (error) {
       throw error;
@@ -139,12 +137,11 @@ export function getPreview(poll) {
 }
 
 export function postPoll(poll) {
-  const endPoint = `${apiUrl}polls`;
   const auth = JSON.parse(localStorage.getItem('auth'));
   axios.defaults.headers.authorization = auth.token;
   return async dispatch => {
     try {
-      const response = await axios.post(endPoint, {
+      const response = await axios.post(`/polls`, {
         user: auth.id,
         css: poll.css,
         js: poll.js,
@@ -165,12 +162,11 @@ export function postPoll(poll) {
 }
 
 export function updatePoll(poll) {
-  const endPoint = `${apiUrl}polls/update`;
   const auth = JSON.parse(localStorage.getItem('auth'));
   axios.defaults.headers.authorization = auth.token;
   return async dispatch => {
     try {
-      const response = await axios.post(endPoint, {
+      const response = await axios.post(`/polls/update`, {
         _id: poll._id,
         user: auth.id,
         css: poll.css,
@@ -192,7 +188,6 @@ export function updatePoll(poll) {
 }
 
 export function deletePoll(_id) {
-  const endPoint = `${apiUrl}polls/${_id}`;
   const auth = JSON.parse(localStorage.getItem('auth'));
   axios.defaults.headers.authorization = auth.token;
   return async (dispatch, getState) => {
@@ -201,7 +196,7 @@ export function deletePoll(_id) {
         polls
       } = getState().polls;
       const newPolls = polls.filter(poll => poll._id !== _id);
-      const response = await axios.delete(endPoint, _id);
+      const response = await axios.delete(`/polls/${_id}`, _id);
       const {
         message
       } = response.data;
@@ -217,12 +212,11 @@ export function deletePoll(_id) {
 
 export function getPolls() {
   const auth = JSON.parse(localStorage.getItem('auth'));
-  const endPoint = `${apiUrl}polls/user/${auth.id}`;
   axios.defaults.headers.authorization = auth.token;
   return async dispatch => {
     try {
       dispatch(getPollsStartAction());
-      const response = await axios.get(endPoint);
+      const response = await axios.get(`/polls/user/${auth.id}`);
       dispatch(getPollsAction(response.data));
     } catch (error) {
       dispatch(getPollsErrorAction(error));
@@ -232,14 +226,14 @@ export function getPolls() {
 }
 
 export function getAllPolls(page) {
-  const endPoint = `${apiUrl}polls/all/${page}`;
   return async dispatch => {
     try {
       dispatch(getAllPollsStartAction());
-      const response = await axios.get(endPoint);
+      const response = await axios.get(`/polls/all/${page}`);
       dispatch(getAllPollsAction(response.data));
     } catch (error) {
       dispatch(getAllPollsErrorAction(error));
     }
   };
 }
+/* #endregion */

@@ -7,7 +7,7 @@ import {
 } from './answersActions';
 import {
   handleHasPollTime, handleHasAnswerTime, handleHasAnswerAutoChangeTime, handleShowType,
-  handleIsPollActive, handlePollTime, handleAnswerAutoChangeTime, handleAnswerTime, handleAnswerPercent,
+  handleIsPollActive, handlePollTime, handleAnswerAutoChangeTime, handleAnswerTime, handleHasAnswerPercent,
   handleType, handleUserDataCollectType,
 } from './settingsActions';
 import {
@@ -42,7 +42,7 @@ export {
   handlePollTime,
   handleAnswerAutoChangeTime,
   handleAnswerTime,
-  handleAnswerPercent,
+  handleHasAnswerPercent,
   handleType,
   handleUserDataCollectType,
 

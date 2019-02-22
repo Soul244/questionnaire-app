@@ -1,10 +1,10 @@
-import axios from 'axios';
-import _ from 'lodash';
+import axios from '../../axios';
+import {
+  syncTypes,
+  asyncTypes
+} from '../../types';
 
-import { syncTypes, asyncTypes } from '../../types';
-
-const { apiUrl } = process.env;
-
+/* #region Actions */
 export function addParticipantAnswerAction(payload) {
   return {
     type: syncTypes.ADD_PARTICIPANT_ANSWER,
@@ -54,26 +54,38 @@ export function deleteParticipantAction(payload) {
     payload,
   };
 }
+/* #endregion */
 
-// FORM VALUES
+/* #region Functions */
 export function addParticipantAnswer(questionOrder, order, rightAnswerOrder) {
   return (dispatch, getState) => {
-    const { answers } = getState().participant;
+    const {
+      answers
+    } = getState().participant;
     if (rightAnswerOrder !== null) {
       if (order === rightAnswerOrder) {
         const newAnswers = [...answers, {
-          questionOrder, order, hasRightAnswer: true, isTrue: true,
+          questionOrder,
+          order,
+          hasRightAnswer: true,
+          isTrue: true,
         }];
         dispatch(addParticipantAnswerAction(newAnswers));
       } else {
         const newAnswers = [...answers, {
-          questionOrder, order, hasRightAnswer: true, isTrue: false,
+          questionOrder,
+          order,
+          hasRightAnswer: true,
+          isTrue: false,
         }];
         dispatch(addParticipantAnswerAction(newAnswers));
       }
     } else {
       const newAnswers = [...answers, {
-        questionOrder, order, hasRightAnswer: false, isTrue: false,
+        questionOrder,
+        order,
+        hasRightAnswer: false,
+        isTrue: false,
       }];
       dispatch(addParticipantAnswerAction(newAnswers));
     }
@@ -98,12 +110,10 @@ export function addParticipantEmail(email) {
   };
 }
 
-
 export function getParticipants(slug) {
-  const endPoint = `${apiUrl}participants/${slug}`;
   return async (dispatch) => {
     try {
-      const response = await axios.get(endPoint);
+      const response = await axios.get(`/participants/${slug}`);
       dispatch(getParticipantsAction(response.data.participants));
     } catch (error) {
       throw error;
@@ -112,10 +122,9 @@ export function getParticipants(slug) {
 }
 
 export function postParticipant(participant) {
-  const endPoint = `${apiUrl}participants/`;
   return async (dispatch) => {
     try {
-      const response = await axios.post(endPoint, {
+      const response = await axios.post(`/participants/`, {
         name: participant.name,
         surname: participant.surname,
         email: participant.email,
@@ -135,3 +144,5 @@ export function deleteParticipant(id) {
     dispatch(deleteParticipantAction(user));
   };
 } */
+
+/* #endregion */

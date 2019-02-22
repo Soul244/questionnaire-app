@@ -1,9 +1,11 @@
-import axios from 'axios';
+import axios from '../../axios';
 import update from 'immutability-helper';
-import { syncTypes, asyncTypes } from '../../types';
+import {
+  syncTypes,
+  asyncTypes
+} from '../../types';
 
-const { apiUrl } = process.env;
-
+/* #region Actions */
 export function getUpdatePollAction(payload) {
   return {
     type: asyncTypes.GET_UPDATE_POLL,
@@ -11,42 +13,42 @@ export function getUpdatePollAction(payload) {
   };
 }
 
-export function handleNameOnChangeAction(payload) {
+export function nameOnChangeAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_NAME,
     payload,
   };
 }
 
-export function handleDescOnChangeAction(payload) {
+export function descOnChangeAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_DESC,
     payload,
   };
 }
 
-export function handleSlugOnChangeAction(payload) {
+export function slugOnChangeAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_SLUG,
     payload,
   };
 }
 
-export function handleLastDescOnChangeAction(payload) {
+export function lastDescOnChangeAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_LAST_DESC,
     payload,
   };
 }
 
-export function handleCssOnChangeAction(payload) {
+export function cssOnChangeAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_CSS,
     payload,
   };
 }
 
-export function handleJsOnChangeAction(payload) {
+export function jsOnChangeAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_JS,
     payload,
@@ -66,12 +68,13 @@ export function handleAddSelectableLastMessageAction(payload) {
     payload,
   };
 }
+/* #endregion */
 
+/* #region Functions */
 export function getUpdatePoll(slug) {
-  const endPoint = `${apiUrl}polls/${slug}`;
   return async (dispatch) => {
     try {
-      const response = await axios.get(endPoint);
+      const response = await axios.get(`/polls/${slug}`);
       dispatch(getUpdatePollAction(response.data.poll));
     } catch (error) {
       throw error;
@@ -81,37 +84,37 @@ export function getUpdatePoll(slug) {
 
 export function handleNameOnChange(name) {
   return (dispatch) => {
-    dispatch(handleNameOnChangeAction(name));
+    dispatch(nameOnChangeAction(name));
   };
 }
 
 export function handleDescOnChange(desc) {
   return (dispatch) => {
-    dispatch(handleDescOnChangeAction(desc));
+    dispatch(descOnChangeAction(desc));
   };
 }
 
 export function handleSlugOnChange(slug) {
   return (dispatch) => {
-    dispatch(handleSlugOnChangeAction(slug));
+    dispatch(slugOnChangeAction(slug));
   };
 }
 
 export function handleLastDescOnChange(lastDesc) {
   return (dispatch) => {
-    dispatch(handleLastDescOnChangeAction(lastDesc));
+    dispatch(lastDescOnChangeAction(lastDesc));
   };
 }
 
 export function handleCssOnChange(css) {
   return (dispatch) => {
-    dispatch(handleCssOnChangeAction(css));
+    dispatch(cssOnChangeAction(css));
   };
 }
 
 export function handleJsOnChange(js) {
   return (dispatch) => {
-    dispatch(handleJsOnChangeAction(js));
+    dispatch(jsOnChangeAction(js));
   };
 }
 /*
@@ -123,19 +126,33 @@ export function handleSelectAbleLastMessage(type, content) {
 
 export function handleSelectableLastMessage(type, content) {
   return (dispatch, getState) => {
-    const { selectableLastMessages } = getState().poll;
+    const {
+      selectableLastMessages
+    } = getState().poll;
     const index = selectableLastMessages.findIndex(message => message.type === type);
     if (index > -1) {
       const updatedItem = update(selectableLastMessages[index], {
-        content: { $set: content },
+        content: {
+          $set: content
+        },
       });
       const newSelectableLastMessages = update(selectableLastMessages, {
-        $splice:
-        [[index, 1, updatedItem]],
+        $splice: [
+          [index, 1, updatedItem]
+        ],
       });
-      dispatch(handleSelectableLastMessageChangeAction(({ newSelectableLastMessages })));
+      dispatch(handleSelectableLastMessageChangeAction(({
+        newSelectableLastMessages
+      })));
     } else {
-      dispatch(handleAddSelectableLastMessageAction({ selectableLastMessages: [...selectableLastMessages, { type, content }] }));
+      dispatch(handleAddSelectableLastMessageAction({
+        selectableLastMessages: [...selectableLastMessages, {
+          type,
+          content
+        }]
+      }));
     }
   };
 }
+
+/* #endregion */

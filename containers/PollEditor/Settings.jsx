@@ -73,7 +73,7 @@ class Settings extends React.Component {
       handleHasAnswerAutoChangeTime,
       handleShowType,
       handleIsPollActive,
-      handleAnswerPercent,
+      handleHasAnswerPercent,
       handleType,
       handleUserDataCollectType
     } = this.props.pollActions;
@@ -142,7 +142,7 @@ class Settings extends React.Component {
                   checkedValue={hasAnswerPercent}
                   name="hasAnswerPercent"
                   header="Cevap Yüzdeleri"
-                  onChange={handleAnswerPercent}
+                  onChange={handleHasAnswerPercent}
                   tooltip="Her cevap için verilen cevap yüzdelerini gösterecektir."
                   info={settingsInfos.hasAnswerPercent}
                 />

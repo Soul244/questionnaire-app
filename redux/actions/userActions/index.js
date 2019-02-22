@@ -1,8 +1,9 @@
-import axios from 'axios';
-import { asyncTypes } from '../../types';
+import axios from '../../axios';
+import {
+  asyncTypes
+} from '../../types';
 
-const { apiUrl } = process.env;
-
+/* #region Actions */
 export function postSignUpAction(payload) {
   return {
     type: asyncTypes.POST_SIGNUP,
@@ -30,12 +31,12 @@ export function postResetPasswordAction(payload) {
     payload,
   };
 }
-
+/* #endregion */
+/* #region Functions */
 export function postSignUp(user) {
-  const endPoint = `${apiUrl}users/signup`;
   return async (dispatch) => {
     try {
-      const response = await axios.post(endPoint, user);
+      const response = await axios.post(`/users/signup`, user);
       dispatch(postSignUpAction(response.data));
     } catch (error) {
       throw error;
@@ -44,10 +45,9 @@ export function postSignUp(user) {
 }
 
 export function postLogin(user) {
-  const endPoint = `${apiUrl}users/login`;
   return async (dispatch) => {
     try {
-      const response = await axios.post(endPoint, user);
+      const response = await axios.post(`/users/login`, user);
       localStorage.setItem('auth', JSON.stringify(response.data));
       dispatch(postLoginAction(response.data));
     } catch (error) {
@@ -57,10 +57,11 @@ export function postLogin(user) {
 }
 
 export function postResetPassword(email) {
-  const endPoint = `${apiUrl}users/reset-password`;
   return async (dispatch) => {
     try {
-      const response = await axios.post(endPoint, { email });
+      const response = await axios.post(`/users/reset-password`, {
+        email
+      });
       localStorage.setItem('auth', JSON.stringify(response.data));
       dispatch(postResetPasswordAction(response.data));
     } catch (error) {
@@ -70,10 +71,11 @@ export function postResetPassword(email) {
 }
 
 export function postIsTokenValid(token) {
-  const endPoint = `${apiUrl}users/token`;
   return async (dispatch) => {
     try {
-      const response = await axios.post(endPoint, { token });
+      const response = await axios.post(`/users/token`, {
+        token
+      });
       localStorage.setItem('auth', JSON.stringify(response.data));
       dispatch(postIsTokenValidAction(response.data));
     } catch (error) {
@@ -81,3 +83,5 @@ export function postIsTokenValid(token) {
     }
   };
 }
+
+/* #endregion */
