@@ -22,8 +22,34 @@ import { Paginate, Loading } from '../../components/Shared';
 
 import * as pollsActions from '../../redux/actions/pollsActions';
 
-const CardStyled = styled(Card)`
+const CardContainer = styled.div`
+  position: relative;
   margin: 0.5rem;
+`;
+
+const CardStyled = styled(Card)`
+  max-width: 326px;
+  ${CardContainer}:hover & {
+    opacity:0.2;
+  }
+`;
+
+const OverlayContainer = styled.div`
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right:0;
+  transition: .5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: 2;
+  margin: 5px 0;
+  ${CardContainer}:hover & {
+    opacity:1;
+  }
 `;
 
 const CardHeaderStyled = styled(CardHeader)`
@@ -73,11 +99,12 @@ class index extends Component {
         <Row>
           <Col md="12">
             <Masonry
-              className={"masonry-card-list"}
+              className={'masonry-card-list'}
               options={masonryOptions} // default {}
             >
-                {allPolls.map(poll => (
-                  <CardStyled key={poll._id}>
+              {allPolls.map(poll => (
+                <CardContainer key={poll._id}>
+                  <CardStyled>
                     <CardHeaderStyled>
                       <div className="svg-icon">
                         <img
@@ -90,16 +117,6 @@ class index extends Component {
                     <CardBody>
                       <CardTitle>{poll.name}</CardTitle>
                       <div>{Parser(poll.desc)}</div>
-                      <ButtonContainer>
-                        <Link
-                          as={`/anket/${poll.slug}`}
-                          href={`/poll?slug=${poll.slug}`}
-                        >
-                          <a target="_blank">
-                            <Button color="info">Anketi Çöz</Button>
-                          </a>
-                        </Link>
-                      </ButtonContainer>
                     </CardBody>
                     <CardFooter>
                       <CardText>
@@ -107,13 +124,26 @@ class index extends Component {
                       </CardText>
                     </CardFooter>
                   </CardStyled>
-                ))}
+                  <OverlayContainer>
+                    <ButtonContainer>
+                          <Link
+                            as={`/anket/${poll.slug}`}
+                            href={`/poll?slug=${poll.slug}`}
+                          >
+                            <a target="_blank">
+                              <Button color="info">Anketi Çöz</Button>
+                            </a>
+                          </Link>
+                      </ButtonContainer>
+                  </OverlayContainer>
+                </CardContainer>
+              ))}
             </Masonry>
             <Paginate
-                itemsCount={count}
-                handlePageChange={this.handlePageChange}
-                page={page}
-              />
+              itemsCount={count}
+              handlePageChange={this.handlePageChange}
+              page={page}
+            />
           </Col>
         </Row>
       </Container>
