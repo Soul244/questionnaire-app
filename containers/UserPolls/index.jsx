@@ -23,8 +23,8 @@ const RedirectContainer = styled.div`
 
 class UserPolls extends Component {
   componentDidMount() {
-    const auth = localStorage.getItem('auth');
-    if (auth === '' || auth === null) {
+    const token = localStorage.getItem('token');
+    if (!token & token === '') {
       Router.push({ pathname: '/giris-yap' });
     } else {
       const { getPolls } = this.props.pollsActions;

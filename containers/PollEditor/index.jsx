@@ -32,8 +32,8 @@ class PollEditor extends Component {
   }
 
   componentDidMount() {
-    const auth = localStorage.getItem('auth');
-    if (auth === '' || auth === null) {
+    const token = localStorage.getItem('token');
+    if (!token & token === '') {
       Router.push({ pathname: '/giris-yap' });
     }
   }

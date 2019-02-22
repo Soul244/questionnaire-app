@@ -6,7 +6,7 @@ import Option from './Option';
 class Options extends React.Component {
   static propTypes= {
     questionOrder: PropTypes.number.isRequired,
-    rightAnswerOrder: PropTypes.number.isRequired,
+    rightAnswerOrder: PropTypes.number,
     changeQuestion: PropTypes.func.isRequired,
     questionCount: PropTypes.number.isRequired,
     answers: PropTypes.array.isRequired,

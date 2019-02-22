@@ -48,7 +48,9 @@ export function postLogin(user) {
   return async (dispatch) => {
     try {
       const response = await axios.post(`/users/login`, user);
-      localStorage.setItem('auth', JSON.stringify(response.data));
+      localStorage.setItem('_id', response.data._id);
+      localStorage.setItem('email', response.data.email);
+      localStorage.setItem('token', response.data.token);
       dispatch(postLoginAction(response.data));
     } catch (error) {
       throw error;
@@ -62,7 +64,6 @@ export function postResetPassword(email) {
       const response = await axios.post(`/users/reset-password`, {
         email
       });
-      localStorage.setItem('auth', JSON.stringify(response.data));
       dispatch(postResetPasswordAction(response.data));
     } catch (error) {
       throw error;
@@ -76,7 +77,6 @@ export function postIsTokenValid(token) {
       const response = await axios.post(`/users/token`, {
         token
       });
-      localStorage.setItem('auth', JSON.stringify(response.data));
       dispatch(postIsTokenValidAction(response.data));
     } catch (error) {
       throw error;

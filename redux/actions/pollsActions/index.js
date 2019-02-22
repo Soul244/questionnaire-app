@@ -137,12 +137,11 @@ export function getPreview(poll) {
 }
 
 export function postPoll(poll) {
-  const auth = JSON.parse(localStorage.getItem('auth'));
-  axios.defaults.headers.authorization = auth.token;
+  axios.defaults.headers.authorization = localStorage.getItem('token');
   return async dispatch => {
     try {
       const response = await axios.post(`/polls`, {
-        user: auth.id,
+        user: localStorage.getItem('_id'),
         css: poll.css,
         js: poll.js,
         name: poll.name,
@@ -162,13 +161,12 @@ export function postPoll(poll) {
 }
 
 export function updatePoll(poll) {
-  const auth = JSON.parse(localStorage.getItem('auth'));
-  axios.defaults.headers.authorization = auth.token;
+  axios.defaults.headers.authorization = localStorage.getItem('token');
   return async dispatch => {
     try {
       const response = await axios.post(`/polls/update`, {
         _id: poll._id,
-        user: auth.id,
+        user: localStorage.getItem('_id'),
         css: poll.css,
         js: poll.js,
         name: poll.name,
@@ -188,8 +186,7 @@ export function updatePoll(poll) {
 }
 
 export function deletePoll(_id) {
-  const auth = JSON.parse(localStorage.getItem('auth'));
-  axios.defaults.headers.authorization = auth.token;
+  axios.defaults.headers.authorization = localStorage.getItem('token');
   return async (dispatch, getState) => {
     try {
       const {
@@ -211,12 +208,11 @@ export function deletePoll(_id) {
 }
 
 export function getPolls() {
-  const auth = JSON.parse(localStorage.getItem('auth'));
-  axios.defaults.headers.authorization = auth.token;
+  axios.defaults.headers.authorization = localStorage.getItem('token');
   return async dispatch => {
     try {
       dispatch(getPollsStartAction());
-      const response = await axios.get(`/polls/user/${auth.id}`);
+      const response = await axios.get(`/polls/user/${localStorage.getItem('_id')}`);
       dispatch(getPollsAction(response.data));
     } catch (error) {
       dispatch(getPollsErrorAction(error));

@@ -7,7 +7,7 @@ import {
   Navbar,
   NavbarToggler,
   NavbarBrand,
-  Nav,
+  Nav
 } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -15,24 +15,23 @@ import * as userActions from '../../../redux/actions/userActions';
 import Logged from './Logged';
 import Anonim from './Anonim';
 
-
 const LogoText = styled.p`
-  margin-left:0.5rem;
-  margin-bottom:0;
+  margin-left: 0.5rem;
+  margin-bottom: 0;
   font-size: 1rem;
 `;
 
 const NavbarBrandStyled = styled(NavbarBrand)`
-  display:flex;
+  display: flex;
   align-items: center;
 `;
 
 const NavbarStyled = styled(Navbar)`
-  position:sticky;
+  position: sticky;
   top: 0;
-  z-index:5;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  z-index: 5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 `;
 
 class index extends Component {
@@ -44,37 +43,37 @@ class index extends Component {
     this.state = {
       isOpen: false,
       dropdownOpen: false,
-      isLogged: false,
+      isLogged: false
     };
   }
 
   componentDidMount() {
-    if (localStorage.getItem('auth') !== '') {
-      const auth = JSON.parse(localStorage.getItem('auth'));
-      if (auth.isTokenValid) {
-        this.setState({
-          isLogged: true,
-        });
-      }
+    const token = localStorage.getItem('token');
+    if (token && token !== '') {
+      this.setState({
+        isLogged: true
+      });
     }
   }
 
   onClick() {
-    localStorage.setItem('auth', '');
+    localStorage.setItem('_id', '');
+    localStorage.setItem('email', '');
+    localStorage.setItem('token', '');
     this.setState({
-      isLogged: false,
+      isLogged: false
     });
   }
 
   toggle() {
     this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
+      isOpen: !prevState.isOpen
     }));
   }
 
   toggleDropDownToggle() {
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen,
+      dropdownOpen: !this.state.dropdownOpen
     });
   }
 
@@ -84,17 +83,17 @@ class index extends Component {
       <NavbarStyled className="nav-bg" light expand="md">
         <Container>
           <NavbarBrandStyled href="/">
-            <img src="/static/bilemezsin-logo.jpg" style={{ width: '32px', height: '32px' }} alt="logo" />
+            <img
+              src="/static/bilemezsin-logo.jpg"
+              style={{ width: '32px', height: '32px' }}
+              alt="logo"
+            />
           </NavbarBrandStyled>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              {isLogged && (
-              <Logged logOut={this.onClick} />
-              )}
-              {!isLogged && (
-              <Anonim />
-              )}
+              {isLogged && <Logged logOut={this.onClick} />}
+              {!isLogged && <Anonim />}
             </Nav>
           </Collapse>
         </Container>
@@ -105,11 +104,11 @@ class index extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
+    user: state.user
   };
 }
 
 export default connect(
   mapStateToProps,
-  userActions,
+  userActions
 )(index);

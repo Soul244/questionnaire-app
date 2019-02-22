@@ -140,10 +140,9 @@ exports.Post_Login = (req, res) => {
               expiresIn: '30 days',
             });
           return res.status(200).json({
-            id: user._id,
+            _id: user._id,
             email: user.email,
             token,
-            isTokenValid: true,
             message: 'Başarıyla giriş yaptınız.',
           });
         }

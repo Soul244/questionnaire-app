@@ -85,11 +85,11 @@ Option.propTypes = {
   questionOrder: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  rightAnswerOrder: PropTypes.number.isRequired,
+  rightAnswerOrder: PropTypes.number,
   checked: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   onClick: PropTypes.func.isRequired,
   answerCount: PropTypes.number.isRequired,
-  showPercent: PropTypes.number.isRequired,
+  showPercent: PropTypes.bool.isRequired,
   questionCount: PropTypes.number.isRequired,
 };
 

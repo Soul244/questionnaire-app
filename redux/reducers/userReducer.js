@@ -6,7 +6,7 @@ import {
 const initialState = {
   id: '',
   email: '',
-  isTokenValid: false,
+  isTokenValid: undefined,
   token: '',
   message: '',
 };
@@ -22,9 +22,8 @@ const userReducer = (state = initialState, action) => {
     case asyncTypes.POST_LOGIN:
       state = {
         ...state,
-        id: action.payload.id,
-        emaiş: action.payload.email,
-        isTokenValid: action.payload.isTokenValid,
+        _id: action.payload._id,
+        email: action.payload.email,
         token: action.payload.token,
         message: action.payload.message,
       };

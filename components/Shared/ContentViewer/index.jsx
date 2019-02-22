@@ -11,11 +11,12 @@ export {
 };
 
 const Type = ({ type, content }) => {
+  console.log(content)
   switch (type) {
     case 'text':
-      return <Text>{content}</Text>;
+      return <Text content={content}></Text>;
     case 'heading':
-      return <Heading>{content}</Heading>;
+      return <Heading content={content}></Heading>;
     case 'image':
       return <Image content={content} />;
     case 'external-media':

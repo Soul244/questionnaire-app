@@ -30,10 +30,12 @@ const CardBodyStyled = styled(CardBody)`
 
 class Auth extends Component {
   static propTypes = {
-    postLogin: PropTypes.func.isRequired,
-    postSignUp: PropTypes.func.isRequired,
-    postResetPassword: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    userActions: PropTypes.shape({
+      postLogin: PropTypes.func.isRequired,
+      postSignUp: PropTypes.func.isRequired,
+      postResetPassword: PropTypes.func.isRequired,
+    })
   };
   
   constructor() {
@@ -55,8 +57,8 @@ class Auth extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.notify(nextProps.user.message);
-    const { isTokenValid } = nextProps.user;
-    if (isTokenValid === true) {
+    const { token } = nextProps.user;
+    if (token) {
       setTimeout(() => {
         Router.push({ pathname: '/anasayfa' });
       }, 2000);
