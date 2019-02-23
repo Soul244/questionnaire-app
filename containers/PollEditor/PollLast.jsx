@@ -26,7 +26,7 @@ class PollLast extends React.Component {
       lastDesc: PropTypes.string,
     }).isRequired,
     pollActions: PropTypes.shape({
-      handleLastDescOnChange: PropTypes.func.isRequired,
+      onChangeLastDesc: PropTypes.func.isRequired,
     })
   }
   configText = {
@@ -42,8 +42,8 @@ class PollLast extends React.Component {
   };
   
   onLastDescChange = lastDescContent => {
-    const {handleLastDescOnChange} = this.props.pollActions;
-    handleLastDescOnChange(lastDescContent);
+    const {onChangeLastDesc} = this.props.pollActions;
+    onChangeLastDesc(lastDescContent);
   }
 
   render() {

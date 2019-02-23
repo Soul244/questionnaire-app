@@ -10,13 +10,13 @@ import * as pollActions from '../../redux/actions/pollActions';
 class Inject extends Component {
   static propTypes = {
     pollActions: PropTypes.shape({
-      handleCssOnChange: PropTypes.func.isRequired,
-      handleJsOnChange: PropTypes.func.isRequired
+      onChangeCss: PropTypes.func.isRequired,
+      onChangeJs: PropTypes.func.isRequired
     })
   }
   render() {
     const { css, js } = this.props.poll;
-    const { handleCssOnChange, handleJsOnChange } = this.props.pollActions;
+    const { onChangeCss, onChangeJs } = this.props.pollActions;
     return (
       <>
         <Card>
@@ -26,7 +26,7 @@ class Inject extends Component {
               <Input
                 type="textarea"
                 value={css}
-                onChange={e => handleCssOnChange(e.target.value)}
+                onChange={e => onChangeCss(e.target.value)}
                 placeholder="Css kodunuzu giriniz..."
               />
             </FormGroup>
@@ -39,7 +39,7 @@ class Inject extends Component {
               <Input
                 type="textarea"
                 value={js}
-                onChange={e => handleJsOnChange(e.target.value)}
+                onChange={e => onChangeJs(e.target.value)}
                 placeholder="Javascript kodunuzu giriniz..."
               />
             </FormGroup>

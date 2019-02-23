@@ -24,7 +24,7 @@ const Answers = ({ answers, questionOrder, rightAnswerOrder }) => {
 Answers.propTypes = {
   questionOrder: PropTypes.number.isRequired,
   answers: PropTypes.array.isRequired,
-  rightAnswerOrder: PropTypes.number.isRequired,
+  rightAnswerOrder: PropTypes.number,
 };
 
 export default Answers;

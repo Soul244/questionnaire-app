@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import {
   Container,
   Card,
@@ -17,11 +16,9 @@ import {
   ModalFooter,
 } from 'reactstrap';
 import styled from 'styled-components';
-
 import Desc from './Desc';
 import Answers from './Answers';
 import { types } from '../../containers/toolTypes';
-
 import Icon, { arrowDown, plus, remove } from '../../css/icons';
 import { ContentViewer, AnswerTool } from '../Shared';
 import * as pollActions from '../../redux/actions/pollActions';
@@ -324,7 +321,7 @@ Question.propTypes = {
   handleOnChangeTypeQuestion: PropTypes.func.isRequired,
   handleOnChangeQuestionDesc: PropTypes.func.isRequired,
   poll: PropTypes.object.isRequired,
-  rightAnswerOrder: PropTypes.number.isRequired,
+  rightAnswerOrder: PropTypes.number,
   desc: PropTypes.string,
   type: PropTypes.string.isRequired,
 };

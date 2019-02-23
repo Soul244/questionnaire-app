@@ -1,40 +1,15 @@
 import axios from '../../axios';
-import {
-  asyncTypes
-} from '../../types';
+import { asyncTypes } from '../../types';
 
-/* #region Actions */
+/* #region Sign Up */
 export function postSignUpAction(payload) {
   return {
     type: asyncTypes.POST_SIGNUP,
-    payload,
+    payload
   };
 }
-
-export function postLoginAction(payload) {
-  return {
-    type: asyncTypes.POST_LOGIN,
-    payload,
-  };
-}
-
-export function postIsTokenValidAction(payload) {
-  return {
-    type: asyncTypes.POST_TOKEN_IS_VALID,
-    payload,
-  };
-}
-
-export function postResetPasswordAction(payload) {
-  return {
-    type: asyncTypes.POST_RESET_PASSWORD,
-    payload,
-  };
-}
-/* #endregion */
-/* #region Functions */
 export function postSignUp(user) {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const response = await axios.post(`/users/signup`, user);
       dispatch(postSignUpAction(response.data));
@@ -43,9 +18,18 @@ export function postSignUp(user) {
     }
   };
 }
+/* #endregion */
+
+/* #region Login */
+export function postLoginAction(payload) {
+  return {
+    type: asyncTypes.POST_LOGIN,
+    payload
+  };
+}
 
 export function postLogin(user) {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const response = await axios.post(`/users/login`, user);
       localStorage.setItem('_id', response.data._id);
@@ -57,9 +41,18 @@ export function postLogin(user) {
     }
   };
 }
+/* #endregion */
+
+/* #region Reset Password */
+export function postResetPasswordAction(payload) {
+  return {
+    type: asyncTypes.POST_RESET_PASSWORD,
+    payload
+  };
+}
 
 export function postResetPassword(email) {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const response = await axios.post(`/users/reset-password`, {
         email
@@ -71,8 +64,18 @@ export function postResetPassword(email) {
   };
 }
 
+/* #endregion */
+
+/* #region Is Token Valid */
+export function postIsTokenValidAction(payload) {
+  return {
+    type: asyncTypes.POST_TOKEN_IS_VALID,
+    payload
+  };
+}
+
 export function postIsTokenValid(token) {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const response = await axios.post(`/users/token`, {
         token

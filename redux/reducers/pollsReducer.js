@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { asyncTypes } from '../types';
+import { asyncTypes, syncTypes } from '../types';
 
 const initialState = {
   polls: [],
@@ -62,7 +62,7 @@ const pollsReducer = (state = initialState, action) => {
         poll: action.payload,
       };
       break;
-    case asyncTypes.GET_PREVIEW_POLL:
+    case syncTypes.GET_PREVIEW_POLL:
       state = {
         ...state,
         poll: action.payload,

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-
 import {
   Card,
   CardBody,
@@ -16,7 +15,6 @@ import {
   ModalFooter,
 } from 'reactstrap';
 import styled from 'styled-components';
-
 import Icon, { remove } from '../../css/icons';
 import { types } from '../../containers/toolTypes';
 import { ContentViewer } from '../Shared';
@@ -75,7 +73,7 @@ class Answer extends Component {
     this.state = {
       content: '',
       type: '',
-      rightAnswerOrder: 0,
+      rightAnswerOrder: null,
       showDelete: false,
     };
   }

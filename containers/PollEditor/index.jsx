@@ -185,12 +185,12 @@ PollEditor.propTypes = {
     handleAddQuestion: PropTypes.func.isRequired,
     handleDeleteQuestion: PropTypes.func.isRequired,
     handleUpdateQuestionOrder: PropTypes.func.isRequired,
-    handleNameOnChange: PropTypes.func.isRequired,
-    handleDescOnChange: PropTypes.func.isRequired,
-    handleLastDescOnChange: PropTypes.func.isRequired,
-    handleSlugOnChange: PropTypes.func.isRequired,
-    handleCssOnChange: PropTypes.func.isRequired,
-    handleJsOnChange: PropTypes.func.isRequired
+    onChangeName: PropTypes.func.isRequired,
+    onChangeDesc: PropTypes.func.isRequired,
+    onChangeLastDesc: PropTypes.func.isRequired,
+    onChangeSlug: PropTypes.func.isRequired,
+    onChangeCss: PropTypes.func.isRequired,
+    onChangeJs: PropTypes.func.isRequired
   }).isRequired,
   poll: PropTypes.shape({
     name: PropTypes.string.isRequired,

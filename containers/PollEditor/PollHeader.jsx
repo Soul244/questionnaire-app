@@ -30,9 +30,9 @@ class PollHeader extends React.Component {
       slug: PropTypes.string.isRequired,
     }).isRequired,
     pollAction: PropTypes.shape({
-      handleNameOnChange: PropTypes.func.isRequired,
-      handleDescOnChange: PropTypes.func.isRequired,
-      handleSlugOnChange: PropTypes.func.isRequired,
+      onChangeName: PropTypes.func.isRequired,
+      onChangeDesc: PropTypes.func.isRequired,
+      onChangeSlug: PropTypes.func.isRequired,
     })
   }
 
@@ -49,12 +49,12 @@ class PollHeader extends React.Component {
   };
 
   onDescChange = descContent => {
-    this.props.pollActions.handleDescOnChange(descContent);
+    this.props.pollActions.onChangeDesc(descContent);
   }
 
   render() {
     const { name, desc, slug } = this.props.poll;
-    const {handleNameOnChange, handleSlugOnChange, } = this.props.pollActions;
+    const {onChangeName, onChangeSlug, } = this.props.pollActions;
     return (
       <>
         <Card>
@@ -63,7 +63,7 @@ class PollHeader extends React.Component {
             <FormGroup>
               <Input
                 value={name}
-                onChange={e => handleNameOnChange(e.target.value)}
+                onChange={e => onChangeName(e.target.value)}
                 placeholder="Anket başlığınızı giriniz..."
               />
             </FormGroup>
@@ -88,7 +88,7 @@ class PollHeader extends React.Component {
             <FormGroup>
               <Input
                 value={slug}
-                onChange={e => handleSlugOnChange(
+                onChange={e => onChangeSlug(
                   slugify(e.target.value,
                     {
                       replacement: '-',

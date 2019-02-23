@@ -11,18 +11,18 @@ import {
   handleType, handleUserDataCollectType,
 } from './settingsActions';
 import {
-  handleNameOnChange, handleDescOnChange, handleLastDescOnChange, handleSlugOnChange,
-  getUpdatePoll, handleJsOnChange, handleCssOnChange, handleSelectableLastMessage,
+  onChangeName, onChangeDesc, onChangeLastDesc, onChangeSlug,
+  getUpdatePoll, onChangeJs, onChangeCss, handleSelectableLastMessage,
 } from './pollActions';
 
 
 export {
-  handleNameOnChange,
-  handleDescOnChange,
-  handleLastDescOnChange,
-  handleSlugOnChange,
-  handleJsOnChange,
-  handleCssOnChange,
+  onChangeName,
+  onChangeDesc,
+  onChangeLastDesc,
+  onChangeSlug,
+  onChangeJs,
+  onChangeCss,
   handleSelectableLastMessage,
   getUpdatePoll,
 
