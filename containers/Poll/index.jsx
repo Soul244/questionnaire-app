@@ -73,7 +73,6 @@ class index extends Component {
     const { participantActions, participant } = this.props;
     const { addParticipantAnswer, postParticipant } = participantActions;
     const { poll } = this.props.polls;
-    console.log(poll)
     const { settings } = poll;
     if (settings === undefined) return null;
     if (!settings.isPollActive) {

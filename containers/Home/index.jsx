@@ -25,7 +25,7 @@ import * as pollsActions from '../../redux/actions/pollsActions';
 const CardContainer = styled.div`
   position: relative;
   margin: 0.5rem;
-  width: 360px;
+  max-width: 360px;
 `;
 
 const CardStyled = styled(Card)`

@@ -136,7 +136,7 @@ class Setting extends React.Component {
           />
           {hasInput && (
             <InputShowAble
-              type="number"
+              type="text"
               placeholder={inputPlaceHolder}
               show={values[0] ? 1 : 0}
               value={inputValue}
@@ -155,7 +155,7 @@ Setting.defaultProps = {
   labels: ['Evet', 'Hayır'],
   values: [true, false],
   hasInput: false,
-  inputValue: '',
+  inputValue: "",
   inputChange: undefined,
   inputPlaceHolder: '',
   checkedValue: undefined,

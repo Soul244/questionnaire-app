@@ -1,4 +1,4 @@
-$border-radius: 4px;
+$border-radius: 8px;
 $navbar-color: #17a2b8;
 
 body {
@@ -192,7 +192,6 @@ ul {
 }
 
 input {
-    border-radius: $border-radius !important;
     padding: 1.5rem !important;
 }
 

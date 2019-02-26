@@ -1,61 +1,60 @@
-import update from 'immutability-helper';
 import { arrayMove } from 'react-sortable-hoc';
-
+import {List} from 'immutable';
 import { syncTypes } from '../../types';
 
-/* #region Add Question */
+/* #region Add Question IMMUTABLE*/
 export function addQuestionAction(payload) {
   return {
     type: syncTypes.ADD_QUESTION,
     payload
   };
 }
-export function handleAddQuestion(type) {
+export function addQuestion(type) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
-    const newQuestion = {
-      order: questions.length,
+    const newQuestion = {      
+      order: questions.length > 0 ? questions[questions.length-1].order + 1 : 0,
       type,
       content: '',
       rightAnswerOrder: null
     };
+    const newQuestions = List(questions).push(newQuestion).toArray();
     dispatch(
-      addQuestionAction({
-        questions: [...questions, newQuestion]
-      })
+      addQuestionAction(newQuestions)
     );
   };
 }
 /* #endregion */
 
-/* #region Delete Qeuestion */
+/* #region Delete Qeuestion IMMUTABLE */
 export function deleteQuestionAction(payload) {
   return {
     type: syncTypes.DELETE_QUESTION,
     payload
   };
 }
-export function handleDeleteQuestion(order) {
+export function deleteQuestion(order) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
-    const newQuestions = questions.filter(question => question.order !== order);
+    const index = questions.findIndex(
+      question => question.order === order
+    )
+    const newQuestions = List(questions).delete(index).toArray();
     dispatch(
-      deleteQuestionAction({
-        questions: newQuestions
-      })
+      deleteQuestionAction(newQuestions)
     );
   };
 }
 /* #endregion */
 
-/* #region Update Question Order */
+/* #region Update Question Order NOT IN USE FOR NOW*/
 export function updateQuestionOrderAction(payload) {
   return {
     type: syncTypes.UPDATE_QUESTION_ORDER,
     payload
   };
 }
-export function handleUpdateQuestionOrder({ oldIndex, newIndex }) {
+export function updateQuestionOrder({ oldIndex, newIndex }) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
     const q = arrayMove(questions, oldIndex, newIndex);
@@ -68,7 +67,7 @@ export function handleUpdateQuestionOrder({ oldIndex, newIndex }) {
 }
 /* #endregion */
 
-/* #region On Change Question */
+/* #region On Change Question IMMUTABLE*/
 export function onChangeQuestionAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_QUESTION,
@@ -76,106 +75,66 @@ export function onChangeQuestionAction(payload) {
   };
 }
 
-export function handleOnChangeQuestion(content, order) {
+export function onChangeQuestion(content, order) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
-    const index = questions.findIndex(question => question.order === order);
-    const updatedQuestion = update(questions[index], {
-      content: {
-        $set: content
-      }
-    });
-    const newQuestions = update(questions, {
-      $splice: [[index, 1, updatedQuestion]]
-    });
+    const newQuestions= List(questions).setIn([order, "content"],content).toArray();
     dispatch(
-      onChangeQuestionAction({
-        newQuestions
-      })
+      onChangeQuestionAction(newQuestions)
     );
   };
 }
 /* #endregion */
 
-/* #region On Change Question Type */
-export function onChangeTypeQuestionAction(payload) {
+/* #region On Change Question Type IMMUTABLE*/
+export function onChangeQuestionTypeAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_TYPE_QUESTION,
     payload
   };
 }
-export function handleOnChangeTypeQuestion(type, order) {
+export function onChangeQuestionType(type, order) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
-    const index = questions.findIndex(question => question.order === order);
-    const updatedQuestion = update(questions[index], {
-      type: {
-        $set: type
-      }
-    });
-    const newQuestions = update(questions, {
-      $splice: [[index, 1, updatedQuestion]]
-    });
+    const newQuestions= List(questions).setIn([order, "type"],type).toArray();
     dispatch(
-      onChangeTypeQuestionAction({
-        newQuestions
-      })
+      onChangeQuestionTypeAction(newQuestions)
     );
   };
 }
 /* #endregion */
 
-/* #region On Change Question Desc */
+/* #region On Change Question Desc IMMUTABLE */
 export function onChangeQuestionDescAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_QUESTION_DESC,
     payload
   };
 }
-export function handleOnChangeQuestionDesc(desc, order) {
+export function onChangeQuestionDesc(desc, order) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
-    const index = questions.findIndex(question => question.order === order);
-    const updatedQuestion = update(questions[index], {
-      desc: {
-        $set: desc
-      }
-    });
-    const newQuestions = update(questions, {
-      $splice: [[index, 1, updatedQuestion]]
-    });
+    const newQuestions= List(questions).setIn([order, "desc"],desc).toArray();
     dispatch(
-      onChangeQuestionDescAction({
-        newQuestions
-      })
+      onChangeQuestionDescAction(newQuestions)
     );
   };
 }
 /* #endregion */
 
-/* #region On Click Right Answer */
+/* #region On Click Right Answer IMMUTABLE*/
 export function onClickRightAnswerAction(payload) {
   return {
     type: syncTypes.ON_CLICK_RIGHT_ANSWER,
     payload
   };
 }
-export function handleOnClickRightAnswer(order, rightAnswerOrder) {
+export function onClickRightAnswer(order, rightAnswerOrder) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
-    const index = questions.findIndex(question => question.order === order);
-    const updatedQuestion = update(questions[index], {
-      rightAnswerOrder: {
-        $set: rightAnswerOrder
-      }
-    });
-    const newQuestions = update(questions, {
-      $splice: [[index, 1, updatedQuestion]]
-    });
+    const newQuestions= List(questions).setIn([order, "rightAnswerOrder"],rightAnswerOrder).toArray();
     dispatch(
-      onClickRightAnswerAction({
-        newQuestions
-      })
+      onClickRightAnswerAction(newQuestions)
     );
   };
 }

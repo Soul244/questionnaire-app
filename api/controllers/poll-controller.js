@@ -27,7 +27,7 @@ exports.Get_Poll = (req, res) => {
     });
 };
 
-exports.Post_Poll = (req, res) => {
+exports.Create_Poll = (req, res) => {
   Poll
     .find({
       slug: req.body.slug

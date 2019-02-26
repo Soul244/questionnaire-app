@@ -55,7 +55,7 @@ const HideableContent = styled.div`
 class AnswerTool extends React.Component {
   render() {
     const {
-      handleAddAnswer, questionOrder, toggle, show,
+      addAnswer, questionOrder, toggle, show,
     } = this.props;
     return (
       <CardMax body className="text-center">
@@ -64,17 +64,17 @@ class AnswerTool extends React.Component {
           <Icon size="24px" icon={arrowLeft} />
         </PlusIcon>
         <HideableContent show={show ? 1 : 0}>
-          <ButtonWithIcon size="md" outline block color="warning" onClick={() => handleAddAnswer('text', questionOrder)}><Icon size="24px" icon={text} /></ButtonWithIcon>
+          <ButtonWithIcon size="md" outline block color="warning" onClick={() => addAnswer('text', questionOrder)}><Icon size="24px" icon={text} /></ButtonWithIcon>
           {' '}
-          <ButtonWithIcon size="md" outline block color="danger" onClick={() => handleAddAnswer('external-media', questionOrder)}><Icon size="24px" icon={video} /></ButtonWithIcon>
+          <ButtonWithIcon size="md" outline block color="danger" onClick={() => addAnswer('external-media', questionOrder)}><Icon size="24px" icon={video} /></ButtonWithIcon>
           {' '}
-          <ButtonWithIcon size="md" outline block color="info" onClick={() => handleAddAnswer('image', questionOrder)}><Icon size="24px" icon={image} /></ButtonWithIcon>
+          <ButtonWithIcon size="md" outline block color="info" onClick={() => addAnswer('image', questionOrder)}><Icon size="24px" icon={image} /></ButtonWithIcon>
           {' '}
-          <ButtonWithIcon size="md" outline block color="primary" onClick={() => handleAddAnswer('audio', questionOrder)}><Icon size="24px" icon={audio} /></ButtonWithIcon>
+          <ButtonWithIcon size="md" outline block color="primary" onClick={() => addAnswer('audio', questionOrder)}><Icon size="24px" icon={audio} /></ButtonWithIcon>
           {' '}
-          <ButtonStyled size="md" outline block color="secondary" onClick={() => handleAddAnswer('gif', questionOrder)}><ButtonText>GIF</ButtonText></ButtonStyled>
+          <ButtonStyled size="md" outline block color="secondary" onClick={() => addAnswer('gif', questionOrder)}><ButtonText>GIF</ButtonText></ButtonStyled>
           {' '}
-          <ButtonStyled size="md" outline block color="secondary" onClick={() => handleAddAnswer('heading', questionOrder)}><ButtonText>H1</ButtonText></ButtonStyled>
+          <ButtonStyled size="md" outline block color="secondary" onClick={() => addAnswer('heading', questionOrder)}><ButtonText>H1</ButtonText></ButtonStyled>
         </HideableContent>
       </CardMax>
     );
@@ -82,7 +82,7 @@ class AnswerTool extends React.Component {
 }
 
 AnswerTool.propTypes = {
-  handleAddAnswer: PropTypes.func.isRequired,
+  addAnswer: PropTypes.func.isRequired,
   questionOrder: PropTypes.number.isRequired,
 };
 

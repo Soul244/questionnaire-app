@@ -31,7 +31,7 @@ const initialState = {
 const pollReducer = (state = initialState, action) => {
   switch (action.type) {
     case asyncTypes.GET_UPDATE_POLL:
-      state = action.payload;
+      state = action.payload
       break;
     case syncTypes.ON_CHANGE_CSS:
       state = {
@@ -183,13 +183,13 @@ const pollReducer = (state = initialState, action) => {
     case syncTypes.ADD_QUESTION:
       state = {
         ...state,
-        questions: action.payload.questions,
+        questions: action.payload,
       };
       break;
     case syncTypes.DELETE_QUESTION:
       state = {
         ...state,
-        questions: action.payload.questions,
+        questions: action.payload,
       };
       break;
     case syncTypes.UPDATE_QUESTION_ORDER:
@@ -201,49 +201,49 @@ const pollReducer = (state = initialState, action) => {
     case syncTypes.ON_CHANGE_QUESTION:
       state = {
         ...state,
-        questions: action.payload.newQuestions,
+        questions: action.payload,
       };
       break;
     case syncTypes.ON_CHANGE_TYPE_QUESTION:
       state = {
         ...state,
-        questions: action.payload.newQuestions,
+        questions: action.payload,
       };
       break;
     case syncTypes.ON_CLICK_RIGHT_ANSWER:
       state = {
         ...state,
-        questions: action.payload.newQuestions,
+        questions: action.payload,
       };
       break;
     case syncTypes.ON_CHANGE_QUESTION_DESC:
       state = {
         ...state,
-        questions: action.payload.newQuestions,
+        questions: action.payload,
       };
       break;
     case syncTypes.ADD_ANSWER:
       state = {
         ...state,
-        answers: action.payload.answers,
+        answers: action.payload,
       };
       break;
     case syncTypes.DELETE_ANSWER:
       state = {
         ...state,
-        answers: action.payload.answers,
+        answers: action.payload,
       };
       break;
     case syncTypes.ON_CHANGE_ANSWER:
       state = {
         ...state,
-        answers: action.payload.newAnswers,
+        answers: action.payload,
       };
       break;
     case syncTypes.ON_CHANGE_TYPE_ANSWER:
       state = {
         ...state,
-        answers: action.payload.newAnswers,
+        answers: action.payload,
       };
       break;
     default: {

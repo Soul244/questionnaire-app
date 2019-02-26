@@ -34,38 +34,9 @@ class Settings extends React.Component {
     })
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      pollTime: '',
-      answerTime: '',
-      answerAutoChangeTime: ''
-    };
-  }
-
-  pollTimeOnChange = e => {
-    const pollTime = e.target.value;
-    this.setState({ pollTime });
-    this.props.pollActions.handlePollTime(pollTime);
-  };
-
-  answerTimeOnChange = e => {
-    const answerTime = e.target.value;
-    this.setState({ answerTime });
-    this.props.pollActions.handleAnswerTime(answerTime);
-  };
-
-  answerAutoChangeTime = e => {
-    const answerAutoChangeTime = e.target.value;
-    this.setState({ answerAutoChangeTime });
-    this.props.pollActions.handleAnswerAutoChangeTime(answerAutoChangeTime);
-  };
-
   render() {
     // Inputs
-    const { pollTime, answerTime, answerAutoChangeTime } = this.state;
     const { poll } = this.props;
-    
     // Actions
     const {
       handleHasPollTime,
@@ -75,7 +46,10 @@ class Settings extends React.Component {
       handleIsPollActive,
       handleHasAnswerPercent,
       handleType,
-      handleUserDataCollectType
+      handleUserDataCollectType,
+      handlePollTime,
+      handleAnswerTime,
+      handleAnswerAutoChangeTime
     } = this.props.pollActions;
 
     // Values
@@ -87,7 +61,10 @@ class Settings extends React.Component {
       showType,
       type,
       userDataCollectType,
-      hasAnswerPercent
+      hasAnswerPercent,
+      pollTime,
+      answerTime,
+      answerAutoChangeTime,
     } = poll.settings;
     return (
       <Card className="my-4">
@@ -176,7 +153,7 @@ class Settings extends React.Component {
                     onChange={handleHasPollTime}
                     hasInput
                     inputValue={pollTime}
-                    inputChange={this.pollTimeOnChange}
+                    inputChange={(e)=>handlePollTime(e.target.value)}
                     inputPlaceHolder="dakika"
                     tooltip="Bu seçenek geliştirilme sürecinde"
                     info={settingsInfos.hasPollTime}
@@ -195,7 +172,7 @@ class Settings extends React.Component {
                     onChange={handleHasAnswerTime}
                     hasInput
                     inputValue={answerTime}
-                    inputChange={this.answerTimeOnChange}
+                    inputChange={(e)=>handleAnswerTime(e.target.value)}
                     inputPlaceHolder="saniye"
                     tooltip="Bu seçenek geliştirilme sürecinde"
                     info={settingsInfos.hasAnswerTime}
@@ -212,8 +189,8 @@ class Settings extends React.Component {
                   onChange={handleHasAnswerAutoChangeTime}
                   hasInput
                   inputValue={answerAutoChangeTime}
-                  inputChange={this.answerAutoChangeTime}
-                  inputPlaceHolder=".."
+                  inputChange={(e)=>handleAnswerAutoChangeTime(e.target.value)}
+                  inputPlaceHolder="Milisaniye"
                   tooltip="Her soru arasındaki otomatik geçiş süresi"
                   info={settingsInfos.hasAnswerAutoChangeTime}
                 />

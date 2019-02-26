@@ -11,7 +11,6 @@ export {
 };
 
 const Type = ({ type, content }) => {
-  console.log(content)
   switch (type) {
     case 'text':
       return <Text content={content}></Text>;

@@ -54,7 +54,7 @@ function Option(props) {
             type="radio"
             name={questionOrder}
             value={order}
-            defaultChecked={checked === order}
+            checked={checked === order}
             style={{ display: 'none' }}
           />
           <Row>

@@ -1,8 +1,6 @@
 const Participant = require('../models/participant');
 const Poll = require('../models/poll');
-const {
-  CreatePostObject
-} = require('../utils')
+const { CreatePostObject} = require('../utils')
 
 exports.Get_Participants = (req, res) => {
   let pollId = '';
@@ -43,7 +41,7 @@ exports.Get_Participants = (req, res) => {
     });
 };
 
-exports.Post_Participant = (req, res) => {
+exports.Create_Participant = (req, res) => {
   const participant = new Participant(CreatePostObject(req.body));
   participant
     .save()

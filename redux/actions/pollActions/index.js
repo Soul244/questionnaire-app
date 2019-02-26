@@ -1,9 +1,9 @@
 import {
-  handleAddQuestion, handleDeleteQuestion, handleUpdateQuestionOrder,
-  handleOnChangeQuestion, handleOnChangeTypeQuestion, handleOnClickRightAnswer, handleOnChangeQuestionDesc,
+  addQuestion, deleteQuestion, updateQuestionOrder,
+  onChangeQuestion, onChangeQuestionType, onClickRightAnswer, onChangeQuestionDesc,
 } from './questionsActions';
 import {
-  handleAddAnswer, handleDeleteAnswer, handleOnChangeAnswer, handleOnChangeTypeAnswer,
+  addAnswer, deleteAnswer, onChangeAnswer, onChangeAnswerType,
 } from './answersActions';
 import {
   handleHasPollTime, handleHasAnswerTime, handleHasAnswerAutoChangeTime, handleShowType,
@@ -26,13 +26,13 @@ export {
   handleSelectableLastMessage,
   getUpdatePoll,
 
-  handleAddQuestion,
-  handleDeleteQuestion,
-  handleUpdateQuestionOrder,
-  handleOnChangeQuestion,
-  handleOnChangeTypeQuestion,
-  handleOnClickRightAnswer,
-  handleOnChangeQuestionDesc,
+  addQuestion,
+  deleteQuestion,
+  updateQuestionOrder,
+  onChangeQuestion,
+  onChangeQuestionType,
+  onClickRightAnswer,
+  onChangeQuestionDesc,
 
   handleHasPollTime,
   handleHasAnswerTime,
@@ -46,8 +46,8 @@ export {
   handleType,
   handleUserDataCollectType,
 
-  handleAddAnswer,
-  handleDeleteAnswer,
-  handleOnChangeAnswer,
-  handleOnChangeTypeAnswer,
+  addAnswer,
+  deleteAnswer,
+  onChangeAnswer,
+  onChangeAnswerType,
 };

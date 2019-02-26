@@ -122,7 +122,6 @@ class PollEditor extends Component {
         handleOK: false
       });
     } else if (poll.id === '') {
-      console.log(poll);
       postPoll(poll);
     } else {
       updatePoll(poll);
@@ -131,10 +130,7 @@ class PollEditor extends Component {
 
   render() {
     const { poll } = this.props;
-    const { questions } = poll;
-
-    const { handleAddQuestion, handleDeleteQuestion } = this.props.pollActions;
-
+    const { addQuestion } = this.props.pollActions;
     return (
       <>
         <Container className="my-4">
@@ -150,16 +146,13 @@ class PollEditor extends Component {
           <Row>
             <Col md={12}>
               <form onSubmit={this.handleSubmit}>
-                <QuestionTool addQuestion={handleAddQuestion} />
+                <QuestionTool addQuestion={addQuestion} />
                 <PollHeader />
                 <PollLast />
                 <Inject />
                 <Settings />
                 {poll.settings.type === 'test' && <SelectableLastMessage />}
-                <Questions
-                  deleteQuestion={handleDeleteQuestion}
-                  questions={questions}
-                />
+                <Questions />
               </form>
             </Col>
           </Row>
@@ -175,30 +168,15 @@ PollEditor.defaultProps = {
 
 PollEditor.propTypes = {
   slug: PropTypes.string,
+  poll: PropTypes.object.isRequired,
   polls: PropTypes.object.isRequired,
   pollsActions: PropTypes.shape({
     updatePoll: PropTypes.func.isRequired,
     postPoll: PropTypes.func.isRequired
   }).isRequired,
   pollActions: PropTypes.shape({
-    getUpdatePoll: PropTypes.func.isRequired,
-    handleAddQuestion: PropTypes.func.isRequired,
-    handleDeleteQuestion: PropTypes.func.isRequired,
-    handleUpdateQuestionOrder: PropTypes.func.isRequired,
-    onChangeName: PropTypes.func.isRequired,
-    onChangeDesc: PropTypes.func.isRequired,
-    onChangeLastDesc: PropTypes.func.isRequired,
-    onChangeSlug: PropTypes.func.isRequired,
-    onChangeCss: PropTypes.func.isRequired,
-    onChangeJs: PropTypes.func.isRequired
+    addQuestion: PropTypes.func.isRequired,
   }).isRequired,
-  poll: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    desc: PropTypes.string,
-    lastDesc: PropTypes.string,
-    js: PropTypes.string,
-    css: PropTypes.string
-  }).isRequired
 };
 
 function mapStateToProps(state) {

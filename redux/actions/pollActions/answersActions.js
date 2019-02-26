@@ -1,115 +1,92 @@
-import update from 'immutability-helper';
-import _ from 'lodash';
-
+import { List } from 'immutable';
 import { syncTypes } from '../../types';
 
-/* #region Add Answer */
+/* #region Add Answer IMMUTABLE*/
 export function addAnswerAction(payload) {
   return {
     type: syncTypes.ADD_ANSWER,
     payload
   };
 }
-export function handleAddAnswer(type, questionOrder) {
+export function addAnswer(type, questionOrder) {
   return (dispatch, getState) => {
     const { answers } = getState().poll;
     const filteredAnswers = answers.filter(
       answer => answer.questionOrder === questionOrder
     );
-    filteredAnswers.reverse();
     const newAnswer = {
-      order: filteredAnswers.length > 0 ? answers[0].order + 1 : 0,
+      order: filteredAnswers.length > 0 ? filteredAnswers[filteredAnswers.length-1].order + 1 : 0,
       questionOrder,
       type,
+      count: 0,
       content: ''
     };
+    const newAnswers = List(answers).push(newAnswer).toArray();
     dispatch(
-      addAnswerAction({
-        answers: [newAnswer, ...answers]
-      })
+      addAnswerAction(newAnswers)
     );
   };
 }
 /* #endregion */
 
-/* #region Delete Answer */
+/* #region Delete Answer IMMUTABLE*/
 export function deleteAnswerAction(payload) {
   return {
     type: syncTypes.DELETE_ANSWER,
     payload
   };
 }
-export function handleDeleteAnswer(questionOrder, order) {
+export function deleteAnswer(questionOrder, order) {
   return (dispatch, getState) => {
     const { answers } = getState().poll;
-    _.remove(answers, {
-      questionOrder,
-      order
-    });
+    const index = answers.findIndex(
+      answer => answer.order === order && answer.questionOrder === questionOrder
+    )
+    const newAnswers = List(answers).delete(index).toArray();
     dispatch(
-      deleteAnswerAction({
-        answers
-      })
+      deleteAnswerAction(newAnswers)
     );
   };
 }
 /* #endregion */
 
-/* #region On Changed Answer */
-export function onChangedAnswerAction(payload) {
+/* #region On Changed Answer IMMUTABLE*/
+export function onChangeAnswerAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_ANSWER,
     payload
   };
 }
-export function handleOnChangeAnswer(content, questionOrder, order) {
+export function onChangeAnswer(content, questionOrder, order) {
   return (dispatch, getState) => {
     const { answers } = getState().poll;
     const index = answers.findIndex(
       answer => answer.order === order && answer.questionOrder === questionOrder
-    );
-    const updatedAnswer = update(answers[index], {
-      content: {
-        $set: content
-      }
-    });
-    const newAnswers = update(answers, {
-      $splice: [[index, 1, updatedAnswer]]
-    });
+    )
+    const newAnswers= List(answers).setIn([index, "content"],content).toArray();
     dispatch(
-      onChangedAnswerAction({
-        newAnswers
-      })
+      onChangeAnswerAction(newAnswers)
     );
   };
 }
 /* #endregion */
 
-/* #region On Changed Type */
-export function onChangedTypeAnswerAction(payload) {
+/* #region On Changed Type IMMUTABLE */
+export function onChangeAnswerTypeAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_TYPE_ANSWER,
     payload
   };
 }
-export function handleOnChangeTypeAnswer(type, questionOrder, order) {
+export function onChangeAnswerType(type, questionOrder, order) {
   return (dispatch, getState) => {
     const { answers } = getState().poll;
     const index = answers.findIndex(
       answer => answer.order === order && answer.questionOrder === questionOrder
-    );
-    const updatedAnswer = update(answers[index], {
-      type: {
-        $set: type
-      }
-    });
-    const newAnswers = update(answers, {
-      $splice: [[index, 1, updatedAnswer]]
-    });
+    )
+    const newAnswers= List(answers).setIn([index, "type"],type).toArray();
     dispatch(
-      onChangedTypeAnswerAction({
-        newAnswers
-      })
+      onChangeAnswerTypeAction(newAnswers)
     );
   };
 }

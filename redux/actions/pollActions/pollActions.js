@@ -1,5 +1,4 @@
 import axios from '../../axios';
-import update from 'immutability-helper';
 import { syncTypes, asyncTypes } from '../../types';
 
 /* #region Get Update Poll */
@@ -126,6 +125,8 @@ export function handleSelectableLastMessage(type, content) {
     const index = selectableLastMessages.findIndex(
       message => message.type === type
     );
+/*
+    
     if (index > -1) {
       const updatedItem = update(selectableLastMessages[index], {
         content: {
@@ -153,6 +154,7 @@ export function handleSelectableLastMessage(type, content) {
         })
       );
     }
+*/
   };
 }
 /* #endregion */

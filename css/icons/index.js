@@ -1,7 +1,8 @@
 import { Icon } from 'react-icons-kit';
 import {
-  play, pencil, image, bullhorn, plus, floppyDisk, cross,
+  play, pencil, image, bullhorn, plus, floppyDisk,
 } from 'react-icons-kit/icomoon/';
+import {ic_clear} from 'react-icons-kit/md/ic_clear';
 import { ic_keyboard_arrow_down } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 import { ic_keyboard_arrow_up } from 'react-icons-kit/md/ic_keyboard_arrow_up';
 import { ic_keyboard_arrow_left } from 'react-icons-kit/md/ic_keyboard_arrow_left';
@@ -19,6 +20,7 @@ import { ic_launch } from 'react-icons-kit/md/ic_launch';
 import { question } from 'react-icons-kit/fa/question';
 import { close } from 'react-icons-kit/fa/close';
 import { ic_screen_share } from 'react-icons-kit/md/ic_screen_share';
+import {ic_done} from 'react-icons-kit/md/ic_done';
 
 export default Icon;
 
@@ -34,7 +36,6 @@ export {
   ic_keyboard_arrow_left as arrowLeft,
   ic_open_in_new as preview,
   ic_edit as edit,
-  cross as remove,
   ic_delete as remove2,
   close as remove3,
   statsDots as stats,
@@ -42,4 +43,6 @@ export {
   ic_launch as showPoll,
   question,
   ic_screen_share as publish,
+  ic_done as done,
+  ic_clear as cross,
 };
