@@ -1,6 +1,6 @@
 import {
   addQuestion, deleteQuestion, updateQuestionOrder,
-  onChangeQuestion, onChangeQuestionType, onClickRightAnswer, onChangeQuestionDesc,
+  onChangeQuestionContent, onChangeQuestionType, onClickRightAnswer, onChangeQuestionDesc,
 } from './questionsActions';
 import {
   addAnswer, deleteAnswer, onChangeAnswer, onChangeAnswerType,
@@ -29,7 +29,7 @@ export {
   addQuestion,
   deleteQuestion,
   updateQuestionOrder,
-  onChangeQuestion,
+  onChangeQuestionContent,
   onChangeQuestionType,
   onClickRightAnswer,
   onChangeQuestionDesc,

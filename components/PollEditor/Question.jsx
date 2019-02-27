@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Container, Card, CardBody, CardHeader, Row, Col, Input } from 'reactstrap';
+import {
+  Container, Card, CardBody, CardHeader, Row, Col,
+} from 'reactstrap';
 import styled from 'styled-components';
 import Desc from './Desc';
-import Answers from './Answers';
 import Icon, { arrowDown, plus } from '../../css/icons';
 import { ContentViewer, AnswerTool } from '../Shared';
-import * as pollActions from '../../redux/actions/pollActions';
 import InputBox from './Shared/InputBox';
 
 const QuestionContainer = styled.div`
@@ -70,122 +69,78 @@ const ContentContainer = styled.div`
 `;
 
 class Question extends Component {
-  static propTypes = {
-    order: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([
-      'text',
-      'heading',
-      'image',
-      'external-media',
-      'gif',
-      'audio'
-    ]).isRequired,
-    content: PropTypes.string.isRequired
-  };
-
   constructor(props) {
     super(props);
     this.state = {
-      order: null,
-      type: null,
-      content: null,
       show: true,
       showDesc: false,
       descText: 'açıklamayı göster',
-      desc:  null,
       showDelete: false,
-      answerToolShow: false
+      answerToolShow: false,
     };
+    this.descToggle = this.descToggle.bind(this);
+    this.answerToolToggle = this.answerToolToggle.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.toggleDelete = this.toggleDelete.bind(this);
   }
 
-  componentDidMount(){
-    const {content, type, desc, order} = this.props;
-    this.setState({
-      content,
-      type,
-      desc,
-      order 
-    })
-  }
-
-  onChange = e => {
-    const { order } = this.state;
-    const content = e.target.value;
-    this.setState({ content });
-    this.props.onChangeQuestion(content, order);
-  };
-
-  onChangeType = e => {
-    const { order } = this.state;
-    const type = e.target.value;
-    this.setState({ type });
-    this.props.onChangeQuestionType(type, order);
-  };
-
-  onChangeDesc = e => {
-    const { order } = this.props;
-    const content = e.target.value;
-    this.setState({ desc: content });
-    this.props.onChangeQuestionDesc(content, order);
-  };
-
-  descToggle = () => {
+  descToggle() {
     const { showDesc } = this.state;
     if (showDesc) {
       this.setState({
-        showDesc: false
+        showDesc: false,
       });
     } else {
       this.setState({
-        showDesc: true
+        showDesc: true,
       });
     }
-  };
+  }
 
   // Hide-Show answer tool
-  answerToolToggle = () => {
+  answerToolToggle() {
     this.setState(prevState => ({
-      answerToolShow: !prevState.answerToolShow
+      answerToolShow: !prevState.answerToolShow,
     }));
-  };
+  }
 
   // Hide-Show question div
-  toggle = () => {
+  toggle() {
     this.setState(prevState => ({
-      show: !prevState.show
+      show: !prevState.show,
     }));
-  };
+  }
 
   // Hide-Show Delete Modal
-  toggleDelete = () => {
+  toggleDelete() {
     this.setState(prevState => ({
-      showDelete: !prevState.showDelete
+      showDelete: !prevState.showDelete,
     }));
-  };
+  }
 
   render() {
     const {
-      order,
-      type,
-      content,
       show,
-      desc,
       showDesc,
       descText,
-      answerToolShow
+      answerToolShow,
     } = this.state;
     const {
+      onChangeQuestionContent,
+      onChangeQuestionType,
+      onChangeQuestionDesc,
       deleteQuestion,
       addAnswer,
-      onClickRightAnswer,
-      poll,
-      rightAnswerOrder
+      content,
+      order,
+      type,
+      desc,
+      index,
+      rightAnswerOrder,
     } = this.props;
-    const { answers } = poll;
-    console.log("------------------------------")
-    console.log("props: "+this.props.content);
-    console.log("state: "+this.state.content)
-    console.log("------------------------------")
+    console.log('------------------------------');
+    console.log(`props: ${this.props.content}`);
+    console.log('------------------------------');
     return (
       <Card className="my-4">
         <CardHeaderStyled>
@@ -217,15 +172,15 @@ class Question extends Component {
               <Col md="12">
                 <QuestionContainer>
                   <InputBox
-                    onChangeType={this.onChangeType}
+                    onChangeType={e => onChangeQuestionType(e.target.value, index)}
                     typeValue={type}
-                    onChangeInput={this.onChange}
+                    onChangeInput={e => onChangeQuestionContent(e.target.value, index)}
                     inputValue={content}
-                    handleDelete={deleteQuestion}
+                    handleDelete={() => deleteQuestion(index)}
                     order={order}
                   />
-                  {type !== 'heading' &&
-                    (type !== 'text' && (
+                  {type !== 'heading'
+                    && (type !== 'text' && (
                       <>
                         <PlusButtonContainer>
                           <button
@@ -233,29 +188,23 @@ class Question extends Component {
                             className="clear-btn bttn"
                             onClick={this.descToggle}
                           >
-                            <Icon size="12px" icon={plus} /> {descText}
+                            <Icon size="12px" icon={plus} />
+                            {' '}
+                            {descText}
                           </button>
                         </PlusButtonContainer>
                         <Desc
                           type={type}
                           show={showDesc}
                           value={desc}
-                          onChange={this.onChangeDesc}
+                          onChange={e => onChangeQuestionDesc(e.target.value, index)}
                         />
                       </>
                     ))}
-                    <ContentContainer>
-                      <ContentViewer type={type} content={content} />
-                    </ContentContainer>
+                  <ContentContainer>
+                    <ContentViewer type={type} content={content} />
+                  </ContentContainer>
                 </QuestionContainer>
-                <Answers
-                  answers={answers.filter(
-                    answer => answer.questionOrder === order
-                  )}
-                  questionOrder={order}
-                  rightAnswerOrder={rightAnswerOrder}
-                  onClickRightAnswer={onClickRightAnswer}
-                />
               </Col>
             </Row>
           </ContainerStyled>
@@ -266,22 +215,30 @@ class Question extends Component {
 }
 
 Question.propTypes = {
-  onChangeQuestion: PropTypes.func.isRequired,
+  onChangeQuestionContent: PropTypes.func.isRequired,
   deleteQuestion: PropTypes.func.isRequired,
   addAnswer: PropTypes.func.isRequired,
   onChangeQuestionType: PropTypes.func.isRequired,
   onChangeQuestionDesc: PropTypes.func.isRequired,
-  poll: PropTypes.object.isRequired,
-  rightAnswerOrder: PropTypes.number,
-  desc: PropTypes.string,
-  type: PropTypes.string.isRequired
+  rightAnswerOrder: PropTypes.number.isRequired,
+
+  index: PropTypes.number.isRequired,
+  content: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+  order: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({
-  poll: state.poll
-});
+export default Question;
 
-export default connect(
-  mapStateToProps,
-  pollActions
-)(Question);
+
+/*
+                <Answers
+                  answers={answers.filter(
+                    answer => answer.questionOrder === order
+                  )}
+                  questionOrder={order}
+                  rightAnswerOrder={rightAnswerOrder}
+                  onClickRightAnswer={onClickRightAnswer}
+                />
+*/

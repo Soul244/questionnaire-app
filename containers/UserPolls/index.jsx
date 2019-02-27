@@ -5,26 +5,15 @@ import { bindActionCreators } from 'redux';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
-
 import * as userActions from '../../redux/actions/userActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import { PollList } from '../../components/UserPolls';
 import { Loading } from '../../components/Shared';
 
-const RedirectContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-`;
-
 class UserPolls extends Component {
   componentDidMount() {
     const token = localStorage.getItem('token');
-    if (!token & token === '') {
+    if (!token && token === '') {
       Router.push({ pathname: '/giris-yap' });
     } else {
       const { getPolls } = this.props.pollsActions;
@@ -55,7 +44,7 @@ class UserPolls extends Component {
             </Col>
           </Row>
         </Container>
-    </>
+      </>
     );
   }
 }
