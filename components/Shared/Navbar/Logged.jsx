@@ -16,7 +16,10 @@ function Logged(props) {
   return (
     <>
       <NavItem>
-        <Link as="/anket/anketlerim" href="/poll/list">
+        <Link
+          as={`/anket/anketlerim/${localStorage.getItem('_id')}`}
+          href={`/poll/list?userid=${localStorage.getItem('_id')}`}
+        >
           <NavLinkCursor>Anketlerim</NavLinkCursor>
         </Link>
       </NavItem>

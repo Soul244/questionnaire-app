@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import PollEditor from '../../containers/PollEditor';
 
 class PollEditorPage extends Component {

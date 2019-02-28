@@ -5,74 +5,66 @@ import { bindActionCreators } from 'redux';
 import Answer from './Answer';
 import * as pollActions from '../../redux/actions/pollActions';
 
-class Answers extends React.Component {
-  constructor(props){
-    super(props)
-    this.state={
-      rightAnswerOrder:null,
+function Answers(props) {
+  const {
+    pollActions,
+    questionIndex,
+    poll,
+  } = props;
+  const {
+    onChangeAnswerContent,
+    onChangeAnswerType,
+    onChangeRightAnswer,
+    deleteAnswer,
+  } = pollActions;
+  const {
+    answers,
+    questions,
+  } = poll;
+  const filteredAnswers = [];
+  for (let index = 0; index < answers.length; index += 1) {
+    if (answers[index].questionIndex === questionIndex) {
+      filteredAnswers.push(
+        <Answer
+          key={index}
+          index={index}
+          questionIndex={questionIndex}
+        // Answer Functions
+          onChangeAnswerContent={onChangeAnswerContent}
+          onChangeAnswerType={onChangeAnswerType}
+          deleteAnswer={deleteAnswer}
+          onChangeRightAnswer={onChangeRightAnswer}
+        // Answer Data
+          type={answers[index].type}
+          content={answers[index].content}
+          pollType={poll.settings.type}
+          rightAnswerIndex={questions[questionIndex].rightAnswerIndex}
+        />,
+      );
     }
   }
-
-  componentDidMount(){
-    this.setState({
-      rightAnswerOrder: this.props.rightAnswerOrder,
-    });
-  }
-  
-  onChangeRightAnswer = order => {
-    this.setState({
-      rightAnswerOrder: order
-    });
-    const { questionOrder } = this.props;
-    this.props.onClickRightAnswer(questionOrder, order);
-  };
-
-  render() {
-    const { answers, questionOrder, poll } = this.props;
-    const {deleteAnswer, onChangeAnswer, onChangeAnswerType} = this.props.pollActions;
-    const {rightAnswerOrder} = this.state;
-    return (
-      <ul>
-        {answers.map((answer, index) => (
-          <Answer
-            key={index}
-            order={answer.order}
-            questionOrder={questionOrder}
-            type={answer.type}
-            content={answer.content}
-            pollType={poll.settings.type}
-            rightAnswerOrder={rightAnswerOrder}
-            deleteAnswer={deleteAnswer}
-            
-            onChangeAnswer={onChangeAnswer}
-            onChangeAnswerType={onChangeAnswerType}
-            onChangeRightAnswer={this.onChangeRightAnswer}
-          />
-        ))}
-      </ul>
-    );
-  }
+  return (
+    <ul>
+      {filteredAnswers}
+    </ul>
+  );
 }
 
 Answers.propTypes = {
-  answers: PropTypes.array.isRequired,
-  questionOrder: PropTypes.number.isRequired,
+  questionIndex: PropTypes.number.isRequired,
   poll: PropTypes.object.isRequired,
-  rightAnswerOrder: PropTypes.number,
-  pollActions: PropTypes.shape({
-    deleteAnswer: PropTypes.func.isRequired
-  })
+  pollActions: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  poll: state.poll
+  poll: state.poll,
 });
 
 const mapDispatchToProps = dispatch => ({
   pollActions: bindActionCreators(pollActions, dispatch),
-})
+});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Answers);

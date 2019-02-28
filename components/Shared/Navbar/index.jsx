@@ -7,7 +7,7 @@ import {
   Navbar,
   NavbarToggler,
   NavbarBrand,
-  Nav
+  Nav,
 } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -43,7 +43,7 @@ class index extends Component {
     this.state = {
       isOpen: false,
       dropdownOpen: false,
-      isLogged: false
+      isLogged: false,
     };
   }
 
@@ -51,7 +51,7 @@ class index extends Component {
     const token = localStorage.getItem('token');
     if (token && token !== '') {
       this.setState({
-        isLogged: true
+        isLogged: true,
       });
     }
   }
@@ -61,19 +61,19 @@ class index extends Component {
     localStorage.setItem('email', '');
     localStorage.setItem('token', '');
     this.setState({
-      isLogged: false
+      isLogged: false,
     });
   }
 
   toggle() {
     this.setState(prevState => ({
-      isOpen: !prevState.isOpen
+      isOpen: !prevState.isOpen,
     }));
   }
 
   toggleDropDownToggle() {
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      dropdownOpen: !this.state.dropdownOpen,
     });
   }
 
@@ -104,11 +104,11 @@ class index extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
   };
 }
 
 export default connect(
   mapStateToProps,
-  userActions
+  userActions,
 )(index);

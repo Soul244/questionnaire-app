@@ -8,6 +8,7 @@ import Desc from './Desc';
 import Icon, { arrowDown, plus } from '../../css/icons';
 import { ContentViewer, AnswerTool } from '../Shared';
 import InputBox from './Shared/InputBox';
+import Answers from './Answers';
 
 const QuestionContainer = styled.div`
   display: flex;
@@ -47,7 +48,7 @@ const LeftContainer = styled.div`
   align-items: center;
 `;
 
-const QuestionOrderInfo = styled.div`
+const QuestionIndexInfo = styled.div`
   @media (max-width: 992px) {
     display: ${props => (props.show ? 'block' : 'none')};
   }
@@ -132,27 +133,22 @@ class Question extends Component {
       deleteQuestion,
       addAnswer,
       content,
-      order,
+      index,
       type,
       desc,
-      index,
-      rightAnswerOrder,
     } = this.props;
-    console.log('------------------------------');
-    console.log(`props: ${this.props.content}`);
-    console.log('------------------------------');
     return (
       <Card className="my-4">
         <CardHeaderStyled>
           <LeftContainer>
-            <QuestionOrderInfo show={!answerToolShow}>
-              {`${order + 1}. Soru`}
-            </QuestionOrderInfo>
+            <QuestionIndexInfo show={!answerToolShow ? 1 : 0}>
+              {`${index + 1}. Soru`}
+            </QuestionIndexInfo>
             <AnswerTool
               addAnswer={addAnswer}
-              questionOrder={order}
+              questionIndex={index}
               toggle={this.answerToolToggle}
-              show={answerToolShow}
+              show={answerToolShow ? 1 : 0}
             />
           </LeftContainer>
           <RightContainer show={!answerToolShow}>
@@ -172,12 +168,12 @@ class Question extends Component {
               <Col md="12">
                 <QuestionContainer>
                   <InputBox
-                    onChangeType={e => onChangeQuestionType(e.target.value, index)}
+                    index={index}
                     typeValue={type}
-                    onChangeInput={e => onChangeQuestionContent(e.target.value, index)}
                     inputValue={content}
+                    onChangeInput={e => onChangeQuestionContent(e.target.value, index)}
+                    onChangeType={e => onChangeQuestionType(e.target.value, index)}
                     handleDelete={() => deleteQuestion(index)}
-                    order={order}
                   />
                   {type !== 'heading'
                     && (type !== 'text' && (
@@ -204,6 +200,7 @@ class Question extends Component {
                   <ContentContainer>
                     <ContentViewer type={type} content={content} />
                   </ContentContainer>
+                  <Answers questionIndex={index} />
                 </QuestionContainer>
               </Col>
             </Row>
@@ -220,25 +217,11 @@ Question.propTypes = {
   addAnswer: PropTypes.func.isRequired,
   onChangeQuestionType: PropTypes.func.isRequired,
   onChangeQuestionDesc: PropTypes.func.isRequired,
-  rightAnswerOrder: PropTypes.number.isRequired,
 
   index: PropTypes.number.isRequired,
   content: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  order: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
 };
 
 export default Question;
-
-
-/*
-                <Answers
-                  answers={answers.filter(
-                    answer => answer.questionOrder === order
-                  )}
-                  questionOrder={order}
-                  rightAnswerOrder={rightAnswerOrder}
-                  onClickRightAnswer={onClickRightAnswer}
-                />
-*/

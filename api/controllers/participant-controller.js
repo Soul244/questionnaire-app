@@ -1,24 +1,25 @@
 const Participant = require('../models/participant');
 const Poll = require('../models/poll');
-const { CreatePostObject} = require('../utils')
+const { CreatePostObject } = require('../utils');
 
 exports.Get_Participants = (req, res) => {
-  let pollId = '';
+  const pollId = '';
   Poll
     .findOne({
-      slug: req.params.slug
+      slug: req.params.slug,
     })
     .exec()
     .then((poll) => {
-      if (poll.length < 1)
+      if (poll.length < 1) {
         res.status(204).json({
-          message: "anket bulunamadı"
-        })
+          message: 'anket bulunamadı',
+        });
+      }
     })
     .then(() => {
       Participant.find({
-          pollId
-        })
+        pollId,
+      })
         .exec()
         .then((participants) => {
           if (participants.length > 0) {
@@ -32,7 +33,7 @@ exports.Get_Participants = (req, res) => {
               message: 'katılımcı bulunamadı...',
             });
           }
-        })
+        });
     })
     .catch((error) => {
       res.status(500).json({
@@ -52,19 +53,19 @@ exports.Create_Participant = (req, res) => {
     })
     .then(() => {
       Poll.findOne({
-          _id: req.body.pollId
-        })
+        _id: req.body.pollId,
+      })
         .exec()
         .then((poll) => {
           const pAnswers = req.body.answers;
           const {
             answers,
-            questions
+            questions,
           } = poll;
           for (let i = 0; i < pAnswers.length; i += 1) {
             for (let k = 0; k < answers.length; k += 1) {
-              if (pAnswers[i].questionOrder === answers[k].questionOrder) {
-                if (pAnswers[i].order === answers[k].order) {
+              if (pAnswers[i].questionIndex === answers[k].questionIndex) {
+                if (pAnswers[i].index === answers[k].index) {
                   answers[k].count += 1;
                 }
               }
@@ -73,15 +74,15 @@ exports.Create_Participant = (req, res) => {
           }
           return {
             answers,
-            questions
+            questions,
           };
         })
         .then(({
           answers,
-          questions
+          questions,
         }) => {
           Poll.update({
-            _id: req.body.pollId
+            _id: req.body.pollId,
           }, {
             $set: {
               answers,

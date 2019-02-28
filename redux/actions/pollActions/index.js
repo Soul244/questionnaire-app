@@ -1,9 +1,9 @@
 import {
-  addQuestion, deleteQuestion, updateQuestionOrder,
-  onChangeQuestionContent, onChangeQuestionType, onClickRightAnswer, onChangeQuestionDesc,
+  addQuestion, deleteQuestion, updatequestionIndex,
+  onChangeQuestionContent, onChangeQuestionType, onChangeQuestionDesc,
 } from './questionsActions';
 import {
-  addAnswer, deleteAnswer, onChangeAnswer, onChangeAnswerType,
+  addAnswer, deleteAnswer, onChangeAnswerContent, onChangeAnswerType, onChangeRightAnswer,
 } from './answersActions';
 import {
   handleHasPollTime, handleHasAnswerTime, handleHasAnswerAutoChangeTime, handleShowType,
@@ -28,10 +28,10 @@ export {
 
   addQuestion,
   deleteQuestion,
-  updateQuestionOrder,
+  updatequestionIndex,
   onChangeQuestionContent,
   onChangeQuestionType,
-  onClickRightAnswer,
+  onChangeRightAnswer,
   onChangeQuestionDesc,
 
   handleHasPollTime,
@@ -48,6 +48,6 @@ export {
 
   addAnswer,
   deleteAnswer,
-  onChangeAnswer,
+  onChangeAnswerContent,
   onChangeAnswerType,
 };

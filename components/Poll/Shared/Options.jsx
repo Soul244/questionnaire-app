@@ -5,8 +5,8 @@ import Option from "./Option";
 
 class Options extends React.Component {
   static propTypes = {
-    questionOrder: PropTypes.number.isRequired,
-    rightAnswerOrder: PropTypes.number,
+    questionIndex: PropTypes.number.isRequired,
+    rightAnswerIndex: PropTypes.number,
     changeQuestion: PropTypes.func.isRequired,
     questionCount: PropTypes.number.isRequired,
     answers: PropTypes.array.isRequired,
@@ -26,31 +26,31 @@ class Options extends React.Component {
       checked: value,
       showPercent: true
     });
-    const { questionOrder, rightAnswerOrder } = this.props;
-    this.props.addParticipantAnswer(questionOrder, value, rightAnswerOrder);
+    const { questionIndex, rightAnswerIndex } = this.props;
+    this.props.addParticipantAnswer(questionIndex, value, rightAnswerIndex);
     this.props.changeQuestion();
   };
 
   render() {
     const {
       answers,
-      questionOrder,
-      rightAnswerOrder,
+      questionIndex,
+      rightAnswerIndex,
       questionCount
     } = this.props;
     const { checked, showPercent } = this.state;
     return (
       <Fragment>
         {answers
-          .filter(answer => answer.questionOrder === questionOrder)
+          .filter(answer => answer.questionIndex === questionIndex)
           .map((answer, index) => (
             <Option
               key={index}
-              order={answer.order}
-              questionOrder={answer.questionOrder}
+              index={answer.index}
+              questionIndex={answer.questionIndex}
               answerCount={answer.count}
               questionCount={questionCount}
-              rightAnswerOrder={rightAnswerOrder}
+              rightAnswerIndex={rightAnswerIndex}
               type={answer.type}
               showPercent={showPercent}
               content={answer.content}

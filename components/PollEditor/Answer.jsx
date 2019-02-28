@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 import PropTypes from 'prop-types';
-import { Card, CardBody, CardHeader, Input, Button } from 'reactstrap';
+import {
+  Card, CardBody, CardHeader,
+} from 'reactstrap';
 import styled from 'styled-components';
 import { ContentViewer } from '../Shared';
 import InputBox from './Shared/InputBox';
@@ -13,12 +14,9 @@ const AnswerContainer = styled.div`
 const CardHeaderStyled = styled(CardHeader)`
   display: flex;
   align-items: center;
-  background-color: ${props=>props.checked?"#5cb85c":''};
+  background-color: ${props => (props.checked ? '#5cb85c' : '')};
 `;
 
-const CardStyled = styled(Card)`
-  border-width: ${props=>props.checked?"4px":'1px'};
-`;
 const ContentContainer = styled.div` 
     margin: 1rem 0 0 1rem;
 `;
@@ -27,91 +25,79 @@ class Answer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: '',
-      type: '',
-      showDelete: false
+      showDelete: false,
     };
+    this.toggleDelete = this.toggleDelete.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      type: this.props.type,
-      content: this.props.content
-    });
-  }
-
-  onChangeContent = e => {
-    const { order, questionOrder, onChangeAnswer } = this.props;
-    const content = e.target.value;
-    this.setState({ content });
-   onChangeAnswer(content, questionOrder, order);
-  };
-
-  onChangeType = e => {
-    const { order, questionOrder, onChangeAnswerType } = this.props;
-    const type = e.target.value;
-    this.setState({ type });
-    onChangeAnswerType(type, questionOrder, order);
-  };
-
-  toggleDelete = () => {
+  toggleDelete() {
     this.setState(prevState => ({
-      showDelete: !prevState.showDelete
+      showDelete: !prevState.showDelete,
     }));
-  };
+  }
 
   render() {
-    const { content, type } = this.state;
-    const { 
-      order, 
-      questionOrder, 
-      pollType, 
-      rightAnswerOrder,
+    const {
+      index,
+      questionIndex,
+      // Answer Functions
+      onChangeAnswerContent,
+      onChangeAnswerType,
       deleteAnswer,
-      onChangeRightAnswer 
+      onChangeRightAnswer,
+      // Answer Data
+      type,
+      content,
+      pollType,
+      rightAnswerIndex,
     } = this.props;
-    const checked=rightAnswerOrder===order;
+    const checked = rightAnswerIndex === index;
     return (
-      <CardStyled className="my-4" outline={checked} checked={checked} color={checked?"success":''}>
-        <CardHeaderStyled tag="h6" checked={checked}>{`${order + 1}. Cevap`} </CardHeaderStyled>
+      <Card className="my-4" outline={checked} checked={checked} color={checked ? 'success' : ''}>
+        <CardHeaderStyled tag="h6" checked={checked}>
+          {`${index + 1}. Cevap`}
+          {' '}
+        </CardHeaderStyled>
         <CardBody>
           <AnswerContainer>
             <InputBox
-              order={order}
-              questionOrder={questionOrder}
+              index={index}
               typeValue={type}
               inputValue={content}
-              hasRadio={pollType==="test"}
-              checked={checked?1:0}
-
-              handleDelete={deleteAnswer}
-              radioChange={onChangeRightAnswer}
-              onChangeInput={this.onChangeContent}
-              onChangeType={this.onChangeType}
+              hasRadio={pollType === 'test'}
+              checked={checked ? 1 : 0}
+              radioChange={() => onChangeRightAnswer(questionIndex, index)}
+              onChangeInput={e => onChangeAnswerContent(e.target.value, index)}
+              onChangeType={e => onChangeAnswerType(e.target.value, index)}
+              handleDelete={() => deleteAnswer(index)}
             />
             <ContentContainer>
               <ContentViewer type={type} content={content} />
             </ContentContainer>
           </AnswerContainer>
         </CardBody>
-      </CardStyled>
+      </Card>
     );
   }
 }
 
+Answer.defaultProps = {
+  rightAnswerIndex: null,
+};
+
 Answer.propTypes = {
   // Data
-  order: PropTypes.number.isRequired,
-  questionOrder: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  questionIndex: PropTypes.number.isRequired,
   pollType: PropTypes.string.isRequired,
-  rightAnswerOrder: PropTypes.number,
+  rightAnswerIndex: PropTypes.number,
   // Functions
   deleteAnswer: PropTypes.func.isRequired,
   onChangeRightAnswer: PropTypes.func.isRequired,
   // Passed and Used in State
   type: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  onChangeAnswer: PropTypes.func.isRequired,
+  onChangeAnswerContent: PropTypes.func.isRequired,
   onChangeAnswerType: PropTypes.func.isRequired,
 };
 

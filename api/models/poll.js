@@ -14,19 +14,19 @@ const pollSchema = mongoose.Schema({
     content: { type: String },
   }],
   questions: [{
-    order: { type: Number },
+    index: { type: Number },
     desc: { type: String },
     type: { type: String },
     content: { type: String },
-    rightAnswerOrder: { type: Number },
+    rightAnswerIndex: { type: Number },
     count: { type: Number, default: 0 },
   }],
   answers: [{
-    order: { type: Number },
+    index: { type: Number },
     desc: { type: String },
     type: { type: String },
     content: { type: String },
-    questionOrder: { type: Number },
+    questionIndex: { type: Number },
     count: { type: Number, default: 0 },
   }],
   settings: {

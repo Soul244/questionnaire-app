@@ -7,9 +7,10 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
 } from 'reactstrap';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Icon, { remove2, cross, done } from '../../../css/icons';
 import { types } from '../../../containers/toolTypes';
 
@@ -41,17 +42,15 @@ const CustomSelect = styled.div`
 `;
 
 const AppendButton = styled(Button)`
-  border-radius: ${props =>
-    props.position === 'right'
-      ? '0px 60px 60px 0 !important'
-      : '60px 0 0 60px !important'};
+  border-radius: ${props => (props.position === 'right'
+    ? '0px 60px 60px 0 !important'
+    : '60px 0 0 60px !important')};
 `;
 
 const AppendInput = styled(Input)`
-  border-radius: ${props =>
-    props.position === 'right'
-      ? '0px 60px 60px 0 !important'
-      : '60px 0 0 60px !important'};
+  border-radius: ${props => (props.position === 'right'
+    ? '0px 60px 60px 0 !important'
+    : '60px 0 0 60px !important')};
   height: 100%;
   padding-right: 2rem;
 `;
@@ -69,19 +68,22 @@ class InputBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      show: false,
     };
+    this.toggle = this.toggle.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
-  toggle = () => {
-    this.setState(prevState => ({
-      show: !prevState.show
-    }));
-  };
-
-  onClick = (order) =>{
-    this.props.handleDelete(order);
+  onClick(index) {
+    const { handleDelete } = this.props;
+    handleDelete(index);
     this.toggle();
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      show: !prevState.show,
+    }));
   }
 
   render() {
@@ -90,21 +92,28 @@ class InputBox extends React.Component {
       typeValue,
       onChangeInput,
       inputValue,
-      order,
+      index,
       hasRadio,
       radioChange,
-      checked
+      checked,
     } = this.props;
     const { show } = this.state;
     return (
       <InputGroup>
         <Modal isOpen={show} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Uyarı</ModalHeader>
-          <ModalBody>{inputValue} {order} Silmek istediğinize emin misiniz?</ModalBody>
+          <ModalBody>
+            {inputValue}
+            {' '}
+            {index}
+            {' '}
+            Silmek istediğinize emin misiniz?
+          </ModalBody>
           <ModalFooter>
-            <Button color="danger" onClick={()=>this.onClick(order)}>
+            <Button color="danger" onClick={() => this.onClick(index)}>
               Sil
-            </Button>{' '}
+            </Button>
+            {' '}
             <Button color="secondary" onClick={this.toggle}>
               Hayır
             </Button>
@@ -129,10 +138,10 @@ class InputBox extends React.Component {
           </CustomSelect>
           {hasRadio && (
             <RadioButton
-              onClick={() => radioChange(order)}
-              color={checked?"success":"secondary"}
+              onClick={radioChange}
+              color={checked ? 'success' : 'secondary'}
             >
-              <Icon size="24px" icon={checked?done:cross} />
+              <Icon size="24px" icon={checked ? done : cross} />
             </RadioButton>
           )}
         </InputGroupAddon>
@@ -156,5 +165,23 @@ class InputBox extends React.Component {
     );
   }
 }
+
+InputBox.defaultProps = {
+  hasRadio: false,
+  checked: null,
+  radioChange: null,
+};
+
+InputBox.propTypes = {
+  onChangeInput: PropTypes.func.isRequired,
+  onChangeType: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  inputValue: PropTypes.string.isRequired,
+  typeValue: PropTypes.string.isRequired,
+  hasRadio: PropTypes.bool,
+  radioChange: PropTypes.func,
+  checked: PropTypes.number,
+};
 
 export default InputBox;

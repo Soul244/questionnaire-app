@@ -1,13 +1,13 @@
 const Poll = require('../models/poll');
 const Participant = require('../models/participant');
 const {
-  CreatePostObject
-} = require('../utils')
+  CreatePostObject,
+} = require('../utils');
 
 exports.Get_Poll = (req, res) => {
   Poll
     .findOne({
-      slug: req.params.slug
+      slug: req.params.slug,
     })
     .exec()
     .then((poll) => {
@@ -30,12 +30,12 @@ exports.Get_Poll = (req, res) => {
 exports.Create_Poll = (req, res) => {
   Poll
     .find({
-      slug: req.body.slug
+      slug: req.body.slug,
     })
     .exec()
     .then((filteredPoll) => {
       if (filteredPoll.length >= 1) {
-        res.statusText = "Bu slug kullanılıyor"
+        res.statusText = 'Bu slug kullanılıyor';
         return res.status(500).json();
       }
       const poll = new Poll(CreatePostObject(req.body));
@@ -58,7 +58,7 @@ exports.Create_Poll = (req, res) => {
 exports.Get_All_Polls = (req, res) => {
   const perPage = 10;
   const {
-    page
+    page,
   } = req.params;
   let count = 0;
   Poll.count({}, (err, countItems) => {
@@ -71,7 +71,7 @@ exports.Get_All_Polls = (req, res) => {
     .limit(perPage)
     .skip(perPage * page)
     .sort({
-      createdAt: -1
+      createdAt: -1,
     })
     .exec()
     .then((polls) => {
@@ -89,10 +89,10 @@ exports.Get_All_Polls = (req, res) => {
 
 exports.Get_Polls = (req, res) => {
   Poll.find({
-      user: req.params.user
-    })
+    user: req.params.user,
+  })
     .sort({
-      createdAt: -1
+      createdAt: -1,
     })
     .exec()
     .then((polls) => {
@@ -117,18 +117,17 @@ exports.Get_Polls = (req, res) => {
 
 exports.Delete_Poll = (req, res) => {
   Poll.remove({
-      _id: req.params._id,
-    })
+    _id: req.params._id,
+  })
     .exec()
-    .then(() =>
-      res.status(200)
+    .then(() => res.status(200)
       .json({
         message: 'Anket Silindi',
       }))
     .then(() => {
       Participant.remove({
-          pollId: req.params._id
-        })
+        pollId: req.params._id,
+      })
         .exec();
     })
     .catch((error) => {
@@ -139,18 +138,18 @@ exports.Delete_Poll = (req, res) => {
 };
 
 exports.Update_Poll = (req, res) => {
-  let updateOps = {};
+  const updateOps = {};
   const options = {
-    new: true
+    new: true,
   };
   for (const [key, value] of Object.entries(req.body)) {
     updateOps[key] = value;
   }
   Poll.update({
-      _id: req.body._id
-    }, {
-      $set: updateOps
-    }, options)
+    _id: req.body._id,
+  }, {
+    $set: updateOps,
+  }, options)
     .exec()
     .then(() => {
       res.status(200).json({
@@ -159,7 +158,7 @@ exports.Update_Poll = (req, res) => {
     })
     .catch((error) => {
       res.status(500).json({
-        error
+        error,
       });
     });
 };

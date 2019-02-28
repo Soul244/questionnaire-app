@@ -8,13 +8,13 @@ export function addParticipantAnswerAction(payload) {
     payload
   };
 }
-export function addParticipantAnswer(questionOrder, order, rightAnswerOrder) {
+export function addParticipantAnswer(questionIndex, index, rightAnswerIndex) {
   return (dispatch, getState) => {
     const { answers } = getState().participant;
     let hasRightAnswer = false;
     let isTrue = false;
-    if (rightAnswerOrder !== null) {
-      if (order === rightAnswerOrder) {
+    if (rightAnswerIndex !== null) {
+      if (index === rightAnswerIndex) {
         hasRightAnswer = true;
         isTrue = true;
       } else {
@@ -25,8 +25,8 @@ export function addParticipantAnswer(questionOrder, order, rightAnswerOrder) {
     const newAnswers = [
       ...answers,
       {
-        questionOrder,
-        order,
+        questionIndex,
+        index,
         hasRightAnswer,
         isTrue
       }

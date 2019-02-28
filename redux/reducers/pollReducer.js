@@ -31,7 +31,7 @@ const initialState = {
 const pollReducer = (state = initialState, action) => {
   switch (action.type) {
     case asyncTypes.GET_UPDATE_POLL:
-      state = action.payload
+      state = action.payload;
       break;
     case syncTypes.ON_CHANGE_CSS:
       state = {
@@ -210,7 +210,7 @@ const pollReducer = (state = initialState, action) => {
         questions: action.payload,
       };
       break;
-    case syncTypes.ON_CLICK_RIGHT_ANSWER:
+    case syncTypes.ON_CHANGE_RIGHT_ANSWER:
       state = {
         ...state,
         questions: action.payload,

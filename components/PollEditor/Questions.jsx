@@ -21,17 +21,16 @@ function Questions(props) {
         <Question
           key={index}
           index={index}
+          // Question Functions
           onChangeQuestionContent={onChangeQuestionContent}
           onChangeQuestionType={onChangeQuestionType}
           onChangeQuestionDesc={onChangeQuestionDesc}
           deleteQuestion={deleteQuestion}
-
+          // Question Data
           content={question.content}
-          order={question.order}
           type={question.type}
           desc={question.desc}
-          rightAnswerOrder={question.rightAnswerOrder}
-
+          // Add Answer Function
           addAnswer={addAnswer}
         />
       ))}

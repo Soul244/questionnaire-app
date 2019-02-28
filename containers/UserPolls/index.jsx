@@ -13,11 +13,12 @@ import { Loading } from '../../components/Shared';
 class UserPolls extends Component {
   componentDidMount() {
     const token = localStorage.getItem('token');
+    const { userid, pollsActions } = this.props;
     if (!token && token === '') {
       Router.push({ pathname: '/giris-yap' });
     } else {
-      const { getPolls } = this.props.pollsActions;
-      getPolls();
+      const { getPolls } = pollsActions;
+      getPolls(userid);
     }
   }
 

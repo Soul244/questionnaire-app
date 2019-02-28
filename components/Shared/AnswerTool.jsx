@@ -52,38 +52,38 @@ const HideableContent = styled.div`
   overflow: hidden;
 `;
 
-class AnswerTool extends React.Component {
-  render() {
-    const {
-      addAnswer, questionOrder, toggle, show,
-    } = this.props;
-    return (
-      <CardMax body className="text-center">
-        <PlusIcon size="md" outline block onClick={toggle} show={show ? 1 : 0}>
-          <ButtonText>Cevap Ekle</ButtonText>
-          <Icon size="24px" icon={arrowLeft} />
-        </PlusIcon>
-        <HideableContent show={show ? 1 : 0}>
-          <ButtonWithIcon size="md" outline block color="warning" onClick={() => addAnswer('text', questionOrder)}><Icon size="24px" icon={text} /></ButtonWithIcon>
-          {' '}
-          <ButtonWithIcon size="md" outline block color="danger" onClick={() => addAnswer('external-media', questionOrder)}><Icon size="24px" icon={video} /></ButtonWithIcon>
-          {' '}
-          <ButtonWithIcon size="md" outline block color="info" onClick={() => addAnswer('image', questionOrder)}><Icon size="24px" icon={image} /></ButtonWithIcon>
-          {' '}
-          <ButtonWithIcon size="md" outline block color="primary" onClick={() => addAnswer('audio', questionOrder)}><Icon size="24px" icon={audio} /></ButtonWithIcon>
-          {' '}
-          <ButtonStyled size="md" outline block color="secondary" onClick={() => addAnswer('gif', questionOrder)}><ButtonText>GIF</ButtonText></ButtonStyled>
-          {' '}
-          <ButtonStyled size="md" outline block color="secondary" onClick={() => addAnswer('heading', questionOrder)}><ButtonText>H1</ButtonText></ButtonStyled>
-        </HideableContent>
-      </CardMax>
-    );
-  }
+function AnswerTool(props) {
+  const {
+    addAnswer, questionIndex, toggle, show,
+  } = props;
+  return (
+    <CardMax body className="text-center">
+      <PlusIcon size="md" outline block onClick={toggle} show={show ? 1 : 0}>
+        <ButtonText>Cevap Ekle</ButtonText>
+        <Icon size="24px" icon={arrowLeft} />
+      </PlusIcon>
+      <HideableContent show={show ? 1 : 0}>
+        <ButtonWithIcon size="md" outline block color="warning" onClick={() => addAnswer('text', questionIndex)}><Icon size="24px" icon={text} /></ButtonWithIcon>
+        {' '}
+        <ButtonWithIcon size="md" outline block color="danger" onClick={() => addAnswer('external-media', questionIndex)}><Icon size="24px" icon={video} /></ButtonWithIcon>
+        {' '}
+        <ButtonWithIcon size="md" outline block color="info" onClick={() => addAnswer('image', questionIndex)}><Icon size="24px" icon={image} /></ButtonWithIcon>
+        {' '}
+        <ButtonWithIcon size="md" outline block color="primary" onClick={() => addAnswer('audio', questionIndex)}><Icon size="24px" icon={audio} /></ButtonWithIcon>
+        {' '}
+        <ButtonStyled size="md" outline block color="secondary" onClick={() => addAnswer('gif', questionIndex)}><ButtonText>GIF</ButtonText></ButtonStyled>
+        {' '}
+        <ButtonStyled size="md" outline block color="secondary" onClick={() => addAnswer('heading', questionIndex)}><ButtonText>H1</ButtonText></ButtonStyled>
+      </HideableContent>
+    </CardMax>
+  );
 }
 
 AnswerTool.propTypes = {
   addAnswer: PropTypes.func.isRequired,
-  questionOrder: PropTypes.number.isRequired,
+  questionIndex: PropTypes.number.isRequired,
+  toggle: PropTypes.func.isRequired,
+  show: PropTypes.number.isRequired,
 };
 
 export default AnswerTool;

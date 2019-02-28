@@ -20,9 +20,9 @@ function PercentTable() {
             <td>
               <ContentViewer type={question.type} content={question.content} />
             </td>
-            {answers && answers.filter(answer => answer.questionOrder
-             === question.order).reverse().map((answer, index) => (
-              <>
+            {answers && answers.filter(answer => answer.questionIndex
+             === question.index).reverse().map((answer, index) => (
+               <>
                 <td key={`td${index}`}>
                   <ContentViewer type={answer.type} content={answer.content} />
                   {' '}
@@ -33,7 +33,7 @@ function PercentTable() {
                     {`Oran: %${answer.count > 0 ? Math.round((answer.count / question.count) * 100) : 0}`}
                   </Badge>
                 </td>
-              </>
+               </>
             ))}
           </tr>
         ))}

@@ -5,18 +5,18 @@ import { asyncTypes, syncTypes } from '../../types';
 export function getPollAction(payload) {
   return {
     type: asyncTypes.GET_POLL,
-    payload
+    payload,
   };
 }
 
 export function getPollErrorAction(payload) {
   return {
     type: asyncTypes.GET_POLL_ERROR,
-    payload
+    payload,
   };
 }
 export function getPoll(slug) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       const response = await axios.get(`/polls/${slug}`);
       dispatch(getPollAction(response.data.poll));
@@ -31,22 +31,22 @@ export function getPoll(slug) {
 export function postPollAction(payload) {
   return {
     type: asyncTypes.POST_POLL,
-    payload
+    payload,
   };
 }
 
 export function postPollErrorAction(payload) {
   return {
     type: asyncTypes.UPDATE_POLL_ERROR,
-    payload
+    payload,
   };
 }
 
 export function postPoll(poll) {
   axios.defaults.headers.authorization = localStorage.getItem('token');
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      const response = await axios.post(`/polls`, {
+      const response = await axios.post('/polls', {
         user: localStorage.getItem('_id'),
         css: poll.css,
         js: poll.js,
@@ -57,7 +57,7 @@ export function postPoll(poll) {
         questions: poll.questions,
         answers: poll.answers,
         settings: poll.settings,
-        selectableLastMessages: poll.selectableLastMessages
+        selectableLastMessages: poll.selectableLastMessages,
       });
       dispatch(postPollAction(response.data));
     } catch (error) {
@@ -71,22 +71,22 @@ export function postPoll(poll) {
 export function updatePollAction(payload) {
   return {
     type: asyncTypes.UPDATE_POLL,
-    payload
+    payload,
   };
 }
 
 export function updatePollErrorAction(payload) {
   return {
     type: asyncTypes.UPDATE_POLL_ERROR,
-    payload
+    payload,
   };
 }
 
 export function updatePoll(poll) {
   axios.defaults.headers.authorization = localStorage.getItem('token');
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      const response = await axios.post(`/polls/update`, {
+      const response = await axios.post('/polls/update', {
         _id: poll._id,
         user: localStorage.getItem('_id'),
         css: poll.css,
@@ -98,7 +98,7 @@ export function updatePoll(poll) {
         questions: poll.questions,
         answers: poll.answers,
         settings: poll.settings,
-        selectableLastMessages: poll.selectableLastMessages
+        selectableLastMessages: poll.selectableLastMessages,
       });
       dispatch(updatePollAction(response.data));
     } catch (error) {
@@ -112,14 +112,14 @@ export function updatePoll(poll) {
 export function deletePollAction(payload) {
   return {
     type: asyncTypes.DELETE_POLL,
-    payload
+    payload,
   };
 }
 
 export function deletePollErrorAction(payload) {
   return {
     type: asyncTypes.DELETE_POLL_ERROR,
-    payload
+    payload,
   };
 }
 
@@ -134,8 +134,8 @@ export function deletePoll(_id) {
       dispatch(
         deletePollAction({
           newPolls,
-          message
-        })
+          message,
+        }),
       );
     } catch (error) {
       dispatch(deletePollErrorAction(error));
@@ -148,31 +148,31 @@ export function deletePoll(_id) {
 export function getPollsStartAction(payload) {
   return {
     type: asyncTypes.GET_POLLS_START,
-    payload
+    payload,
   };
 }
 
 export function getPollsAction(payload) {
   return {
     type: asyncTypes.GET_POLLS,
-    payload
+    payload,
   };
 }
 
 export function getPollsErrorAction(payload) {
   return {
     type: asyncTypes.GET_ALL_POLLS_ERROR,
-    payload
+    payload,
   };
 }
 
-export function getPolls() {
+export function getPolls(userid) {
   axios.defaults.headers.authorization = localStorage.getItem('token');
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(getPollsStartAction());
       const response = await axios.get(
-        `/polls/user/${localStorage.getItem('_id')}`
+        `/polls/user/${userid}`,
       );
       dispatch(getPollsAction(response.data));
     } catch (error) {
@@ -185,26 +185,26 @@ export function getPolls() {
 /* #region Get All Polls */
 export function getAllPollsStartAction() {
   return {
-    type: asyncTypes.GET_ALL_POLLS_START
+    type: asyncTypes.GET_ALL_POLLS_START,
   };
 }
 
 export function getAllPollsAction(payload) {
   return {
     type: asyncTypes.GET_ALL_POLLS,
-    payload
+    payload,
   };
 }
 
 export function getAllPollsErrorAction(payload) {
   return {
     type: asyncTypes.GET_ALL_POLLS_ERROR,
-    payload
+    payload,
   };
 }
 
 export function getAllPolls(page) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(getAllPollsStartAction());
       const response = await axios.get(`/polls/all/${page}`);
@@ -220,12 +220,12 @@ export function getAllPolls(page) {
 export function getPreviewAction(payload) {
   return {
     type: syncTypes.GET_PREVIEW_POLL,
-    payload
+    payload,
   };
 }
 
 export function getPreview(poll) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(getPreviewAction(poll));
     } catch (error) {

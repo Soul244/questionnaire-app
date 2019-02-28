@@ -43,9 +43,10 @@ app
       return app.render(req, res, actualPage, queryParams);
     });
 
-    server.get('/anket/anketlerim', (req, res) => {
+    server.get('/anket/anketlerim/:userid', (req, res) => {
       const actualPage = '/poll/list';
-      return app.render(req, res, actualPage);
+      const queryParams = { userid: req.params.userid };
+      return app.render(req, res, actualPage, queryParams);
     });
 
     server.get('/anket/istatistikler/:slug', (req, res) => {

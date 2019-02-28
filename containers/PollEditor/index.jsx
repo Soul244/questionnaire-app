@@ -47,7 +47,7 @@ class PollEditor extends Component {
   notify = errors => {
     if (errors.questionsErrors) {
       errors.questionsErrors.map(error =>
-        toast.error(`${error.order + 1}. sorununun içeriği eksik`, {
+        toast.error(`${error.index + 1}. sorununun içeriği eksik`, {
           position: toast.POSITION.BOTTOM_LEFT
         })
       );
@@ -55,7 +55,7 @@ class PollEditor extends Component {
     if (errors.answersErrors) {
       errors.answersErrors.map(error =>
         toast.error(
-          `${error.questionOrder + 1}. sorununun ${error.order +
+          `${error.questionIndex + 1}. sorununun ${error.index +
             1} cevabının içeriği eksik`,
           { position: toast.POSITION.BOTTOM_LEFT }
         )

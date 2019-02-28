@@ -138,8 +138,8 @@ class SideBySide extends React.Component {
       questions, answers, name, desc, lastDesc,
     } = poll;
 
-    const orderedQuestions = _.orderBy(questions, ['order'], ['asc']);
-    const orderedAnswers = _.orderBy(answers, ['order'], ['asc']);
+    const orderedQuestions = _.orderBy(questions, ['index'], ['asc']);
+    const orderedAnswers = _.orderBy(answers, ['index'], ['asc']);
     const {
       hasAnswerAutoChangeTime,
       userDataCollectType,
@@ -199,7 +199,7 @@ class SideBySide extends React.Component {
                     <Question
                       type={question.type}
                       content={question.content}
-                      order={question.order}
+                      index={question.index}
                       desc={question.desc}
                     />
                   </Row>
@@ -207,8 +207,8 @@ class SideBySide extends React.Component {
                     <Options
                       answers={orderedAnswers}
                       questionCount={question.count}
-                      questionOrder={question.order}
-                      rightAnswerOrder={question.rightAnswerOrder}
+                      questionIndex={question.index}
+                      rightAnswerIndex={question.rightAnswerIndex}
                       changeQuestion={this.changeQuestion}
                       addParticipantAnswer={addParticipantAnswer}
                     />

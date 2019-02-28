@@ -1,4 +1,4 @@
-export const asyncTypes = {
+export default {
 // GET UPDATE POLL
   GET_UPDATE_POLL: 'GET_UPDATE_POLL',
 

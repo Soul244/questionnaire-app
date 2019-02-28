@@ -13,10 +13,11 @@ export function addQuestion(type) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
     const newQuestion = {
-      order: questions.length > 0 ? questions[questions.length - 1].order + 1 : 0,
+      index: questions.length > 0 ? questions[questions.length - 1].index + 1 : 0,
       type,
       content: '',
-      rightAnswerOrder: null,
+      rightAnswerIndex: null,
+      desc: '',
     };
     const newQuestions = List(questions).push(newQuestion).toArray();
     dispatch(
@@ -45,18 +46,18 @@ export function deleteQuestion(index) {
 /* #endregion */
 
 /* #region Update Question Order NOT IN USE FOR NOW */
-export function updateQuestionOrderAction(payload) {
+export function updatequestionIndexAction(payload) {
   return {
     type: syncTypes.UPDATE_QUESTION_ORDER,
     payload,
   };
 }
-export function updateQuestionOrder({ oldIndex, newIndex }) {
+export function updatequestionIndex({ oldIndex, newIndex }) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
     const q = arrayMove(questions, oldIndex, newIndex);
     dispatch(
-      updateQuestionOrderAction({
+      updatequestionIndexAction({
         questions: [...q],
       }),
     );
@@ -72,10 +73,10 @@ export function onChangeQuestionAction(payload) {
   };
 }
 
-export function onChangeQuestionContent(content, order) {
+export function onChangeQuestionContent(content, index) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
-    const newQuestions = List(questions).setIn([order, 'content'], content).toArray();
+    const newQuestions = List(questions).setIn([index, 'content'], content).toArray();
     dispatch(
       onChangeQuestionAction(newQuestions),
     );
@@ -90,10 +91,10 @@ export function onChangeQuestionTypeAction(payload) {
     payload,
   };
 }
-export function onChangeQuestionType(type, order) {
+export function onChangeQuestionType(type, index) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
-    const newQuestions = List(questions).setIn([order, 'type'], type).toArray();
+    const newQuestions = List(questions).setIn([index, 'type'], type).toArray();
     dispatch(
       onChangeQuestionTypeAction(newQuestions),
     );
@@ -108,30 +109,12 @@ export function onChangeQuestionDescAction(payload) {
     payload,
   };
 }
-export function onChangeQuestionDesc(desc, order) {
+export function onChangeQuestionDesc(desc, index) {
   return (dispatch, getState) => {
     const { questions } = getState().poll;
-    const newQuestions = List(questions).setIn([order, 'desc'], desc).toArray();
+    const newQuestions = List(questions).setIn([index, 'desc'], desc).toArray();
     dispatch(
       onChangeQuestionDescAction(newQuestions),
-    );
-  };
-}
-/* #endregion */
-
-/* #region On Click Right Answer IMMUTABLE */
-export function onClickRightAnswerAction(payload) {
-  return {
-    type: syncTypes.ON_CLICK_RIGHT_ANSWER,
-    payload,
-  };
-}
-export function onClickRightAnswer(order, rightAnswerOrder) {
-  return (dispatch, getState) => {
-    const { questions } = getState().poll;
-    const newQuestions = List(questions).setIn([order, 'rightAnswerOrder'], rightAnswerOrder).toArray();
-    dispatch(
-      onClickRightAnswerAction(newQuestions),
     );
   };
 }
