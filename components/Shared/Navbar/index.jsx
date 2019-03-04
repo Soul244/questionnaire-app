@@ -8,7 +8,6 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  Input,
 } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -33,12 +32,6 @@ const NavbarStyled = styled(Navbar)`
   z-index: 5;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-`;
-
-const InputStyled = styled(Input)`
-  height: 36px !important;
-  padding: 0 0.5rem !important;
-  max-width: 380px;
 `;
 
 class index extends Component {
@@ -88,25 +81,26 @@ class index extends Component {
   render() {
     const { isLogged, homeLink, isOpen } = this.state;
     return (
-      <NavbarStyled className="nav-bg" light expand="md">
-        <Container>
-          <NavbarBrandStyled href={homeLink}>
-            <img
-              src="/static/bilemezsin-logo.jpg"
-              style={{ width: '32px', height: '32px' }}
-              alt="logo"
-            />
-          </NavbarBrandStyled>
-          <InputStyled />
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              {isLogged && <Logged logOut={this.onClick} />}
-              {!isLogged && <Anonim />}
-            </Nav>
-          </Collapse>
-        </Container>
-      </NavbarStyled>
+      <>
+        <NavbarStyled className="nav-bg" light expand="md">
+          <Container>
+            <NavbarBrandStyled href={homeLink}>
+              <img
+                src="/static/bilemezsin-logo.jpg"
+                style={{ width: '32px', height: '32px' }}
+                alt="logo"
+              />
+            </NavbarBrandStyled>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+                {isLogged && <Logged logOut={this.onClick} />}
+                {!isLogged && <Anonim />}
+              </Nav>
+            </Collapse>
+          </Container>
+        </NavbarStyled>
+      </>
     );
   }
 }

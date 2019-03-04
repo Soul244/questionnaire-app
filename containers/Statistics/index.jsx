@@ -51,63 +51,59 @@ class index extends Component {
     const percents = this.percents(participants);
     const data = [{ name: 'Doğru Sayısı', value: percents.totalRight, fill: 'green' }, { name: 'Yanlış Sayısı', value: percents.totalWrong, fill: 'red' }];
     return (
-      <>
-        <Container className="my-4">
-          <Row>
-            <Col md="6">
-              <Card className="text-center">
-                <CardBody>
-                  <PieChart width={300} height={300}>
-                    <Pie isAnimationActive={false} data={data} outerRadius={80} label />
-                    <Tooltip />
-                  </PieChart>
-                  <hr />
-                  <CardTitle>Kullanıcıların Toplam Yanlış Sayısı</CardTitle>
-                  <CardText>
-                    {`${percents.totalWrong} yanlış cevap`}
-                  </CardText>
-                  <hr />
-                  <CardTitle>Kullanıcıların Toplam Doğru Sayısı</CardTitle>
-                  <CardText>
-                    {`${percents.totalRight} doğru cevap`}
-                  </CardText>
-                  <hr />
-                  <CardTitle>Doğru ya da Yanlış Olarak İşaretlenmemiş ve Cevaplanmış Sorular Toplamı</CardTitle>
-                  <CardText>
-                    {`${percents.totalhasNotRightAnswer}`}
-                  </CardText>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col md="6" className="text-center">
-              <Card>
-                <CardBody>
-                  <CardTitle>Anketi Çözen Kullanıcı Sayısı</CardTitle>
-                  <CardText>
-                    {`${count} kişi`}
-                  </CardText>
-                </CardBody>
-              </Card>
-              <Card>
-                <CardBody>
-                  <CardTitle>Anketteki Soru Sayısı</CardTitle>
-                  <CardText>
-                    {`${poll.questions !== undefined ? poll.questions.length : 0} soru`}
-                  </CardText>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col md={12}>
-              <Card>
-                <CardBody>
-                  <CardTitle>Cevap İstatistikleri</CardTitle>
-                  <PercentTable poll={poll} />
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      </>
+      <Row>
+        <Col md="6">
+          <Card className="text-center">
+            <CardBody>
+              <PieChart width={300} height={300}>
+                <Pie isAnimationActive={false} data={data} outerRadius={80} label />
+                <Tooltip />
+              </PieChart>
+              <hr />
+              <CardTitle>Kullanıcıların Toplam Yanlış Sayısı</CardTitle>
+              <CardText>
+                {`${percents.totalWrong} yanlış cevap`}
+              </CardText>
+              <hr />
+              <CardTitle>Kullanıcıların Toplam Doğru Sayısı</CardTitle>
+              <CardText>
+                {`${percents.totalRight} doğru cevap`}
+              </CardText>
+              <hr />
+              <CardTitle>Doğru ya da Yanlış Olarak İşaretlenmemiş ve Cevaplanmış Sorular Toplamı</CardTitle>
+              <CardText>
+                {`${percents.totalhasNotRightAnswer}`}
+              </CardText>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col md="6" className="text-center">
+          <Card>
+            <CardBody>
+              <CardTitle>Anketi Çözen Kullanıcı Sayısı</CardTitle>
+              <CardText>
+                {`${count} kişi`}
+              </CardText>
+            </CardBody>
+          </Card>
+          <Card>
+            <CardBody>
+              <CardTitle>Anketteki Soru Sayısı</CardTitle>
+              <CardText>
+                {`${poll.questions !== undefined ? poll.questions.length : 0} soru`}
+              </CardText>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col md={12}>
+          <Card>
+            <CardBody>
+              <CardTitle>Cevap İstatistikleri</CardTitle>
+              <PercentTable poll={poll} />
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     );
   }
 }

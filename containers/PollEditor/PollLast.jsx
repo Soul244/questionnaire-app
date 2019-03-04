@@ -27,8 +27,9 @@ class PollLast extends React.Component {
     }).isRequired,
     pollActions: PropTypes.shape({
       onChangeLastDesc: PropTypes.func.isRequired,
-    })
+    }),
   }
+
   configText = {
     placeholderText: 'Anket sonu başlığınızı giriniz...',
     heightMin: 100,
@@ -40,35 +41,33 @@ class PollLast extends React.Component {
     pluginsEnabled: ['align', 'charCounter', 'codeBeautifier', 'codeView', 'colors', 'draggable', 'embedly', 'emoticons', 'entities', 'file', 'fontFamily', 'fontSize', 'fullscreen', 'image', 'imageManager', 'inlineStyle', 'lineBreaker', 'link', 'lists', 'paragraphFormat', 'paragraphStyle', 'quickInsert', 'quote', 'save', 'table', 'url', 'video', 'wordPaste'],
     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineClass', 'inlineStyle', 'paragraphStyle', 'lineHeight', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertTable', '|', 'emoticons', 'fontAwesome', 'specialCharacters', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'html', '|', 'undo', 'redo'],
   };
-  
+
   render() {
     const { lastDesc } = this.props.poll;
-    const {onChangeLastDesc} = this.props.pollActions;
+    const { onChangeLastDesc } = this.props.pollActions;
     return (
-      <Card>
-        <CardBody>
-          <CardTitle tag="h5">Anket Sonu Mesajı</CardTitle>
-          <FormGroup>
-            <FroalaEditorInput
-              tag="textarea"
-              config={this.configText}
-              model={lastDesc}
-              onModelChange={onChangeLastDesc}
-            />
-          </FormGroup>
-        </CardBody>
-      </Card>
+      <>
+        <CardTitle tag="h5">Anket Sonu Mesajı</CardTitle>
+        <FormGroup>
+          <FroalaEditorInput
+            tag="textarea"
+            config={this.configText}
+            model={lastDesc}
+            onModelChange={onChangeLastDesc}
+          />
+        </FormGroup>
+      </>
     );
   }
 }
 
 const mapStateToProps = state => ({
   poll: state.poll,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
-  pollActions: bindActionCreators(pollActions, dispatch)
-})
+  pollActions: bindActionCreators(pollActions, dispatch),
+});
 
 export default connect(
   mapStateToProps,

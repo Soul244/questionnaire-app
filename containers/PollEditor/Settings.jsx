@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import { Card, CardBody, CardTitle, Row, Col, Badge } from 'reactstrap';
+import {
+  Card, CardBody, CardTitle, Row, Col, Badge,
+} from 'reactstrap';
 import styled from 'styled-components';
 
 import Setting from '../../components/PollEditor/Setting';
@@ -25,13 +27,13 @@ class Settings extends React.Component {
       showType: PropTypes.string,
       pollTime: PropTypes.string,
       answerTime: PropTypes.string,
-      answerAutoChangeTime: PropTypes.string
+      answerAutoChangeTime: PropTypes.string,
     }).isRequired,
     pollActions: PropTypes.shape({
       handlePollTime: PropTypes.func.isRequired,
       handleAnswerTime: PropTypes.func.isRequired,
       handleAnswerAutoChangeTime: PropTypes.func.isRequired,
-    })
+    }),
   };
 
   render() {
@@ -49,7 +51,7 @@ class Settings extends React.Component {
       handleUserDataCollectType,
       handlePollTime,
       handleAnswerTime,
-      handleAnswerAutoChangeTime
+      handleAnswerAutoChangeTime,
     } = this.props.pollActions;
 
     // Values
@@ -67,7 +69,7 @@ class Settings extends React.Component {
       answerAutoChangeTime,
     } = poll.settings;
     return (
-      <Card className="my-4">
+      <Card className="my-2">
         <CardBody>
           <CardTitle tag="h5">Ayarlar</CardTitle>
           <Row>
@@ -143,7 +145,7 @@ class Settings extends React.Component {
               </Card>
             </Col>
             <Col md={3}>
-              <CardHideAble show={!hasAnswerTime? 1: 0}>
+              <CardHideAble show={!hasAnswerTime ? 1 : 0}>
                 <Badge color="warning">IN PROGRESS</Badge>
                 <CardBody>
                   <Setting
@@ -153,7 +155,7 @@ class Settings extends React.Component {
                     onChange={handleHasPollTime}
                     hasInput
                     inputValue={pollTime}
-                    inputChange={(e)=>handlePollTime(e.target.value)}
+                    inputChange={e => handlePollTime(e.target.value)}
                     inputPlaceHolder="dakika"
                     tooltip="Bu seçenek geliştirilme sürecinde"
                     info={settingsInfos.hasPollTime}
@@ -162,7 +164,7 @@ class Settings extends React.Component {
               </CardHideAble>
             </Col>
             <Col md={3}>
-              <CardHideAble show={showType === 'sideBySide' && !hasPollTime? 1: 0}>
+              <CardHideAble show={showType === 'sideBySide' && !hasPollTime ? 1 : 0}>
                 <Badge color="warning">IN PROGRESS</Badge>
                 <CardBody>
                   <Setting
@@ -172,7 +174,7 @@ class Settings extends React.Component {
                     onChange={handleHasAnswerTime}
                     hasInput
                     inputValue={answerTime}
-                    inputChange={(e)=>handleAnswerTime(e.target.value)}
+                    inputChange={e => handleAnswerTime(e.target.value)}
                     inputPlaceHolder="saniye"
                     tooltip="Bu seçenek geliştirilme sürecinde"
                     info={settingsInfos.hasAnswerTime}
@@ -181,7 +183,7 @@ class Settings extends React.Component {
               </CardHideAble>
             </Col>
             <Col md={3}>
-              <CardHideAble body show={showType === 'sideBySide'? 1: 0}>
+              <CardHideAble body show={showType === 'sideBySide' ? 1 : 0}>
                 <Setting
                   checkedValue={hasAnswerAutoChangeTime}
                   name="hasAnswerAutoChangeTime"
@@ -189,7 +191,7 @@ class Settings extends React.Component {
                   onChange={handleHasAnswerAutoChangeTime}
                   hasInput
                   inputValue={answerAutoChangeTime}
-                  inputChange={(e)=>handleAnswerAutoChangeTime(e.target.value)}
+                  inputChange={e => handleAnswerAutoChangeTime(e.target.value)}
                   inputPlaceHolder="Milisaniye"
                   tooltip="Her soru arasındaki otomatik geçiş süresi"
                   info={settingsInfos.hasAnswerAutoChangeTime}
@@ -204,14 +206,14 @@ class Settings extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  poll: state.poll
+  poll: state.poll,
 });
 
 const mapDispatchToProps = dispatch => ({
-  pollActions: bindActionCreators(pollActions, dispatch)
+  pollActions: bindActionCreators(pollActions, dispatch),
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Settings);

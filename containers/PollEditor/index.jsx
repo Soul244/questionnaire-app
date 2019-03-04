@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
 
-import { Container, Row, Col } from 'reactstrap';
+import {
+  Container, Row, Col, Card, CardBody,
+} from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
 
 import Settings from './Settings';
@@ -127,34 +129,30 @@ class PollEditor extends Component {
 
   render() {
     const { poll, pollActions } = this.props;
-    const { name } = poll;
     const { addQuestion } = pollActions;
     return (
       <>
-        <Container className="my-4">
-          <Row>
-            <Col md={12}>
-              <div dangerouslySetInnerHTML={{ __html: name }} />
-              <hr />
-            </Col>
-          </Row>
-          <Row>
-            <ToastContainer autoClose={3000} />
-          </Row>
-          <Row>
-            <Col md={12}>
-              <form onSubmit={this.handleSubmit}>
-                <QuestionTool addQuestion={addQuestion} />
-                <PollHeader />
-                <PollLast />
-                <Inject />
-                <Settings />
-                {poll.settings.type === 'test' && <SelectableLastMessage />}
-                <Questions />
-              </form>
-            </Col>
-          </Row>
-        </Container>
+        <ToastContainer autoClose={3000} />
+        <Row>
+          <Col md={12}>
+            <form onSubmit={this.handleSubmit}>
+              <Card>
+                <CardBody>
+                  <QuestionTool addQuestion={addQuestion} />
+                  <PollHeader />
+                  <hr />
+                  <PollLast />
+                  <hr />
+                  <Inject />
+                  <hr />
+                  <Settings />
+                </CardBody>
+              </Card>
+              {poll.settings.type === 'test' && <SelectableLastMessage />}
+              <Questions />
+            </form>
+          </Col>
+        </Row>
       </>
     );
   }

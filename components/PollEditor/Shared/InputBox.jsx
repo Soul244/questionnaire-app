@@ -33,7 +33,7 @@ const CustomSelect = styled.div`
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
     right: 6px;
-    top: 14px;
+    top: 9px;
     padding: 0 0 2px;
     border-bottom: 1px solid #999;
     position: absolute;
@@ -53,6 +53,10 @@ const AppendInput = styled(Input)`
     : '60px 0 0 60px !important')};
   height: 100%;
   padding-right: 2rem;
+`;
+
+const InputText = styled(Input)`
+  height: 40px;
 `;
 
 const RadioButton = styled(Button)`
@@ -143,7 +147,7 @@ class InputBox extends React.Component {
             </RadioButton>
           )}
         </InputGroupAddon>
-        <Input
+        <InputText
           type="text"
           value={inputValue}
           placeholder="..."

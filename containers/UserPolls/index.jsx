@@ -39,26 +39,11 @@ class UserPolls extends Component {
       );
     }
     return (
-      <>
-        <Container className="my-4">
-          <Row>
-            <Col md="3">
-              <Card body>
-                <CardText />
-                <CardText>Anketlerim</CardText>
-                <CardText>Ayarlar</CardText>
-              </Card>
-            </Col>
-            <Col md="9">
-              <PollList
-                polls={polls}
-                message={message}
-                deletePoll={deletePoll}
-              />
-            </Col>
-          </Row>
-        </Container>
-      </>
+      <PollList
+        polls={polls}
+        message={message}
+        deletePoll={deletePoll}
+      />
     );
   }
 }

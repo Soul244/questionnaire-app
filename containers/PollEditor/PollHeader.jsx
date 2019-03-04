@@ -33,7 +33,7 @@ class PollHeader extends React.Component {
       onChangeName: PropTypes.func.isRequired,
       onChangeDesc: PropTypes.func.isRequired,
       onChangeSlug: PropTypes.func.isRequired,
-    })
+    }),
   }
 
   config = {
@@ -48,59 +48,49 @@ class PollHeader extends React.Component {
     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineClass', 'inlineStyle', 'paragraphStyle', 'lineHeight', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertTable', '|', 'emoticons', 'fontAwesome', 'specialCharacters', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'html', '|', 'undo', 'redo'],
   };
 
-  onDescChange = descContent => {
+  onDescChange = (descContent) => {
     this.props.pollActions.onChangeDesc(descContent);
   }
 
   render() {
     const { name, desc, slug } = this.props.poll;
-    const {onChangeName, onChangeSlug, } = this.props.pollActions;
+    const { onChangeName, onChangeSlug } = this.props.pollActions;
     return (
       <>
-        <Card>
-          <CardBody>
-            <CardTitle>Anket Başlığı</CardTitle>
-            <FormGroup>
-              <Input
-                value={name}
-                onChange={e => onChangeName(e.target.value)}
-                placeholder="Anket başlığınızı giriniz..."
-              />
-            </FormGroup>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardBody>
-            <CardTitle>Anket Açıklaması</CardTitle>
-            <FormGroup>
-              <FroalaEditorInput
-                tag="textarea"
-                config={this.config}
-                model={desc}
-                onModelChange={this.onDescChange}
-              />
-            </FormGroup>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardBody>
-            <CardTitle>Anket Adresi</CardTitle>
-            <FormGroup>
-              <Input
-                value={slug}
-                onChange={e => onChangeSlug(
-                  slugify(e.target.value,
-                    {
-                      replacement: '-',
-                      remove: null,
-                      lower: true,
-                    }),
-                )}
-                placeholder="boşluksuz, kısa çizgilerle ayrılmış bir link adı giriniz (ör. anket-1)..."
-              />
-            </FormGroup>
-          </CardBody>
-        </Card>
+        <CardTitle>Anket Başlığı</CardTitle>
+        <FormGroup>
+          <Input
+            value={name}
+            onChange={e => onChangeName(e.target.value)}
+            placeholder="Anket başlığınızı giriniz..."
+          />
+        </FormGroup>
+        <hr />
+        <CardTitle>Anket Açıklaması</CardTitle>
+        <FormGroup>
+          <FroalaEditorInput
+            tag="textarea"
+            config={this.config}
+            model={desc}
+            onModelChange={this.onDescChange}
+          />
+        </FormGroup>
+        <hr />
+        <CardTitle>Anket Adresi</CardTitle>
+        <FormGroup>
+          <Input
+            value={slug}
+            onChange={e => onChangeSlug(
+              slugify(e.target.value,
+                {
+                  replacement: '-',
+                  remove: null,
+                  lower: true,
+                }),
+            )}
+            placeholder="boşluksuz, kısa çizgilerle ayrılmış bir link adı giriniz (ör. anket-1)..."
+          />
+        </FormGroup>
       </>
     );
   }
@@ -108,11 +98,11 @@ class PollHeader extends React.Component {
 
 const mapStateToProps = state => ({
   poll: state.poll,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
-  pollActions: bindActionCreators(pollActions, dispatch)
-})
+  pollActions: bindActionCreators(pollActions, dispatch),
+});
 
 export default connect(
   mapStateToProps,
