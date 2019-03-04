@@ -1,34 +1,29 @@
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
-import Option from "./Option";
+import Option from './Option';
 
 class Options extends React.Component {
-  static propTypes = {
-    questionIndex: PropTypes.number.isRequired,
-    rightAnswerIndex: PropTypes.number,
-    changeQuestion: PropTypes.func.isRequired,
-    questionCount: PropTypes.number.isRequired,
-    answers: PropTypes.array.isRequired,
-    addParticipantAnswer: PropTypes.func.isRequired
-  };
   constructor() {
     super();
     this.state = {
-      checked: "",
-      showPercent: false
+      checked: '',
+      showPercent: false,
     };
   }
 
-  onClick = value => {
-    if (this.state.checked !== "") return;
+  onClick = (value) => {
+    const {
+      questionIndex, rightAnswerIndex, addParticipantAnswer, changeQuestion,
+    } = this.props;
+    const { checked } = this.state;
+    if (checked !== '') return;
     this.setState({
       checked: value,
-      showPercent: true
+      showPercent: true,
     });
-    const { questionIndex, rightAnswerIndex } = this.props;
-    this.props.addParticipantAnswer(questionIndex, value, rightAnswerIndex);
-    this.props.changeQuestion();
+    addParticipantAnswer(questionIndex, value, rightAnswerIndex);
+    changeQuestion();
   };
 
   render() {
@@ -36,7 +31,7 @@ class Options extends React.Component {
       answers,
       questionIndex,
       rightAnswerIndex,
-      questionCount
+      questionCount,
     } = this.props;
     const { checked, showPercent } = this.state;
     return (
@@ -46,7 +41,7 @@ class Options extends React.Component {
           .map((answer, index) => (
             <Option
               key={index}
-              index={answer.index}
+              index={index}
               questionIndex={answer.questionIndex}
               answerCount={answer.count}
               questionCount={questionCount}
@@ -62,5 +57,18 @@ class Options extends React.Component {
     );
   }
 }
+
+Options.defaultProps = {
+  rightAnswerIndex: null,
+};
+
+Options.propTypes = {
+  questionIndex: PropTypes.number.isRequired,
+  rightAnswerIndex: PropTypes.number,
+  changeQuestion: PropTypes.func.isRequired,
+  questionCount: PropTypes.number.isRequired,
+  answers: PropTypes.array.isRequired,
+  addParticipantAnswer: PropTypes.func.isRequired,
+};
 
 export default Options;

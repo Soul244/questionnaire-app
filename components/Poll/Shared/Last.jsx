@@ -11,7 +11,6 @@ import {
 import styled from 'styled-components';
 
 import { ParticipantSchema } from '../../../validation/validationSchemas';
-import SelectableLastMessage from './SelectableLastMessage';
 import { CustomInput } from '../../Shared';
 
 const ColStyled = styled(Col)` 
@@ -19,21 +18,20 @@ const ColStyled = styled(Col)`
 `;
 
 class Last extends React.Component {
-  
   onClick = () => {
     const {
-      participant, pollId,
+      participant, pollId, postParticipant,
     } = this.props;
     participant.pollId = pollId;
     participant.name = 'anonim';
     participant.surname = 'anonim';
     participant.email = 'anonim@anonim.com';
-    this.props.postParticipant(participant);
+    postParticipant(participant);
   }
 
   render() {
     const {
-      name, lastDesc, participant, pollId, userDataCollectType, type, selectableLastMessages,
+      name, lastDesc, participant, pollId, userDataCollectType, type, postParticipant,
     } = this.props;
     const { answers, message } = participant;
     const answerCount = answers.length;
@@ -93,7 +91,7 @@ class Last extends React.Component {
                 participant.name = values.name;
                 participant.surname = values.surname;
                 participant.email = values.email;
-                this.props.postParticipant(participant);
+                postParticipant(participant);
               }}
             >
               {(props) => {
@@ -179,7 +177,6 @@ Last.propTypes = {
   postParticipant: PropTypes.func.isRequired,
   userDataCollectType: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  selectableLastMessages: PropTypes.array.isRequired,
 };
 
 export default Last;

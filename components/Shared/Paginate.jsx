@@ -8,7 +8,6 @@ class Paginate extends React.Component {
       page: 0,
       pageCount: 0,
     };
-    this.createPaginateItems = this.createPaginateItems.bind(this);
   }
 
   createPaginateItems = (pageCount, handlePageChange) => {

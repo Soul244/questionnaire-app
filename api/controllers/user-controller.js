@@ -7,8 +7,8 @@ const User = require('../models/user');
 
 exports.Post_Signup = (req, res) => {
   User.find({
-      email: req.body.email
-    })
+    email: req.body.email,
+  })
     .exec()
     .then((user) => {
       if (user.length >= 1) {
@@ -33,7 +33,7 @@ exports.Post_Signup = (req, res) => {
               user,
               message: 'kullanıcı oluşturuldu',
             });
-          })
+          });
       });
     })
     .catch((error) => {
@@ -45,6 +45,7 @@ exports.Post_Signup = (req, res) => {
 
 exports.Token_Control = (req, res) => {
   try {
+    console.log(req.body);
     jwt.verify(req.body.token, process.env.JWT_KEY, null);
     res.status(200).json({
       isTokenValid: true,
@@ -58,7 +59,7 @@ exports.Token_Control = (req, res) => {
 
 exports.Reset_Password = (req, res) => {
   const {
-    email
+    email,
   } = req.body;
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -68,7 +69,7 @@ exports.Reset_Password = (req, res) => {
     },
   });
   User.find({
-    email
+    email,
   }).exec().then((user) => {
     if (user.length < 1) {
       return res.status(204).json({
@@ -99,12 +100,12 @@ exports.Reset_Password = (req, res) => {
         });
       }
       User.update({
-          email
-        }, {
-          $set: {
-            password: hash,
-          },
-        }).exec()
+        email,
+      }, {
+        $set: {
+          password: hash,
+        },
+      }).exec()
         .then(() => {
           res.status(200).json({
             message: 'Yeni şifreniz mail adresinize gönderildi.',
@@ -120,36 +121,36 @@ exports.Reset_Password = (req, res) => {
 
 exports.Post_Login = (req, res) => {
   User.findOne({
-      email: req.body.email
-    }).exec().then((user) => {
-      if (user === null) {
-        res.statusText = 'Mail adresi bulunamadı';
+    email: req.body.email,
+  }).exec().then((user) => {
+    if (user === null) {
+      res.statusText = 'Mail adresi bulunamadı';
+      return res.status(500).json();
+    }
+    bcrypt.compare(req.body.password, user.password, (error, result) => {
+      if (error) {
+        res.statusText = 'Şifre geçersiz (Hata Kodu 0x01)';
         return res.status(500).json();
       }
-      bcrypt.compare(req.body.password, user.password, (error, result) => {
-        if (error) {
-          res.statusText = "Şifre geçersiz (Hata Kodu 0x01)";
-          return res.status(500).json();
-        }
-        if (result) {
-          const token = jwt.sign({
-              id: user._id,
-              email: user.email,
-            },
-            process.env.JWT_KEY, {
-              expiresIn: '30 days',
-            });
-          return res.status(200).json({
-            _id: user._id,
-            email: user.email,
-            token,
-            message: 'Başarıyla giriş yaptınız.',
-          });
-        }
-        res.statusText = "Şifre geçersiz (Hata Kodu 0x02)"
-        return res.status(500).json();
-      });
-    })
+      if (result) {
+        const token = jwt.sign({
+          _id: user._id,
+          email: user.email,
+        },
+        process.env.JWT_KEY, {
+          expiresIn: '30 days',
+        });
+        return res.status(200).json({
+          _id: user._id,
+          email: user.email,
+          token,
+          message: 'Başarıyla giriş yaptınız.',
+        });
+      }
+      res.statusText = 'Şifre geçersiz (Hata Kodu 0x02)';
+      return res.status(500).json();
+    });
+  })
     .catch((error) => {
       res.status(500).json({
         error,
@@ -159,13 +160,13 @@ exports.Post_Login = (req, res) => {
 
 exports.Delete_User = (req, res) => {
   User.remove({
-      _id: req.params.user,
-    })
+    _id: req.params.user,
+  })
     .exec()
     .then(user => res.status(200).json({
-        message: 'kullanıcı silindi',
-        user,
-      })
+      message: 'kullanıcı silindi',
+      user,
+    })
       .catch((error) => {
         res.status(500).json({
           error,
@@ -175,8 +176,8 @@ exports.Delete_User = (req, res) => {
 
 exports.Get_User = (req, res) => {
   User.find({
-      _id: req.params.user
-    })
+    _id: req.params.user,
+  })
     .exec()
     .then((user) => {
       res.status(200).json({

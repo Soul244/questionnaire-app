@@ -54,7 +54,7 @@ class SelectableLastMessage extends Component {
     } */
   }
 
-  onChangeFirst = e => {
+  onChangeFirst = (e) => {
     const content = e.target.value;
     this.setState({
       first: content,
@@ -62,7 +62,7 @@ class SelectableLastMessage extends Component {
     this.props.handleSelectableLastMessage('0-24', content);
   }
 
-  onChangeSecond = e => {
+  onChangeSecond = (e) => {
     const content = e.target.value;
     this.setState({
       second: content,
@@ -70,7 +70,7 @@ class SelectableLastMessage extends Component {
     this.props.handleSelectableLastMessage('25-49', content);
   }
 
-  onChangeThird = e => {
+  onChangeThird = (e) => {
     const content = e.target.value;
     this.setState({
       third: content,
@@ -78,7 +78,7 @@ class SelectableLastMessage extends Component {
     this.props.handleSelectableLastMessage('50-75', content);
   }
 
-  onChangeFourth = e => {
+  onChangeFourth = (e) => {
     const content = e.target.value;
     this.setState({
       fourth: content,
@@ -86,7 +86,7 @@ class SelectableLastMessage extends Component {
     this.props.handleSelectableLastMessage('76-100', content);
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ value: e.target.value });
   }
 

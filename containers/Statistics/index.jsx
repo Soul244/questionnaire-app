@@ -14,7 +14,9 @@ import {
 import * as participantActions from '../../redux/actions/participantActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import PercentTable from '../../components/Statistics/PercentTable';
+import withNavbar from '../../hoc/withNavbar';
 
+@withNavbar
 class index extends Component {
   componentWillMount() {
     this.props.participantActions.getParticipants(this.props.slug);

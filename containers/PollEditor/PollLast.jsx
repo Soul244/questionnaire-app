@@ -41,13 +41,9 @@ class PollLast extends React.Component {
     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineClass', 'inlineStyle', 'paragraphStyle', 'lineHeight', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertTable', '|', 'emoticons', 'fontAwesome', 'specialCharacters', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'html', '|', 'undo', 'redo'],
   };
   
-  onLastDescChange = lastDescContent => {
-    const {onChangeLastDesc} = this.props.pollActions;
-    onChangeLastDesc(lastDescContent);
-  }
-
   render() {
     const { lastDesc } = this.props.poll;
+    const {onChangeLastDesc} = this.props.pollActions;
     return (
       <Card>
         <CardBody>
@@ -57,7 +53,7 @@ class PollLast extends React.Component {
               tag="textarea"
               config={this.configText}
               model={lastDesc}
-              onModelChange={this.onLastDescChange}
+              onModelChange={onChangeLastDesc}
             />
           </FormGroup>
         </CardBody>

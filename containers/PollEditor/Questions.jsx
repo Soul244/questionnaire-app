@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Question from './Question';
+import { Question } from '../../components/PollEditor';
 import * as pollActions from '../../redux/actions/pollActions';
 
 function Questions(props) {

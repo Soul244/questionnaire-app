@@ -70,17 +70,15 @@ class InputBox extends React.Component {
     this.state = {
       show: false,
     };
-    this.toggle = this.toggle.bind(this);
-    this.onClick = this.onClick.bind(this);
   }
 
-  onClick(index) {
+  onClick = (index) => {
     const { handleDelete } = this.props;
     handleDelete(index);
     this.toggle();
   }
 
-  toggle() {
+  toggle = () => {
     this.setState(prevState => ({
       show: !prevState.show,
     }));

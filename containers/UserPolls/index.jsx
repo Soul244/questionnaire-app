@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import {
+  Container, Row, Col, Card, CardText,
+} from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Router from 'next/router';
@@ -9,16 +11,20 @@ import * as userActions from '../../redux/actions/userActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import { PollList } from '../../components/UserPolls';
 import { Loading } from '../../components/Shared';
+import withAuth from '../../hoc/withAuth';
+import withNavbar from '../../hoc/withNavbar';
 
+@withNavbar
+@withAuth
 class UserPolls extends Component {
   componentDidMount() {
     const token = localStorage.getItem('token');
-    const { userid, pollsActions } = this.props;
+    const { pollsActions } = this.props;
     if (!token && token === '') {
       Router.push({ pathname: '/giris-yap' });
     } else {
       const { getPolls } = pollsActions;
-      getPolls(userid);
+      getPolls();
     }
   }
 
@@ -36,7 +42,14 @@ class UserPolls extends Component {
       <>
         <Container className="my-4">
           <Row>
-            <Col>
+            <Col md="3">
+              <Card body>
+                <CardText />
+                <CardText>Anketlerim</CardText>
+                <CardText>Ayarlar</CardText>
+              </Card>
+            </Col>
+            <Col md="9">
               <PollList
                 polls={polls}
                 message={message}

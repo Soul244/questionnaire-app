@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 
@@ -21,85 +21,85 @@ const Header = styled.div`
     margin: 1rem 1rem 2rem 1rem;
 `;
 
-class Login extends Component {
-  static propTypes = {
-    validationSchema: PropTypes.object.isRequired,
-    postLogin: PropTypes.func.isRequired,
-    pageHandle: PropTypes.func.isRequired,
-  }
-  render() {
-    const {
-      validationSchema, postLogin, pageHandle,
-    } = this.props;
-    return (
-      <>
-        <Header>
-          <CardTitle tag="h3">Oturum aç</CardTitle>
-          <CardSubtitle>Bilemezsin Hesabınızı kullanın</CardSubtitle>
-        </Header>
-        <Formik
-          initialValues={{
-            email: '',
-            password: '',
-          }}
-          validationSchema={validationSchema}
-          onSubmit={(values) => {
-            postLogin(values);
-          }}
-        >
-          {(props) => {
-            const {
-              values,
-              errors,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-            } = props;
-            return (
-              <form onSubmit={handleSubmit}>
-                <FormGroup>
-                  <InputGroup>
-                    <CustomInput
-                      id="email"
-                      type="email"
-                      value={values.email}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      inputLabel="Mail Adresi"
-                      error={errors.email}
-                    />
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup>
-                    <CustomInput
-                      id="password"
-                      inputLabel="Şifre"
-                      type="password"
-                      value={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      error={errors.password}
-                    />
-                  </InputGroup>
-                </FormGroup>
-                <ButtonList>
-                  <div>
-                    <Button type="submit" color="info">Giriş Yap </Button>
-                    {' '}
-                    <Button type="button" onClick={() => pageHandle('signup')} color="secondary">Kayıt Ol</Button>
-                  </div>
-                  <div>
-                    <Button color="link" onClick={() => pageHandle('reset-password')}>şifremi unuttum</Button>
-                  </div>
-                </ButtonList>
-              </form>
-            );
-          }}
-        </Formik>
-      </>
-    );
-  }
+function Login(props) {
+  const {
+    validationSchema, postLogin, pageHandle,
+  } = props;
+
+  return (
+    <>
+      <Header>
+        <CardTitle tag="h3">Oturum aç</CardTitle>
+        <CardSubtitle>Bilemezsin Hesabınızı kullanın</CardSubtitle>
+      </Header>
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+        }}
+        validationSchema={validationSchema}
+        onSubmit={(values) => {
+          postLogin(values);
+        }}
+      >
+        {(data) => {
+          const {
+            values,
+            errors,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+          } = data;
+          return (
+            <form onSubmit={handleSubmit}>
+              <FormGroup>
+                <InputGroup>
+                  <CustomInput
+                    id="email"
+                    type="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    inputLabel="Mail Adresi"
+                    error={errors.email}
+                  />
+                </InputGroup>
+              </FormGroup>
+              <FormGroup>
+                <InputGroup>
+                  <CustomInput
+                    id="password"
+                    inputLabel="Şifre"
+                    type="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={errors.password}
+                  />
+                </InputGroup>
+              </FormGroup>
+              <ButtonList>
+                <div>
+                  <Button type="submit" color="info">Giriş Yap </Button>
+                  {' '}
+                  <Button type="button" onClick={() => pageHandle('signup')} color="secondary">Kayıt Ol</Button>
+                </div>
+                <div>
+                  <Button color="link" onClick={() => pageHandle('reset-password')}>şifremi unuttum</Button>
+                </div>
+              </ButtonList>
+            </form>
+          );
+        }}
+      </Formik>
+    </>
+  );
 }
+
+Login.propTypes = {
+  validationSchema: PropTypes.object.isRequired,
+  postLogin: PropTypes.func.isRequired,
+  pageHandle: PropTypes.func.isRequired,
+};
 
 export default Login;

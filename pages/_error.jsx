@@ -5,7 +5,7 @@ const Error = () => (
   <Container>
     <Row>
       <Col>
-        <p>Böyle bir sayfa yok</p>
+        <p>404: Böyle bir sayfa yok</p>
       </Col>
     </Row>
   </Container>

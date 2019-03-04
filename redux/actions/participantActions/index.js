@@ -5,7 +5,7 @@ import { syncTypes, asyncTypes } from '../../types';
 export function addParticipantAnswerAction(payload) {
   return {
     type: syncTypes.ADD_PARTICIPANT_ANSWER,
-    payload
+    payload,
   };
 }
 export function addParticipantAnswer(questionIndex, index, rightAnswerIndex) {
@@ -28,8 +28,8 @@ export function addParticipantAnswer(questionIndex, index, rightAnswerIndex) {
         questionIndex,
         index,
         hasRightAnswer,
-        isTrue
-      }
+        isTrue,
+      },
     ];
     dispatch(addParticipantAnswerAction(newAnswers));
   };
@@ -40,12 +40,12 @@ export function addParticipantAnswer(questionIndex, index, rightAnswerIndex) {
 export function addParticipantNameAction(payload) {
   return {
     type: syncTypes.ADD_PARTICIPANT_NAME,
-    payload
+    payload,
   };
 }
 
 export function addParticipantName(name) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(addParticipantNameAction(name));
   };
 }
@@ -55,11 +55,11 @@ export function addParticipantName(name) {
 export function addParticipantSurnameAction(payload) {
   return {
     type: syncTypes.ADD_PARTICIPANT_SURNAME,
-    payload
+    payload,
   };
 }
 export function addParticipantSurname(surname) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(addParticipantSurnameAction(surname));
   };
 }
@@ -69,11 +69,11 @@ export function addParticipantSurname(surname) {
 export function addParticipantEmailAction(payload) {
   return {
     type: syncTypes.ADD_PARTICIPANT_EMAIL,
-    payload
+    payload,
   };
 }
 export function addParticipantEmail(email) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(addParticipantEmailAction(email));
   };
 }
@@ -83,13 +83,14 @@ export function addParticipantEmail(email) {
 export function getParticipantsAction(payload) {
   return {
     type: asyncTypes.GET_PARTICIPANTS,
-    payload
+    payload,
   };
 }
 export function getParticipants(slug) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       const response = await axios.get(`/participants/${slug}`);
+      console.log(response.data);
       dispatch(getParticipantsAction(response.data.participants));
     } catch (error) {
       throw error;
@@ -102,18 +103,18 @@ export function getParticipants(slug) {
 export function postParticipantAction(payload) {
   return {
     type: asyncTypes.POST_PARTICIPANT,
-    payload
+    payload,
   };
 }
 export function postParticipant(participant) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      const response = await axios.post(`/participants/`, {
+      const response = await axios.post('/participants/', {
         name: participant.name,
         surname: participant.surname,
         email: participant.email,
         pollId: participant.pollId,
-        answers: participant.answers
+        answers: participant.answers,
       });
       dispatch(postParticipantAction(response.data));
     } catch (error) {

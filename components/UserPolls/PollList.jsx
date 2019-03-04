@@ -57,19 +57,19 @@ class PollList extends React.Component {
     */
   };
 
-  toggle = () =>  {
+  toggle = () => {
     this.setState(prevState => ({
       modal: !prevState.modal,
     }));
   }
 
-  toggleDelete = () =>  {
+  toggleDelete = () => {
     this.setState(prevState => ({
       showDelete: !prevState.showDelete,
     }));
   }
 
-  removePoll = (id) =>  {
+  removePoll = (id) => {
     this.props.deletePoll(id);
     this.toggleDelete();
   }
@@ -90,7 +90,7 @@ class PollList extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {polls.length > 0 && (
+            {polls && polls.length > 0 && (
               polls.map(item => (
                 <tr key={item._id}>
                   <td dangerouslySetInnerHTML={{ __html: item.name }} />

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
-import dynamic from 'next/dynamic';
 
 import { Container, Row, Col } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,88 +12,86 @@ import PollLast from './PollLast';
 import PollHeader from './PollHeader';
 import Inject from './Inject';
 import SelectableLastMessage from './SelectableLastMessage';
-import { Questions } from '../../components/PollEditor';
-import { QuestionTool, StepWizardNav, Step } from '../../components/Shared';
+import Questions from './Questions';
+import { QuestionTool } from '../../components/Shared';
 import { checkEmpty } from '../../validation/validationFunctions';
 
 import * as pollActions from '../../redux/actions/pollActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
+import withNavbar from '../../hoc/withNavbar';
 
+@withNavbar
 class PollEditor extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
-    if (this.props.slug) {
-      this.props.pollActions.getUpdatePoll(this.props.slug);
+    const { slug, pollActions } = this.props;
+    if (slug) {
+      pollActions.getUpdatePoll(slug);
     }
   }
 
   componentDidMount() {
     const token = localStorage.getItem('token');
-    if (!token & token === '') {
+    if (!token && token === '') {
       Router.push({ pathname: '/giris-yap' });
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.polls.message !== this.props.polls.message) {
+    const { polls } = this.props;
+    const { message } = polls;
+    if (nextProps.polls.message !== message) {
       this.notify({ apiMessage: nextProps.polls.message });
     }
   }
 
-  notify = errors => {
-    if (errors.questionsErrors) {
-      errors.questionsErrors.map(error =>
-        toast.error(`${error.index + 1}. sorununun içeriği eksik`, {
-          position: toast.POSITION.BOTTOM_LEFT
-        })
-      );
+  notify(messages) {
+    if (messages.questionsErrors) {
+      messages.questionsErrors.map(error => toast.error(`${error.index + 1}. sorununun içeriği eksik`, {
+        position: toast.POSITION.BOTTOM_LEFT,
+      }));
     }
-    if (errors.answersErrors) {
-      errors.answersErrors.map(error =>
-        toast.error(
-          `${error.questionIndex + 1}. sorununun ${error.index +
-            1} cevabının içeriği eksik`,
-          { position: toast.POSITION.BOTTOM_LEFT }
-        )
-      );
+    if (messages.answersErrors) {
+      messages.answersErrors.map(error => toast.error(
+        `${error.questionIndex + 1}. sorununun ${error.index
+            + 1} cevabının içeriği eksik`,
+        { position: toast.POSITION.BOTTOM_LEFT },
+      ));
     }
-    if (errors.settingsError) {
+    if (messages.settingsError) {
       toast.error('Ayarları Tamamlamadınız...', {
-        position: toast.POSITION.BOTTOM_LEFT
+        position: toast.POSITION.BOTTOM_LEFT,
       });
     }
-    if (errors.inputsErrors) {
+    if (messages.inputsErrors) {
       toast.error('Anket ismini yazmadınız...', {
-        position: toast.POSITION.BOTTOM_LEFT
+        position: toast.POSITION.BOTTOM_LEFT,
       });
     }
-    if (errors.slugError) {
+    if (messages.slugError) {
       toast.error('Anket adresini yazmadınız...', {
-        position: toast.POSITION.BOTTOM_LEFT
+        position: toast.POSITION.BOTTOM_LEFT,
       });
     }
-    if (errors.apiMessage) {
+    if (messages.apiMessage) {
       if (
-        errors.apiMessage === 'Anket Kaydedildi' ||
-        errors.apiMessage === 'Anket Güncellendi'
+        messages.apiMessage === 'Anket Kaydedildi'
+        || messages.apiMessage === 'Anket Güncellendi'
       ) {
-        toast.success(errors.apiMessage, {
-          position: toast.POSITION.BOTTOM_LEFT
+        toast.success(messages.apiMessage, {
+          position: toast.POSITION.BOTTOM_LEFT,
         });
       } else {
-        toast.error(errors.apiMessage, {
-          position: toast.POSITION.BOTTOM_LEFT
+        toast.error(messages.apiMessage, {
+          position: toast.POSITION.BOTTOM_LEFT,
         });
       }
     }
-  };
+  }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const { postPoll, updatePoll } = this.props.pollsActions;
+    const { pollsActions } = this.props;
+    const { postPoll, updatePoll } = pollsActions;
     const { poll } = this.props;
     // Errors
     const questionsErrors = checkEmpty(poll.questions);
@@ -107,11 +104,11 @@ class PollEditor extends Component {
     // If poll has id, update that poll
     // Otherwise post a new poll
     if (
-      questionsErrors.length > 0 ||
-      answersErrors.length > 0 ||
-      settingsError ||
-      inputsErrors ||
-      slugError
+      questionsErrors.length > 0
+      || answersErrors.length > 0
+      || settingsError
+      || inputsErrors
+      || slugError
     ) {
       this.notify({
         questionsErrors,
@@ -119,24 +116,25 @@ class PollEditor extends Component {
         settingsError,
         inputsErrors,
         slugError,
-        handleOK: false
+        handleOK: false,
       });
     } else if (poll.id === '') {
       postPoll(poll);
     } else {
       updatePoll(poll);
     }
-  };
+  }
 
   render() {
-    const { poll } = this.props;
-    const { addQuestion } = this.props.pollActions;
+    const { poll, pollActions } = this.props;
+    const { name } = poll;
+    const { addQuestion } = pollActions;
     return (
       <>
         <Container className="my-4">
           <Row>
             <Col md={12}>
-              <div dangerouslySetInnerHTML={{ __html: this.props.poll.name }} />
+              <div dangerouslySetInnerHTML={{ __html: name }} />
               <hr />
             </Col>
           </Row>
@@ -163,7 +161,7 @@ class PollEditor extends Component {
 }
 
 PollEditor.defaultProps = {
-  slug: null
+  slug: null,
 };
 
 PollEditor.propTypes = {
@@ -172,7 +170,7 @@ PollEditor.propTypes = {
   polls: PropTypes.object.isRequired,
   pollsActions: PropTypes.shape({
     updatePoll: PropTypes.func.isRequired,
-    postPoll: PropTypes.func.isRequired
+    postPoll: PropTypes.func.isRequired,
   }).isRequired,
   pollActions: PropTypes.shape({
     addQuestion: PropTypes.func.isRequired,
@@ -182,18 +180,18 @@ PollEditor.propTypes = {
 function mapStateToProps(state) {
   return {
     poll: state.poll,
-    polls: state.polls
+    polls: state.polls,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     pollActions: bindActionCreators(pollActions, dispatch),
-    pollsActions: bindActionCreators(pollsActions, dispatch)
+    pollsActions: bindActionCreators(pollsActions, dispatch),
   };
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(PollEditor);

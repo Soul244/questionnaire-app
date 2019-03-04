@@ -161,18 +161,20 @@ export function getPollsAction(payload) {
 
 export function getPollsErrorAction(payload) {
   return {
-    type: asyncTypes.GET_ALL_POLLS_ERROR,
+    type: asyncTypes.GET_POLLS_ERROR,
     payload,
   };
 }
 
-export function getPolls(userid) {
+export function getPolls() {
   axios.defaults.headers.authorization = localStorage.getItem('token');
+  const endPoint = '/polls';
   return async (dispatch) => {
     try {
       dispatch(getPollsStartAction());
+      console.log(endPoint);
       const response = await axios.get(
-        `/polls/user/${userid}`,
+        endPoint,
       );
       dispatch(getPollsAction(response.data));
     } catch (error) {

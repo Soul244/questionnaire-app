@@ -42,22 +42,6 @@ const QuestionContainer = styled.div`
 `;
 
 class SideBySide extends React.Component {
-  static propTypes = {
-    testStarted: PropTypes.bool.isRequired,
-    testFinished: PropTypes.bool.isRequired,
-    handleTestStarted: PropTypes.func.isRequired,
-    addParticipantAnswer: PropTypes.func.isRequired,
-    postParticipant: PropTypes.func.isRequired,
-    participant: PropTypes.object.isRequired,
-    handleTestFinished: PropTypes.func.isRequired,
-    poll: PropTypes.shape({
-      settings: PropTypes.shape({
-        answerAutoChangeTime: PropTypes.string.isRequired,
-        hasAnswerAutoChangeTime: PropTypes.bool.isRequired,
-      }).isRequired,
-    }).isRequired,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -98,7 +82,7 @@ class SideBySide extends React.Component {
 
   slideNext = () => {
     const { slideIndex } = this.state;
-    const { poll } = this.props;
+    const { poll, handleTestFinished } = this.props;
     const { questions } = poll;
     const remainingCount = questions.length - slideIndex;
     if (remainingCount > 1) {
@@ -106,7 +90,7 @@ class SideBySide extends React.Component {
         slideIndex: slideIndex + 1,
       });
     } else {
-      this.props.handleTestFinished();
+      handleTestFinished();
     }
   }
 
@@ -235,5 +219,21 @@ class SideBySide extends React.Component {
     );
   }
 }
+
+SideBySide.propTypes = {
+  testStarted: PropTypes.bool.isRequired,
+  testFinished: PropTypes.bool.isRequired,
+  handleTestStarted: PropTypes.func.isRequired,
+  addParticipantAnswer: PropTypes.func.isRequired,
+  postParticipant: PropTypes.func.isRequired,
+  participant: PropTypes.object.isRequired,
+  handleTestFinished: PropTypes.func.isRequired,
+  poll: PropTypes.shape({
+    settings: PropTypes.shape({
+      answerAutoChangeTime: PropTypes.string.isRequired,
+      hasAnswerAutoChangeTime: PropTypes.bool.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default SideBySide;

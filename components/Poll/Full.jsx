@@ -19,15 +19,6 @@ const QuestionContainer = styled.div`
 `;
 
 class Full extends React.Component {
-  static propTypes = {
-    testStarted: PropTypes.string.isRequired,
-    handleTestStarted: PropTypes.func.isRequired,
-    addParticipantAnswer: PropTypes.func.isRequired,
-    postParticipant: PropTypes.func.isRequired,
-    participant: PropTypes.object.isRequired,
-    poll: PropTypes.object.isRequired,
-  };
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -109,5 +100,14 @@ class Full extends React.Component {
     );
   }
 }
+
+Full.propTypes = {
+  testStarted: PropTypes.string.isRequired,
+  handleTestStarted: PropTypes.func.isRequired,
+  addParticipantAnswer: PropTypes.func.isRequired,
+  postParticipant: PropTypes.func.isRequired,
+  participant: PropTypes.object.isRequired,
+  poll: PropTypes.object.isRequired,
+};
 
 export default Full;

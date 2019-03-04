@@ -8,7 +8,7 @@ import Desc from './Desc';
 import Icon, { arrowDown, plus } from '../../css/icons';
 import { ContentViewer, AnswerTool } from '../Shared';
 import InputBox from './Shared/InputBox';
-import Answers from './Answers';
+import Answers from '../../containers/PollEditor/Answers';
 
 const QuestionContainer = styled.div`
   display: flex;
@@ -79,13 +79,9 @@ class Question extends Component {
       showDelete: false,
       answerToolShow: false,
     };
-    this.descToggle = this.descToggle.bind(this);
-    this.answerToolToggle = this.answerToolToggle.bind(this);
-    this.toggle = this.toggle.bind(this);
-    this.toggleDelete = this.toggleDelete.bind(this);
   }
 
-  descToggle() {
+  descToggle = () => {
     const { showDesc } = this.state;
     if (showDesc) {
       this.setState({
@@ -99,21 +95,21 @@ class Question extends Component {
   }
 
   // Hide-Show answer tool
-  answerToolToggle() {
+  answerToolToggle = () => {
     this.setState(prevState => ({
       answerToolShow: !prevState.answerToolShow,
     }));
   }
 
   // Hide-Show question div
-  toggle() {
+  toggle = () => {
     this.setState(prevState => ({
       show: !prevState.show,
     }));
   }
 
   // Hide-Show Delete Modal
-  toggleDelete() {
+  toggleDelete = () => {
     this.setState(prevState => ({
       showDelete: !prevState.showDelete,
     }));

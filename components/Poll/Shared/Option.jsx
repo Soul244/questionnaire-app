@@ -39,6 +39,11 @@ function Option(props) {
     questionCount,
     showPercent,
   } = props;
+  console.log('----');
+  console.log(`index: ${index}`);
+  console.log(`rightAnswerIndex: ${rightAnswerIndex}`);
+  console.log('----');
+
   return (
     <Col md={6}>
       <CardStyled
@@ -79,6 +84,10 @@ function Option(props) {
     </Col>
   );
 }
+
+Option.defaultProps = {
+  rightAnswerIndex: null,
+};
 
 Option.propTypes = {
   index: PropTypes.number.isRequired,

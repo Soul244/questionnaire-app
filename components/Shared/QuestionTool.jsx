@@ -63,7 +63,7 @@ class QuestionTool extends React.Component {
     };
   }
 
-  toggle = () =>  {
+  toggle = () => {
     this.setState(prevState => ({
       show: !prevState.show,
     }));
@@ -76,7 +76,7 @@ class QuestionTool extends React.Component {
       <Draggable>
         <CardStyled className="text-center">
           <CardBodyStyled>
-            <PlusIcon size="md" outline block onClick={this.toggle} show={show? 1: 0} id="toggle">
+            <PlusIcon size="md" outline block onClick={this.toggle} show={show ? 1: 0} id="toggle">
               <Icon size="48px" icon={arrowUp} />
             </PlusIcon>
             <HideableContent show={show}>

@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
 
-import { Container, Row, Col, Card, CardBody } from 'reactstrap';
+import {
+  Container, Row, Col, Card, CardBody,
+} from 'reactstrap';
 import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -12,7 +14,7 @@ import * as userActions from '../../redux/actions/userActions';
 import {
   LoginSchema,
   SignUpSchema,
-  ResetPasswordSchema
+  ResetPasswordSchema,
 } from '../../validation/validationSchemas';
 import { SignUp, Login, ResetPassword } from '../../components/Auth';
 
@@ -35,13 +37,13 @@ class Auth extends Component {
       postLogin: PropTypes.func.isRequired,
       postSignUp: PropTypes.func.isRequired,
       postResetPassword: PropTypes.func.isRequired,
-    })
+    }),
   };
-  
+
   constructor() {
     super();
     this.state = {
-      page: 'login'
+      page: 'login',
     };
   }
 
@@ -65,16 +67,16 @@ class Auth extends Component {
     }
   }
 
-  notify = message => {
+  notify = (message) => {
     if (message) {
       toast.info(message, { position: toast.POSITION.BOTTOM_RIGHT });
     }
     this.props.user.message = '';
   };
 
-  pageHandle = page => {
+  pageHandle = (page) => {
     this.setState({
-      page
+      page,
     });
   };
 
@@ -122,14 +124,14 @@ class Auth extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
-  userActions: bindActionCreators(userActions, dispatch)
-})
+  userActions: bindActionCreators(userActions, dispatch),
+});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Auth);

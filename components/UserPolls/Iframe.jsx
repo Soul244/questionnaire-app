@@ -13,13 +13,13 @@ class Iframe extends React.Component {
     };
   }
 
-  widthOnChangeHandle = (e) =>  {
+  widthOnChangeHandle = (e) => {
     this.setState({
       width: e.target.value,
     });
   }
 
-  heightOnChangeHandle = (e) =>  {
+  heightOnChangeHandle = (e) => {
     this.setState({
       height: e.target.value,
     });
@@ -28,7 +28,6 @@ class Iframe extends React.Component {
   render() {
     const { modal, toggle, pollName } = this.props;
     const { width, height } = this.state;
-    const { localhost } = process.env;
     return (
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Iframe Kodu</ModalHeader>
@@ -58,7 +57,11 @@ class Iframe extends React.Component {
           <Row>
             <Col>
               <FormGroup>
-                <Input type="textarea" defaultValue={`<iframe width=600 height=400 src=${localhost}anket/${pollName}></iframe>`} value={`<iframe width=${width} height=${height} src=${localhost}embed/${pollName}></iframe>`} />
+                <Input
+                  type="textarea"
+                  defaultValue={`<iframe width=600 height=400 src=${process.env.DOMAIN}anket/${pollName}></iframe>`}
+                  value={`<iframe width=${width} height=${height} src=${process.env.DOMAIN}embed/${pollName}></iframe>`}
+                />
               </FormGroup>
             </Col>
           </Row>

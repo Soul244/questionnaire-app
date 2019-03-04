@@ -8,6 +8,7 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
+  Input,
 } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -34,29 +35,36 @@ const NavbarStyled = styled(Navbar)`
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 `;
 
+const InputStyled = styled(Input)`
+  height: 36px !important;
+  padding: 0 0.5rem !important;
+  max-width: 380px;
+`;
+
 class index extends Component {
   constructor(props) {
     super(props);
-    this.toggle = this.toggle.bind(this);
-    this.toggleDropDownToggle = this.toggleDropDownToggle.bind(this);
-    this.onClick = this.onClick.bind(this);
     this.state = {
       isOpen: false,
       dropdownOpen: false,
       isLogged: false,
+      homeLink: null,
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     const token = localStorage.getItem('token');
     if (token && token !== '') {
       this.setState({
         isLogged: true,
       });
     }
+    this.setState({
+      homeLink: '/anket/anketlerim',
+    });
   }
 
-  onClick() {
+  onClick = () => {
     localStorage.setItem('_id', '');
     localStorage.setItem('email', '');
     localStorage.setItem('token', '');
@@ -65,32 +73,33 @@ class index extends Component {
     });
   }
 
-  toggle() {
+  toggle = () => {
     this.setState(prevState => ({
       isOpen: !prevState.isOpen,
     }));
   }
 
-  toggleDropDownToggle() {
+  toggleDropDownToggle = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
     });
   }
 
   render() {
-    const { isLogged } = this.state;
+    const { isLogged, homeLink, isOpen } = this.state;
     return (
       <NavbarStyled className="nav-bg" light expand="md">
         <Container>
-          <NavbarBrandStyled href="/">
+          <NavbarBrandStyled href={homeLink}>
             <img
               src="/static/bilemezsin-logo.jpg"
               style={{ width: '32px', height: '32px' }}
               alt="logo"
             />
           </NavbarBrandStyled>
+          <InputStyled />
           <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               {isLogged && <Logged logOut={this.onClick} />}
               {!isLogged && <Anonim />}

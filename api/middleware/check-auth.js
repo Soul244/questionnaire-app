@@ -5,7 +5,7 @@ const { JWT_KEY } = process.env;
 module.exports = (req, res, next) => {
   try {
     const decoded = jwt.verify(req.headers.authorization, JWT_KEY, null);
-    req.userData = decoded;
+    req.user = decoded;
     next();
   } catch (error) {
     return res.status(401).json({

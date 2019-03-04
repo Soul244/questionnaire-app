@@ -122,7 +122,7 @@ class Setting extends React.Component {
             name={name}
             label={labels[0]}
             value={values[0]}
-            checked={values[0]===checkedValue}
+            checked={values[0] === checkedValue}
             onChange={onChange}
           />
           <CustomInput
@@ -131,7 +131,7 @@ class Setting extends React.Component {
             name={name}
             label={labels[1]}
             value={values[1]}
-            checked={values[1]===checkedValue}
+            checked={values[1] === checkedValue}
             onChange={onChange}
           />
           {hasInput && (
@@ -155,10 +155,10 @@ Setting.defaultProps = {
   labels: ['Evet', 'Hayır'],
   values: [true, false],
   hasInput: false,
-  inputValue: "",
-  inputChange: undefined,
+  inputValue: '',
+  inputChange: null,
   inputPlaceHolder: '',
-  checkedValue: undefined,
+  checkedValue: null,
   tooltip: '',
   info: '',
 };

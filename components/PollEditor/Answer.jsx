@@ -27,10 +27,9 @@ class Answer extends Component {
     this.state = {
       showDelete: false,
     };
-    this.toggleDelete = this.toggleDelete.bind(this);
   }
 
-  toggleDelete() {
+  toggleDelete =() => {
     this.setState(prevState => ({
       showDelete: !prevState.showDelete,
     }));

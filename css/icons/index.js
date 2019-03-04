@@ -1,26 +1,25 @@
 import { Icon } from 'react-icons-kit';
+import { bullhorn, statsDots } from 'react-icons-kit/icomoon/';
+import { question, close } from 'react-icons-kit/fa';
 import {
-  play, pencil, image, bullhorn, plus, floppyDisk,
-} from 'react-icons-kit/icomoon/';
-import {ic_clear} from 'react-icons-kit/md/ic_clear';
-import { ic_keyboard_arrow_down } from 'react-icons-kit/md/ic_keyboard_arrow_down';
-import { ic_keyboard_arrow_up } from 'react-icons-kit/md/ic_keyboard_arrow_up';
-import { ic_keyboard_arrow_left } from 'react-icons-kit/md/ic_keyboard_arrow_left';
-import { ic_videocam } from 'react-icons-kit/md/ic_videocam';
-import { ic_image } from 'react-icons-kit/md/ic_image';
-import { ic_text_fields } from 'react-icons-kit/md/ic_text_fields';
-import { ic_save } from 'react-icons-kit/md/ic_save';
-import { ic_add } from 'react-icons-kit/md/ic_add';
-import { ic_open_in_new } from 'react-icons-kit/md/ic_open_in_new';
-import { ic_delete } from 'react-icons-kit/md/ic_delete';
-import { ic_edit } from 'react-icons-kit/md/ic_edit';
-import { statsDots } from 'react-icons-kit/icomoon/statsDots';
-import { ic_code } from 'react-icons-kit/md/ic_code';
-import { ic_launch } from 'react-icons-kit/md/ic_launch';
-import { question } from 'react-icons-kit/fa/question';
-import { close } from 'react-icons-kit/fa/close';
-import { ic_screen_share } from 'react-icons-kit/md/ic_screen_share';
-import {ic_done} from 'react-icons-kit/md/ic_done';
+  ic_clear,
+  ic_keyboard_arrow_down,
+  ic_keyboard_arrow_up,
+  ic_keyboard_arrow_left,
+  ic_videocam,
+  ic_image,
+  ic_text_fields,
+  ic_save,
+  ic_add,
+  ic_open_in_new,
+  ic_delete,
+  ic_edit,
+  ic_code,
+  ic_launch,
+  ic_screen_share,
+  ic_done,
+} from 'react-icons-kit/md';
+
 
 export default Icon;
 

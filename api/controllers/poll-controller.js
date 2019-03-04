@@ -88,8 +88,9 @@ exports.Get_All_Polls = (req, res) => {
 };
 
 exports.Get_Polls = (req, res) => {
+  const { _id } = req.user;
   Poll.find({
-    user: req.params.user,
+    user: _id,
   })
     .sort({
       createdAt: -1,

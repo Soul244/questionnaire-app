@@ -35,7 +35,7 @@ function Question({
   );
 }
 
-Question.defaulProps = {
+Question.defaultProps = {
   desc: '',
 };
 

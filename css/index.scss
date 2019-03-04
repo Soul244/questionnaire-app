@@ -1,14 +1,16 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
 $border-radius: 8px;
-$navbar-color: #77ba99;
+$navbar-color: #aa767c;
 
 body {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Montserrat', sans-serif, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
+    font-family: 'Montserrat', sans-serif, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: rgba($color: $navbar-color, $alpha: 0.03) !important;
+    //background-color: rgba($color: $navbar-color, $alpha: 0.05) !important;
 }
 
 html {
@@ -100,7 +102,7 @@ code {
 .col-xl-8,
 .col-xl-9,
 .col-xl-auto {
-    padding: 10px !important;
+    padding: 10px;
 }
 
 .row {
@@ -134,16 +136,16 @@ ul {
 }
 
 .card {
-    margin: 5px 0;
     border-radius: $border-radius;
+    background-color: #F5F5F5;
 }
 
 .card-body {
-    padding: 0.75rem !important
+    padding: 0.75rem;
 }
 
 .btn {
-    border-radius: 60px !important;
+    border-radius: 60px;
 }
 
 .field-error {
@@ -169,13 +171,13 @@ ul {
 }
 
 .card-header {
-    padding: 0.4rem 1rem !important;
+    padding: 0.4rem 1rem;
 }
 
 .card-footer {
-    padding: 0.4rem 0rem !important;
+    padding: 0.4rem 0rem;
     margin: 0 1rem;
-    background-color: #fff !important;
+    background-color: #fff;
 }
 
 .input-group-text {
@@ -191,25 +193,21 @@ ul {
 }
 
 input {
-    padding: 1.5rem !important;
-}
-
-p {
-    margin-bottom: 0px !important;
+    padding: 1.5rem;
 }
 
 .btn-outline-secondary {
-    color: gray !important;
-    border-color: gray !important;
+    color: gray;
+    border-color: gray ;
 }
 
 .progress {
-    height: 2rem !important;
-    font-size: 1rem !important;
+    height: 2rem ;
+    font-size: 1rem ;
 }
 
 .error {
-    border-bottom: 2px solid red !important;
+    border-bottom: 2px solid red ;
 }
 
 .masonry-card-list {
@@ -297,10 +295,15 @@ p {
 }
 
 .navbar {
-    padding: 0.25rem 1rem !important;
+    padding: 0.25rem 1rem;
 }
 
 .svg-icon {
     width: 24px;
     height: 24px;
+}
+
+.bg-parallax{
+    height: 100%;
+    width: 100%;
 }

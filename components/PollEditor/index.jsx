@@ -1,8 +1,8 @@
-import Answers from './Answers';
+import Question from './Question';
+import Answer from './Answer';
 import Desc from './Desc';
 import Setting from './Setting';
-import Questions from './Questions';
 
 export {
-  Answers, Desc, Questions, Setting,
+  Answer, Desc, Question, Setting,
 };

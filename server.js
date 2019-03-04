@@ -20,6 +20,11 @@ app
       return app.render(req, res, actualPage);
     });
 
+    server.get('/anket/anketlerim', (req, res) => {
+      const actualPage = '/poll/list';
+      return app.render(req, res, actualPage);
+    });
+
     server.get('/anket/:slug', (req, res) => {
       const actualPage = '/poll';
       const queryParams = { slug: req.params.slug };
@@ -43,17 +48,13 @@ app
       return app.render(req, res, actualPage, queryParams);
     });
 
-    server.get('/anket/anketlerim/:userid', (req, res) => {
-      const actualPage = '/poll/list';
-      const queryParams = { userid: req.params.userid };
-      return app.render(req, res, actualPage, queryParams);
-    });
-
     server.get('/anket/istatistikler/:slug', (req, res) => {
       const actualPage = '/poll/stats';
       const queryParams = { slug: req.params.slug };
       return app.render(req, res, actualPage, queryParams);
     });
+
+
     // For all other routes, use next.js.
     server.get('*', (req, res) => handle(req, res));
 
