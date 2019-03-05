@@ -39,11 +39,6 @@ function Option(props) {
     questionCount,
     showPercent,
   } = props;
-  console.log('----');
-  console.log(`index: ${index}`);
-  console.log(`rightAnswerIndex: ${rightAnswerIndex}`);
-  console.log('----');
-
   return (
     <Col md={6}>
       <CardStyled

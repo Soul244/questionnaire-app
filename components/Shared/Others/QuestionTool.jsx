@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import Draggable from 'react-draggable';
 import Icon, {
   video, text, image, audio, save, preview, arrowUp, publish,
-} from '../../css/icons';
+} from '../../../css/icons';
 
 const ButtonStyled = styled(Button)`
   width: 40px;
@@ -76,7 +76,7 @@ class QuestionTool extends React.Component {
       <Draggable>
         <CardStyled className="text-center">
           <CardBodyStyled>
-            <PlusIcon size="md" outline block onClick={this.toggle} show={show ? 1: 0} id="toggle">
+            <PlusIcon size="md" outline block onClick={this.toggle} show={show ? 1 : 0} id="toggle">
               <Icon size="48px" icon={arrowUp} />
             </PlusIcon>
             <HideableContent show={show}>

@@ -1,5 +1,4 @@
 import React from 'react';
-import uuidv1 from 'uuid/v1';
 import PropTypes from 'prop-types';
 
 import {
@@ -54,7 +53,6 @@ class Setting extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: uuidv1(),
       show: false,
     };
   }
@@ -77,12 +75,10 @@ class Setting extends React.Component {
       inputValue,
       inputChange,
       inputPlaceHolder,
-      tooltip,
       info,
     } = this.props;
     const { id, show } = this.state;
     return (
-      //  checked needs refactor for string paramaters - it's not a good solution
       <FormGroupStyled id={id}>
         <HeaderContainer>
           <Label>{header}</Label>
@@ -159,15 +155,13 @@ Setting.defaultProps = {
   inputChange: null,
   inputPlaceHolder: '',
   checkedValue: null,
-  tooltip: '',
   info: '',
 };
 
 Setting.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  values: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   name: PropTypes.string.isRequired,
   labels: PropTypes.array,
-  tooltip: PropTypes.string,
   header: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   hasInput: PropTypes.bool,
@@ -175,6 +169,7 @@ Setting.propTypes = {
   inputChange: PropTypes.func,
   inputPlaceHolder: PropTypes.string,
   info: PropTypes.string,
+  checkedValue: PropTypes.string,
 };
 
 export default Setting;

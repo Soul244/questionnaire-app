@@ -69,10 +69,11 @@ class SideBySide extends React.Component {
 
   changeQuestion = () => {
     // If counter still doesn't finish, won't change question
-    if (this.state.progressValue !== 0) return;
-
-    const { answerAutoChangeTime, hasAnswerAutoChangeTime } = this.props.poll.settings;
-
+    const { progressValue } = this.state;
+    if (progressValue !== 0) return;
+    const { poll } = this.props;
+    const { settings } = poll;
+    const { answerAutoChangeTime, hasAnswerAutoChangeTime } = settings;
     // If poll has auto change time, will start timer. Otherwise continue...
     if (hasAnswerAutoChangeTime) {
       const interval = setInterval(this.timer, answerAutoChangeTime / 100);

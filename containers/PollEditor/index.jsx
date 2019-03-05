@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Router from 'next/router';
 import PropTypes from 'prop-types';
+import slugify from 'slugify';
 
 import {
-  Container, Row, Col, Card, CardBody,
+  Row, Col,
 } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
 
 import Settings from './Settings';
-import PollLast from './PollLast';
-import PollHeader from './PollHeader';
-import Inject from './Inject';
-import SelectableLastMessage from './SelectableLastMessage';
 import Questions from './Questions';
-import { QuestionTool } from '../../components/Shared';
+import { QuestionTool, FormInput, FormEditor } from '../../components/Shared';
 import { checkEmpty } from '../../validation/validationFunctions';
 
 import * as pollActions from '../../redux/actions/pollActions';
@@ -24,17 +20,35 @@ import withNavbar from '../../hoc/withNavbar';
 
 @withNavbar
 class PollEditor extends Component {
+  config = {
+    placeholderText: 'Anket açıklamanızı giriniz...',
+    heightMin: 100,
+    heightMax: 400,
+    iframe: true,
+    toolbarSticky: false,
+    imageUploadRemoteUrls: false,
+    tabSpaces: 4,
+    pluginsEnabled: ['align', 'charCounter', 'codeBeautifier', 'codeView', 'colors', 'draggable', 'embedly', 'emoticons', 'entities', 'file', 'fontFamily', 'fontSize', 'fullscreen', 'image', 'imageManager', 'inlineStyle', 'lineBreaker', 'link', 'lists', 'paragraphFormat', 'paragraphStyle', 'quickInsert', 'quote', 'save', 'table', 'url', 'video', 'wordPaste'],
+    toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineClass', 'inlineStyle', 'paragraphStyle', 'lineHeight', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertTable', '|', 'emoticons', 'fontAwesome', 'specialCharacters', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'html', '|', 'undo', 'redo'],
+  };
+
+  configText = {
+    placeholderText: 'Anket sonu başlığınızı giriniz...',
+    heightMin: 100,
+    heightMax: 400,
+    iframe: true,
+    tabSpaces: 4,
+    toolbarSticky: false,
+    imageUploadRemoteUrls: false,
+    pluginsEnabled: ['align', 'charCounter', 'codeBeautifier', 'codeView', 'colors', 'draggable', 'embedly', 'emoticons', 'entities', 'file', 'fontFamily', 'fontSize', 'fullscreen', 'image', 'imageManager', 'inlineStyle', 'lineBreaker', 'link', 'lists', 'paragraphFormat', 'paragraphStyle', 'quickInsert', 'quote', 'save', 'table', 'url', 'video', 'wordPaste'],
+    toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineClass', 'inlineStyle', 'paragraphStyle', 'lineHeight', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertTable', '|', 'emoticons', 'fontAwesome', 'specialCharacters', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'html', '|', 'undo', 'redo'],
+  };
+
+
   componentWillMount() {
     const { slug, pollActions } = this.props;
     if (slug) {
       pollActions.getUpdatePoll(slug);
-    }
-  }
-
-  componentDidMount() {
-    const token = localStorage.getItem('token');
-    if (!token && token === '') {
-      Router.push({ pathname: '/giris-yap' });
     }
   }
 
@@ -43,6 +57,43 @@ class PollEditor extends Component {
     const { message } = polls;
     if (nextProps.polls.message !== message) {
       this.notify({ apiMessage: nextProps.polls.message });
+    }
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { pollsActions } = this.props;
+    const { postPoll, updatePoll } = pollsActions;
+    const { poll } = this.props;
+    // Errors
+    const questionsErrors = checkEmpty(poll.questions);
+    const answersErrors = checkEmpty(poll.answers);
+    const settingsError = false; // checkObjectEmpty(poll.settings);
+    const inputsErrors = poll.name === '';
+    const slugError = poll.slug === '';
+
+    // If there is a error, won't post anything
+    // If poll has id, update that poll
+    // Otherwise post a new poll
+    if (
+      questionsErrors.length > 0
+      || answersErrors.length > 0
+      || settingsError
+      || inputsErrors
+      || slugError
+    ) {
+      this.notify({
+        questionsErrors,
+        answersErrors,
+        settingsError,
+        inputsErrors,
+        slugError,
+        handleOK: false,
+      });
+    } else if (poll.id === '') {
+      postPoll(poll);
+    } else {
+      updatePoll(poll);
     }
   }
 
@@ -90,69 +141,77 @@ class PollEditor extends Component {
     }
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { pollsActions } = this.props;
-    const { postPoll, updatePoll } = pollsActions;
-    const { poll } = this.props;
-    // Errors
-    const questionsErrors = checkEmpty(poll.questions);
-    const answersErrors = checkEmpty(poll.answers);
-    const settingsError = false; // checkObjectEmpty(poll.settings);
-    const inputsErrors = poll.name === '';
-    const slugError = poll.slug === '';
-
-    // If there is a error, won't post anything
-    // If poll has id, update that poll
-    // Otherwise post a new poll
-    if (
-      questionsErrors.length > 0
-      || answersErrors.length > 0
-      || settingsError
-      || inputsErrors
-      || slugError
-    ) {
-      this.notify({
-        questionsErrors,
-        answersErrors,
-        settingsError,
-        inputsErrors,
-        slugError,
-        handleOK: false,
-      });
-    } else if (poll.id === '') {
-      postPoll(poll);
-    } else {
-      updatePoll(poll);
-    }
-  }
-
   render() {
     const { poll, pollActions } = this.props;
-    const { addQuestion } = pollActions;
+    const {
+      addQuestion,
+      onChangeName,
+      onChangeDesc,
+      onChangeSlug,
+      onChangeLastDesc,
+    } = pollActions;
+
+    const {
+      name,
+      desc,
+      slug,
+      lastDesc,
+    } = poll;
     return (
       <>
         <ToastContainer autoClose={3000} />
-        <Row>
-          <Col md={12}>
-            <form onSubmit={this.handleSubmit}>
-              <Card>
-                <CardBody>
-                  <QuestionTool addQuestion={addQuestion} />
-                  <PollHeader />
-                  <hr />
-                  <PollLast />
-                  <hr />
-                  <Inject />
-                  <hr />
-                  <Settings />
-                </CardBody>
-              </Card>
-              {poll.settings.type === 'test' && <SelectableLastMessage />}
+        <form onSubmit={this.handleSubmit}>
+          <QuestionTool addQuestion={addQuestion} />
+          <Row>
+            <Col md="6">
+              <FormInput
+                title="Anket Başlığı"
+                value={name}
+                onChange={e => onChangeName(e.target.value)}
+                placeholder="Anket başlığınızı giriniz..."
+              />
+            </Col>
+            <Col md="6">
+              <FormInput
+                title="Anket Adresi"
+                value={slug}
+                onChange={e => onChangeSlug(
+                  slugify(e.target.value,
+                    {
+                      replacement: '-',
+                      remove: null,
+                      lower: true,
+                    }),
+                )}
+                placeholder="boşluksuz, kısa çizgilerle ayrılmış bir link adı giriniz (ör. anket-1)..."
+              />
+            </Col>
+            <Col md="6">
+              <FormEditor
+                title="Anket Açıklaması"
+                config={this.config}
+                model={desc}
+                onModelChange={onChangeDesc}
+              />
+            </Col>
+            <Col md="6">
+              <FormEditor
+                title="Anket Sonu Mesajı"
+                config={this.configText}
+                model={lastDesc}
+                onModelChange={onChangeLastDesc}
+              />
+            </Col>
+            <Col md="12">
+              <Settings />
+            </Col>
+            {/* <Inject /> */}
+            {/* {poll.settings.type === 'test' && <SelectableLastMessage />} */}
+            <Col md="12">
               <Questions />
-            </form>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
+        </form>
       </>
     );
   }
@@ -164,14 +223,19 @@ PollEditor.defaultProps = {
 
 PollEditor.propTypes = {
   slug: PropTypes.string,
-  poll: PropTypes.object.isRequired,
   polls: PropTypes.object.isRequired,
-  pollsActions: PropTypes.shape({
-    updatePoll: PropTypes.func.isRequired,
-    postPoll: PropTypes.func.isRequired,
+  poll: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
   }).isRequired,
   pollActions: PropTypes.shape({
+    updatePoll: PropTypes.func.isRequired,
+    postPoll: PropTypes.func.isRequired,
     addQuestion: PropTypes.func.isRequired,
+    onChangeName: PropTypes.func.isRequired,
+    onChangeDesc: PropTypes.func.isRequired,
+    onChangeSlug: PropTypes.func.isRequired,
   }).isRequired,
 };
 

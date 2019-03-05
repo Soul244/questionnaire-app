@@ -1,13 +1,13 @@
-import QuestionTool from './QuestionTool';
-import AnswerTool from './AnswerTool';
+import QuestionTool from './Others/QuestionTool';
+import AnswerTool from './Others/AnswerTool';
 import ContentViewer from './ContentViewer';
 import Navbar from './Navbar/index';
-import CustomInput from './CustomInput';
-import Paginate from './Paginate';
-import Loading from './Loading';
-import StepWizardNav from './StepWizardNav';
-import Step from './Step';
-import Sidebar from './Sidebar';
+import CustomInput from './Custom/CustomInput';
+import Paginate from './Others/Paginate';
+import Loading from './Others/Loading';
+import Sidebar from './Others/Sidebar';
+import FormInput from './Card/FormInput';
+import FormEditor from './Card/FormEditor';
 
 export {
   ContentViewer,
@@ -17,7 +17,7 @@ export {
   CustomInput,
   Paginate,
   Loading,
-  StepWizardNav,
-  Step,
   Sidebar,
+  FormInput,
+  FormEditor,
 };

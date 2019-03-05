@@ -59,8 +59,15 @@ function CustomInput(props) {
   );
 }
 
+CustomInput.defaultProps = {
+  value: '',
+  error: null,
+};
+
 CustomInput.propTypes = {
   inputLabel: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  error: PropTypes.any,
 };
 
 export default CustomInput;

@@ -26,13 +26,9 @@ const CardHeaderStyled = styled(CardHeader)`
   display: flex;
   align-items: center;
   position: sticky;
-  top: 50px;
+  top: 0px;
   z-index: 4;
   background-color: #f3f3f3;
-`;
-
-const ContainerStyled = styled(Container)`
-  padding: 0px;
 `;
 
 const RightContainer = styled.div`
@@ -159,19 +155,17 @@ class Question extends Component {
           </RightContainer>
         </CardHeaderStyled>
         <CardBodyContainer show={show ? 1 : 0}>
-          <ContainerStyled>
-            <Row>
-              <Col md="12">
-                <QuestionContainer>
-                  <InputBox
-                    index={index}
-                    typeValue={type}
-                    inputValue={content}
-                    onChangeInput={e => onChangeQuestionContent(e.target.value, index)}
-                    onChangeType={e => onChangeQuestionType(e.target.value, index)}
-                    handleDelete={() => deleteQuestion(index)}
-                  />
-                  {type !== 'heading'
+          <Col md="12">
+            <QuestionContainer>
+              <InputBox
+                index={index}
+                typeValue={type}
+                inputValue={content}
+                onChangeInput={e => onChangeQuestionContent(e.target.value, index)}
+                onChangeType={e => onChangeQuestionType(e.target.value, index)}
+                handleDelete={() => deleteQuestion(index)}
+              />
+              {type !== 'heading'
                     && (type !== 'text' && (
                       <>
                         <PlusButtonContainer>
@@ -193,14 +187,12 @@ class Question extends Component {
                         />
                       </>
                     ))}
-                  <ContentContainer>
-                    <ContentViewer type={type} content={content} />
-                  </ContentContainer>
-                  <Answers questionIndex={index} />
-                </QuestionContainer>
-              </Col>
-            </Row>
-          </ContainerStyled>
+              <ContentContainer>
+                <ContentViewer type={type} content={content} />
+              </ContentContainer>
+              <Answers questionIndex={index} />
+            </QuestionContainer>
+          </Col>
         </CardBodyContainer>
       </Card>
     );
