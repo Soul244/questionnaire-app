@@ -18,7 +18,7 @@ import Icon, {
 } from '../../css/icons';
 
 import Iframe from './Iframe';
-import CustomTooltip from '../Shared/CustomTooltip';
+import { CustomTooltip } from '../Shared';
 
 const ButtonList = styled.div`
   display:flex;
