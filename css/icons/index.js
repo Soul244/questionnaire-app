@@ -18,6 +18,7 @@ import {
   ic_launch,
   ic_screen_share,
   ic_done,
+  ic_panorama_fish_eye,
 } from 'react-icons-kit/md';
 
 
@@ -44,4 +45,5 @@ export {
   ic_screen_share as publish,
   ic_done as done,
   ic_clear as cross,
+  ic_panorama_fish_eye as wrong,
 };

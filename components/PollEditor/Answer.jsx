@@ -68,7 +68,7 @@ class Answer extends Component {
               radioChange={() => onChangeRightAnswer(questionIndex, index)}
               onChangeInput={e => onChangeAnswerContent(e.target.value, index)}
               onChangeType={e => onChangeAnswerType(e.target.value, index)}
-              handleDelete={() => deleteAnswer(index)}
+              handleDelete={() => deleteAnswer(questionIndex, index)}
             />
             <ContentContainer>
               <ContentViewer type={type} content={content} />

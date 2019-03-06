@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Icon, { remove2, cross, done } from '../../../css/icons';
+import Icon, { remove2, wrong, done } from '../../../css/icons';
 import { types } from '../../../containers/toolTypes';
 
 const CustomSelect = styled.div`
@@ -143,7 +143,7 @@ class InputBox extends React.Component {
               onClick={radioChange}
               color={checked ? 'success' : 'secondary'}
             >
-              <Icon size="24px" icon={checked ? done : cross} />
+              <Icon size="24px" icon={checked ? done : wrong} />
             </RadioButton>
           )}
         </InputGroupAddon>

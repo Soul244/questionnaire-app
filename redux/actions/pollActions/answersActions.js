@@ -35,26 +35,6 @@ export function addAnswer(type, questionIndex) {
 }
 /* #endregion */
 
-/* #region Delete Answer IMMUTABLE */
-export function deleteAnswerAction(payload) {
-  return {
-    type: syncTypes.DELETE_ANSWER,
-    payload,
-  };
-}
-export function deleteAnswer(index) {
-  return (dispatch, getState) => {
-    const {
-      answers,
-    } = getState().poll;
-    const newAnswers = List(answers).delete(index).toArray();
-    dispatch(
-      deleteAnswerAction(newAnswers),
-    );
-  };
-}
-/* #endregion */
-
 /* #region On Changed Answer IMMUTABLE */
 export function onChangeAnswerContentAction(payload) {
   return {
@@ -104,11 +84,49 @@ export function onChangeRightAnswerAction(payload) {
 }
 export function onChangeRightAnswer(questionIndex, answerIndex) {
   return (dispatch, getState) => {
+    let newQuestions;
     const { questions } = getState().poll;
-    const newQuestions = List(questions).setIn([questionIndex, 'rightAnswerIndex'], answerIndex).toArray();
+    const question = questions[questionIndex];
+    if (question.rightAnswerIndex === answerIndex) {
+      newQuestions = List(questions).setIn([questionIndex, 'rightAnswerIndex'], null).toArray();
+    } else {
+      newQuestions = List(questions).setIn([questionIndex, 'rightAnswerIndex'], answerIndex).toArray();
+    }
     dispatch(
       onChangeRightAnswerAction(newQuestions),
     );
+  };
+}
+/* #endregion */
+
+/* #region Delete Answer IMMUTABLE */
+export function deleteAnswerAction(payload) {
+  return {
+    type: syncTypes.DELETE_ANSWER,
+    payload,
+  };
+}
+export function deleteAnswer(questionIndex, index) {
+  return (dispatch, getState) => {
+    const { answers, questions } = getState().poll;
+    const newAnswers = List(answers).delete(index).toArray();
+    dispatch(
+      deleteAnswerAction(newAnswers),
+    );
+    // Change RightAnswerIndex
+    const question = questions[questionIndex];
+    let newRightAnswerIndex;
+    if (question.rightAnswerIndex > index) {
+      newRightAnswerIndex = question.rightAnswerIndex - 1;
+    } else if (question.rightAnswerIndex === index) {
+      newRightAnswerIndex = null;
+    }
+    if (newRightAnswerIndex !== undefined) {
+      const newQuestions = List(questions).setIn([questionIndex, 'rightAnswerIndex'], newRightAnswerIndex).toArray();
+      dispatch(
+        onChangeRightAnswerAction(newQuestions),
+      );
+    }
   };
 }
 /* #endregion */
