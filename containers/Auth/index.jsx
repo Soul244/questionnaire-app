@@ -18,13 +18,36 @@ import {
 } from '../../validation/validationSchemas';
 import { SignUp, Login, ResetPassword } from '../../components/Auth';
 
+const LogoContainer = styled.div`
+  background-image: url(${props => props.src});
+  height: 200px;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => (props.bg ? '#F0F0F0' : '#fff')};
+  position: relative;
+  :before{
+    content:'';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(23, 162, 184,0.2);
+  }
+`;
+
 const Logo = styled.img`
   width: 75px;
+  border-radius: 75px;
+  box-shadow: 5px 10px 5px 0px rgba(0,0,0,0.25);
   height: auto;
 `;
 
 const CardBodyStyled = styled(CardBody)`
-  padding: 4rem !important;
+  padding: 1rem 4rem 4rem 4rem !important;
   @media (max-width: 576px) {
     padding: 1rem !important;
   }
@@ -45,16 +68,6 @@ class Auth extends Component {
     this.state = {
       page: 'login',
     };
-  }
-
-  componentDidMount() {
-    /*
-    this.props.postIsTokenValid();
-    const { isTokenValid } = this.props.user;
-    console.log(isTokenValid);
-    if (isTokenValid) {
-      window.location.href = '/home';
-    } */
   }
 
   componentWillReceiveProps(nextProps) {
@@ -84,13 +97,15 @@ class Auth extends Component {
     const { postLogin, postSignUp, postResetPassword } = this.props.userActions;
     const { page } = this.state;
     return (
-      <Container className="text-center">
+      <Container className="text-center mt-4">
         <Row>
           <Col lg={{ size: 6, offset: 3 }} md={{ size: 8, offset: 2 }}>
             <Card>
+              <LogoContainer src="/static/image_3.jpg">
+                <Logo src="/static/bilemezsin-logo.jpg" />
+              </LogoContainer>
               <CardBodyStyled>
                 <>
-                  <Logo src="/static/bilemezsin-logo.jpg" />
                   <ToastContainer autoClose={2000} />
                   {page === 'login' && (
                     <Login

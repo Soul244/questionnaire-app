@@ -10,6 +10,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  UncontrolledTooltip,
 } from 'reactstrap';
 import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
@@ -18,7 +19,6 @@ import Icon, {
 } from '../../css/icons';
 
 import Iframe from './Iframe';
-import { CustomTooltip } from '../Shared';
 
 const ButtonList = styled.div`
   display:flex;
@@ -132,11 +132,11 @@ class PollList extends React.Component {
                       </ButtonStyled>
                       <Iframe modal={this.state.modal} pollName={item.slug} toggle={this.toggle} />
                     </ButtonList>
-                    <CustomTooltip placement="bottom" target={`embed${item._id}`} text="Ankete git" />
-                    <CustomTooltip placement="bottom" target={`delete${item._id}`} text="Sil" />
-                    <CustomTooltip placement="bottom" target={`update${item._id}`} text="Güncelle" />
-                    <CustomTooltip placement="bottom" target={`stats${item._id}`} text="İstatistikler" />
-                    <CustomTooltip placement="bottom" target={`iframe${item._id}`} text="IFrame kodunu al" />
+                    <UncontrolledTooltip placement="bottom" target={`embed${item._id}`}>Ankete git</UncontrolledTooltip>
+                    <UncontrolledTooltip placement="bottom" target={`delete${item._id}`}>Sil</UncontrolledTooltip>
+                    <UncontrolledTooltip placement="bottom" target={`update${item._id}`}>Güncelle</UncontrolledTooltip>
+                    <UncontrolledTooltip placement="bottom" target={`stats${item._id}`}>İstatistikler</UncontrolledTooltip>
+                    <UncontrolledTooltip placement="bottom" target={`iframe${item._id}`}>IFrame kodunu al</UncontrolledTooltip>
                   </td>
                 </tr>
               ))

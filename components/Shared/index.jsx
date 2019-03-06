@@ -3,7 +3,6 @@ import AnswerTool from './Others/AnswerTool';
 import ContentViewer from './ContentViewer';
 import Navbar from './Navbar/index';
 import CustomInput from './Custom/CustomInput';
-import CustomTooltip from './Custom/CustomTooltip';
 import Paginate from './Others/Paginate';
 import Loading from './Others/Loading';
 import Sidebar from './Others/Sidebar';
@@ -16,7 +15,6 @@ export {
   QuestionTool,
   Navbar,
   CustomInput,
-  CustomTooltip,
   Paginate,
   Loading,
   Sidebar,

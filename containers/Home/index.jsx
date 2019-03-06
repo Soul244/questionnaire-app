@@ -105,14 +105,12 @@ class index extends Component {
       .then((response) => {
         const { isTokenValid } = response.data;
         if (!isTokenValid) {
-          Router.push({ pathname: '/anasayfa' });
           localStorage.setItem('token', '');
         } else {
           Router.push({ pathname: '/anket/anketlerim' });
         }
       })
       .catch(() => {
-        Router.push({ pathname: '/anasayfa' });
         localStorage.setItem('token', '');
       });
   }

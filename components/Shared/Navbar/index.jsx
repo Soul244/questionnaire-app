@@ -15,12 +15,6 @@ import * as userActions from '../../../redux/actions/userActions';
 import Logged from './Logged';
 import Anonim from './Anonim';
 
-const LogoText = styled.p`
-  margin-left: 0.5rem;
-  margin-bottom: 0;
-  font-size: 1rem;
-`;
-
 const NavbarBrandStyled = styled(NavbarBrand)`
   display: flex;
   align-items: center;
