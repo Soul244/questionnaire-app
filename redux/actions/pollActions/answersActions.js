@@ -17,9 +17,6 @@ export function addAnswer(type, questionIndex) {
     const {
       answers,
     } = getState().poll;
-    const filteredAnswers = answers.filter(
-      answer => answer.questionIndex === questionIndex,
-    );
     const newAnswer = {
       index: answers.length > 0 ? answers[answers.length - 1].index + 1 : 0,
       questionIndex,
