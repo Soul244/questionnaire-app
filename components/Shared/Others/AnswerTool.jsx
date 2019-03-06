@@ -65,7 +65,7 @@ function AnswerTool(props) {
       <HideableContent show={show ? 1 : 0}>
         <ButtonWithIcon size="md" outline block color="warning" onClick={() => addAnswer('text', questionIndex)}><Icon size="24px" icon={text} /></ButtonWithIcon>
         {' '}
-        <ButtonWithIcon size="md" outline block color="danger" onClick={() => addAnswer('external-media', questionIndex)}><Icon size="24px" icon={video} /></ButtonWithIcon>
+        <ButtonWithIcon size="md" outline block color="danger" onClick={() => addAnswer('video', questionIndex)}><Icon size="24px" icon={video} /></ButtonWithIcon>
         {' '}
         <ButtonWithIcon size="md" outline block color="info" onClick={() => addAnswer('image', questionIndex)}><Icon size="24px" icon={image} /></ButtonWithIcon>
         {' '}

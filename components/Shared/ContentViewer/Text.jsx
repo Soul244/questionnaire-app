@@ -7,7 +7,7 @@ const StyledText = styled.p`
 `;
 
 const Text = ({ content }) => (
-  <StyledText>
+  <StyledText data-test="text-self">
     {content}
   </StyledText>
 );

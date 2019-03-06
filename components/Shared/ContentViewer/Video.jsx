@@ -3,7 +3,10 @@ import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 
 const Video = ({ content }) => (
-  <div className="player-wrapper">
+  <div
+    className="player-wrapper"
+    data-test="video-self"
+  >
     <ReactPlayer
       className="react-player"
       url={content}

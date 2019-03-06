@@ -19,15 +19,10 @@ const FroalaEditorInput = dynamic(import('react-froala-wysiwyg'), {
 function FormEditor(props) {
   const { title, ...rest } = props;
   return (
-    <Card body className="mb-2 br">
-      <CardTitle>{title}</CardTitle>
+    <Card body className="mb-2 br" data-test="form-editor">
+      <CardTitle data-test="title">{title}</CardTitle>
       <FormGroup>
-        <FroalaEditorInput
-          tag="textarea"
-          config={rest.config}
-          model={rest.model}
-          onModelChange={rest.onModelChange}
-        />
+        <FroalaEditorInput tag="textarea" {...rest} />
       </FormGroup>
     </Card>
 

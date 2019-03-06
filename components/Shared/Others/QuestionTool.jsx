@@ -83,7 +83,7 @@ class QuestionTool extends React.Component {
               <ButtonStyled size="md" outline block color="warning" id="text" onClick={() => addQuestion('text')}>
                 <Icon size="24px" icon={text} />
               </ButtonStyled>
-              <ButtonStyled size="md" outline block color="danger" id="video" onClick={() => addQuestion('external-media')}>
+              <ButtonStyled size="md" outline block color="danger" id="video" onClick={() => addQuestion('video')}>
                 <Icon size="24px" icon={video} />
               </ButtonStyled>
               <ButtonStyled size="md" outline block color="info" id="image" onClick={() => addQuestion('image')}>

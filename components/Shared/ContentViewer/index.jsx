@@ -13,17 +13,17 @@ export {
 const Type = ({ type, content }) => {
   switch (type) {
     case 'text':
-      return <Text content={content}></Text>;
+      return <Text content={content} data-test="text" />;
     case 'heading':
-      return <Heading content={content}></Heading>;
+      return <Heading content={content} data-test="heading" />;
     case 'image':
-      return <Image content={content} />;
-    case 'external-media':
-      return <Video content={content} />;
+      return <Image content={content} data-test="image" />;
+    case 'video':
+      return <Video content={content} data-test="video" />;
     case 'gif':
-      return <Gif content={content} />;
+      return <Gif content={content} data-test="gif" />;
     case 'audio':
-      return <Audio content={content} />;
+      return <Audio content={content} data-test="audio" />;
     default:
       return 'unknown type';
   }

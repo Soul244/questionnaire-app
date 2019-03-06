@@ -12,7 +12,7 @@ function Desc(props) {
   const {
     type, show, value, onChange,
   } = props;
-  if (type === 'audio' || type === 'external-media' || type === 'gif' || type === 'image') {
+  if (type === 'audio' || type === 'video' || type === 'gif' || type === 'image') {
     return (
       <InputStyled
         show={show}

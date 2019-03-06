@@ -8,14 +8,10 @@ import {
 function FormInput(props) {
   const { title, ...rest } = props;
   return (
-    <Card body className="mb-2 br">
-      <CardTitle>{title}</CardTitle>
+    <Card body className="mb-2 br" data-test="form-input">
+      <CardTitle data-test="title">{title}</CardTitle>
       <FormGroup>
-        <Input
-          value={rest.value}
-          onChange={rest.onChange}
-          placeholder={rest.placeholder}
-        />
+        <Input {...rest} />
       </FormGroup>
     </Card>
   );
