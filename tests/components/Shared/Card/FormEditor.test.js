@@ -16,7 +16,7 @@ describe('FormEditor Component', () => {
     });
   });
 
-  it('Should render withouth errors', () => {
+  it('Should render without errors', () => {
     const wrapper = findByAttr(component, 'form-editor');
     expect(wrapper.length).toBe(1);
   });

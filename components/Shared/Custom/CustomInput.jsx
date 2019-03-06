@@ -41,12 +41,17 @@ function CustomInput(props) {
     inputLabel, value, error, ...rest
   } = props;
   return (
-    <Container>
+    <Container data-test="container">
       <InputStyled
         {...rest}
         error={error}
+        data-test="input"
       />
-      <LabelStyled value={value} error={error}>
+      <LabelStyled
+        value={value}
+        error={error}
+        data-test="label"
+      >
         {error && (
           error
         )}

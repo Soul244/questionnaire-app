@@ -8,7 +8,7 @@ const setUp = (props = {}) => {
   return component;
 };
 
-describe('Should render Audio Component', () => {
+describe('ContentViewer Component', () => {
   it('Should render Audio compenent', () => {
     const component = setUp({ type: 'audio', content: 'audio-link' });
     const wrapper = findByAttr(component, 'audio');

@@ -16,7 +16,7 @@ describe('FormInput Component', () => {
     });
   });
 
-  it('Should render withouth errors', () => {
+  it('Should render without errors', () => {
     const formInput = findByAttr(component, 'form-input');
     expect(formInput.length).toBe(1);
   });
