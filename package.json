@@ -6,7 +6,8 @@
   "scripts": {
     "build": "next build",
     "export": "npm run build && next export",
-    "start": "node server.js ",
+    "start": "node server.js",
+    "heroku-postbuild": "npm run build",
     "test": "jest --watchAll --coverage"
   },
   "dependencies": {
