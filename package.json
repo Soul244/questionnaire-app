@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "start nodemon api/server.js && start node server.js",
     "build": "next build",
     "export": "npm run build && next export",
     "start": "node server.js ",
@@ -24,7 +23,7 @@
     "jest-styled-components": "^6.3.1",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
-    "next": "^7.0.2",
+    "next": "^8.0.3",
     "next-plugin-transpile-modules": "^1.0.0",
     "next-redux-wrapper": "^3.0.0-alpha.1",
     "node-sass": "^4.11.0",
