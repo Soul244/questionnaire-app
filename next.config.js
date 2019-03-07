@@ -3,7 +3,6 @@ const withCSS = require('@zeit/next-css');
 const withSass = require('@zeit/next-sass');
 
 const rules = {
-  target: 'serverless',
   cssModules: false,
   webpack(config) {
     config.module.rules.push({
