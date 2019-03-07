@@ -1,4 +1,4 @@
-export const types = [
+export default [
   { type: 'text', desc: 'Metin' },
   { type: 'heading', desc: 'Başlık' },
   { type: 'image', desc: 'Görsel' },

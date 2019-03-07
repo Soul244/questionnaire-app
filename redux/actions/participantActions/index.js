@@ -90,7 +90,6 @@ export function getParticipants(slug) {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/participants/${slug}`);
-      console.log(response.data);
       dispatch(getParticipantsAction(response.data.participants));
     } catch (error) {
       throw error;

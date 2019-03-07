@@ -5,7 +5,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 import {
-  Container, Row, Col, Card, CardBody, CardText, CardTitle,
+  Row, Col, Card, CardBody, CardText, CardTitle,
 } from 'reactstrap';
 import {
   PieChart, Pie, Tooltip,
@@ -15,6 +15,21 @@ import * as participantActions from '../../redux/actions/participantActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import PercentTable from '../../components/Statistics/PercentTable';
 import withNavbar from '../../hoc/withNavbar';
+
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx, cy, midAngle, innerRadius, outerRadius, percent, index,
+}) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
 
 @withNavbar
 class index extends Component {
@@ -56,7 +71,13 @@ class index extends Component {
           <Card className="text-center">
             <CardBody>
               <PieChart width={300} height={300}>
-                <Pie isAnimationActive={false} data={data} outerRadius={80} label />
+                <Pie
+                  isAnimationActive={false}
+                  dataKey="value"
+                  data={data}
+                  outerRadius={80}
+                  label={renderCustomizedLabel}
+                />
                 <Tooltip />
               </PieChart>
               <hr />

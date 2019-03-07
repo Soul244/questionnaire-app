@@ -3,7 +3,6 @@ const Poll = require('../models/poll');
 const { CreatePostObject } = require('../utils');
 
 exports.Get_Participants = (req, res) => {
-  const pollId = '';
   Poll
     .findOne({
       slug: req.params.slug,
@@ -15,8 +14,9 @@ exports.Get_Participants = (req, res) => {
           message: 'anket bulunamadı',
         });
       }
+      return poll._id;
     })
-    .then(() => {
+    .then((pollId) => {
       Participant.find({
         pollId,
       })

@@ -12,7 +12,7 @@ import {
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Icon, { remove2, wrong, done } from '../../../css/icons';
-import { types } from '../../../containers/toolTypes';
+import types from './toolTypes';
 
 const CustomSelect = styled.div`
   position: relative;

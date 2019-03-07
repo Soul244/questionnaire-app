@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 import Setting from '../../components/PollEditor/Setting';
 import * as pollActions from '../../redux/actions/pollActions';
-import { settingsInfos } from '../settingsInfos';
+import settingsInfo from './settingsInfo';
 
 const CardHideAble = styled(Card)`
   pointer-events: ${props => (props.show ? '' : 'none')};
@@ -63,7 +63,7 @@ function Settings(props) {
               header="Çalışma Tipi"
               onChange={handleType}
               tooltip="Çalışma tipini seçin"
-              info={settingsInfos.type}
+              info={settingsInfo.type}
             />
           </Card>
         </Col>
@@ -77,7 +77,7 @@ function Settings(props) {
               header="Görünüm"
               onChange={handleShowType}
               tooltip="Anket görünümünü seçin"
-              info={settingsInfos.showType}
+              info={settingsInfo.showType}
             />
           </Card>
         </Col>
@@ -91,7 +91,7 @@ function Settings(props) {
               header="Anket Durumu"
               onChange={handleIsPollActive}
               tooltip="Anket durumunu seçin"
-              info={settingsInfos.isPollActive}
+              info={settingsInfo.isPollActive}
             />
           </Card>
         </Col>
@@ -103,7 +103,7 @@ function Settings(props) {
               header="Cevap Yüzdeleri"
               onChange={handleHasAnswerPercent}
               tooltip="Her cevap için verilen cevap yüzdelerini gösterecektir."
-              info={settingsInfos.hasAnswerPercent}
+              info={settingsInfo.hasAnswerPercent}
             />
           </Card>
         </Col>
@@ -119,7 +119,7 @@ function Settings(props) {
                 name="userDataCollectType"
                 header="Kullanıcı Verisi"
                 onChange={handleUserDataCollectType}
-                info={settingsInfos.userDataCollectType}
+                info={settingsInfo.userDataCollectType}
               />
             </CardBody>
           </Card>
@@ -138,7 +138,7 @@ function Settings(props) {
                 inputChange={e => handlePollTime(e.target.value)}
                 inputPlaceHolder="dakika"
                 tooltip="Bu seçenek geliştirilme sürecinde"
-                info={settingsInfos.hasPollTime}
+                info={settingsInfo.hasPollTime}
               />
             </CardBody>
           </CardHideAble>
@@ -157,7 +157,7 @@ function Settings(props) {
                 inputChange={e => handleAnswerTime(e.target.value)}
                 inputPlaceHolder="saniye"
                 tooltip="Bu seçenek geliştirilme sürecinde"
-                info={settingsInfos.hasAnswerTime}
+                info={settingsInfo.hasAnswerTime}
               />
             </CardBody>
           </CardHideAble>
@@ -174,7 +174,7 @@ function Settings(props) {
               inputChange={e => handleAnswerAutoChangeTime(e.target.value)}
               inputPlaceHolder="Milisaniye"
               tooltip="Her soru arasındaki otomatik geçiş süresi"
-              info={settingsInfos.hasAnswerAutoChangeTime}
+              info={settingsInfo.hasAnswerAutoChangeTime}
             />
           </CardHideAble>
         </Col>

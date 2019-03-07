@@ -172,7 +172,6 @@ export function getPolls() {
   return async (dispatch) => {
     try {
       dispatch(getPollsStartAction());
-      console.log(endPoint);
       const response = await axios.get(
         endPoint,
       );

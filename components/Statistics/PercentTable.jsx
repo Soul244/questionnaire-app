@@ -22,18 +22,16 @@ function PercentTable({ poll }) {
             </td>
             {answers && answers.filter(answer => answer.questionIndex
              === question.index).reverse().map((answer, index) => (
-               <>
-                 <td key={`td${index}`}>
-                   <ContentViewer type={answer.type} content={answer.content} />
-                   {' '}
-                   <Badge color="info">
-                     {`Cevaplanma Sayısı: ${answer.count}`}
-                   </Badge>
-                   <Badge color="primary">
-                     {`Oran: %${answer.count > 0 ? Math.round((answer.count / question.count) * 100) : 0}`}
-                   </Badge>
-                 </td>
-               </>
+               <td key={`td${index}`}>
+                 <ContentViewer type={answer.type} content={answer.content} />
+                 {' '}
+                 <Badge color="info">
+                   {`Cevaplanma Sayısı: ${answer.count}`}
+                 </Badge>
+                 <Badge color="primary">
+                   {`Oran: %${answer.count > 0 ? Math.round((answer.count / question.count) * 100) : 0}`}
+                 </Badge>
+               </td>
             ))}
           </tr>
         ))}
