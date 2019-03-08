@@ -12,14 +12,6 @@ import Actions from './Actions';
 
 const TableStyled = styled(Table)` 
   background-color: #fff;
-  tr:hover{
-    color: #009fd4;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-
-  }
-  td:hover{
-    color: #009fd4;
-  }
 `;
 
 class PollList extends React.Component {
