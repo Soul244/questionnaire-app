@@ -59,8 +59,8 @@ class Iframe extends React.Component {
               <FormGroup>
                 <Input
                   type="textarea"
-                  defaultValue={`<iframe width=600 height=400 src=${process.env.DOMAIN}anket/${pollName}></iframe>`}
-                  value={`<iframe width=${width} height=${height} src=${process.env.DOMAIN}embed/${pollName}></iframe>`}
+                  defaultValue={`<iframe width=600 height=400 src=https://questionnaire-test.herokuapp.com/poll/${pollName}></iframe>`}
+                  value={`<iframe width=${width} height=${height} src=https://questionnaire-test.herokuapp.com/poll/${pollName}></iframe>`}
                 />
               </FormGroup>
             </Col>

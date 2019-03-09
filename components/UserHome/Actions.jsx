@@ -67,7 +67,7 @@ class Actions extends React.Component {
     } = this.state;
     return (
       <>
-        <ButtonDropdown isOpen={dropdownOpen} toggle={this.dropdownToggle} direction="down">
+        <ButtonDropdown direction="right" isOpen={dropdownOpen} toggle={this.dropdownToggle}>
           <DropdownToggle caret>
               Aksiyon
           </DropdownToggle>
@@ -80,7 +80,7 @@ class Actions extends React.Component {
                 </a>
               </DropdownItem>
             </Link>
-            <Link as={`/anket/editor/${slug}`} href={`/poll/editor?slug=${slug}`}>
+            <Link as={`/dashboard/editor/${slug}`} href={`/poll/editor?slug=${slug}`}>
               <DropdownItem id={`update${_id}`}>
                 <Icon size="16px" icon={edit} />
                 <LinkText>Güncelle</LinkText>
@@ -90,7 +90,7 @@ class Actions extends React.Component {
               <Icon size="16px" icon={remove2} />
               <LinkText>Sil</LinkText>
             </DropdownItem>
-            <Link as={`/anket/istatistikler/${slug}`} href={`/poll/stats?slug=${slug}`}>
+            <Link as={`/dashboard/istatistikler/${slug}`} href={`/poll/stats?slug=${slug}`}>
               <DropdownItem>
                 <Icon size="16px" icon={stats} />
                 <LinkText>İstatistikler</LinkText>

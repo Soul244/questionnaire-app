@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import {
-  Container, Row, Col, Card, CardText,
-} from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Router from 'next/router';
@@ -9,14 +6,14 @@ import PropTypes from 'prop-types';
 
 import * as userActions from '../../redux/actions/userActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
-import { PollList } from '../../components/UserPolls';
+import Table from '../../components/UserHome';
 import { Loading } from '../../components/Shared';
 import withAuth from '../../hoc/withAuth';
 import withNavbar from '../../hoc/withNavbar';
 
 @withNavbar
 @withAuth
-class UserPolls extends Component {
+class UserHome extends Component {
   componentDidMount() {
     const token = localStorage.getItem('token');
     const { pollsActions } = this.props;
@@ -39,7 +36,7 @@ class UserPolls extends Component {
       );
     }
     return (
-      <PollList
+      <Table
         polls={polls}
         message={message}
         deletePoll={deletePoll}
@@ -48,7 +45,7 @@ class UserPolls extends Component {
   }
 }
 
-UserPolls.propTypes = {
+UserHome.propTypes = {
   polls: PropTypes.shape({
     polls: PropTypes.array.isRequired,
     message: PropTypes.string.isRequired,
@@ -78,4 +75,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UserPolls);
+)(UserHome);

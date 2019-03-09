@@ -14,7 +14,7 @@ const TableStyled = styled(Table)`
   background-color: #fff;
 `;
 
-class PollList extends React.Component {
+class index extends React.Component {
   notify = (message) => {
     /*
         if (message) {
@@ -59,10 +59,10 @@ class PollList extends React.Component {
   }
 }
 
-PollList.propTypes = {
+index.propTypes = {
   deletePoll: PropTypes.func.isRequired,
   polls: PropTypes.array.isRequired,
   message: PropTypes.string.isRequired,
 };
 
-export default PollList;
+export default index;

@@ -61,21 +61,6 @@ const List = styled.ul`
   text-align: center;
 `;
 
-const Title = styled.h1`
-position: relative;
-margin-bottom:16px;
-  ::before{
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 8px;
-    left:0;
-    bottom: 0;
-    border-bottom: 1px solid #17a2b8;
-  }
-`;
-
 const iconAnimation = keyframes`
   0%   {opacity: 0.5; bottom: 40px;}
   50% {opacity: 1;bottom:20px;}
@@ -126,7 +111,7 @@ class index extends Component {
         if (!isTokenValid) {
           localStorage.setItem('token', '');
         } else {
-          Router.push({ pathname: '/anket/anketlerim' });
+          Router.push({ pathname: '/dashboard/anketlerim' });
         }
       })
       .catch(() => {
@@ -137,11 +122,11 @@ class index extends Component {
   render() {
     return (
       <Container fluid style={{ padding: 0 }}>
-        <ContainerBackground image="/static/image_3.jpg">
+        <ContainerBackground bg>
           <Container>
             <RowStyled>
               <Col>
-                <Title>Ücretsiz anketlerinizi oluşturun ve paylaşın.</Title>
+                <h1>Ücretsiz anketlerinizi oluşturun ve paylaşın.</h1>
                 <p>
                   Anketlerinizi oluşturun, paylaşın ve istatistiklerinizi görün.
                   Tamamen ücretsiz!

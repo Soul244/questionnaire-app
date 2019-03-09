@@ -97,7 +97,7 @@ class PollEditor extends Component {
     }
   }
 
-  notify(messages) {
+  notify=(messages) => {
     if (messages.questionsErrors) {
       messages.questionsErrors.map(error => toast.error(`${error.index + 1}. sorununun içeriği eksik`, {
         position: toast.POSITION.BOTTOM_LEFT,

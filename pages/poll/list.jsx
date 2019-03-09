@@ -1,4 +1,4 @@
 import React from 'react';
-import UserPolls from '../../containers/UserPolls';
+import UserHome from '../../containers/UserHome';
 
-export default () => <UserPolls />;
+export default () => <UserHome />;

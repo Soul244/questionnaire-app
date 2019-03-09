@@ -12,9 +12,8 @@ exports.Get_Poll = (req, res) => {
     .exec()
     .then((poll) => {
       if (poll.length < 1) {
-        return res.status(204).json({
-          error: 'anket bulunamadı ',
-        });
+        res.statusMessage = 'Anket bulunamadi';
+        return res.status(204).end();
       }
       return res.status(200).json({
         poll,
@@ -103,10 +102,8 @@ exports.Get_Polls = (req, res) => {
           message: 'Anketleri Getirdik...',
         });
       } else {
-        res.status(204).json({
-          polls: [],
-          message: 'Anket Bulunamadı...',
-        });
+        res.statusMessage = 'Katilimci bulunamadi';
+        res.status(204).end();
       }
     })
     .catch((error) => {

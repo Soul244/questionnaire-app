@@ -43,16 +43,34 @@ const participantReducer = (state = initialState, action) => {
         participants: action.payload,
       };
       break;
+    case asyncTypes.GET_PARTICIPANTS_ERROR:
+      state = {
+        ...state,
+        message: action.payload,
+      };
+      break;
     case asyncTypes.POST_PARTICIPANT:
       state = {
         ...state,
         message: action.payload.message,
       };
       break;
+    case asyncTypes.POST_PARTICIPANT_ERROR:
+      state = {
+        ...state,
+        message: action.payload,
+      };
+      break;
     case asyncTypes.DELETE_PARTICIPANT:
       state = {
         ...state,
         participants: action.payload,
+      };
+      break;
+    case asyncTypes.DELETE_PARTICIPANT_ERROR:
+      state = {
+        ...state,
+        message: action.payload,
       };
       break;
     default: {

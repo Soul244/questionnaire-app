@@ -86,13 +86,21 @@ export function getParticipantsAction(payload) {
     payload,
   };
 }
+
+export function getParticipantsErrorAction(payload) {
+  return {
+    type: asyncTypes.GET_PARTICIPANTS_ERROR,
+    payload,
+  };
+}
 export function getParticipants(slug) {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/participants/${slug}`);
-      dispatch(getParticipantsAction(response.data.participants));
+      if (response.status === 200)dispatch(getParticipantsAction(response.data.participants));
+      else if (response.status === 204)dispatch(getParticipantsErrorAction(response.statusText));
     } catch (error) {
-      throw error;
+      dispatch(getParticipantsErrorAction(`${error.status} ${error.statusText}`));
     }
   };
 }
@@ -105,6 +113,14 @@ export function postParticipantAction(payload) {
     payload,
   };
 }
+
+export function postParticipantErrorAction(payload) {
+  return {
+    type: asyncTypes.POST_PARTICIPANT_ERROR,
+    payload,
+  };
+}
+
 export function postParticipant(participant) {
   return async (dispatch) => {
     try {
@@ -117,7 +133,7 @@ export function postParticipant(participant) {
       });
       dispatch(postParticipantAction(response.data));
     } catch (error) {
-      throw error;
+      dispatch(postParticipantErrorAction(`${error.status} ${error.statusText}`));
     }
   };
 }

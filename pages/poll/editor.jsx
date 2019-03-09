@@ -8,12 +8,10 @@ class PollEditorPage extends Component {
       return { slug };
     }
     return {};
-  }
+  };
 
   render() {
-    return (
-      <PollEditor slug={this.props.slug} />
-    );
+    return <PollEditor slug={this.props.slug} />;
   }
 }
 

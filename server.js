@@ -20,40 +20,41 @@ app
       return app.render(req, res, actualPage);
     });
 
-    server.get('/anket/anketlerim', (req, res) => {
-      const actualPage = '/poll/list';
-      return app.render(req, res, actualPage);
-    });
-
     server.get('/anket/:slug', (req, res) => {
       const actualPage = '/poll';
       const queryParams = { slug: req.params.slug };
       return app.render(req, res, actualPage, queryParams);
     });
 
-    server.get('/anket/editor/yeni-anket', (req, res) => {
+
+    server.get('/dashboard/anketlerim', (req, res) => {
+      const actualPage = '/poll/list';
+      return app.render(req, res, actualPage);
+    });
+
+
+    server.get('/dashboard/editor/yeni-anket', (req, res) => {
       const actualPage = '/poll/editor';
       return app.render(req, res, actualPage);
     });
 
-    server.get('/anket/editor/:slug', (req, res) => {
+    server.get('/dashboard/editor/:slug', (req, res) => {
       const actualPage = '/poll/editor';
       const queryParams = { slug: req.params.slug };
       return app.render(req, res, actualPage, queryParams);
     });
 
-    server.get('/anket/on-izleme/:ispreview', (req, res) => {
+    server.get('/dashboard/on-izleme/:ispreview', (req, res) => {
       const actualPage = '/poll/preview';
       const queryParams = { ispreview: req.params.ispreview };
       return app.render(req, res, actualPage, queryParams);
     });
 
-    server.get('/anket/istatistikler/:slug', (req, res) => {
+    server.get('/dashboard/istatistikler/:slug', (req, res) => {
       const actualPage = '/poll/stats';
       const queryParams = { slug: req.params.slug };
       return app.render(req, res, actualPage, queryParams);
     });
-
 
     // For all other routes, use next.js.
     server.get('*', (req, res) => handle(req, res));

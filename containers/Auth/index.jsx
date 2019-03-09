@@ -75,7 +75,7 @@ class Auth extends Component {
     const { token } = nextProps.user;
     if (token) {
       setTimeout(() => {
-        Router.push({ pathname: '/anasayfa' });
+        Router.push({ pathname: '/dashboard/anketlerim' });
       }, 2000);
     }
   }

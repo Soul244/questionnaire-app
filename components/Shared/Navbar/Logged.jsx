@@ -16,7 +16,12 @@ function Logged(props) {
   return (
     <>
       <NavItem>
-        <Link as="/anket/editor/yeni-anket" href="/poll/editor">
+        <Link as="/dashboard/anketlerim" href="/poll/list">
+          <NavLinkCursor>Anketlerim</NavLinkCursor>
+        </Link>
+      </NavItem>
+      <NavItem>
+        <Link as="/dashboard/editor/yeni-anket" href="/poll/editor">
           <NavLinkCursor>Yeni Anket Oluştur</NavLinkCursor>
         </Link>
       </NavItem>

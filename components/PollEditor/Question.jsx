@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Container, Card, CardBody, CardHeader, Row, Col,
+  Card, CardBody, CardHeader, Col,
 } from 'reactstrap';
 import styled from 'styled-components';
 import Desc from './Desc';

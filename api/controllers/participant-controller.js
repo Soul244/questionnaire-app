@@ -10,9 +10,8 @@ exports.Get_Participants = (req, res) => {
     .exec()
     .then((poll) => {
       if (poll.length < 1) {
-        res.status(204).json({
-          message: 'anket bulunamadı',
-        });
+        res.statusMessage = 'Anket bulunamadi';
+        return res.status(204).end();
       }
       return poll._id;
     })
@@ -27,11 +26,8 @@ exports.Get_Participants = (req, res) => {
               participants,
             });
           } else {
-            res.status(204).json({
-              pollId,
-              participants: [],
-              message: 'katılımcı bulunamadı...',
-            });
+            res.statusMessage = 'Katilimci bulunamadi';
+            res.status(204).end();
           }
         });
     })

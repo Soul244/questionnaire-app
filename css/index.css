@@ -10570,13 +10570,9 @@ div [class*="col-"] {
   padding: 0;
 }
 
-.row {
-  padding: 0;
-  margin: 0;
-}
-
 .card {
   background-color: #fff;
+  border: none;
 }
 
 .card-body {

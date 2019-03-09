@@ -5,27 +5,76 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 import {
-  Row, Col, Card, CardBody, CardText, CardTitle,
+  Row, Col, Card, CardBody, CardSubtitle, CardText, CardTitle,
 } from 'reactstrap';
-import {
-  PieChart, Pie, Tooltip,
-} from 'recharts';
+import { PieChart, Pie, Tooltip } from 'recharts';
+import { ToastContainer, toast } from 'react-toastify';
+import styled from 'styled-components';
+import Icon, {
+  users, done, cross, unchecked,
+} from '../../css/icons';
 
 import * as participantActions from '../../redux/actions/participantActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import PercentTable from '../../components/Statistics/PercentTable';
 import withNavbar from '../../hoc/withNavbar';
 
+const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  svg {
+    fill: ${props => (props.light ? 'white' : 'darkgrey')};
+  }
+`;
+
+const CardStyled = styled(Card)`
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  border: none;
+  ${({ bg1 }) => bg1
+    && `
+    background-image: linear-gradient(-90deg, #00B4DB, #0083B0);
+  `}
+  ${({ bg2 }) => bg2
+    && `
+    background-image: linear-gradient(-90deg, #f12711, #f5af19);
+  `}
+   ${({ bg3 }) => bg3
+    && `
+    background-image: linear-gradient(-90deg, #56ab2f, #a8e063  );
+  `}
+      ${({ bg4 }) => bg4
+    && `
+    background-image: linear-gradient(-90deg, #ff416c, #ff4b2b  );
+  `}
+`;
+
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
-  cx, cy, midAngle, innerRadius, outerRadius, percent, index,
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
 }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
-    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+    <text
+      x={x}
+      y={y}
+      fill="white"
+      textAnchor={x > cx ? 'start' : 'end'}
+      dominantBaseline="central"
+    >
       {`${(percent * 100).toFixed(0)}%`}
     </text>
   );
@@ -38,6 +87,20 @@ class index extends Component {
     this.props.pollsActions.getPoll(this.props.slug);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { participant } = this.props;
+    const { message } = participant;
+    if (nextProps.participant.message !== message) {
+      this.notify(nextProps.participant.message);
+    }
+  }
+
+  notify = (message) => {
+    toast.error(message, {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
+  };
+
   // eslint-disable-next-line class-methods-use-this
   percents(participants) {
     let totalRight = 0;
@@ -45,12 +108,15 @@ class index extends Component {
     let totalhasNotRightAnswer = 0;
     for (let index = 0; index < participants.length; index += 1) {
       const element = participants[index];
-      const right = _.filter(element.answers,
-        (item) => { if (item.hasRightAnswer && item.isTrue) return item; }).length;
-      const wrong = _.filter(element.answers,
-        (item) => { if (item.hasRightAnswer && item.isTrue === false) return item; }).length;
-      const hasNotRightAnswer = _.filter(element.answers,
-        (item) => { if (!item.hasRightAnswer) return item; }).length;
+      const right = _.filter(element.answers, (item) => {
+        if (item.hasRightAnswer && item.isTrue) return item;
+      }).length;
+      const wrong = _.filter(element.answers, (item) => {
+        if (item.hasRightAnswer && item.isTrue === false) return item;
+      }).length;
+      const hasNotRightAnswer = _.filter(element.answers, (item) => {
+        if (!item.hasRightAnswer) return item;
+      }).length;
       totalRight += right;
       totalWrong += wrong;
       totalhasNotRightAnswer += hasNotRightAnswer;
@@ -64,12 +130,71 @@ class index extends Component {
     const { poll } = polls;
     const count = participants.length;
     const percents = this.percents(participants);
-    const data = [{ name: 'Doğru Sayısı', value: percents.totalRight, fill: 'green' }, { name: 'Yanlış Sayısı', value: percents.totalWrong, fill: 'red' }];
+    let records = false;
+    const data = [
+      { name: 'Doğru Sayısı', value: percents.totalRight, fill: 'green' },
+      { name: 'Yanlış Sayısı', value: percents.totalWrong, fill: 'red' },
+    ];
+    if (percents.totalRight === 0 && percents.totalWrong) {
+      records = true;
+    }
     return (
-      <Row>
-        <Col md="6">
-          <Card className="text-center">
-            <CardBody>
+      <>
+        <ToastContainer autoClose={3000} />
+        <Row>
+          <Col md="3">
+            <CardStyled inverse bg1 body className="text-center">
+              <IconContainer light>
+                <Icon size={64} icon={users} />
+              </IconContainer>
+              <CardTitle>Anketi Çözen Kullanıcı Sayısı</CardTitle>
+              <CardText>{`${count} kişi`}</CardText>
+            </CardStyled>
+          </Col>
+          <Col md="3">
+            <CardStyled inverse bg3 className="text-center" body>
+              <IconContainer light>
+                <Icon size={64} icon={done} />
+              </IconContainer>
+              <CardTitle>Kullanıcıların Toplam Doğru Sayısı</CardTitle>
+              <CardText>{`${percents.totalRight} doğru cevap`}</CardText>
+            </CardStyled>
+          </Col>
+          <Col md="3">
+            <CardStyled inverse bg4 className="text-center" body>
+              <IconContainer light>
+                <Icon size={64} icon={cross} />
+              </IconContainer>
+              <CardTitle>Kullanıcıların Toplam Yanlış Sayısı</CardTitle>
+              <CardText>{`${percents.totalWrong} yanlış cevap`}</CardText>
+            </CardStyled>
+          </Col>
+          <Col md="3">
+            <CardStyled className="text-center" body>
+              <IconContainer>
+                <Icon size={64} icon={unchecked} />
+              </IconContainer>
+              <CardTitle>
+                Doğru ya da Yanlış Olarak İşaretlenmemiş ve Cevaplanmış Sorular Toplamı
+              </CardTitle>
+              <CardText>{`${percents.totalhasNotRightAnswer}`}</CardText>
+            </CardStyled>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="3">
+            <CardStyled body className="text-center mt-2">
+              <CardTitle>Anketteki Soru Sayısı</CardTitle>
+              <CardText>
+                {`${
+                  poll.questions !== undefined ? poll.questions.length : 0
+                } soru`}
+              </CardText>
+            </CardStyled>
+          </Col>
+          <Col md="9">
+            <CardStyled className="text-center mt-2" body>
+              {records && (
               <PieChart width={300} height={300}>
                 <Pie
                   isAnimationActive={false}
@@ -80,51 +205,32 @@ class index extends Component {
                 />
                 <Tooltip />
               </PieChart>
-              <hr />
-              <CardTitle>Kullanıcıların Toplam Yanlış Sayısı</CardTitle>
-              <CardText>
-                {`${percents.totalWrong} yanlış cevap`}
-              </CardText>
-              <hr />
-              <CardTitle>Kullanıcıların Toplam Doğru Sayısı</CardTitle>
-              <CardText>
-                {`${percents.totalRight} doğru cevap`}
-              </CardText>
-              <hr />
-              <CardTitle>Doğru ya da Yanlış Olarak İşaretlenmemiş ve Cevaplanmış Sorular Toplamı</CardTitle>
-              <CardText>
-                {`${percents.totalhasNotRightAnswer}`}
-              </CardText>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col md="6" className="text-center">
-          <Card>
-            <CardBody>
-              <CardTitle>Anketi Çözen Kullanıcı Sayısı</CardTitle>
-              <CardText>
-                {`${count} kişi`}
-              </CardText>
-            </CardBody>
-          </Card>
-          <Card>
-            <CardBody>
-              <CardTitle>Anketteki Soru Sayısı</CardTitle>
-              <CardText>
-                {`${poll.questions !== undefined ? poll.questions.length : 0} soru`}
-              </CardText>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col md={12}>
-          <Card>
-            <CardBody>
-              <CardTitle>Cevap İstatistikleri</CardTitle>
-              <PercentTable poll={poll} />
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
+              )}
+              {!records && (
+                <CardTitle>Hiçbir kayıt bulunamadı.</CardTitle>
+              )}
+            </CardStyled>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="12" body className="text-center mt-2">
+            <Card>
+              <CardBody>
+                <CardTitle>Cevap İstatistikleri</CardTitle>
+                <CardSubtitle>Cevap istatistiklerini yüzdesel, sayısal olarak görün.</CardSubtitle>
+              </CardBody>
+              <CardBody>
+                {poll.questions > 0 && (
+                  <PercentTable poll={poll} />
+                )}
+                {poll.questions.length === 0 && (
+                  <CardTitle>Hiçbir kayıt bulunamadı</CardTitle>
+                )}
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </>
     );
   }
 }

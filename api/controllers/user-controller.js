@@ -12,9 +12,8 @@ exports.Post_Signup = (req, res) => {
     .exec()
     .then((user) => {
       if (user.length >= 1) {
-        return res.status(204).json({
-          message: 'bu mail adresiyle başka bir kayıt var',
-        });
+        res.statusMessage = 'Bu mail adresiyle baska kayit var';
+        return res.status(204).end();
       }
       bcrypt.hash(req.body.password, 10, (error, hash) => {
         if (error) {
@@ -72,9 +71,8 @@ exports.Reset_Password = (req, res) => {
     email,
   }).exec().then((user) => {
     if (user.length < 1) {
-      return res.status(204).json({
-        message: 'Mail adresi bulunamadı',
-      });
+      res.statusMessage = 'Mail adresi bulunamadi';
+      return res.status(204).end();
     }
     const newPassword = generator.generate({
       length: 8,

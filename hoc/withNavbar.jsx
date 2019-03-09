@@ -20,15 +20,9 @@ const RowStyled = styled(Row)`
 const withNavbar = WrappedComponent => props => (
   <>
     <Navbar />
-    <ContainerStyled fluid className="h-100">
+    <ContainerStyled className="h-100">
       <RowStyled>
-        <ColStyled md="3" lg="2">
-          <Sidebar items={[
-            { name: 'Anketlerim', href: '/anket/anketlerim' },
-          ]}
-          />
-        </ColStyled>
-        <Col md="9" lg="10" className="my-2">
+        <Col className="my-2">
           <WrappedComponent {...props} />
         </Col>
       </RowStyled>

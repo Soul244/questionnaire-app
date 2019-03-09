@@ -47,7 +47,7 @@ class index extends Component {
       });
     }
     this.setState({
-      homeLink: '/anket/anketlerim',
+      homeLink: '/dashboard/anketlerim',
     });
   }
 
