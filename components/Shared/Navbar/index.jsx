@@ -18,6 +18,7 @@ import Anonim from './Anonim';
 const NavbarBrandStyled = styled(NavbarBrand)`
   display: flex;
   align-items: center;
+  color: white !important;
 `;
 
 const NavbarStyled = styled(Navbar)`
@@ -79,11 +80,7 @@ class index extends Component {
         <NavbarStyled className="nav-bg" light expand="md">
           <Container>
             <NavbarBrandStyled href={homeLink}>
-              <img
-                src="/static/bilemezsin-logo.jpg"
-                style={{ width: '32px', height: '32px' }}
-                alt="logo"
-              />
+              Dashboard
             </NavbarBrandStyled>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={isOpen} navbar>

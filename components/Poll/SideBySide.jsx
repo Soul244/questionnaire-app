@@ -169,6 +169,7 @@ class SideBySide extends React.Component {
             {/* POLL DATA */}
             <Carousel
               slidesToShow={slidesToShow}
+              easing="easeExpInOut"
               dragging
               speed={400}
               slidesToScroll={0}

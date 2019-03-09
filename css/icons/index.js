@@ -20,6 +20,7 @@ import {
   ic_done,
   ic_panorama_fish_eye,
   ic_people,
+  ic_menu,
 } from 'react-icons-kit/md';
 
 export default Icon;
@@ -47,4 +48,5 @@ export {
   ic_clear as cross,
   ic_panorama_fish_eye as unchecked,
   ic_people as users,
+  ic_menu as menu,
 };

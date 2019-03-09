@@ -17,12 +17,12 @@ function Anonim() {
     <>
       <NavItem>
         <Link as="/giris-yap" href="/auth">
-          <NavLinkCursor>Giriş Yap</NavLinkCursor>
+          <NavLinkCursor>Ücretsiz hesap</NavLinkCursor>
         </Link>
       </NavItem>
       <NavItem>
         <Link as="/giris-yap" href="/auth">
-          <NavLinkCursor>Üye Ol</NavLinkCursor>
+          <NavLinkCursor>Giriş yap</NavLinkCursor>
         </Link>
       </NavItem>
     </>

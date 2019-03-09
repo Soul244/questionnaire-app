@@ -5,7 +5,8 @@ import Navbar from './Navbar/index';
 import CustomInput from './Custom/CustomInput';
 import Paginate from './Others/Paginate';
 import Loading from './Others/Loading';
-import Sidebar from './Others/Sidebar';
+import Sidebar from './Sidebar/Sidebar';
+import Backdrop from './Sidebar/Backdrop';
 import FormInput from './Card/FormInput';
 import FormEditor from './Card/FormEditor';
 
@@ -18,6 +19,7 @@ export {
   Paginate,
   Loading,
   Sidebar,
+  Backdrop,
   FormInput,
   FormEditor,
 };
