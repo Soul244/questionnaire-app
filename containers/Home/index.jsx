@@ -70,7 +70,7 @@ const ContainerBackground = styled.div`
 const H1 = styled.h1`
     color: #17a2b8;
     font-weight: 600;
-    font-size: 3.4rem;
+    font-size: 3rem;
     margin: 2.4rem 0;
 `;
 
@@ -89,7 +89,7 @@ const SubText = styled.p`
 const List = styled.ul`
   text-align: center;
   list-style-type: none;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
 `;
 
 const iconAnimation = keyframes`
