@@ -71,14 +71,14 @@ const H1 = styled.h1`
     color: #17a2b8;
     font-weight: 600;
     font-size: 3.4rem;
-    margin-bottom: 2.4rem;
+    margin: 2.4rem 0;
 `;
 
 const H2 = styled.h2`
     color: ${props => (props.light ? 'white' : '#17a2b8')};
     font-weight: 600;
     font-size: 2rem;
-    margin-bottom: 3rem;
+    margin: 3rem 0;
 `;
 
 const SubText = styled.p` 
@@ -273,10 +273,8 @@ class index extends Component {
           <ContainerBackground id="ornekler">
             <Container>
               <Row>
-                <Col md="12">
+                <Col md="12" className="text-center">
                   <H2>Örnek Anketler</H2>
-                </Col>
-                <Col md="12">
                   <Swiper {...params}>
                     <CardStyled>
                       <CardImgStyled
@@ -395,17 +393,17 @@ class index extends Component {
                   <NavStyled>
                     <NavItemStyled>
                       <Icon
-                        size="48px"
-                        icon={mail}
-                      />
-                      <p>hasancangedik@hotmail.com</p>
+                      size="48px"
+                      icon={phone}
+                    />
+                      <p>0538 086 79 69</p>
                     </NavItemStyled>
                     <NavItemStyled>
                       <Icon
                         size="48px"
-                        icon={phone}
+                        icon={mail}
                       />
-                      <p>0538 086 79 69</p>
+                      <p>hasancangedik@hotmail.com</p>
                     </NavItemStyled>
                   </NavStyled>
                 </Col>
