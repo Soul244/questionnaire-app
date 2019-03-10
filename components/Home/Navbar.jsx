@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {
   Nav, NavItem, NavLink, Container,
 } from 'reactstrap';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const NavStyled = styled(Nav)`
   position: sticky;
@@ -21,6 +22,9 @@ const NavLinkStyled = styled(NavLink)`
   :hover {
     color: lightgrey;
   }
+  @media(max-width: 576px){
+    font-size: 0.85rem;
+  }
 `;
 
 const ContainerStyled = styled(Container)`
@@ -34,13 +38,15 @@ const ContainerStyled = styled(Container)`
 function Navbar({ items }) {
   return (
     <NavStyled>
-      <ContainerStyled>
-        {items.map(item => (
-          <NavItem>
-            <NavLinkStyled href={item.href}>{item.name}</NavLinkStyled>
-          </NavItem>
-        ))}
-      </ContainerStyled>
+      <Scrollbars autoHeight autoHeightMax={200} autoHeightMin={48}>
+        <ContainerStyled>
+          {items.map(item => (
+            <NavItem>
+              <NavLinkStyled href={item.href}>{item.name}</NavLinkStyled>
+            </NavItem>
+          ))}
+        </ContainerStyled>
+      </Scrollbars>
     </NavStyled>
   );
 }

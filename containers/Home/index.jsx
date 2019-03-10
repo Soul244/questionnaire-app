@@ -70,14 +70,12 @@ const ContainerBackground = styled.div`
 const H1 = styled.h1`
     color: #17a2b8;
     font-weight: 600;
-    font-size: 3rem;
     margin: 2.4rem 0;
 `;
 
 const H2 = styled.h2`
     color: ${props => (props.light ? 'white' : '#17a2b8')};
     font-weight: 600;
-    font-size: 2rem;
     margin: 3rem 0;
 `;
 
@@ -119,6 +117,10 @@ const TextContainer = styled.div`
 const Image = styled.img`
     height: ${props => props.height};
     width: auto;
+    @media(max-width:576px){
+      height: ${props => (props.height ? '200px' : 'auto')};
+      width: auto;
+    }
 `;
 
 const CardImgStyled = styled.div` 
@@ -155,19 +157,12 @@ const Footer = styled.div`
   color: #17a2b8;
   font-size: 1rem;
   padding: 1rem 0;
-  display:flex;
-`;
-
-const NavStyled = styled(Nav)` 
-  justify-content:center;
-  align-items:center;
-`;
-
-const NavItemStyled = styled(NavItem)` 
-  margin-right: 1rem;
+  @media(max-width:576px){
+    font-size: 0.85rem;
+  }
   p{
-    margin-left: 0.5rem;
     display: inline-block;
+    margin-left: 1rem;
   }
 `;
 
@@ -392,23 +387,19 @@ class index extends Component {
           <Footer>
             <Container>
               <Row>
-                <Col>
-                  <NavStyled>
-                    <NavItemStyled>
-                      <Icon
-                        size="48px"
-                        icon={phone}
-                      />
-                      <p>0538 086 79 69</p>
-                    </NavItemStyled>
-                    <NavItemStyled>
-                      <Icon
-                        size="48px"
-                        icon={mail}
-                      />
-                      <p>hasancangedik@hotmail.com</p>
-                    </NavItemStyled>
-                  </NavStyled>
+                <Col md="6">
+                  <Icon
+                    size="48px"
+                    icon={phone}
+                  />
+                  <p>0538 086 79 69</p>
+                </Col>
+                <Col md="6">
+                  <Icon
+                    size="48px"
+                    icon={mail}
+                  />
+                  <p>hasancangedik@hotmail.com</p>
                 </Col>
               </Row>
             </Container>
