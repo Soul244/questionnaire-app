@@ -186,7 +186,9 @@ class PollEditor extends Component {
                 placeholder="boşluksuz, kısa çizgilerle ayrılmış bir link adı giriniz (ör. anket-1)..."
               />
             </Col>
-            <Col md="6">
+          </Row>
+          <Row>
+            <Col md="6" className="my-4">
               <FormEditor
                 title="Anket Açıklaması"
                 config={this.config}
@@ -194,7 +196,7 @@ class PollEditor extends Component {
                 onModelChange={onChangeDesc}
               />
             </Col>
-            <Col md="6">
+            <Col md="6" className="my-4">
               <FormEditor
                 title="Anket Sonu Mesajı"
                 config={this.configText}
@@ -202,12 +204,17 @@ class PollEditor extends Component {
                 onModelChange={onChangeLastDesc}
               />
             </Col>
-            <Col md="12">
+          </Row>
+          <Row>
+            <Col md="12" className="my-4">
               <Settings />
             </Col>
-            {/* <Inject /> */}
-            {/* {poll.settings.type === 'test' && <SelectableLastMessage />} */}
-            <Col md="12">
+          </Row>
+
+          {/* <Inject /> */}
+          {/* {poll.settings.type === 'test' && <SelectableLastMessage />} */}
+          <Row>
+            <Col md="12" className="my-4">
               <Questions />
             </Col>
           </Row>

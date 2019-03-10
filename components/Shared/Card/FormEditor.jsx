@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 import {
   Card, CardTitle, FormGroup,
 } from 'reactstrap';
+import styled from 'styled-components';
 
+const CardStyled = styled(Card)` 
+  margin-top: 15px;
+`;
 /*
   Froala editor uses window object.
   At the first load, NEXT JS rendering pages on server side.
@@ -19,12 +23,12 @@ const FroalaEditorInput = dynamic(import('react-froala-wysiwyg'), {
 function FormEditor(props) {
   const { title, ...rest } = props;
   return (
-    <Card body className="mb-2 br" data-test="form-editor">
+    <CardStyled body className="br" data-test="form-editor">
       <CardTitle data-test="title">{title}</CardTitle>
       <FormGroup>
         <FroalaEditorInput tag="textarea" {...rest} />
       </FormGroup>
-    </Card>
+    </CardStyled>
 
   );
 }
