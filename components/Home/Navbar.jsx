@@ -38,15 +38,13 @@ const ContainerStyled = styled(Container)`
 function Navbar({ items }) {
   return (
     <NavStyled>
-      <Scrollbars autoHeight autoHeightMax={200} autoHeightMin={48}>
-        <ContainerStyled>
-          {items.map(item => (
-            <NavItem>
-              <NavLinkStyled href={item.href}>{item.name}</NavLinkStyled>
-            </NavItem>
-          ))}
-        </ContainerStyled>
-      </Scrollbars>
+      <ContainerStyled>
+        {items.map(item => (
+          <NavItem>
+            <NavLinkStyled href={item.href}>{item.name}</NavLinkStyled>
+          </NavItem>
+        ))}
+      </ContainerStyled>
     </NavStyled>
   );
 }

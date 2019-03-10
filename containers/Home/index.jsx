@@ -285,7 +285,7 @@ class index extends Component {
                           Fenerbahçe ile Beşiktaş arasında oynanacak dev derbiyi kim
                           kazanacak? Ankete katıl ve büyük ödülü kazanma şansı yakala.
                         </CardText>
-                        <Button outline>Ankete Git</Button>
+                        <Button outline href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi" target="_blank">Ankete Git</Button>
                       </CardBody>
                     </CardStyled>
                     <CardStyled>
@@ -301,7 +301,7 @@ class index extends Component {
                         <CardText>
                         Ankete katılın ve ücretsiz araba lastiği kazanma şansı yakalayın!
                         </CardText>
-                        <Button outline>Ankete Git</Button>
+                        <Button outline href="http://localhost:3000/anket/araba-lastigi" target="_blank">Ankete Git</Button>
                       </CardBody>
                     </CardStyled>
                     <CardStyled>
@@ -316,7 +316,7 @@ class index extends Component {
                         <CardText>
                         Türkiye'nin kaderini etkileyecek olacak olan bu seçimlerde, kendi bölgenizde hangi adaya oy vereceksiniz?
                         </CardText>
-                        <Button outline>Ankete Git</Button>
+                        <Button outline href="http://localhost:3000/anket/yerel-secim-anketi" target="_blank">Ankete Git</Button>
                       </CardBody>
                     </CardStyled>
                   </Swiper>
