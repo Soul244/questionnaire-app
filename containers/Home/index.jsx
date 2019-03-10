@@ -145,6 +145,9 @@ const CardStyled = styled(Card)`
     width: 400px;
     margin: 1rem 0 2rem 0;
     border:none;
+    @media (max-width: 576px) {
+    width: 300px;
+  }
 `;
 
 const Footer = styled.div` 
@@ -393,9 +396,9 @@ class index extends Component {
                   <NavStyled>
                     <NavItemStyled>
                       <Icon
-                      size="48px"
-                      icon={phone}
-                    />
+                        size="48px"
+                        icon={phone}
+                      />
                       <p>0538 086 79 69</p>
                     </NavItemStyled>
                     <NavItemStyled>
