@@ -32,6 +32,9 @@ class MyApp extends App {
           <title>Bilemezsin Questionnaire</title>
           <link rel="icon" type="image" href="/static/favicon.jpg" />
           <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+
           <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"

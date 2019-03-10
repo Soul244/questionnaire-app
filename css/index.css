@@ -10616,11 +10616,12 @@ div [class*="col-"] {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Montserrat', sans-serif, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
+  font-family: 'Poppins', sans-serif, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f8f9fa;
   color: black;
+  background-color: rgba(0, 159, 212, 0.05) !important;
 }
 
 html {

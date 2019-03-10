@@ -10,12 +10,12 @@ $navbar-color: #009fd4;
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Montserrat', sans-serif, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
+    font-family: 'Poppins', sans-serif, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: $body-color;
     color: black;
-    //background-color: rgba($color: $navbar-color, $alpha: 0.05) !important;
+    background-color: rgba($color: $navbar-color, $alpha: 0.05) !important;
 }
 
 html {

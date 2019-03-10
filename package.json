@@ -39,6 +39,7 @@
     "react-html-parser": "^2.0.2",
     "react-icons-kit": "^1.2.1",
     "react-id-swiper": "^1.6.9",
+    "react-parallax": "^2.2.0",
     "react-player": "^1.7.1",
     "react-redux": "^5.1.0",
     "react-router-dom": "^4.3.1",

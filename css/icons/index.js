@@ -21,6 +21,8 @@ import {
   ic_panorama_fish_eye,
   ic_people,
   ic_menu,
+  ic_phone,
+  ic_email,
 } from 'react-icons-kit/md';
 
 export default Icon;
@@ -49,4 +51,6 @@ export {
   ic_panorama_fish_eye as unchecked,
   ic_people as users,
   ic_menu as menu,
+  ic_phone as phone,
+  ic_email as mail,
 };
