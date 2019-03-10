@@ -17,7 +17,7 @@ const NavStyled = styled(Nav)`
 
 const NavLinkStyled = styled(NavLink)`
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   :hover {
     color: lightgrey;
   }

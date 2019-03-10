@@ -35,7 +35,7 @@ const ContainerBackground = styled.div`
   height: ${props => props.height};
   background-image: url(${props => props.image});
   background-color: #fff;
-  padding: ${props => (props.pd ? '16rem 0' : '8rem 0')};
+  padding: ${props => (props.pd ? '12rem 0' : '8rem 0')};
   position:relative;
   ${({ bg }) => bg && `
     background-color: #F8F8F8;
