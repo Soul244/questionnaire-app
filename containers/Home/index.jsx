@@ -81,6 +81,11 @@ const H2 = styled.h2`
     margin-bottom: 3rem;
 `;
 
+const SubText = styled.p` 
+  font-size: 1.8rem;
+  font-weight: 500;
+`;
+
 const List = styled.ul`
   text-align: center;
   list-style-type: none;
@@ -104,7 +109,6 @@ const IconContainer = styled.div`
     fill: white;
   }
 `;
-
 
 const TextContainer = styled.div`
   display: flex;
@@ -241,9 +245,9 @@ class index extends Component {
               <Row>
                 <Col md="12">
                   <H1>Ücretsiz anketlerinizi oluşturun ve paylaşın.</H1>
-                  <p>
+                  <SubText>
                 Tamamen ücretsiz!
-                  </p>
+                  </SubText>
                   <Link as="/giris-yap" href="/auth">
                     <Button type="button" color="info">
                   Ücretsiz hesap
