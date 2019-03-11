@@ -6,6 +6,10 @@ import Swiper from 'react-id-swiper';
 import { Parallax } from 'react-parallax';
 import styled, { keyframes } from 'styled-components';
 import {
+  Bounce, Zoom, Fade,
+} from 'react-reveal';
+
+import {
   Container,
   Row,
   Col,
@@ -15,14 +19,11 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Nav,
-  NavItem,
 } from 'reactstrap';
 
 import axios from '../../redux/axios';
 import Icon, { arrowDown, phone, mail } from '../../css/icons';
 import withJustNavbar from '../../hoc/withJustNavbar';
-import Navbar from '../../components/Home/Navbar';
 
 const ContainerBackground = styled.div`
   height: 100%;
@@ -68,20 +69,15 @@ const ContainerBackground = styled.div`
 `;
 
 const H1 = styled.h1`
-    color: #17a2b8;
+    color: ${props => (props.light ? 'white' : '#17a2b8')};
     font-weight: 600;
-    margin: 2.4rem 0;
+    margin: 2rem 0;
 `;
 
 const H2 = styled.h2`
     color: ${props => (props.light ? 'white' : '#17a2b8')};
     font-weight: 600;
-    margin: 3rem 0;
-`;
-
-const SubText = styled.p` 
-  font-size: 1.8rem;
-  font-weight: 500;
+    margin: 2rem 0;
 `;
 
 const List = styled.ul`
@@ -166,6 +162,30 @@ const Footer = styled.div`
   }
 `;
 
+const LinkStyled = styled.a` 
+  color: #17a2b8;
+  :hover {
+    text-decoration: none;
+    color: #00899F;
+  }
+`;
+
+const FooterIconContainer = styled.div` 
+  margin-left: 1rem;
+  display: inline-flex;
+  align-items:center;
+  justify-content: center;
+  p {
+    margin-bottom:0;
+  }
+  @media(max-width: 576px){
+    svg{
+      width: 24px;
+      height: 24px;
+    }
+  }
+`;
+
 @withJustNavbar
 class index extends Component {
   constructor(props) {
@@ -176,6 +196,10 @@ class index extends Component {
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 'auto',
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
         coverflowEffect: {
           rotate: 50,
           stretch: 0,
@@ -216,36 +240,19 @@ class index extends Component {
 
   render() {
     const { params } = this.state;
-    const secondNavItems = [
-      {
-        href: '#anasayfa',
-        name: 'Anasayfa',
-      },
-      {
-        href: '#ornekler',
-        name: 'Örnekler',
-      },
-      {
-        href: '#mobil',
-        name: 'Mobil',
-      },
-      {
-        href: '#istatistikler',
-        name: 'istatistikler',
-      },
-    ];
-
     return (
       <>
         <Container fluid style={{ padding: 0 }}>
-          <ContainerBackground pd id="anasayfa" image="/static/image_7.jpg">
+          <ContainerBackground pd id="anasayfa" image="/static/image_8.jpg">
             <Container>
               <Row>
                 <Col md="12">
-                  <H1>Ücretsiz anketlerinizi oluşturun ve paylaşın.</H1>
-                  <SubText>
-                Tamamen ücretsiz!
-                  </SubText>
+                  <Fade top>
+                    <H1 light>Ücretsiz anketlerinizi oluşturun ve paylaşın.</H1>
+                    <H2 light>
+                      Tamamen ücretsiz!
+                    </H2>
+                  </Fade>
                   <Link as="/giris-yap" href="/auth">
                     <Button type="button" color="info">
                   Ücretsiz hesap
@@ -253,7 +260,7 @@ class index extends Component {
                   </Link>
                   {' '}
                   <Link as="/giris-yap" href="/auth">
-                    <Button type="button" color="secondary">
+                    <Button type="button" color="success">
                   Giriş yapın
                     </Button>
                   </Link>
@@ -267,7 +274,6 @@ class index extends Component {
               />
             </IconContainer>
           </ContainerBackground>
-          <Navbar items={secondNavItems} />
           <ContainerBackground id="ornekler">
             <Container>
               <Row>
@@ -275,49 +281,55 @@ class index extends Component {
                   <H2>Örnek Anketler</H2>
                   <Swiper {...params}>
                     <CardStyled>
-                      <CardImgStyled
-                        src="/static/image_4.jpg"
-                      />
-                      <CardBody>
-                        <CardTitle>Maçın Favorisi Kim?</CardTitle>
-                        <CardSubtitle>Lig maçının favorisini seçin.</CardSubtitle>
-                        <CardText>
+                      <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi">
+                        <CardImgStyled
+                          src="/static/image_4.jpg"
+                        />
+                        <CardBody>
+                          <CardTitle>Maçın Favorisi Kim?</CardTitle>
+                          <CardSubtitle>Lig maçının favorisini seçin.</CardSubtitle>
+                          <CardText>
                           Fenerbahçe ile Beşiktaş arasında oynanacak dev derbiyi kim
                           kazanacak? Ankete katıl ve büyük ödülü kazanma şansı yakala.
-                        </CardText>
-                        <Button outline href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi" target="_blank">Ankete Git</Button>
-                      </CardBody>
+                          </CardText>
+                          <Button outline href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi" target="_blank">Ankete Git</Button>
+                        </CardBody>
+                      </LinkStyled>
                     </CardStyled>
                     <CardStyled>
-                      <CardImgStyled
-                        wave2
-                        src="/static/image_5.jpg"
-                      />
-                      <CardBody>
-                        <CardTitle>En İyi Araba Lastiği Hangisi?</CardTitle>
-                        <CardSubtitle>
+                      <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/araba-lastigi">
+                        <CardImgStyled
+                          wave2
+                          src="/static/image_5.jpg"
+                        />
+                        <CardBody>
+                          <CardTitle>En İyi Araba Lastiği Hangisi?</CardTitle>
+                          <CardSubtitle>
                           Sizin için en iyi araba lastiğini seçin.
-                        </CardSubtitle>
-                        <CardText>
+                          </CardSubtitle>
+                          <CardText>
                         Ankete katılın ve ücretsiz araba lastiği kazanma şansı yakalayın!
-                        </CardText>
-                        <Button outline href="http://localhost:3000/anket/araba-lastigi" target="_blank">Ankete Git</Button>
-                      </CardBody>
+                          </CardText>
+                          <Button outline href="https://questionnaire-test.herokuapp.com/anket/araba-lastigi" target="_blank">Ankete Git</Button>
+                        </CardBody>
+                      </LinkStyled>
                     </CardStyled>
                     <CardStyled>
-                      <CardImgStyled
-                        src="/static/image_6.jpg"
-                      />
-                      <CardBody>
-                        <CardTitle>
+                      <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/yerel-secim-anketi" target="_blank">
+                        <CardImgStyled
+                          src="/static/image_6.jpg"
+                        />
+                        <CardBody>
+                          <CardTitle>
                     Yerel Seçimlerde Kime Oy Vereceksiniz?
-                        </CardTitle>
-                        <CardSubtitle>Hangi partiye oy vermeyi planlıyorsunuz?</CardSubtitle>
-                        <CardText>
+                          </CardTitle>
+                          <CardSubtitle>Hangi partiye oy vermeyi planlıyorsunuz?</CardSubtitle>
+                          <CardText>
                         Türkiye'nin kaderini etkileyecek olacak olan bu seçimlerde, kendi bölgenizde hangi adaya oy vereceksiniz?
-                        </CardText>
-                        <Button outline href="http://localhost:3000/anket/yerel-secim-anketi" target="_blank">Ankete Git</Button>
-                      </CardBody>
+                          </CardText>
+                          <Button outline href="https://questionnaire-test.herokuapp.com/anket/yerel-secim-anketi" target="_blank">Ankete Git</Button>
+                        </CardBody>
+                      </LinkStyled>
                     </CardStyled>
                   </Swiper>
                 </Col>
@@ -328,23 +340,26 @@ class index extends Component {
             <Container>
               <Row>
                 <Col md="6">
-                  <TextContainer>
-                    <H2>Mobil</H2>
-                    <List>
-                      <li>Anketleriniz mobile uygun!</li>
-                      <li>Kolayca sitenize entegre edin.</li>
-                      <li>Tasarım basit ve kolay!</li>
-                    </List>
-                  </TextContainer>
+                  <Bounce left>
+                    <TextContainer>
+                      <H2>Mobil</H2>
+                      <List>
+                        <li>Anketleriniz mobile uygun!</li>
+                        <li>Kolayca sitenize entegre edin.</li>
+                        <li>Tasarım basit ve kolay!</li>
+                      </List>
+                    </TextContainer>
+                  </Bounce>
                 </Col>
                 <Col md="6" className="text-center">
-                  <Image src="/static/phone.png" height="500px" alt="" />
+                  <Bounce right>
+                    <Image src="/static/phone.png" height="500px" alt="" />
+                  </Bounce>
                 </Col>
               </Row>
             </Container>
           </ContainerBackground>
           <Parallax
-            blur={1}
             bgImage="/static/image_3.jpg"
             strength={200}
           >
@@ -352,14 +367,16 @@ class index extends Component {
               <Container>
                 <Row>
                   <Col md="12">
-                    <TextContainer>
-                      <H2 light>Markanıza Özel Anket</H2>
-                      <List>
-                        <li>Markanıza özel anket tasarımı</li>
-                        <li>Kolay uygulanabilir ve tasarlanabilir.</li>
-                        <li>Alternatifi bol!</li>
-                      </List>
-                    </TextContainer>
+                    <Zoom top>
+                      <TextContainer>
+                        <H2 light>Markanıza Özel Anket</H2>
+                        <List>
+                          <li>Markanıza özel anket tasarımı</li>
+                          <li>Kolay uygulanabilir ve tasarlanabilir.</li>
+                          <li>Alternatifi bol!</li>
+                        </List>
+                      </TextContainer>
+                    </Zoom>
                   </Col>
                 </Row>
               </Container>
@@ -369,17 +386,21 @@ class index extends Component {
             <Container>
               <Row>
                 <Col md="6" className="text-center">
-                  <Image src="/static/image_2.png" height="300px" alt="" />
+                  <Fade top>
+                    <Image src="/static/image_2.png" height="300px" alt="" />
+                  </Fade>
                 </Col>
                 <Col md="6">
-                  <TextContainer>
-                    <H2>İstatistik</H2>
-                    <List>
-                      <li>Anketlerinize kaç kişi katıldı?</li>
-                      <li>Kaç kişi, hangi şıkka oy verdi?</li>
-                      <li>Kolayca takip edin.</li>
-                    </List>
-                  </TextContainer>
+                  <Fade top>
+                    <TextContainer>
+                      <H2>İstatistik</H2>
+                      <List>
+                        <li>Anketlerinize kaç kişi katıldı?</li>
+                        <li>Kaç kişi, hangi şıkka oy verdi?</li>
+                        <li>Kolayca takip edin.</li>
+                      </List>
+                    </TextContainer>
+                  </Fade>
                 </Col>
               </Row>
             </Container>
@@ -387,19 +408,21 @@ class index extends Component {
           <Footer>
             <Container>
               <Row>
-                <Col md="6">
-                  <Icon
-                    size="48px"
-                    icon={phone}
-                  />
-                  <p>0538 086 79 69</p>
-                </Col>
-                <Col md="6">
-                  <Icon
-                    size="48px"
-                    icon={mail}
-                  />
-                  <p>hasancangedik@hotmail.com</p>
+                <Col className="text-center">
+                  <FooterIconContainer>
+                    <Icon
+                      size="48px"
+                      icon={phone}
+                    />
+                    <p>0538 086 79 69</p>
+                  </FooterIconContainer>
+                  <FooterIconContainer>
+                    <Icon
+                      size="48px"
+                      icon={mail}
+                    />
+                    <p>hasancangedik@hotmail.com</p>
+                  </FooterIconContainer>
                 </Col>
               </Row>
             </Container>
