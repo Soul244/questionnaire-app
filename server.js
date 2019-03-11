@@ -59,6 +59,12 @@ app
     // For all other routes, use next.js.
     server.get('*', (req, res) => handle(req, res));
 
+    server.get('*.js', (req, res, next) => {
+      req.url += '.gz';
+      res.set('Content-Encoding', 'gzip');
+      next();
+    });
+
     server.listen(process.env.PORT || 3000, (err) => {
       if (err) throw err;
       console.log('> Ready on http://localhost:3000');
