@@ -101,7 +101,7 @@ class Auth extends Component {
         <Row>
           <Col lg={{ size: 6, offset: 3 }} md={{ size: 8, offset: 2 }}>
             <Card>
-              <LogoContainer src="/static/image_3.jpg">
+              <LogoContainer src="/static/image_3.webp">
                 <Logo src="/static/bilemezsin-logo.jpg" />
               </LogoContainer>
               <CardBodyStyled>

@@ -134,7 +134,7 @@ const CardImgStyled = styled.div`
     left:0;
     width: 100%;
     height: 65px;
-    background: url(${props => (props.wave2 ? '/static/wave_2.png' : '/static/wave.png')});
+    background: url(${props => (props.wave2 ? '/static/wave_2.webp' : '/static/wave.webp')});
     background-size: cover;
   }
 `;
@@ -243,7 +243,7 @@ class index extends Component {
     return (
       <>
         <Container fluid style={{ padding: 0 }}>
-          <ContainerBackground pd id="anasayfa" image="/static/image_8.jpg">
+          <ContainerBackground pd id="anasayfa" image="/static/image_8.webp">
             <Container>
               <Row>
                 <Col md="12">
@@ -283,7 +283,7 @@ class index extends Component {
                     <CardStyled>
                       <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi">
                         <CardImgStyled
-                          src="/static/image_4.jpg"
+                          src="/static/image_4.webp"
                         />
                         <CardBody>
                           <CardTitle>Maçın Favorisi Kim?</CardTitle>
@@ -300,7 +300,7 @@ class index extends Component {
                       <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/araba-lastigi">
                         <CardImgStyled
                           wave2
-                          src="/static/image_5.jpg"
+                          src="/static/image_5.webp"
                         />
                         <CardBody>
                           <CardTitle>En İyi Araba Lastiği Hangisi?</CardTitle>
@@ -317,7 +317,7 @@ class index extends Component {
                     <CardStyled>
                       <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/yerel-secim-anketi" target="_blank">
                         <CardImgStyled
-                          src="/static/image_6.jpg"
+                          src="/static/image_6.webp"
                         />
                         <CardBody>
                           <CardTitle>
@@ -353,14 +353,14 @@ class index extends Component {
                 </Col>
                 <Col md="6" className="text-center">
                   <Bounce right>
-                    <Image src="/static/phone.png" height="500px" alt="" />
+                    <Image src="/static/phone.webp" height="500px" alt="" />
                   </Bounce>
                 </Col>
               </Row>
             </Container>
           </ContainerBackground>
           <Parallax
-            bgImage="/static/image_3.jpg"
+            bgImage="/static/image_3.webp"
             strength={200}
           >
             <ContainerBackground px>
@@ -387,7 +387,7 @@ class index extends Component {
               <Row>
                 <Col md="6" className="text-center">
                   <Fade top>
-                    <Image src="/static/image_2.png" height="300px" alt="" />
+                    <Image src="/static/image_2.webp" height="300px" alt="" />
                   </Fade>
                 </Col>
                 <Col md="6">
