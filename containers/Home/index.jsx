@@ -135,18 +135,23 @@ const CardImgStyled = styled.div`
     left: 0;
     width: 100%;
     height: 65px;
-    background: url(${props => (props.wave2 ? "/static/wave_2.webp" : "/static/wave.webp")});
+    background: url(${props => (props.wave2 ? '/static/wave_2.webp' : '/static/wave.webp')});
     background-size: cover;
   }
 `;
 
 const CardStyled = styled(Card)`
   width: 400px;
+  height: 500px;
   margin: 1rem 0 2rem 0;
   border: none;
   @media (max-width: 576px) {
     width: 300px;
   }
+`;
+
+const CardBodyStyled = styled(CardBody)`
+  padding-top: 2rem;
 `;
 
 const Footer = styled.div`
@@ -257,7 +262,7 @@ class index extends Component {
                       Ücretsiz hesap
                     </Button>
                   </Link>
-{" "}
+                  {' '}
                   <Link as="/giris-yap" href="/auth">
                     <Button type="button" color="success">
                       Giriş yapın
@@ -279,7 +284,7 @@ class index extends Component {
                     <CardStyled>
                       <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi">
                         <CardImgStyled src="/static/image_4.webp" />
-                        <CardBody>
+                        <CardBodyStyled>
                           <CardTitle>Maçın Favorisi Kim?</CardTitle>
                           <CardSubtitle>
                             Lig maçının favorisini seçin.
@@ -296,13 +301,13 @@ class index extends Component {
                           >
                             Ankete Git
                           </Button>
-                        </CardBody>
+                        </CardBodyStyled>
                       </LinkStyled>
                     </CardStyled>
                     <CardStyled>
                       <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/araba-lastigi">
                         <CardImgStyled wave2 src="/static/image_5.webp" />
-                        <CardBody>
+                        <CardBodyStyled>
                           <CardTitle>En İyi Araba Lastiği Hangisi?</CardTitle>
                           <CardSubtitle>
                             Sizin için en iyi araba lastiğini seçin.
@@ -318,7 +323,7 @@ class index extends Component {
                           >
                             Ankete Git
                           </Button>
-                        </CardBody>
+                        </CardBodyStyled>
                       </LinkStyled>
                     </CardStyled>
                     <CardStyled>
@@ -327,7 +332,7 @@ class index extends Component {
                         target="_blank"
                       >
                         <CardImgStyled src="/static/image_6.webp" />
-                        <CardBody>
+                        <CardBodyStyled>
                           <CardTitle>
                             Yerel Seçimlerde Kime Oy Vereceksiniz?
                           </CardTitle>
@@ -346,7 +351,7 @@ class index extends Component {
                           >
                             Ankete Git
                           </Button>
-                        </CardBody>
+                        </CardBodyStyled>
                       </LinkStyled>
                     </CardStyled>
                   </Swiper>

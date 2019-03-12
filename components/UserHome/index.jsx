@@ -26,7 +26,7 @@ const TableStyled = styled(Table)`
 
 const CardContainer = styled.div`
   position: relative;
-  margin: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 
 const CardStyled = styled(Card)`
