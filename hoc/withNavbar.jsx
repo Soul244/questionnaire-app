@@ -29,6 +29,15 @@ function withNavbar(WrappedComponent) {
     }
 
     handleResize = () => {
+      if (window.innerWidth <= 1592) {
+        this.setState({
+          show: false,
+        });
+      } else {
+        this.setState({
+          show: true,
+        });
+      }
       if (window.innerWidth <= 992) {
         this.setState({
           navMode: 'outside',

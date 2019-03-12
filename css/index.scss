@@ -15,12 +15,14 @@ $navbar-color: #009fd4;
     -moz-osx-font-smoothing: grayscale;
     background-color: $body-color;
     color: black;
-    background-color: rgba($color: $navbar-color, $alpha: 0.05) !important;
+    //background-color: rgba($color: darkgrey, $alpha: 0.05) !important;
 }
 
 html {
     height: 100%;
+    width: 100%;
     margin: 0;
+    background-color: rgba($color: darkgrey, $alpha: 0.05) !important;
 }
 
 ul {

@@ -10696,12 +10696,13 @@ a.text-dark:hover, a.text-dark:focus {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f8f9fa;
   color: black;
-  background-color: rgba(0, 159, 212, 0.05) !important;
 }
 
 html {
   height: 100%;
+  width: 100%;
   margin: 0;
+  background-color: rgba(169, 169, 169, 0.05) !important;
 }
 
 ul {

@@ -37,13 +37,12 @@ const NavbarStyled = styled(Navbar)`
 
 const SidebarToggle = styled.div`
   margin-right: 0.5rem;
-  color: ${props => (props.sideBarShow ? 'white' : 'black')};
+  color:white;
   svg {
       transform: rotate(${props => (props.sideBarShow ? '90deg' : '0deg')});
       transition: transform 0.4s ease;
     }
   :hover{
-    color: white;
     cursor: pointer;
   }
 `;
@@ -98,21 +97,23 @@ class index extends Component {
     return (
       <>
         <NavbarStyled className="nav-bg" light expand="md">
-          {isLogged && (
-          <SidebarToggle onClick={sideBarToggle} sideBarShow={sideBarShow}>
-            <Icon size={24} icon={threedot} />
-          </SidebarToggle>
-          )}
-          <NavbarBrandStyled href={homeLink}>
+          <ContainerStyled>
+            {isLogged && (
+            <SidebarToggle onClick={sideBarToggle} sideBarShow={sideBarShow}>
+              <Icon size={24} icon={threedot} />
+            </SidebarToggle>
+            )}
+            <NavbarBrandStyled href={homeLink}>
               Dashboard
-          </NavbarBrandStyled>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              {isLogged && <Logged logOut={this.onClick} />}
-              {!isLogged && <Anonim />}
-            </Nav>
-          </Collapse>
+            </NavbarBrandStyled>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+                {isLogged && <Logged logOut={this.onClick} />}
+                {!isLogged && <Anonim />}
+              </Nav>
+            </Collapse>
+          </ContainerStyled>
         </NavbarStyled>
       </>
     );
