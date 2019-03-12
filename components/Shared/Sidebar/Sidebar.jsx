@@ -1,18 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
+import Router from 'next/router';
 
 const Container = styled.div` 
   height: 100%;
   background: white;
-  box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
   left: 0;
-  width: 70%;
-  max-width: 400px;
-  z-index: 200;
-  display: ${props => (props.show ? 'block' : 'none')};
+  width: 240px;
+  z-index: 4;
   transition: transform 1s ease-out;
+  transition: .5s cubic-bezier(.685,.0473,.346,1);
+  transform:${props => (props.show ? 'translateZ(0)' : 'translate3d(-240px,0,0);')};
+  ${({ show }) => show && `
+    @media screen and (max-width: 992px){
+      box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.2);
+    }
+  }
+  `}
 `;
 
 const Nav = styled.ul`
@@ -20,33 +27,62 @@ const Nav = styled.ul`
   list-style: none;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   transition: transform 1s ease-out;
-
+  margin-top: ${props => (props.navMode === 'inside' ? '48px' : '')};
 `;
 
 const NavItem = styled.li` 
- margin: 0.5rem 0;
+  padding: 12px 0 12px 24px;
+  font-size: 16px;
+  height:48px;
+  background-color: rgba(${props => (props.currentUrl === props.url ? '0,159,212,0.07' : '')});
+  color: ${props => (props.currentUrl === props.url ? '#009fd4' : 'black')};
+  cursor: pointer;
+  :hover{
+    color: #009fd4;
+    background-color: rgba(0,159,212,0.07)
+  }
  `;
 
-const Link = styled.a` 
-  color: #521751;
-  text-decoration: none;
-  font-size: 1.2rem;
-`;
+class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      url: '',
+    };
+    Router.events.on('routeChangeStart', this.handleRouteChange);
+  }
 
-function Sidebar({ items, show }) {
-  return (
-    <Container show={show}>
-      <Nav>
-        {items.map((item, index) => (
-          <NavItem key={index}>
-            <Link href={item.href}>{item.name}</Link>
-          </NavItem>
-        ))}
-      </Nav>
-    </Container>
-  );
+  componentDidMount() {
+    this.setState({
+      url: Router.asPath,
+    });
+  }
+
+  handleRouteChange = (url) => {
+    this.setState({
+      url,
+    });
+  };
+
+  render() {
+    const { url } = this.state;
+    const { items, show, navMode } = this.props;
+    return (
+      <Container show={show}>
+        <Nav navMode={navMode}>
+          {items.map((item, index) => (
+            <Link as={item.as} href={item.href}>
+              <NavItem key={index} url={item.as} currentUrl={url}>
+                {item.name}
+              </NavItem>
+            </Link>
+          ))}
+        </Nav>
+      </Container>
+    );
+  }
 }
 
 export default Sidebar;

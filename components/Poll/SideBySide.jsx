@@ -7,6 +7,7 @@ import {
   Row, Button, Progress,
 } from 'reactstrap';
 import styled from 'styled-components';
+import Swiper from 'react-id-swiper';
 
 import {
   Question, Options, Last, First,
@@ -49,6 +50,7 @@ class SideBySide extends React.Component {
       slidesToShow: 1,
       progressValue: 0,
     };
+    this.swiper = null;
   }
 
   timer = () => {
@@ -87,6 +89,7 @@ class SideBySide extends React.Component {
     const { questions } = poll;
     const remainingCount = questions.length - slideIndex;
     if (remainingCount > 1) {
+      if (this.swiper) this.swiper.slideNext();
       this.setState({
         slideIndex: slideIndex + 1,
       });
@@ -98,6 +101,7 @@ class SideBySide extends React.Component {
   slidePrev = () => {
     const { slideIndex } = this.state;
     if (slideIndex > 0) {
+      if (this.swiper) this.swiper.slidePrev();
       this.setState({
         slideIndex: slideIndex - 1,
       });
@@ -130,6 +134,14 @@ class SideBySide extends React.Component {
       userDataCollectType,
       type,
     } = poll.settings;
+
+    const params = {
+      pagination: {
+        el: '.swiper-pagination',
+        type: '',
+        clickable: true,
+      },
+    };
     return (
       <>
         {/* IF POLL(TEST) IS NOT STARTED, SHOW START PAGE' */}
@@ -167,18 +179,7 @@ class SideBySide extends React.Component {
             </Controls>
             )}
             {/* POLL DATA */}
-            <Carousel
-              slidesToShow={slidesToShow}
-              easing="easeExpInOut"
-              dragging
-              speed={400}
-              slidesToScroll={0}
-              slideIndex={slideIndex}
-              heightMode="max"
-              withoutControls
-              renderCenterLeftControls={null}
-              renderCenterRightControls={null}
-            >
+            <Swiper {...params} ref={node => (node ? this.swiper = node.swiper : '')}>
               {orderedQuestions.map((question, index) => (
                 <QuestionContainer key={`poll${index}`}>
                   <Row>
@@ -201,7 +202,7 @@ class SideBySide extends React.Component {
                   </Row>
                 </QuestionContainer>
               ))}
-            </Carousel>
+            </Swiper>
           </>
         )}
         {/* IF POLL IS FINISHED SHOW FINISH PAGE */}
@@ -213,7 +214,6 @@ class SideBySide extends React.Component {
           participant={participant}
           postParticipant={postParticipant}
           userDataCollectType={userDataCollectType}
-          selectableLastMessages={poll.selectableLastMessages}
           type={type}
         />
         )}

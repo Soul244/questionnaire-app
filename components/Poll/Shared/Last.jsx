@@ -65,18 +65,9 @@ class Last extends React.Component {
                 </Progress>
                 <hr />
               </Col>
-              <Col>
-                {/*
-                              <SelectableLastMessage
-                  selectableLastMessages={selectableLastMessages}
-                  result={rightPercent}
-                />
-              */}
-
-              </Col>
             </>
           )}
-          <Col md={{ size: 6, offset: 3 }}>
+          <Col md={{ size: 6, offset: 3 }} className="my-4">
             {userDataCollectType === 'form' && (
             <Formik
               initialValues={{
@@ -154,11 +145,11 @@ class Last extends React.Component {
               <Button onClick={this.onClick}>Cevaplarınızı Gönderin</Button>
             )}
           </Col>
+          {message && (
           <ColStyled>
-            {message && (
             <Alert color="success">{message}</Alert>
-            )}
           </ColStyled>
+          )}
         </CardBody>
       </Card>
     );

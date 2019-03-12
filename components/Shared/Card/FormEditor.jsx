@@ -8,7 +8,6 @@ import {
 import styled from 'styled-components';
 
 const CardStyled = styled(Card)` 
-  margin-top: 15px;
 `;
 /*
   Froala editor uses window object.

@@ -220,10 +220,10 @@ class index extends Component {
                 <CardSubtitle>Cevap istatistiklerini yüzdesel, sayısal olarak görün.</CardSubtitle>
               </CardBody>
               <CardBody>
-                {poll.questions > 0 && (
+                {poll.questions && poll.questions > 0 && (
                   <PercentTable poll={poll} />
                 )}
-                {poll.questions.length === 0 && (
+                {poll.questions && poll.questions.length === 0 && (
                   <CardTitle>Hiçbir kayıt bulunamadı</CardTitle>
                 )}
               </CardBody>

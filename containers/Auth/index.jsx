@@ -97,9 +97,9 @@ class Auth extends Component {
     const { postLogin, postSignUp, postResetPassword } = this.props.userActions;
     const { page } = this.state;
     return (
-      <Container className="text-center mt-4">
+      <Container>
         <Row>
-          <Col lg={{ size: 6, offset: 3 }} md={{ size: 8, offset: 2 }}>
+          <Col lg={{ size: 6, offset: 3 }} md={{ size: 8, offset: 2 }} className="text-center mt-4">
             <Card>
               <LogoContainer src="/static/image_3.webp">
                 <Logo src="/static/bilemezsin-logo.jpg" />

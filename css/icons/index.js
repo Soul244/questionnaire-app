@@ -23,6 +23,7 @@ import {
   ic_menu,
   ic_phone,
   ic_email,
+  ic_more_vert,
 } from 'react-icons-kit/md';
 
 export default Icon;
@@ -53,4 +54,10 @@ export {
   ic_menu as menu,
   ic_phone as phone,
   ic_email as mail,
+  ic_more_vert as threedot,
 };
+
+/* Example
+  import Icon, { question, remove3 } from '../../css/icons';
+  <Icon size={24} icon={arrowDown} />
+*/

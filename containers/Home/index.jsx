@@ -5,9 +5,7 @@ import Link from 'next/link';
 import Swiper from 'react-id-swiper';
 import { Parallax } from 'react-parallax';
 import styled, { keyframes } from 'styled-components';
-import {
-  Bounce, Zoom, Fade,
-} from 'react-reveal';
+import { Bounce, Zoom, Fade } from 'react-reveal';
 
 import {
   Container,
@@ -38,10 +36,12 @@ const ContainerBackground = styled.div`
   background-color: #fff;
   padding: ${props => (props.pd ? '12rem 0' : '8rem 0')};
   position:relative;
-  ${({ bg }) => bg && `
+  ${({ bg }) => bg
+    && `
     background-color: #F8F8F8;
   `}
-  ${({ px }) => px && `
+  ${({ px }) => px
+    && `
     background-color: transparent;
     color: white;
     ::before{
@@ -53,7 +53,8 @@ const ContainerBackground = styled.div`
     background-color: rgba(0, 0, 0,0.5);
   }
   `}
-  ${({ image }) => image && `
+  ${({ image }) => image
+    && `
     ::before{
     content:'';
     position: absolute;
@@ -69,15 +70,15 @@ const ContainerBackground = styled.div`
 `;
 
 const H1 = styled.h1`
-    color: ${props => (props.light ? 'white' : '#17a2b8')};
-    font-weight: 600;
-    margin: 2rem 0;
+  color: ${props => (props.light ? 'white' : '#17a2b8')};
+  font-weight: 600;
+  margin: 2rem 0;
 `;
 
 const H2 = styled.h2`
-    color: ${props => (props.light ? 'white' : '#17a2b8')};
-    font-weight: 600;
-    margin: 2rem 0;
+  color: ${props => (props.light ? 'white' : '#17a2b8')};
+  font-weight: 600;
+  margin: 2rem 0;
 `;
 
 const List = styled.ul`
@@ -111,15 +112,15 @@ const TextContainer = styled.div`
 `;
 
 const Image = styled.img`
-    height: ${props => props.height};
+  height: ${props => props.height};
+  width: auto;
+  @media (max-width: 576px) {
+    height: ${props => (props.height ? '200px' : 'auto')};
     width: auto;
-    @media(max-width:576px){
-      height: ${props => (props.height ? '200px' : 'auto')};
-      width: auto;
-    }
+  }
 `;
 
-const CardImgStyled = styled.div` 
+const CardImgStyled = styled.div`
   background-image: url(${props => props.src});
   width: 100%;
   height: 250px;
@@ -127,59 +128,59 @@ const CardImgStyled = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  :before{
-    content:'';
-    position:absolute;
-    bottom:0;
-    left:0;
+  :before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 65px;
-    background: url(${props => (props.wave2 ? '/static/wave_2.webp' : '/static/wave.webp')});
+    background: url(${props => (props.wave2 ? "/static/wave_2.webp" : "/static/wave.webp")});
     background-size: cover;
   }
 `;
 
 const CardStyled = styled(Card)`
-    width: 400px;
-    margin: 1rem 0 2rem 0;
-    border:none;
-    @media (max-width: 576px) {
+  width: 400px;
+  margin: 1rem 0 2rem 0;
+  border: none;
+  @media (max-width: 576px) {
     width: 300px;
   }
 `;
 
-const Footer = styled.div` 
+const Footer = styled.div`
   background-color: black;
   color: #17a2b8;
   font-size: 1rem;
   padding: 1rem 0;
-  @media(max-width:576px){
+  @media (max-width: 576px) {
     font-size: 0.85rem;
   }
-  p{
+  p {
     display: inline-block;
     margin-left: 1rem;
   }
 `;
 
-const LinkStyled = styled.a` 
+const LinkStyled = styled.a`
   color: #17a2b8;
   :hover {
     text-decoration: none;
-    color: #00899F;
+    color: #00899f;
   }
 `;
 
-const FooterIconContainer = styled.div` 
+const FooterIconContainer = styled.div`
   margin-left: 1rem;
   display: inline-flex;
-  align-items:center;
+  align-items: center;
   justify-content: center;
   p {
-    margin-bottom:0;
+    margin-bottom: 0;
   }
-  @media(max-width: 576px){
-    svg{
+  @media (max-width: 576px) {
+    svg {
       width: 24px;
       height: 24px;
     }
@@ -249,29 +250,24 @@ class index extends Component {
                 <Col md="12">
                   <Fade top>
                     <H1 light>Ücretsiz anketlerinizi oluşturun ve paylaşın.</H1>
-                    <H2 light>
-                      Tamamen ücretsiz!
-                    </H2>
+                    <H2 light>Tamamen ücretsiz!</H2>
                   </Fade>
                   <Link as="/giris-yap" href="/auth">
                     <Button type="button" color="info">
-                  Ücretsiz hesap
+                      Ücretsiz hesap
                     </Button>
                   </Link>
-                  {' '}
+{" "}
                   <Link as="/giris-yap" href="/auth">
                     <Button type="button" color="success">
-                  Giriş yapın
+                      Giriş yapın
                     </Button>
                   </Link>
                 </Col>
               </Row>
             </Container>
             <IconContainer>
-              <Icon
-                size="48px"
-                icon={arrowDown}
-              />
+              <Icon size="48px" icon={arrowDown} />
             </IconContainer>
           </ContainerBackground>
           <ContainerBackground id="ornekler">
@@ -282,52 +278,74 @@ class index extends Component {
                   <Swiper {...params}>
                     <CardStyled>
                       <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi">
-                        <CardImgStyled
-                          src="/static/image_4.webp"
-                        />
+                        <CardImgStyled src="/static/image_4.webp" />
                         <CardBody>
                           <CardTitle>Maçın Favorisi Kim?</CardTitle>
-                          <CardSubtitle>Lig maçının favorisini seçin.</CardSubtitle>
+                          <CardSubtitle>
+                            Lig maçının favorisini seçin.
+                          </CardSubtitle>
                           <CardText>
-                          Fenerbahçe ile Beşiktaş arasında oynanacak dev derbiyi kim
-                          kazanacak? Ankete katıl ve büyük ödülü kazanma şansı yakala.
+                            Fenerbahçe ile Beşiktaş arasında oynanacak dev
+                            derbiyi kim kazanacak? Ankete katıl ve büyük ödülü
+                            kazanma şansı yakala.
                           </CardText>
-                          <Button outline href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi" target="_blank">Ankete Git</Button>
+                          <Button
+                            outline
+                            href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi"
+                            target="_blank"
+                          >
+                            Ankete Git
+                          </Button>
                         </CardBody>
                       </LinkStyled>
                     </CardStyled>
                     <CardStyled>
                       <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/araba-lastigi">
-                        <CardImgStyled
-                          wave2
-                          src="/static/image_5.webp"
-                        />
+                        <CardImgStyled wave2 src="/static/image_5.webp" />
                         <CardBody>
                           <CardTitle>En İyi Araba Lastiği Hangisi?</CardTitle>
                           <CardSubtitle>
-                          Sizin için en iyi araba lastiğini seçin.
+                            Sizin için en iyi araba lastiğini seçin.
                           </CardSubtitle>
                           <CardText>
-                        Ankete katılın ve ücretsiz araba lastiği kazanma şansı yakalayın!
+                            Ankete katılın ve ücretsiz araba lastiği kazanma
+                            şansı yakalayın!
                           </CardText>
-                          <Button outline href="https://questionnaire-test.herokuapp.com/anket/araba-lastigi" target="_blank">Ankete Git</Button>
+                          <Button
+                            outline
+                            href="https://questionnaire-test.herokuapp.com/anket/araba-lastigi"
+                            target="_blank"
+                          >
+                            Ankete Git
+                          </Button>
                         </CardBody>
                       </LinkStyled>
                     </CardStyled>
                     <CardStyled>
-                      <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/yerel-secim-anketi" target="_blank">
-                        <CardImgStyled
-                          src="/static/image_6.webp"
-                        />
+                      <LinkStyled
+                        href="https://questionnaire-test.herokuapp.com/anket/yerel-secim-anketi"
+                        target="_blank"
+                      >
+                        <CardImgStyled src="/static/image_6.webp" />
                         <CardBody>
                           <CardTitle>
-                    Yerel Seçimlerde Kime Oy Vereceksiniz?
+                            Yerel Seçimlerde Kime Oy Vereceksiniz?
                           </CardTitle>
-                          <CardSubtitle>Hangi partiye oy vermeyi planlıyorsunuz?</CardSubtitle>
+                          <CardSubtitle>
+                            Hangi partiye oy vermeyi planlıyorsunuz?
+                          </CardSubtitle>
                           <CardText>
-                        Türkiye'nin kaderini etkileyecek olacak olan bu seçimlerde, kendi bölgenizde hangi adaya oy vereceksiniz?
+                            Türkiye'nin kaderini etkileyecek olacak olan bu
+                            seçimlerde, kendi bölgenizde hangi adaya oy
+                            vereceksiniz?
                           </CardText>
-                          <Button outline href="https://questionnaire-test.herokuapp.com/anket/yerel-secim-anketi" target="_blank">Ankete Git</Button>
+                          <Button
+                            outline
+                            href="https://questionnaire-test.herokuapp.com/anket/yerel-secim-anketi"
+                            target="_blank"
+                          >
+                            Ankete Git
+                          </Button>
                         </CardBody>
                       </LinkStyled>
                     </CardStyled>
@@ -359,10 +377,7 @@ class index extends Component {
               </Row>
             </Container>
           </ContainerBackground>
-          <Parallax
-            bgImage="/static/image_3.webp"
-            strength={200}
-          >
+          <Parallax bgImage="/static/image_3.webp" strength={200}>
             <ContainerBackground px>
               <Container>
                 <Row>
@@ -410,17 +425,11 @@ class index extends Component {
               <Row>
                 <Col className="text-center">
                   <FooterIconContainer>
-                    <Icon
-                      size="48px"
-                      icon={phone}
-                    />
+                    <Icon size="48px" icon={phone} />
                     <p>0538 086 79 69</p>
                   </FooterIconContainer>
                   <FooterIconContainer>
-                    <Icon
-                      size="48px"
-                      icon={mail}
-                    />
+                    <Icon size="48px" icon={mail} />
                     <p>hasancangedik@hotmail.com</p>
                   </FooterIconContainer>
                 </Col>

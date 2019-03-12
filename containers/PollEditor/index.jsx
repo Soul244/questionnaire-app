@@ -163,7 +163,7 @@ class PollEditor extends Component {
         <form onSubmit={this.handleSubmit}>
           <QuestionTool addQuestion={addQuestion} />
           <Row>
-            <Col md="6">
+            <Col md="6" className="mb-2">
               <FormInput
                 title="Anket Başlığı"
                 value={name}
@@ -171,7 +171,7 @@ class PollEditor extends Component {
                 placeholder="Anket başlığınızı giriniz..."
               />
             </Col>
-            <Col md="6">
+            <Col md="6" className="mb-2">
               <FormInput
                 title="Anket Adresi"
                 value={slug}
@@ -188,7 +188,7 @@ class PollEditor extends Component {
             </Col>
           </Row>
           <Row>
-            <Col md="6" className="my-4">
+            <Col md="12" className="mb-2">
               <FormEditor
                 title="Anket Açıklaması"
                 config={this.config}
@@ -196,7 +196,7 @@ class PollEditor extends Component {
                 onModelChange={onChangeDesc}
               />
             </Col>
-            <Col md="6" className="my-4">
+            <Col md="12" className="mb-2">
               <FormEditor
                 title="Anket Sonu Mesajı"
                 config={this.configText}
@@ -206,7 +206,7 @@ class PollEditor extends Component {
             </Col>
           </Row>
           <Row>
-            <Col md="12" className="my-4">
+            <Col md="12" className="mb-2">
               <Settings />
             </Col>
           </Row>
@@ -214,7 +214,7 @@ class PollEditor extends Component {
           {/* <Inject /> */}
           {/* {poll.settings.type === 'test' && <SelectableLastMessage />} */}
           <Row>
-            <Col md="12" className="my-4">
+            <Col md="12" className="mb-2">
               <Questions />
             </Col>
           </Row>

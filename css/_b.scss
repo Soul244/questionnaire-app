@@ -1,3 +1,12 @@
+.row {
+    margin-right: 5px;
+    margin-left: 5px;
+    [class*="col-"] {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+}
+
 .card {
     background-color: $component-color;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -39,3 +48,11 @@
   .table td:hover{
     color: #009fd4;
   }
+
+.btn-transparent {
+    @include button-variant(lightgrey, transparent, lightgrey, transparent, transparent, transparent);
+}
+
+.btn-custom-outline {
+    @include button-outline-variant(#222222, #cece19, #222222, #cece19);
+}
