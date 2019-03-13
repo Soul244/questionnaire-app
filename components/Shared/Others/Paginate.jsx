@@ -10,19 +10,6 @@ class Paginate extends React.Component {
     };
   }
 
-  createPaginateItems = (pageCount, handlePageChange) => {
-    const paginationItems = [];
-    // Outer loop to create parent
-    for (let i = 0; i < pageCount; i += 1) {
-      paginationItems.push(
-        <PaginationItem key={i}>
-          <PaginationLink onClick={e => handlePageChange(e.target.value)} value={i}>{i + 1}</PaginationLink>
-        </PaginationItem>,
-      );
-    }
-    return paginationItems;
-  };
-
   componentDidMount() {
     const { itemsCount } = this.props;
     let pageCount = 1;
@@ -37,6 +24,19 @@ class Paginate extends React.Component {
       pageCount,
     });
   }
+
+  createPaginateItems = (pageCount, handlePageChange) => {
+    const paginationItems = [];
+    // Outer loop to create parent
+    for (let i = 0; i < pageCount; i += 1) {
+      paginationItems.push(
+        <PaginationItem key={i}>
+          <PaginationLink onClick={e => handlePageChange(e.target.value)} value={i}>{i + 1}</PaginationLink>
+        </PaginationItem>,
+      );
+    }
+    return paginationItems;
+  };
 
   render() {
     const { page, handlePageChange } = this.props;

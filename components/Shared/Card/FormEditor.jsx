@@ -19,8 +19,7 @@ const FroalaEditorInput = dynamic(import('react-froala-wysiwyg'), {
   ssr: false,
 });
 
-function FormEditor(props) {
-  const { title, ...rest } = props;
+function FormEditor({ title, ...rest }) {
   return (
     <CardStyled body className="br" data-test="form-editor">
       <CardTitle data-test="title">{title}</CardTitle>

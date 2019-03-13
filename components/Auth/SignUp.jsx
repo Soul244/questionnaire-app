@@ -14,12 +14,7 @@ const Header = styled.div`
     margin: 1rem;
 `;
 
-function SignUp(props) {
-  const {
-    validationSchema,
-    postSignUp,
-    pageHandle,
-  } = props;
+function SignUp({ validationSchema, postSignUp, pageHandle }) {
   return (
     <>
       <Header>

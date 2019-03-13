@@ -16,10 +16,7 @@ const Header = styled.div`
     margin: 1rem;
 `;
 
-function ResetPassword(props) {
-  const {
-    validationSchema, postResetPassword, pageHandle,
-  } = props;
+function ResetPassword({ validationSchema, postResetPassword, pageHandle }) {
   return (
     <>
       <Header>

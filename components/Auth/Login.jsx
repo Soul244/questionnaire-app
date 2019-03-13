@@ -21,16 +21,11 @@ const Header = styled.div`
     margin: 1rem 1rem 2rem 1rem;
 `;
 
-function Login(props) {
-  const {
-    validationSchema, postLogin, pageHandle,
-  } = props;
-
+function Login({ validationSchema, postLogin, pageHandle }) {
   return (
     <>
       <Header>
         <CardTitle tag="h3">Oturum aç</CardTitle>
-        <CardSubtitle>Bilemezsin Hesabınızı kullanın</CardSubtitle>
       </Header>
       <Formik
         initialValues={{

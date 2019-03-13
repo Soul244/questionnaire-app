@@ -18,11 +18,9 @@ margin-left: auto;
 display: flex;
 `;
 
-function Controls(props) {
-  const {
-    slidePrev, slideNext, questionsLength, slideIndex,
-  } = props;
-
+function Controls({
+  slidePrev, slideNext, questionsLength, slideIndex,
+}) {
   return (
     <Controls>
       <Button onClick={slidePrev}>Önceki Soru</Button>

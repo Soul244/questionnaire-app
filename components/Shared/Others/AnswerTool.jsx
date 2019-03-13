@@ -52,10 +52,9 @@ const HideableContent = styled.div`
   overflow: hidden;
 `;
 
-function AnswerTool(props) {
-  const {
-    addAnswer, questionIndex, toggle, show,
-  } = props;
+function AnswerTool({
+  addAnswer, questionIndex, toggle, show,
+}) {
   return (
     <CardMax body className="text-center">
       <PlusIcon size="md" outline block onClick={toggle} show={show ? 1 : 0}>

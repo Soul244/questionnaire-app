@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import PropTypes from 'prop-types';
 import {
   Nav, NavItem, NavLink, Container,
 } from 'reactstrap';
-import { Scrollbars } from 'react-custom-scrollbars';
 
 const NavStyled = styled(Nav)`
   position: sticky;
@@ -48,5 +47,9 @@ function Navbar({ items }) {
     </NavStyled>
   );
 }
+
+Navbar.propTypes = {
+  items: PropTypes.array.isRequired,
+};
 
 export default Navbar;

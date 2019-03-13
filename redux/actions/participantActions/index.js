@@ -122,6 +122,7 @@ export function postParticipantErrorAction(payload) {
 }
 
 export function postParticipant(participant) {
+  console.log(participant);
   return async (dispatch) => {
     try {
       const response = await axios.post('/participants/', {

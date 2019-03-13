@@ -28,6 +28,7 @@ function Answers(props) {
         <Answer
           key={index}
           index={index}
+          order={answers[index].index}
           questionIndex={questionIndex}
         // Answer Functions
           onChangeAnswerContent={onChangeAnswerContent}

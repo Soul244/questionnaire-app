@@ -8,10 +8,9 @@ const InputStyled = styled(Input)`
     display:${props => (props.show ? 'block' : 'none')};
 `;
 
-function Desc(props) {
-  const {
-    type, show, value, onChange,
-  } = props;
+function Desc({
+  type, show, value, onChange,
+}) {
   if (type === 'audio' || type === 'video' || type === 'gif' || type === 'image') {
     return (
       <InputStyled

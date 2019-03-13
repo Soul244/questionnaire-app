@@ -38,6 +38,7 @@ class Answer extends Component {
   render() {
     const {
       index,
+      order,
       questionIndex,
       // Answer Functions
       onChangeAnswerContent,
@@ -54,7 +55,7 @@ class Answer extends Component {
     return (
       <Card className="my-4" outline={checked} checked={checked} color={checked ? 'success' : ''}>
         <CardHeaderStyled tag="h6" checked={checked}>
-          {`${index + 1}. Cevap`}
+          {`${order + 1}. Cevap`}
           {' '}
         </CardHeaderStyled>
         <CardBody>

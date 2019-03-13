@@ -7,6 +7,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import Draggable from 'react-draggable';
+import ToolButton from '../Button/ToolButton';
 import Icon, {
   video, text, image, audio, save, preview, arrowUp, publish,
 } from '../../../css/icons';
@@ -80,42 +81,19 @@ class QuestionTool extends React.Component {
               <Icon size="48px" icon={arrowUp} />
             </PlusIcon>
             <HideableContent show={show}>
-              <ButtonStyled size="md" outline block color="warning" id="text" onClick={() => addQuestion('text')}>
-                <Icon size="24px" icon={text} />
-              </ButtonStyled>
-              <ButtonStyled size="md" outline block color="danger" id="video" onClick={() => addQuestion('video')}>
-                <Icon size="24px" icon={video} />
-              </ButtonStyled>
-              <ButtonStyled size="md" outline block color="info" id="image" onClick={() => addQuestion('image')}>
-                <Icon size="24px" icon={image} />
-              </ButtonStyled>
-              <ButtonStyled size="md" outline block color="primary" id="audio" onClick={() => addQuestion('audio')}>
-                <Icon size="24px" icon={audio} />
-              </ButtonStyled>
-              <ButtonStyled size="md" outline block color="secondary" id="gif" onClick={() => addQuestion('gif')}>GIF</ButtonStyled>
-              <ButtonStyled size="md" outline block color="secondary" id="heading" onClick={() => addQuestion('heading')}>H1</ButtonStyled>
+              <ToolButton icon={text} tooltip="Metin sorusu ekle." color="warning" id="text" onClick={() => addQuestion('text')} />
+              <ToolButton icon={video} tooltip="Video sorusu ekle." color="danger" id="video" onClick={() => addQuestion('video')} />
+              <ToolButton icon={image} tooltip="Görsel sorusu ekle." color="info" id="image" onClick={() => addQuestion('image')} />
+              <ToolButton icon={audio} tooltip="Ses sorusu ekle." color="primary" id="audio" onClick={() => addQuestion('audio')} />
+              <ToolButton content="GIF" tooltip="Gif sorusu ekle." color="secondary" id="gif" onClick={() => addQuestion('gif')} />
+              <ToolButton content="H1" tooltip="Büyük fontlu metin sorusu ekle." color="secondary" id="heading" onClick={() => addQuestion('heading')} />
               <Link as="/on-izleme/true" href={`/poll/preview?ispreview=${true}`}>
-                <ButtonStyled size="md" outline block color="secondary" id="preview">
-                  <Icon size="24px" icon={preview} />
-                </ButtonStyled>
+                <ToolButton icon={preview} tooltip="Anketi kaydetmeden önce önizle." color="secondary" id="preview" />
               </Link>
-              <ButtonStyled type="submit" outline block color="success" id="save">
-                <Icon size="24px" icon={save} />
-              </ButtonStyled>
-              <ButtonStyled type="button" outline block color="success" id="publish">
-                <Icon size="24px" icon={publish} />
-              </ButtonStyled>
+              <ToolButton icon={save} tooltip="Anketi güncelle veya kaydet." type="submit" outline block color="success" id="save" />
+              <ToolButton icon={publish} tooltip="Anketi yayınla." type="button" color="success" id="publish" />
             </HideableContent>
             <UncontrolledTooltip placement="left" target="toggle">Soru ekleme aracını aç veya kapa.</UncontrolledTooltip>
-            <UncontrolledTooltip placement="left" target="text">Metin sorusu ekle.</UncontrolledTooltip>
-            <UncontrolledTooltip placement="left" target="video">Video sorusu ekle.</UncontrolledTooltip>
-            <UncontrolledTooltip placement="left" target="image">Görsel sorusu ekle.</UncontrolledTooltip>
-            <UncontrolledTooltip placement="left" target="audio">Ses sorusu ekle.</UncontrolledTooltip>
-            <UncontrolledTooltip placement="left" target="gif">Gif sorusu ekle.</UncontrolledTooltip>
-            <UncontrolledTooltip placement="left" target="heading">Büyük fontlu metin sorusu ekle.</UncontrolledTooltip>
-            <UncontrolledTooltip placement="left" target="preview">Anketi kaydetmeden önce önizle.</UncontrolledTooltip>
-            <UncontrolledTooltip placement="left" target="save">Anketi güncelle veya kaydet.</UncontrolledTooltip>
-            <UncontrolledTooltip placement="left" target="publish">Anketi yayınla.</UncontrolledTooltip>
           </CardBodyStyled>
         </CardStyled>
       </Draggable>

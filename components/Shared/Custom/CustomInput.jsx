@@ -36,10 +36,9 @@ const Container = styled.div`
     width: 100%;
 `;
 
-function CustomInput(props) {
-  const {
-    inputLabel, value, error, ...rest
-  } = props;
+function CustomInput({
+  inputLabel, value, error, ...rest
+}) {
   return (
     <Container data-test="container">
       <InputStyled

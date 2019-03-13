@@ -9,8 +9,7 @@ import styled from 'styled-components';
 const CardStyled = styled(Card)` 
 `;
 
-function FormInput(props) {
-  const { title, ...rest } = props;
+function FormInput({ title, ...rest }) {
   return (
     <CardStyled body className="br" data-test="form-input">
       <CardTitle data-test="title">{title}</CardTitle>

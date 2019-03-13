@@ -9,6 +9,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Backdrop from './Sidebar/Backdrop';
 import FormInput from './Card/FormInput';
 import FormEditor from './Card/FormEditor';
+import ToolButton from './Button/ToolButton';
 
 export {
   ContentViewer,
@@ -22,4 +23,5 @@ export {
   Backdrop,
   FormInput,
   FormEditor,
+  ToolButton,
 };

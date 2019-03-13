@@ -26,19 +26,18 @@ const Text = styled.p`
   display: ${props => (props.show ? 'inline-block' : 'none')};
 `;
 
-function Option(props) {
-  const {
-    index,
-    questionIndex,
-    rightAnswerIndex,
-    type,
-    content,
-    checked,
-    onClick,
-    answerCount,
-    questionCount,
-    showPercent,
-  } = props;
+function Option({
+  index,
+  questionIndex,
+  rightAnswerIndex,
+  type,
+  content,
+  checked,
+  onClick,
+  answerCount,
+  questionCount,
+  showPercent,
+}) {
   return (
     <Col md={6}>
       <CardStyled

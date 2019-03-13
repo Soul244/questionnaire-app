@@ -50,7 +50,7 @@ const ContainerBackground = styled.div`
     width: 100%;
     height: 100%;
     top:0;
-    background-color: rgba(0, 0, 0,0.5);
+    background-color: rgba(23, 162, 184, 0.8);
   }
   `}
   ${({ image }) => image
@@ -155,7 +155,7 @@ const CardBodyStyled = styled(CardBody)`
 `;
 
 const Footer = styled.div`
-  background-color: black;
+  background-color: lightgrey;
   color: #17a2b8;
   font-size: 1rem;
   padding: 1rem 0;
@@ -389,7 +389,7 @@ class index extends Component {
                   <Col md="12">
                     <Zoom top>
                       <TextContainer>
-                        <H2 light>Markanıza Özel Anket</H2>
+                        <H1 light>Markanıza Özel Anket</H1>
                         <List>
                           <li>Markanıza özel anket tasarımı</li>
                           <li>Kolay uygulanabilir ve tasarlanabilir.</li>

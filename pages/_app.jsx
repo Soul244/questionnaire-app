@@ -29,7 +29,7 @@ class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>Bilemezsin Questionnaire</title>
+          <title>Questionnaire</title>
           <link rel="icon" type="image" href="/static/favicon.jpg" />
           <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />

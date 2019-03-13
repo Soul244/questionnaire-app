@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 import {
   NavItem,
@@ -12,7 +13,7 @@ const NavLinkCursor = styled(NavLink)`
   color:white !important;
 `;
 
-function Logged(props) {
+function Logged({ logOut }) {
   return (
     <>
       <NavItem>
@@ -27,11 +28,15 @@ function Logged(props) {
       </NavItem>
       <NavItem>
         <Link as="/giris-yap" href="/auth">
-          <NavLinkCursor onClick={props.logOut}>Çıkış Yap</NavLinkCursor>
+          <NavLinkCursor onClick={logOut}>Çıkış Yap</NavLinkCursor>
         </Link>
       </NavItem>
     </>
   );
 }
+
+Logged.propTypes = {
+  logOut: PropTypes.func.isRequired,
+};
 
 export default Logged;

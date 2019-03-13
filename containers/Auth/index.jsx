@@ -102,7 +102,7 @@ class Auth extends Component {
           <Col lg={{ size: 6, offset: 3 }} md={{ size: 8, offset: 2 }} className="text-center mt-4">
             <Card>
               <LogoContainer src="/static/image_3.webp">
-                <Logo src="/static/bilemezsin-logo.jpg" />
+                <Logo src="/static/logo.jpg" />
               </LogoContainer>
               <CardBodyStyled>
                 <>

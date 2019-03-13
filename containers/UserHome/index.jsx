@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import * as userActions from '../../redux/actions/userActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
-import Table from '../../components/UserHome';
+import { TableList, MasonryList } from '../../components/UserHome';
 import { Loading } from '../../components/Shared';
 import withAuth from '../../hoc/withAuth';
 import withNavbar from '../../hoc/withNavbar';
@@ -36,11 +36,14 @@ class UserHome extends Component {
       );
     }
     return (
-      <Table
-        polls={polls}
-        message={message}
-        deletePoll={deletePoll}
-      />
+      <>
+        <MasonryList polls={polls} />
+        <TableList
+          polls={polls}
+          message={message}
+          deletePoll={deletePoll}
+        />
+      </>
     );
   }
 }
