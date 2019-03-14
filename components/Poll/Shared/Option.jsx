@@ -29,6 +29,7 @@ const Text = styled.p`
 function Option({
   index,
   questionIndex,
+  order,
   rightAnswerIndex,
   type,
   content,
@@ -42,7 +43,7 @@ function Option({
     <Col md={6}>
       <CardStyled
         className="my-1"
-        onClick={() => onClick(index)}
+        onClick={() => onClick(order)}
         checked={checked === index}
         index={index}
         rightAnswerIndex={rightAnswerIndex}

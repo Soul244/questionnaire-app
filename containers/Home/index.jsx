@@ -202,10 +202,7 @@ class index extends Component {
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 'auto',
-        autoplay: {
-          delay: 4000,
-          disableOnInteraction: false,
-        },
+        activeSlideKey: '2',
         coverflowEffect: {
           rotate: 50,
           stretch: 0,
@@ -221,12 +218,6 @@ class index extends Component {
   }
 
   componentDidMount() {
-    this.setState(prevState => ({
-      params: {
-        ...prevState.params,
-        activeSlideKey: '2',
-      },
-    }));
     axios
       .post('/users/token', {
         token: localStorage.getItem('token'),
@@ -281,7 +272,7 @@ class index extends Component {
                 <Col md="12" className="text-center">
                   <H2>Örnek Anketler</H2>
                   <Swiper {...params}>
-                    <CardStyled>
+                    <CardStyled key={1}>
                       <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi">
                         <CardImgStyled src="/static/image_4.webp" />
                         <CardBodyStyled>
@@ -304,7 +295,7 @@ class index extends Component {
                         </CardBodyStyled>
                       </LinkStyled>
                     </CardStyled>
-                    <CardStyled>
+                    <CardStyled key={2}>
                       <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/araba-lastigi">
                         <CardImgStyled wave2 src="/static/image_5.webp" />
                         <CardBodyStyled>
@@ -326,7 +317,7 @@ class index extends Component {
                         </CardBodyStyled>
                       </LinkStyled>
                     </CardStyled>
-                    <CardStyled>
+                    <CardStyled key={3}>
                       <LinkStyled
                         href="https://questionnaire-test.herokuapp.com/anket/yerel-secim-anketi"
                         target="_blank"

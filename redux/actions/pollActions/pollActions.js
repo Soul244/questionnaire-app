@@ -5,12 +5,12 @@ import { syncTypes, asyncTypes } from '../../types';
 export function getUpdatePollAction(payload) {
   return {
     type: asyncTypes.GET_UPDATE_POLL,
-    payload
+    payload,
   };
 }
 
 export function getUpdatePoll(slug) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       const response = await axios.get(`/polls/${slug}`);
       dispatch(getUpdatePollAction(response.data.poll));
@@ -25,11 +25,11 @@ export function getUpdatePoll(slug) {
 export function onChangeNameAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_NAME,
-    payload
+    payload,
   };
 }
 export function onChangeName(name) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(onChangeNameAction(name));
   };
 }
@@ -39,11 +39,11 @@ export function onChangeName(name) {
 export function onChangeDescAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_DESC,
-    payload
+    payload,
   };
 }
 export function onChangeDesc(desc) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(onChangeDescAction(desc));
   };
 }
@@ -53,11 +53,11 @@ export function onChangeDesc(desc) {
 export function onChangeSlugAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_SLUG,
-    payload
+    payload,
   };
 }
 export function onChangeSlug(slug) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(onChangeSlugAction(slug));
   };
 }
@@ -67,11 +67,11 @@ export function onChangeSlug(slug) {
 export function onChangeLastDescAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_LAST_DESC,
-    payload
+    payload,
   };
 }
 export function onChangeLastDesc(lastDesc) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(onChangeLastDescAction(lastDesc));
   };
 }
@@ -82,25 +82,25 @@ export function onChangeLastDesc(lastDesc) {
 export function onChangeCssAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_CSS,
-    payload
+    payload,
   };
 }
 export function onChangeCss(css) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(onChangeCssAction(css));
   };
 }
 /* #endregion */
 
-/* #region On Change JS*/
+/* #region On Change JS */
 export function onChangeJsAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_JS,
-    payload
+    payload,
   };
 }
 export function onChangeJs(js) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(onChangeJsAction(js));
   };
 }
@@ -110,23 +110,23 @@ export function onChangeJs(js) {
 export function handleSelectableLastMessageChangeAction(payload) {
   return {
     type: syncTypes.ON_CHANGE_SELECTABLE_LAST_MESSAGE,
-    payload
+    payload,
   };
 }
 export function handleAddSelectableLastMessageAction(payload) {
   return {
     type: syncTypes.ADD_SELECTABLE_LAST_MESSAGE,
-    payload
+    payload,
   };
 }
 export function handleSelectableLastMessage(type, content) {
   return (dispatch, getState) => {
     const { selectableLastMessages } = getState().poll;
     const index = selectableLastMessages.findIndex(
-      message => message.type === type
+      message => message.type === type,
     );
-/*
-    
+    /*
+
     if (index > -1) {
       const updatedItem = update(selectableLastMessages[index], {
         content: {

@@ -10,7 +10,7 @@ const Container = styled.div`
   top: 0;
   left: 0;
   width: 240px;
-  z-index: 4;
+  z-index: 5;
   transition: transform 1s ease-out;
   transition: .5s cubic-bezier(.685,.0473,.346,1);
   transform:${props => (props.show ? 'translateZ(0)' : 'translate3d(-240px,0,0);')};
@@ -73,8 +73,8 @@ class Sidebar extends React.Component {
       <Container show={show}>
         <Nav navMode={navMode}>
           {items.map((item, index) => (
-            <Link as={item.as} href={item.href}>
-              <NavItem key={index} url={item.as} currentUrl={url}>
+            <Link as={item.as} href={item.href} key={index}>
+              <NavItem url={item.as} currentUrl={url}>
                 {item.name}
               </NavItem>
             </Link>

@@ -6,55 +6,63 @@ import {
   Button, Card, CardBody, UncontrolledTooltip,
 } from 'reactstrap';
 import styled from 'styled-components';
-import Draggable from 'react-draggable';
 import ToolButton from '../Button/ToolButton';
 import Icon, {
-  video, text, image, audio, save, preview, arrowUp, publish,
+  video,
+  text,
+  image,
+  audio,
+  save,
+  preview,
+  arrowUp,
+  publish,
 } from '../../../css/icons';
 
 const ButtonStyled = styled(Button)`
   width: 40px;
-  height: 40px;
+  height: 120px;
   margin: 0 auto;
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const PlusIcon = styled(ButtonStyled)`
-  margin-bottom: ${props => (props.show ? '0.5rem' : '0')};
+  position: absolute;
+  top: 0; 
+  left: ${props => (props.show ? '-220px' : '0px')};
+  transition: .3s cubic-bezier(.685,.0473,.346,1);
+  right: 0;
+  bottom: 0;
+  z-index: 7;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: white;
   svg {
-    transform: rotate(${props => (props.show ? '0deg' : '180deg')});
+    transform: rotate(${props => (props.show ? '90deg' : '270deg')});
     transition: transform 0.4s ease;
   }
 `;
 
 const CardStyled = styled(Card)`
-  position: fixed;
-  z-index:1;
-  right: 1rem;
-  top: 15%;
-  background-color: #fff;
-  border-radius: 150px !important;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index:5;
-`;
-
-const CardBodyStyled = styled(CardBody)`
-  padding:0.25rem !important;
-`;
-
-const HideableContent = styled.div`
-  max-height: ${props => (props.show ? '600px' : '0')};
-  transition: max-height 0.3s ease;
+  transform:${props => (props.show ? 'translateZ(0)' : 'translate3d(240px,0,0);')};
+  transition: .5s cubic-bezier(.685,.0473,.346,1);
   overflow: hidden;
-  padding: ${props => (props.show ? '0.2rem' : '0rem')};;
+  width: 180px;
 `;
 
-//      <CardTitle>Yeni Soru Ekle</CardTitle>
+const Container = styled.div`
+  position: fixed;
+  width:${props => (props.show ? '180px' : '40px')};
+  z-index: 6;
+  right: 0;
+  top: 15%;
+  border-radius: 8px !important;
+`;
 
 class QuestionTool extends React.Component {
   constructor(props) {
@@ -68,35 +76,104 @@ class QuestionTool extends React.Component {
     this.setState(prevState => ({
       show: !prevState.show,
     }));
-  }
+  };
 
   render() {
     const { addQuestion } = this.props;
     const { show } = this.state;
     return (
-      <Draggable>
-        <CardStyled className="text-center">
-          <CardBodyStyled>
-            <PlusIcon size="md" outline block onClick={this.toggle} show={show ? 1 : 0} id="toggle">
-              <Icon size="48px" icon={arrowUp} />
-            </PlusIcon>
-            <HideableContent show={show}>
-              <ToolButton icon={text} tooltip="Metin sorusu ekle." color="warning" id="text" onClick={() => addQuestion('text')} />
-              <ToolButton icon={video} tooltip="Video sorusu ekle." color="danger" id="video" onClick={() => addQuestion('video')} />
-              <ToolButton icon={image} tooltip="Görsel sorusu ekle." color="info" id="image" onClick={() => addQuestion('image')} />
-              <ToolButton icon={audio} tooltip="Ses sorusu ekle." color="primary" id="audio" onClick={() => addQuestion('audio')} />
-              <ToolButton content="GIF" tooltip="Gif sorusu ekle." color="secondary" id="gif" onClick={() => addQuestion('gif')} />
-              <ToolButton content="H1" tooltip="Büyük fontlu metin sorusu ekle." color="secondary" id="heading" onClick={() => addQuestion('heading')} />
-              <Link as="/on-izleme/true" href={`/poll/preview?ispreview=${true}`}>
-                <ToolButton icon={preview} tooltip="Anketi kaydetmeden önce önizle." color="secondary" id="preview" />
-              </Link>
-              <ToolButton icon={save} tooltip="Anketi güncelle veya kaydet." type="submit" outline block color="success" id="save" />
-              <ToolButton icon={publish} tooltip="Anketi yayınla." type="button" color="success" id="publish" />
-            </HideableContent>
-            <UncontrolledTooltip placement="left" target="toggle">Soru ekleme aracını aç veya kapa.</UncontrolledTooltip>
-          </CardBodyStyled>
+      <Container show={show}>
+        <PlusIcon
+          size="md"
+          outline
+          block
+          onClick={this.toggle}
+          show={show}
+          id="toggle"
+        >
+          <Icon size="48px" icon={arrowUp} />
+        </PlusIcon>
+        <CardStyled className="text-center" show={show}>
+          <CardBody>
+            <ToolButton
+              content="Yazılı Soru"
+              icon={text}
+              tooltip="Metin sorusu ekle."
+              color="warning"
+              id="text"
+              onClick={() => addQuestion('text')}
+            />
+            <ToolButton
+              content="Video Soru"
+              icon={video}
+              tooltip="Video sorusu ekle."
+              color="danger"
+              id="video"
+              onClick={() => addQuestion('video')}
+            />
+            <ToolButton
+              content="Görsel Soru"
+              icon={image}
+              tooltip="Görsel sorusu ekle."
+              color="info"
+              id="image"
+              onClick={() => addQuestion('image')}
+            />
+            <ToolButton
+              content="Sesli Soru"
+              icon={audio}
+              tooltip="Ses sorusu ekle."
+              color="primary"
+              id="audio"
+              onClick={() => addQuestion('audio')}
+            />
+            <ToolButton
+              content="GIF Sorusu"
+              tooltip="Gif sorusu ekle."
+              color="secondary"
+              id="gif"
+              onClick={() => addQuestion('gif')}
+            />
+            <ToolButton
+              content="Başlık"
+              tooltip="Büyük fontlu metin sorusu ekle."
+              color="secondary"
+              id="heading"
+              onClick={() => addQuestion('heading')}
+            />
+            <Link as="/on-izleme/true" href={`/poll/preview?ispreview=${true}`}>
+              <ToolButton
+                content="Önizle"
+                icon={preview}
+                tooltip="Anketi kaydetmeden önce önizle."
+                color="secondary"
+                id="preview"
+              />
+            </Link>
+            <ToolButton
+              content="Kaydet"
+              icon={save}
+              tooltip="Anketi güncelle veya kaydet."
+              type="submit"
+              outline
+              block
+              color="success"
+              id="save"
+            />
+            <ToolButton
+              content="Yayınla"
+              icon={publish}
+              tooltip="Anketi yayınla."
+              type="button"
+              color="success"
+              id="publish"
+            />
+            <UncontrolledTooltip placement="left" target="toggle">
+            Soru ekleme aracını aç veya kapa.
+            </UncontrolledTooltip>
+          </CardBody>
         </CardStyled>
-      </Draggable>
+      </Container>
     );
   }
 }

@@ -64,8 +64,8 @@ function MasonryList({ polls }) {
       options={masonryOptions}
     >
       {polls.map(poll => (
-        <Col md="4">
-          <CardContainer key={poll._id}>
+        <Col md="4" key={poll._id}>
+          <CardContainer>
             <CardStyled>
               <CardBody>
                 <CardTitle>{poll.name}</CardTitle>
@@ -78,7 +78,7 @@ function MasonryList({ polls }) {
                   <small className="text-muted">
                     Son güncelleme:
                     {' '}
-                    {moment(poll.updadetAt).lang('tr').format('Do MMMM YYYY, H:mm')}
+                    {moment(poll.updatedAt).lang('tr').format('Do MMMM YYYY, H:mm')}
                   </small>
                 </CardText>
               </CardFooter>

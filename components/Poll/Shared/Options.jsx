@@ -42,6 +42,7 @@ class Options extends React.Component {
             <Option
               key={index}
               index={index}
+              order={answer.index}
               questionIndex={answer.questionIndex}
               answerCount={answer.count}
               questionCount={questionCount}
