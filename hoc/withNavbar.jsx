@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import styled from 'styled-components';
 import { Navbar, Sidebar } from '../components/Shared';
 
@@ -67,11 +67,7 @@ function withNavbar(WrappedComponent) {
           <FullContainer show={show}>
             <Navbar sideBarToggle={this.sideBarToggle} sideBarShow={show} />
             <Container className="h-100">
-              <Row>
-                <Col className="my-2">
-                  <WrappedComponent {...this.props} />
-                </Col>
-              </Row>
+              <WrappedComponent {...this.props} />
             </Container>
           </FullContainer>
         </>

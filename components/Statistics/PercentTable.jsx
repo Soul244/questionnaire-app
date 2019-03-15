@@ -1,9 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { Table, Badge } from 'reactstrap';
 import { ContentViewer } from '../Shared';
 
-
+const BadgeStyled = styled(Badge)`
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+`;
 function PercentTable({ poll }) {
   const { questions, answers } = poll;
   return (
@@ -25,12 +29,12 @@ function PercentTable({ poll }) {
                <td key={`td${index}`}>
                  <ContentViewer type={answer.type} content={answer.content} />
                  {' '}
-                 <Badge color="info">
+                 <BadgeStyled color="warning">
                    {`Cevaplanma Sayısı: ${answer.count}`}
-                 </Badge>
-                 <Badge color="primary">
+                 </BadgeStyled>
+                 <BadgeStyled color="primary">
                    {`Oran: %${answer.count > 0 ? Math.round((answer.count / question.count) * 100) : 0}`}
-                 </Badge>
+                 </BadgeStyled>
                </td>
             ))}
           </tr>

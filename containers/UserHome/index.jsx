@@ -4,10 +4,12 @@ import { bindActionCreators } from 'redux';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
 
+import { Row, Col } from 'reactstrap';
+
 import * as userActions from '../../redux/actions/userActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import { TableList, MasonryList } from '../../components/UserHome';
-import { Loading } from '../../components/Shared';
+import { Loading, PageHeader } from '../../components/Shared';
 import withAuth from '../../hoc/withAuth';
 import withNavbar from '../../hoc/withNavbar';
 
@@ -37,12 +39,21 @@ class UserHome extends Component {
     }
     return (
       <>
-        <MasonryList polls={polls} />
-        <TableList
-          polls={polls}
-          message={message}
-          deletePoll={deletePoll}
-        />
+        <PageHeader title="Anketlerim" />
+        <Row>
+          <Col md="12">
+            <MasonryList polls={polls} />
+          </Col>
+        </Row>
+        <Row>
+          <Col md="12">
+            <TableList
+              polls={polls}
+              message={message}
+              deletePoll={deletePoll}
+            />
+          </Col>
+        </Row>
       </>
     );
   }

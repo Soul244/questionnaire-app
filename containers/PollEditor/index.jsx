@@ -11,7 +11,9 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import Settings from './Settings';
 import Questions from './Questions';
-import { QuestionTool, FormInput, FormEditor } from '../../components/Shared';
+import {
+ QuestionTool, FormInput, FormEditor, PageHeader 
+} from '../../components/Shared';
 import { checkEmpty } from '../../validation/validationFunctions';
 
 import * as pollActions from '../../redux/actions/pollActions';
@@ -162,6 +164,7 @@ class PollEditor extends Component {
         <ToastContainer autoClose={3000} />
         <form onSubmit={this.handleSubmit}>
           <QuestionTool addQuestion={addQuestion} />
+          <PageHeader title="Editör" />
           <Row>
             <Col md="6" className="mb-2">
               <FormInput
