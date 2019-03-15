@@ -20,9 +20,13 @@ const CardStyled = styled(Card)`
   background-color: ${props => (
     props.checked && props.rightAnswerIndex !== null && (props.index === props.rightAnswerIndex ? '#1dcb10' : 'red')
   )};
+  background-color: ${props => (
+    props.checked && (props.rightAnswerIndex === null ? 'lightgray' : '')
+  )};
 `;
 
 const Text = styled.p`
+  margin: 0.5rem 0;
   display: ${props => (props.show ? 'inline-block' : 'none')};
 `;
 
@@ -44,7 +48,7 @@ function Option({
       <CardStyled
         className="my-1"
         onClick={() => onClick(order)}
-        checked={checked === index}
+        checked={checked === order}
         index={index}
         rightAnswerIndex={rightAnswerIndex}
       >
@@ -62,16 +66,17 @@ function Option({
               {questionCount > 0 && answerCount > 0 && (
                 <>
                   <Text show={showPercent}>{`${Math.round((answerCount / questionCount) * 100)}%`}</Text>
-                  {' '}
                 </>
               )}
               {answerCount === 0 && (
                 <>
                   <Text show={showPercent}>0%</Text>
-                  {' '}
                 </>
               )}
               <ContentViewer type={type} content={content} />
+              <Text show={showPercent}>
+                {`${answerCount} kişi sizinle aynı fikirde`}
+              </Text>
             </Col>
           </Row>
         </CardBody>
