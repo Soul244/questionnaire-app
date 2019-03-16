@@ -80,7 +80,7 @@ class Actions extends React.Component {
                 </a>
               </DropdownItem>
             </Link>
-            <Link as={`/dashboard/editor/${slug}`} href={`/poll/editor?slug=${slug}`}>
+            <Link as={`/dashboard/editor/${slug}`} href={`/dashboard/editor?slug=${slug}`}>
               <DropdownItem id={`update${_id}`}>
                 <Icon size="16px" icon={edit} />
                 <LinkText>Güncelle</LinkText>
@@ -90,7 +90,7 @@ class Actions extends React.Component {
               <Icon size="16px" icon={remove2} />
               <LinkText>Sil</LinkText>
             </DropdownItem>
-            <Link as={`/dashboard/istatistikler/${slug}`} href={`/poll/stats?slug=${slug}`}>
+            <Link as={`/dashboard/istatistikler/${slug}`} href={`/dashboard/stats?slug=${slug}`}>
               <DropdownItem>
                 <Icon size="16px" icon={stats} />
                 <LinkText>İstatistikler</LinkText>

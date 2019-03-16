@@ -66,7 +66,7 @@ class index extends Component {
       });
     }
     this.setState({
-      homeLink: '/dashboard/anketlerim',
+      homeLink: '/dashboard',
     });
   }
 

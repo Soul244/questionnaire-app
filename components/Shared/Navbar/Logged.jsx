@@ -17,12 +17,12 @@ function Logged({ logOut }) {
   return (
     <>
       <NavItem>
-        <Link as="/dashboard/anketlerim" href="/poll/list">
+        <Link as="/dashboard" href="/dashboard">
           <NavLinkCursor>Anketlerim</NavLinkCursor>
         </Link>
       </NavItem>
       <NavItem>
-        <Link as="/dashboard/editor/yeni-anket" href="/poll/editor">
+        <Link as="/dashboard/editor/yeni-anket" href="/dashboard/editor">
           <NavLinkCursor>Yeni Anket Oluştur</NavLinkCursor>
         </Link>
       </NavItem>

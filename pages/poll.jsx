@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Poll from '../../containers/Poll';
+import Poll from '../containers/Poll';
 
 class index extends Component {
   static getInitialProps = async (context) => {

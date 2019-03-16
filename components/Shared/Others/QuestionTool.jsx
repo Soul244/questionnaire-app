@@ -141,7 +141,7 @@ class QuestionTool extends React.Component {
               id="heading"
               onClick={() => addQuestion('heading')}
             />
-            <Link as="/on-izleme/true" href={`/poll/preview?ispreview=${true}`}>
+            <Link as="/on-izleme/true" href={`/dashboard/preview?ispreview=${true}`}>
               <ToolButton
                 content="Önizle"
                 icon={preview}

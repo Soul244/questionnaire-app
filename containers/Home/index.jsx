@@ -227,7 +227,7 @@ class index extends Component {
         if (!isTokenValid) {
           localStorage.setItem('token', '');
         } else {
-          Router.push({ pathname: '/dashboard/anketlerim' });
+          Router.push({ pathname: '/dashboard' });
         }
       })
       .catch(() => {

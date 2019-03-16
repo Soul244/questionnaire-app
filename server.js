@@ -28,31 +28,31 @@ app
     });
 
 
-    server.get('/dashboard/anketlerim', (req, res) => {
-      const actualPage = '/poll/list';
+    server.get('/dashboard', (req, res) => {
+      const actualPage = '/dashboard';
       return app.render(req, res, actualPage);
     });
 
 
     server.get('/dashboard/editor/yeni-anket', (req, res) => {
-      const actualPage = '/poll/editor';
+      const actualPage = '/dashboard/editor';
       return app.render(req, res, actualPage);
     });
 
     server.get('/dashboard/editor/:slug', (req, res) => {
-      const actualPage = '/poll/editor';
+      const actualPage = '/dashboard/editor';
       const queryParams = { slug: req.params.slug };
       return app.render(req, res, actualPage, queryParams);
     });
 
     server.get('/dashboard/on-izleme/:ispreview', (req, res) => {
-      const actualPage = '/poll/preview';
+      const actualPage = '/dashboard/preview';
       const queryParams = { ispreview: req.params.ispreview };
       return app.render(req, res, actualPage, queryParams);
     });
 
     server.get('/dashboard/istatistikler/:slug', (req, res) => {
-      const actualPage = '/poll/stats';
+      const actualPage = '/dashboard/stats';
       const queryParams = { slug: req.params.slug };
       return app.render(req, res, actualPage, queryParams);
     });

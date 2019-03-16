@@ -60,7 +60,7 @@ function withNavbar(WrappedComponent) {
       return (
         <>
           <Sidebar
-            items={[{ href: '/poll/list', name: 'Anketlerim', as: '/dashboard/anketlerim' }]}
+            items={[{ href: '/dashboard', name: 'Anketlerim', as: '/dashboard' }]}
             show={show}
             navMode={navMode}
           />

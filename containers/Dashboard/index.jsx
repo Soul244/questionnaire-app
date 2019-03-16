@@ -8,14 +8,14 @@ import { Row, Col } from 'reactstrap';
 
 import * as userActions from '../../redux/actions/userActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
-import { TableList, MasonryList } from '../../components/UserHome';
+import { TableList, MasonryList } from '../../components/Dashboard';
 import { Loading, PageHeader } from '../../components/Shared';
 import withAuth from '../../hoc/withAuth';
 import withNavbar from '../../hoc/withNavbar';
 
 @withNavbar
 @withAuth
-class UserHome extends Component {
+class Dashboard extends Component {
   componentDidMount() {
     const token = localStorage.getItem('token');
     const { pollsActions } = this.props;
@@ -59,7 +59,7 @@ class UserHome extends Component {
   }
 }
 
-UserHome.propTypes = {
+Dashboard.propTypes = {
   polls: PropTypes.shape({
     polls: PropTypes.array.isRequired,
     message: PropTypes.string.isRequired,
@@ -89,4 +89,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UserHome);
+)(Dashboard);
