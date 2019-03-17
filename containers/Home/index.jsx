@@ -250,13 +250,13 @@ class index extends Component {
                   </Fade>
                   <Link as="/giris-yap" href="/auth">
                     <Button type="button" color="info">
-                      Ücretsiz hesap
+                      {' Ücretsiz hesap'}
                     </Button>
                   </Link>
                   {' '}
                   <Link as="/giris-yap" href="/auth">
                     <Button type="button" color="success">
-                      Giriş yapın
+                      {'Giriş yapın'}
                     </Button>
                   </Link>
                 </Col>
@@ -278,20 +278,11 @@ class index extends Component {
                         <CardBodyStyled>
                           <CardTitle>Maçın Favorisi Kim?</CardTitle>
                           <CardSubtitle>
-                            Lig maçının favorisini seçin.
+                            {'Lig maçının favorisini seçin.'}
                           </CardSubtitle>
                           <CardText>
-                            Fenerbahçe ile Beşiktaş arasında oynanacak dev
-                            derbiyi kim kazanacak? Ankete katıl ve büyük ödülü
-                            kazanma şansı yakala.
+                            {'Fenerbahçe ile Beşiktaş arasında oynanacak dev derbiyi kim kazanacak? Ankete katıl ve büyük ödülü kazanma şansı yakala.'}
                           </CardText>
-                          <Button
-                            outline
-                            href="https://questionnaire-test.herokuapp.com/anket/5c8514b3f8f6450017ebbd1e"
-                            target="_blank"
-                          >
-                            Ankete Git
-                          </Button>
                         </CardBodyStyled>
                       </LinkStyled>
                     </CardStyled>
@@ -301,19 +292,11 @@ class index extends Component {
                         <CardBodyStyled>
                           <CardTitle>En İyi Araba Lastiği Hangisi?</CardTitle>
                           <CardSubtitle>
-                            Sizin için en iyi araba lastiğini seçin.
+                            {'Sizin için en iyi araba lastiğini seçin.'}
                           </CardSubtitle>
                           <CardText>
-                            Ankete katılın ve ücretsiz araba lastiği kazanma
-                            şansı yakalayın!
+                            {' Ankete katılın ve ücretsiz araba lastiği kazanma şansı yakalayın!'}
                           </CardText>
-                          <Button
-                            outline
-                            href="https://questionnaire-test.herokuapp.com/anket/5c8515b9f8f6450017ebbd27"
-                            target="_blank"
-                          >
-                            Ankete Git
-                          </Button>
                         </CardBodyStyled>
                       </LinkStyled>
                     </CardStyled>
@@ -325,23 +308,14 @@ class index extends Component {
                         <CardImgStyled src="/static/image_6.webp" />
                         <CardBodyStyled>
                           <CardTitle>
-                            Yerel Seçimlerde Kime Oy Vereceksiniz?
+                            {'Yerel Seçimlerde Kime Oy Vereceksiniz?'}
                           </CardTitle>
                           <CardSubtitle>
-                            Hangi partiye oy vermeyi planlıyorsunuz?
+                            {'Hangi partiye oy vermeyi planlıyorsunuz?'}
                           </CardSubtitle>
                           <CardText>
-                            Türkiye'nin kaderini etkileyecek olacak olan bu
-                            seçimlerde, kendi bölgenizde hangi adaya oy
-                            vereceksiniz?
+                            {'Türkiye\'nin kaderini etkileyecek olacak olan bu seçimlerde, kendi bölgenizde hangi adaya oy vereceksiniz?'}
                           </CardText>
-                          <Button
-                            outline
-                            href="https://questionnaire-test.herokuapp.com/anket/5c851678f8f6450017ebbd2e"
-                            target="_blank"
-                          >
-                            Ankete Git
-                          </Button>
                         </CardBodyStyled>
                       </LinkStyled>
                     </CardStyled>

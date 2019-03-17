@@ -19,6 +19,8 @@ module.exports = {
   },
   rules: {
     "linebreak-style": 0,
+    "no-underscore-dangle": 0,
+    "no-array-index-key": 0
   },
   plugins: [
     'react',

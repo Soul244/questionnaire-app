@@ -110,7 +110,7 @@ class SideBySide extends React.Component {
 
   render() {
     const {
-      slidesToShow, slideIndex, progressValue,
+      slideIndex, progressValue,
     } = this.state;
 
     const {

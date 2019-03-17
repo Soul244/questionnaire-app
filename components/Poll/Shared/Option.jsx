@@ -15,19 +15,19 @@ import { ContentViewer } from '../../Shared';
 const CardStyled = styled(Card)`
   border-width: ${props => (props.checked ? '5px' : '0')};
   border-color: ${props => (
-    props.checked && props.rightAnswerIndex !== null && (props.index === props.rightAnswerIndex ? '#009800' : '#cb1010')
+    props.checked && props.bg !== null && (props.index === props.bg ? '#009800' : '#cb1010')
   )};
   background-color: ${props => (
-    props.checked && props.rightAnswerIndex !== null && (props.index === props.rightAnswerIndex ? '#1dcb10' : 'red')
+    props.checked && props.bg !== null && (props.index === props.bg ? '#1dcb10' : 'red')
   )};
   background-color: ${props => (
-    props.checked && (props.rightAnswerIndex === null ? 'lightgray' : '')
+    props.checked && (props.bg === null ? 'lightgray' : '')
   )};
 `;
 
 const Text = styled.p`
   margin: 0.5rem 0;
-  display: ${props => (props.show ? 'inline-block' : 'none')};
+  display: ${props => (props.show ? 'block' : 'none')};
 `;
 
 function Option({
@@ -50,17 +50,9 @@ function Option({
         onClick={() => onClick(order)}
         checked={checked === order}
         index={index}
-        rightAnswerIndex={rightAnswerIndex}
+        bg={rightAnswerIndex}
       >
         <CardBody className="text-center ">
-          <Input
-            addon
-            type="radio"
-            name={questionIndex}
-            value={index}
-            checked={checked === index}
-            style={{ display: 'none' }}
-          />
           <Row>
             <Col>
               {questionCount > 0 && answerCount > 0 && (

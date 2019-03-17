@@ -93,7 +93,7 @@ class Setting extends React.Component {
             />
           </ButtonStyled>
         </HeaderContainer>
-        <InfoContainer show={show}>
+        <InfoContainer show={show ? 1 : 0}>
           <HeaderContainer>
             <Label>Detaylı Bilgi</Label>
             <ButtonStyled type="button" color="danger" onClick={this.toggle}>
@@ -159,7 +159,7 @@ Setting.defaultProps = {
 };
 
 Setting.propTypes = {
-  values: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  values: PropTypes.array,
   name: PropTypes.string.isRequired,
   labels: PropTypes.array,
   header: PropTypes.string,
@@ -169,7 +169,7 @@ Setting.propTypes = {
   inputChange: PropTypes.func,
   inputPlaceHolder: PropTypes.string,
   info: PropTypes.string,
-  checkedValue: PropTypes.string,
+  checkedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 export default Setting;
