@@ -9,7 +9,7 @@ import { Row, Col } from 'reactstrap';
 import * as userActions from '../../redux/actions/userActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import { TableList, MasonryList } from '../../components/Dashboard';
-import { Loading, PageHeader } from '../../components/Shared';
+import { Loading } from '../../components/Shared';
 import withAuth from '../../hoc/withAuth';
 import withNavbar from '../../hoc/withNavbar';
 
@@ -39,7 +39,6 @@ class Dashboard extends Component {
     }
     return (
       <>
-        <PageHeader title="Anketlerim" />
         <Row>
           <Col md="12">
             <MasonryList polls={polls} />

@@ -60,13 +60,13 @@ function withNavbar(WrappedComponent) {
       return (
         <>
           <Sidebar
-            items={[{ href: '/dashboard', name: 'Anketlerim', as: '/dashboard' }]}
+            items={[{ href: '/dashboard', name: 'Dashboard', as: '/dashboard' }]}
             show={show}
             navMode={navMode}
           />
           <FullContainer show={show}>
             <Navbar sideBarToggle={this.sideBarToggle} sideBarShow={show} />
-            <Container className="h-100">
+            <Container className="h-100 mt-2">
               <WrappedComponent {...this.props} />
             </Container>
           </FullContainer>

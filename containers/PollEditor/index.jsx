@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Settings from './Settings';
 import Questions from './Questions';
 import {
-  QuestionTool, FormInput, FormEditor, PageHeader,
+  QuestionTool, FormInput, FormEditor,
 } from '../../components/Shared';
 import { checkEmpty } from '../../validation/validationFunctions';
 
@@ -153,7 +153,6 @@ class PollEditor extends Component {
         <ToastContainer autoClose={3000} />
         <form onSubmit={this.handleSubmit}>
           <QuestionTool addQuestion={addQuestion} />
-          <PageHeader title="Editör" />
           <Row>
             <Col md="12" className="mb-2">
               <FormInput

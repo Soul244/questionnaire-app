@@ -54,7 +54,6 @@ class index extends Component {
       isOpen: false,
       dropdownOpen: false,
       isLogged: false,
-      homeLink: null,
     };
   }
 
@@ -65,9 +64,6 @@ class index extends Component {
         isLogged: true,
       });
     }
-    this.setState({
-      homeLink: '/dashboard',
-    });
   }
 
   onClick = () => {
@@ -92,7 +88,7 @@ class index extends Component {
   }
 
   render() {
-    const { isLogged, homeLink, isOpen } = this.state;
+    const { isLogged, isOpen } = this.state;
     const { sideBarToggle, sideBarShow } = this.props;
     return (
       <>
@@ -103,7 +99,7 @@ class index extends Component {
               <Icon size={24} icon={threedot} />
             </SidebarToggle>
             )}
-            <NavbarBrandStyled href={homeLink}>
+            <NavbarBrandStyled href='/dashboard'>
               Dashboard
             </NavbarBrandStyled>
             <NavbarToggler onClick={this.toggle} />

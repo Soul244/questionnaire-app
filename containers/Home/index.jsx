@@ -273,7 +273,7 @@ class index extends Component {
                   <H2>Örnek Anketler</H2>
                   <Swiper {...params}>
                     <CardStyled key={1}>
-                      <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi">
+                      <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/5c8514b3f8f6450017ebbd1e">
                         <CardImgStyled src="/static/image_4.webp" />
                         <CardBodyStyled>
                           <CardTitle>Maçın Favorisi Kim?</CardTitle>
@@ -287,7 +287,7 @@ class index extends Component {
                           </CardText>
                           <Button
                             outline
-                            href="https://questionnaire-test.herokuapp.com/anket/macin-favorisi"
+                            href="https://questionnaire-test.herokuapp.com/anket/5c8514b3f8f6450017ebbd1e"
                             target="_blank"
                           >
                             Ankete Git
@@ -296,7 +296,7 @@ class index extends Component {
                       </LinkStyled>
                     </CardStyled>
                     <CardStyled key={2}>
-                      <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/araba-lastigi">
+                      <LinkStyled href="https://questionnaire-test.herokuapp.com/anket/5c8515b9f8f6450017ebbd27">
                         <CardImgStyled wave2 src="/static/image_5.webp" />
                         <CardBodyStyled>
                           <CardTitle>En İyi Araba Lastiği Hangisi?</CardTitle>
@@ -309,7 +309,7 @@ class index extends Component {
                           </CardText>
                           <Button
                             outline
-                            href="https://questionnaire-test.herokuapp.com/anket/araba-lastigi"
+                            href="https://questionnaire-test.herokuapp.com/anket/5c8515b9f8f6450017ebbd27"
                             target="_blank"
                           >
                             Ankete Git
@@ -319,7 +319,7 @@ class index extends Component {
                     </CardStyled>
                     <CardStyled key={3}>
                       <LinkStyled
-                        href="https://questionnaire-test.herokuapp.com/anket/yerel-secim-anketi"
+                        href="https://questionnaire-test.herokuapp.com/anket/5c851678f8f6450017ebbd2e"
                         target="_blank"
                       >
                         <CardImgStyled src="/static/image_6.webp" />
@@ -337,7 +337,7 @@ class index extends Component {
                           </CardText>
                           <Button
                             outline
-                            href="https://questionnaire-test.herokuapp.com/anket/yerel-secim-anketi"
+                            href="https://questionnaire-test.herokuapp.com/anket/5c851678f8f6450017ebbd2e"
                             target="_blank"
                           >
                             Ankete Git

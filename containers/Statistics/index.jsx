@@ -17,7 +17,6 @@ import Icon, {
 import * as participantActions from '../../redux/actions/participantActions';
 import * as pollsActions from '../../redux/actions/pollsActions';
 import PercentTable from '../../components/Statistics/PercentTable';
-import { PageHeader } from '../../components/Shared';
 import withNavbar from '../../hoc/withNavbar';
 
 const IconContainer = styled.div`
@@ -145,7 +144,6 @@ class index extends Component {
     return (
       <>
         <ToastContainer autoClose={3000} />
-        <PageHeader title="İstatistikler" />
         <Row>
           <Col md="3">
             <CardStyled inverse bg1 body className="text-center">

@@ -1,4 +1,5 @@
 import { Icon } from 'react-icons-kit';
+import styled from 'styled-components';
 import { bullhorn, statsDots } from 'react-icons-kit/icomoon/';
 import { question, close } from 'react-icons-kit/fa';
 import {
@@ -26,9 +27,13 @@ import {
   ic_more_vert,
 } from 'react-icons-kit/md';
 
-export default Icon;
+const IconContainer = styled.div`
+  color: ${props=>props.color};
+`;
 
+export default Icon;
 export {
+  IconContainer,
   ic_videocam as video,
   ic_text_fields as text,
   ic_image as image,
