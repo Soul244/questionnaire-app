@@ -6,7 +6,6 @@ const initialState = {
   user: '',
   css: '',
   js: '',
-  slug: '',
   name: '',
   desc: '',
   lastDesc: 'Anketimize katıldığınız için teşekkür ederiz.',
@@ -61,12 +60,6 @@ const pollReducer = (state = initialState, action) => {
       state = {
         ...state,
         lastDesc: action.payload,
-      };
-      break;
-    case syncTypes.ON_CHANGE_SLUG:
-      state = {
-        ...state,
-        slug: action.payload,
       };
       break;
     case syncTypes.ANSWER_AUTO_CHANGE_TIME:

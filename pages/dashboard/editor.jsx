@@ -4,14 +4,14 @@ import PollEditor from '../../containers/PollEditor';
 class PollEditorPage extends Component {
   static getInitialProps = async function (context) {
     if (context.query !== undefined) {
-      const { slug } = context.query;
-      return { slug };
+      const { _id } = context.query;
+      return { _id };
     }
     return {};
   };
 
   render() {
-    return <PollEditor slug={this.props.slug} />;
+    return <PollEditor _id={this.props._id} />;
   }
 }
 

@@ -24,10 +24,10 @@ class index extends Component {
   }
 
   componentDidMount() {
-    const { slug, isPreview, poll } = this.props;
+    const { _id, isPreview, poll } = this.props;
     const { getPoll, getPreview } = this.props.pollsActions;
     if (!isPreview) {
-      getPoll(slug);
+      getPoll(_id);
     } else {
       getPreview(poll);
     }
@@ -111,10 +111,6 @@ class index extends Component {
   }
 }
 
-index.defaultProps = {
-  slug: null,
-};
-
 index.propTypes = {
   participantActions: PropTypes.shape({
     addParticipantAnswer: PropTypes.func.isRequired,
@@ -124,7 +120,6 @@ index.propTypes = {
     getPoll: PropTypes.func.isRequired,
   }).isRequired,
   participant: PropTypes.object.isRequired,
-  slug: PropTypes.string,
   polls: PropTypes.shape({
     poll: PropTypes.shape({
       settings: PropTypes.object,

@@ -15,10 +15,10 @@ export function getPollErrorAction(payload) {
     payload,
   };
 }
-export function getPoll(slug) {
+export function getPoll(_id) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/polls/${slug}`);
+      const response = await axios.get(`/polls/${_id}`);
       dispatch(getPollAction(response.data.poll));
     } catch (error) {
       dispatch(getPollErrorAction(error));
@@ -52,7 +52,6 @@ export function postPoll(poll) {
         js: poll.js,
         name: poll.name,
         desc: poll.desc,
-        slug: poll.slug,
         lastDesc: poll.lastDesc,
         questions: poll.questions,
         answers: poll.answers,
@@ -93,7 +92,6 @@ export function updatePoll(poll) {
         js: poll.js,
         name: poll.name,
         desc: poll.desc,
-        slug: poll.slug,
         lastDesc: poll.lastDesc,
         questions: poll.questions,
         answers: poll.answers,

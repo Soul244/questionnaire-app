@@ -31,10 +31,10 @@ function TableList({ polls, deletePoll }) {
               polls.map(item => (
                 <tr key={item._id}>
                   <td dangerouslySetInnerHTML={{ __html: item.name }} />
-                  <td>{item.slug}</td>
+                  <td>{item._id}</td>
                   <td>{moment(item.createdAt).format('DD-MM-YYYY')}</td>
                   <td>
-                    <Actions _id={item._id} slug={item.slug} deletePoll={deletePoll} />
+                    <Actions _id={item._id} deletePoll={deletePoll} />
                   </td>
                 </tr>
               ))

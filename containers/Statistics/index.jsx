@@ -84,8 +84,11 @@ const renderCustomizedLabel = ({
 @withNavbar
 class index extends Component {
   componentWillMount() {
-    this.props.participantActions.getParticipants(this.props.slug);
-    this.props.pollsActions.getPoll(this.props.slug);
+    const { participantActions, pollsActions } = this.props;
+    const { getParticipants } = participantActions;
+    const { getPoll } = pollsActions;
+    getParticipants(this.props._id);
+    getPoll(this.props._id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -239,7 +242,6 @@ index.propTypes = {
   participantActions: PropTypes.object.isRequired,
   participant: PropTypes.object.isRequired,
   polls: PropTypes.object.isRequired,
-  slug: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {

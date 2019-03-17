@@ -76,8 +76,9 @@ function MasonryList({ polls }) {
                   <small className="text-muted">{moment(poll.createdAt).lang('tr').format('Do MMMM YYYY, H:mm')}</small>
                   <small> | </small>
                   <small className="text-muted">
+
                     Son güncelleme:
-                    {' '}
+{' '}
                     {moment(poll.updatedAt).lang('tr').format('Do MMMM YYYY, H:mm')}
                   </small>
                 </CardText>
@@ -86,8 +87,8 @@ function MasonryList({ polls }) {
             <OverlayContainer>
               <ButtonContainer>
                 <Link
-                  as={`/anket/${poll.slug}`}
-                  href={`/poll?slug=${poll.slug}`}
+                  as={`/anket/${poll._id}`}
+                  href={`/poll?_id=${poll._id}`}
                 >
                   <a target="_blank">
                     <Button outline color="info">Anketi Çöz</Button>

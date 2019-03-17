@@ -5,15 +5,15 @@ import Statistics from '../../containers/Statistics';
 class StatisticsPage extends Component {
   static getInitialProps = async function (context) {
     if (context.query !== undefined) {
-      const { slug } = context.query;
-      return { slug };
+      const { _id } = context.query;
+      return { _id };
     }
     return {};
   }
 
   render() {
     return (
-      <Statistics slug={this.props.slug} />
+      <Statistics _id={this.props._id} />
     );
   }
 }

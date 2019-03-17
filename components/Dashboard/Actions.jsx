@@ -61,18 +61,16 @@ class Actions extends React.Component {
   }
 
   render() {
-    const { _id, slug } = this.props;
+    const { _id } = this.props;
     const {
       dropdownOpen, modal, showDelete,
     } = this.state;
     return (
       <>
         <ButtonDropdown direction="right" isOpen={dropdownOpen} toggle={this.dropdownToggle}>
-          <DropdownToggle caret>
-              Aksiyon
-          </DropdownToggle>
+          <DropdownToggle caret>Aksiyon</DropdownToggle>
           <DropdownMenu>
-            <Link as={`/anket/${slug}`} href={`/poll?slug=${slug}`}>
+            <Link as={`/anket/${_id}`} href={`/poll?_id=${_id}`}>
               <DropdownItem id={`embed${_id}`}>
                 <a target="_blank">
                   <Icon size="16px" icon={showPoll} />
@@ -80,7 +78,7 @@ class Actions extends React.Component {
                 </a>
               </DropdownItem>
             </Link>
-            <Link as={`/dashboard/editor/${slug}`} href={`/dashboard/editor?slug=${slug}`}>
+            <Link as={`/dashboard/editor/${_id}`} href={`/dashboard/editor?_id=${_id}`}>
               <DropdownItem id={`update${_id}`}>
                 <Icon size="16px" icon={edit} />
                 <LinkText>Güncelle</LinkText>
@@ -90,7 +88,7 @@ class Actions extends React.Component {
               <Icon size="16px" icon={remove2} />
               <LinkText>Sil</LinkText>
             </DropdownItem>
-            <Link as={`/dashboard/istatistikler/${slug}`} href={`/dashboard/stats?slug=${slug}`}>
+            <Link as={`/dashboard/istatistikler/${_id}`} href={`/dashboard/stats?_id=${_id}`}>
               <DropdownItem>
                 <Icon size="16px" icon={stats} />
                 <LinkText>İstatistikler</LinkText>
@@ -102,12 +100,10 @@ class Actions extends React.Component {
             </DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>
-        <Iframe modal={modal} pollName={slug} toggle={this.toggle} />
+        <Iframe modal={modal} pollName={_id} toggle={this.toggle} />
         <Modal isOpen={showDelete} toggle={this.toggleDeleteModal}>
           <ModalHeader toggle={this.toggleDeleteModal}>Uyarı</ModalHeader>
-          <ModalBody>
-              Anketi silmek istediğinize emin misiniz?
-          </ModalBody>
+          <ModalBody>Anketi silmek istediğinize emin misiniz?</ModalBody>
           <ModalFooter>
             <Button color="danger" onClick={() => this.onClick(_id)}>Sil</Button>
             {' '}

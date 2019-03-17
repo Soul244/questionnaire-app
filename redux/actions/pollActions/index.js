@@ -11,7 +11,7 @@ import {
   handleType, handleUserDataCollectType,
 } from './settingsActions';
 import {
-  onChangeName, onChangeDesc, onChangeLastDesc, onChangeSlug,
+  onChangeName, onChangeDesc, onChangeLastDesc,
   getUpdatePoll, onChangeJs, onChangeCss, handleSelectableLastMessage,
 } from './pollActions';
 
@@ -20,7 +20,6 @@ export {
   onChangeName,
   onChangeDesc,
   onChangeLastDesc,
-  onChangeSlug,
   onChangeJs,
   onChangeCss,
   handleSelectableLastMessage,

@@ -93,10 +93,10 @@ export function getParticipantsErrorAction(payload) {
     payload,
   };
 }
-export function getParticipants(slug) {
+export function getParticipants(_id) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/participants/${slug}`);
+      const response = await axios.get(`/participants/${_id}`);
       if (response.status === 200)dispatch(getParticipantsAction(response.data.participants));
       else if (response.status === 204)dispatch(getParticipantsErrorAction(response.statusText));
     } catch (error) {

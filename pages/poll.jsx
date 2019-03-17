@@ -4,13 +4,13 @@ import Poll from '../containers/Poll';
 
 class index extends Component {
   static getInitialProps = async (context) => {
-    const { slug } = context.query;
-    return { slug };
+    const { _id } = context.query;
+    return { _id };
   }
 
   render() {
     return (
-      <Poll slug={this.props.slug} />
+      <Poll _id={this.props._id} />
     );
   }
 }

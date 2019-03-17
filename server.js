@@ -21,9 +21,9 @@ app
       return app.render(req, res, actualPage);
     });
 
-    server.get('/anket/:slug', (req, res) => {
+    server.get('/anket/:_id', (req, res) => {
       const actualPage = '/poll';
-      const queryParams = { slug: req.params.slug };
+      const queryParams = { _id: req.params._id };
       return app.render(req, res, actualPage, queryParams);
     });
 
@@ -39,9 +39,9 @@ app
       return app.render(req, res, actualPage);
     });
 
-    server.get('/dashboard/editor/:slug', (req, res) => {
+    server.get('/dashboard/editor/:_id', (req, res) => {
       const actualPage = '/dashboard/editor';
-      const queryParams = { slug: req.params.slug };
+      const queryParams = { _id: req.params._id };
       return app.render(req, res, actualPage, queryParams);
     });
 
@@ -51,9 +51,9 @@ app
       return app.render(req, res, actualPage, queryParams);
     });
 
-    server.get('/dashboard/istatistikler/:slug', (req, res) => {
+    server.get('/dashboard/istatistikler/:_id', (req, res) => {
       const actualPage = '/dashboard/stats';
-      const queryParams = { slug: req.params.slug };
+      const queryParams = { _id: req.params._id };
       return app.render(req, res, actualPage, queryParams);
     });
 

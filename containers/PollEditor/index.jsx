@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import slugify from 'slugify';
 
 import {
   Row, Col,
@@ -12,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Settings from './Settings';
 import Questions from './Questions';
 import {
- QuestionTool, FormInput, FormEditor, PageHeader 
+  QuestionTool, FormInput, FormEditor, PageHeader,
 } from '../../components/Shared';
 import { checkEmpty } from '../../validation/validationFunctions';
 
@@ -48,9 +47,9 @@ class PollEditor extends Component {
 
 
   componentWillMount() {
-    const { slug, pollActions } = this.props;
-    if (slug) {
-      pollActions.getUpdatePoll(slug);
+    const { _id, pollActions } = this.props;
+    if (_id) {
+      pollActions.getUpdatePoll(_id);
     }
   }
 
@@ -72,7 +71,6 @@ class PollEditor extends Component {
     const answersErrors = checkEmpty(poll.answers);
     const settingsError = false; // checkObjectEmpty(poll.settings);
     const inputsErrors = poll.name === '';
-    const slugError = poll.slug === '';
 
     // If there is a error, won't post anything
     // If poll has id, update that poll
@@ -82,14 +80,12 @@ class PollEditor extends Component {
       || answersErrors.length > 0
       || settingsError
       || inputsErrors
-      || slugError
     ) {
       this.notify({
         questionsErrors,
         answersErrors,
         settingsError,
         inputsErrors,
-        slugError,
         handleOK: false,
       });
     } else if (poll.id === '') {
@@ -122,11 +118,6 @@ class PollEditor extends Component {
         position: toast.POSITION.BOTTOM_LEFT,
       });
     }
-    if (messages.slugError) {
-      toast.error('Anket adresini yazmadınız...', {
-        position: toast.POSITION.BOTTOM_LEFT,
-      });
-    }
     if (messages.apiMessage) {
       if (
         messages.apiMessage === 'Anket Kaydedildi'
@@ -149,14 +140,12 @@ class PollEditor extends Component {
       addQuestion,
       onChangeName,
       onChangeDesc,
-      onChangeSlug,
       onChangeLastDesc,
     } = pollActions;
 
     const {
       name,
       desc,
-      slug,
       lastDesc,
     } = poll;
     return (
@@ -166,27 +155,12 @@ class PollEditor extends Component {
           <QuestionTool addQuestion={addQuestion} />
           <PageHeader title="Editör" />
           <Row>
-            <Col md="6" className="mb-2">
+            <Col md="12" className="mb-2">
               <FormInput
                 title="Anket Başlığı"
                 value={name}
                 onChange={e => onChangeName(e.target.value)}
                 placeholder="Anket başlığınızı giriniz..."
-              />
-            </Col>
-            <Col md="6" className="mb-2">
-              <FormInput
-                title="Anket Adresi"
-                value={slug}
-                onChange={e => onChangeSlug(
-                  slugify(e.target.value,
-                    {
-                      replacement: '-',
-                      remove: null,
-                      lower: true,
-                    }),
-                )}
-                placeholder="boşluksuz, kısa çizgilerle ayrılmış bir link adı giriniz (ör. anket-1)..."
               />
             </Col>
           </Row>
@@ -227,17 +201,11 @@ class PollEditor extends Component {
   }
 }
 
-PollEditor.defaultProps = {
-  slug: null,
-};
-
 PollEditor.propTypes = {
-  slug: PropTypes.string,
   polls: PropTypes.object.isRequired,
   poll: PropTypes.shape({
     name: PropTypes.string.isRequired,
     desc: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
   }).isRequired,
   pollActions: PropTypes.shape({
     updatePoll: PropTypes.func.isRequired,
@@ -245,7 +213,6 @@ PollEditor.propTypes = {
     addQuestion: PropTypes.func.isRequired,
     onChangeName: PropTypes.func.isRequired,
     onChangeDesc: PropTypes.func.isRequired,
-    onChangeSlug: PropTypes.func.isRequired,
   }).isRequired,
 };
 

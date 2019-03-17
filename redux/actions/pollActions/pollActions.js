@@ -9,10 +9,10 @@ export function getUpdatePollAction(payload) {
   };
 }
 
-export function getUpdatePoll(slug) {
+export function getUpdatePoll(_id) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/polls/${slug}`);
+      const response = await axios.get(`/polls/${_id}`);
       dispatch(getUpdatePollAction(response.data.poll));
     } catch (error) {
       throw error;
@@ -45,20 +45,6 @@ export function onChangeDescAction(payload) {
 export function onChangeDesc(desc) {
   return (dispatch) => {
     dispatch(onChangeDescAction(desc));
-  };
-}
-/* #endregion */
-
-/* #region On Change Slug */
-export function onChangeSlugAction(payload) {
-  return {
-    type: syncTypes.ON_CHANGE_SLUG,
-    payload,
-  };
-}
-export function onChangeSlug(slug) {
-  return (dispatch) => {
-    dispatch(onChangeSlugAction(slug));
   };
 }
 /* #endregion */
