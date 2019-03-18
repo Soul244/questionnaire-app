@@ -296,8 +296,8 @@ class index extends Component {
                   </Link>
                 </Col>
                 <Col md="6">
+                  <Span bg={0} />
                   <Bounce right>
-                    <Span bg={0} />
                     <Image
                       className="img-fluid"
                       src="static/svg_1.svg"
