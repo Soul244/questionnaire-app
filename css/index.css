@@ -10989,4 +10989,8 @@ input {
 .br {
   border-top: 3px solid lightgrey;
 }
+
+.react-reveal {
+  z-index: 1;
+}
 /*# sourceMappingURL=index.css.map */

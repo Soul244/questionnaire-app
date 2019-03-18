@@ -34,11 +34,12 @@ const ContainerBackground = styled.div`
   height: ${props => props.height};
   background-image: url(${props => props.image});
   background-color: #fff;
-  padding: ${props => (props.pd ? '12rem 0' : '8rem 0')};
+  padding: ${props => (props.pd ? '10rem 0' : '8rem 0')};
   position:relative;
   ${({ bg }) => bg
     && `
     background-color: #F8F8F8;
+    border-bottom: 1px solid lightgrey;
   `}
   ${({ px }) => px
     && `
@@ -50,7 +51,7 @@ const ContainerBackground = styled.div`
     width: 100%;
     height: 100%;
     top:0;
-    background-color: rgba(23, 162, 184, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
   }
   `}
   ${({ image }) => image
@@ -112,12 +113,45 @@ const TextContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: ${props => props.height};
-  width: auto;
-  @media (max-width: 576px) {
-    height: ${props => (props.height ? '200px' : 'auto')};
-    width: auto;
-  }
+  z-index: 1;
+  position:relative;
+`;
+
+const Span = styled.span`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index:0;
+  border-radius: ${(props) => {
+    switch (props.bg) {
+      case 0:
+        return '74% 26% 61% 39% / 22% 81% 19% 78% ';
+      case 1:
+        return '30% 70% 80% 20% / 13% 9% 91% 87%';
+      case 2:
+        return '34% 66% 73% 27% / 57% 67% 33% 43% ';
+      default:
+        return '100% 0% 73% 27% / 57% 67% 33% 43% ';
+    }
+  }}
+   
+   ;
+  background-image: ${(props) => {
+    switch (props.bg) {
+      case 0:
+        return 'linear-gradient(120deg, #f6d365 0%, #fda085 100%);';
+      case 1:
+        return 'linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);';
+      case 2:
+        return 'linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);';
+      default:
+        return 'linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);';
+    }
+  }};
 `;
 
 const CardImgStyled = styled.div`
@@ -141,11 +175,12 @@ const CardImgStyled = styled.div`
 `;
 
 const CardStyled = styled(Card)`
-  width: 400px;
-  height: 500px;
+  width: 425px;
+  height: 425px;
   margin: 1rem 0 2rem 0;
   border: none;
   @media (max-width: 576px) {
+    height: 500px;
     width: 300px;
   }
 `;
@@ -240,13 +275,13 @@ class index extends Component {
     return (
       <>
         <Container fluid style={{ padding: 0 }}>
-          <ContainerBackground pd id="anasayfa" image="/static/image_8.webp">
+          <ContainerBackground bg pd id="anasayfa">
             <Container>
               <Row>
-                <Col md="12">
+                <Col md="6">
                   <Fade top>
-                    <H1 light>Ücretsiz anketlerinizi oluşturun ve paylaşın.</H1>
-                    <H2 light>Tamamen ücretsiz!</H2>
+                    <H1>Ücretsiz anketlerinizi oluşturun ve paylaşın.</H1>
+                    <H2>Tamamen ücretsiz!</H2>
                   </Fade>
                   <Link as="/giris-yap" href="/auth">
                     <Button type="button" color="info">
@@ -259,6 +294,16 @@ class index extends Component {
                       {'Giriş yapın'}
                     </Button>
                   </Link>
+                </Col>
+                <Col md="6">
+                  <Bounce right>
+                    <Image
+                      className="img-fluid"
+                      src="static/svg_1.svg"
+                      alt="ücretsiz anket"
+                    />
+                  </Bounce>
+                  <Span bg={0} />
                 </Col>
               </Row>
             </Container>
@@ -281,7 +326,9 @@ class index extends Component {
                             {'Lig maçının favorisini seçin.'}
                           </CardSubtitle>
                           <CardText>
-                            {'Fenerbahçe ile Beşiktaş arasında oynanacak dev derbiyi kim kazanacak? Ankete katıl ve büyük ödülü kazanma şansı yakala.'}
+                            {
+                              'Fenerbahçe ile Beşiktaş arasında oynanacak dev derbiyi kim kazanacak? Ankete katıl ve büyük ödülü kazanma şansı yakala.'
+                            }
                           </CardText>
                         </CardBodyStyled>
                       </LinkStyled>
@@ -295,7 +342,9 @@ class index extends Component {
                             {'Sizin için en iyi araba lastiğini seçin.'}
                           </CardSubtitle>
                           <CardText>
-                            {' Ankete katılın ve ücretsiz araba lastiği kazanma şansı yakalayın!'}
+                            {
+                              ' Ankete katılın ve ücretsiz araba lastiği kazanma şansı yakalayın!'
+                            }
                           </CardText>
                         </CardBodyStyled>
                       </LinkStyled>
@@ -314,7 +363,9 @@ class index extends Component {
                             {'Hangi partiye oy vermeyi planlıyorsunuz?'}
                           </CardSubtitle>
                           <CardText>
-                            {'Türkiye\'nin kaderini etkileyecek olacak olan bu seçimlerde, kendi bölgenizde hangi adaya oy vereceksiniz?'}
+                            {
+                              "Türkiye'nin kaderini etkileyecek olacak olan bu seçimlerde, kendi bölgenizde hangi adaya oy vereceksiniz?"
+                            }
                           </CardText>
                         </CardBodyStyled>
                       </LinkStyled>
@@ -339,10 +390,15 @@ class index extends Component {
                     </TextContainer>
                   </Bounce>
                 </Col>
-                <Col md="6" className="text-center">
+                <Col md="6">
                   <Bounce right>
-                    <Image src="/static/phone.webp" height="500px" alt="" />
+                    <Image
+                      className="img-fluid"
+                      src="/static/svg_2.svg"
+                      alt="mobile uygun"
+                    />
                   </Bounce>
+                  <Span bg={1} />
                 </Col>
               </Row>
             </Container>
@@ -372,8 +428,9 @@ class index extends Component {
               <Row>
                 <Col md="6" className="text-center">
                   <Fade top>
-                    <Image src="/static/image_2.webp" height="300px" alt="" />
+                    <Image className="img-fluid" src="/static/svg_3.svg" alt="istatistikler" />
                   </Fade>
+                  <Span bg={2} />
                 </Col>
                 <Col md="6">
                   <Fade top>

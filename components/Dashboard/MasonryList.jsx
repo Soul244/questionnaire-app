@@ -59,27 +59,28 @@ const OverlayContainer = styled.div`
   ::after {
     content: "";
     background-image: ${(props) => {
-    const { bg } = props;
-    if (bg === 0) {
-      return 'linear-gradient(120deg, #f6d365 0%, #fda085 100%);';
-    } if (bg === 1) {
-      return 'linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);';
-    } if (bg === 2) {
-      return 'linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);';
-    } if (bg === 3) {
-      return 'linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);';
-    } if (bg === 4) {
-      return 'linear-gradient(to right, #4facfe 0%, #00f2fe 100%);';
-    } if (bg === 5) {
-      return 'linear-gradient(120deg, #f093fb 0%, #f5576c 100%)';
-    } if (bg === 6) {
-      return 'linear-gradient(to top, #d299c2 0%, #fef9d7 100%);';
-    } if (bg === 7) {
-      return 'linear-gradient(to top, #fddb92 0%, #d1fdff 100%);';
-    } if (bg === 8) {
-      return 'linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);';
+    switch (props.bg) {
+      case 0:
+        return 'linear-gradient(120deg, #f6d365 0%, #fda085 100%);';
+      case 1:
+        return 'linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);';
+      case 2:
+        return 'linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);';
+      case 3:
+        return 'linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);';
+      case 4:
+        return 'linear-gradient(to right, #4facfe 0%, #00f2fe 100%);';
+      case 5:
+        return 'linear-gradient(120deg, #f093fb 0%, #f5576c 100%)';
+      case 6:
+        return 'linear-gradient(to top, #d299c2 0%, #fef9d7 100%);';
+      case 7:
+        return 'linear-gradient(to top, #fddb92 0%, #d1fdff 100%);';
+      case 8:
+        return 'linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);';
+      default:
+        return 'linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);';
     }
-    return 'linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);';
   }};
     opacity: 0.3;
     border-radius: 8px;
