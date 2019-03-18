@@ -14,7 +14,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import Masonry from 'react-masonry-component';
-import Icon, { plus } from '../../css/icons';
+import Icon, { IconContainer, plus, preview } from '../../css/icons';
 
 const CardContainer = styled.div`
   position: relative;
@@ -118,7 +118,7 @@ function MasonryList({ polls }) {
                   as="/dashboard/editor/yeni-anket"
                   href="/dashboard/editor"
                 >
-                  <Button>
+                  <Button color="custom">
                     <Icon size={64} icon={plus} />
                   </Button>
                 </Link>
@@ -150,7 +150,12 @@ function MasonryList({ polls }) {
               <ButtonContainer>
                 <Link as={`/anket/${poll._id}`} href={`/poll?_id=${poll._id}`}>
                   <a target="_blank">
-                    <Button>Ankete Git</Button>
+                    <Button color="custom">
+                      {'Ankete Git'}
+                      <IconContainer>
+                        <Icon size={24} icon={preview} />
+                      </IconContainer>
+                    </Button>
                   </a>
                 </Link>
               </ButtonContainer>

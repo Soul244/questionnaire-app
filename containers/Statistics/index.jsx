@@ -150,8 +150,8 @@ class index extends Component {
               <IconContainer light>
                 <Icon size={64} icon={users} />
               </IconContainer>
-              <CardTitle>Anketi Çözen Kullanıcı Sayısı</CardTitle>
-              <CardText>{`${count} kişi`}</CardText>
+              <CardTitle>{`${count} kişi`}</CardTitle>
+              <CardText>Anketi Çözen Kullanıcı Sayısı</CardText>
             </CardStyled>
           </Col>
           <Col md="3">
@@ -159,8 +159,8 @@ class index extends Component {
               <IconContainer light>
                 <Icon size={64} icon={done} />
               </IconContainer>
-              <CardTitle>Kullanıcıların Toplam Doğru Sayısı</CardTitle>
-              <CardText>{`${percents.totalRight} doğru cevap`}</CardText>
+              <CardTitle>{`${percents.totalRight} doğru cevap`}</CardTitle>
+              <CardText>Kullanıcıların Toplam Doğru Sayısı</CardText>
             </CardStyled>
           </Col>
           <Col md="3">
@@ -168,8 +168,8 @@ class index extends Component {
               <IconContainer light>
                 <Icon size={64} icon={cross} />
               </IconContainer>
-              <CardTitle>Kullanıcıların Toplam Yanlış Sayısı</CardTitle>
-              <CardText>{`${percents.totalWrong} yanlış cevap`}</CardText>
+              <CardTitle>{`${percents.totalWrong} yanlış cevap`}</CardTitle>
+              <CardText>Kullanıcıların Toplam Yanlış Sayısı</CardText>
             </CardStyled>
           </Col>
           <Col md="3">
@@ -177,10 +177,10 @@ class index extends Component {
               <IconContainer>
                 <Icon size={64} icon={unchecked} />
               </IconContainer>
-              <CardTitle>
+              <CardTitle>{`${percents.totalhasNotRightAnswer} cevap`}</CardTitle>
+              <CardText>
                 Doğru ya da Yanlış Olarak İşaretlenmemiş ve Cevaplanmış Sorular Toplamı
-              </CardTitle>
-              <CardText>{`${percents.totalhasNotRightAnswer}`}</CardText>
+              </CardText>
             </CardStyled>
           </Col>
         </Row>

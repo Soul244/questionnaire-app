@@ -45,11 +45,3 @@
   .table td:hover{
     color: #009fd4;
   }
-
-.btn-transparent {
-    @include button-variant(lightgrey, transparent, lightgrey, transparent, transparent, transparent);
-}
-
-.btn-custom-outline {
-    @include button-outline-variant(#222222, #cece19, #222222, #cece19);
-}

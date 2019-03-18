@@ -28,7 +28,9 @@ import {
 } from 'react-icons-kit/md';
 
 const IconContainer = styled.div`
-  color: ${props=>props.color};
+  color: ${props => props.color};
+  vertical-align: text-bottom;
+  display:inline-block;
 `;
 
 export default Icon;
