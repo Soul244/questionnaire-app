@@ -15,6 +15,7 @@ export default class MyDocument extends Document {
       <html lang="tr">
         <Head>
           {this.props.styleTags}
+          <meta name="Questionnaire App" content="Free questionnaire app" />
         </Head>
         <body>
           <Main />

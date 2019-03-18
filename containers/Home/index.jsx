@@ -297,13 +297,13 @@ class index extends Component {
                 </Col>
                 <Col md="6">
                   <Bounce right>
+                    <Span bg={0} />
                     <Image
                       className="img-fluid"
                       src="static/svg_1.svg"
                       alt="ücretsiz anket"
                     />
                   </Bounce>
-                  <Span bg={0} />
                 </Col>
               </Row>
             </Container>
@@ -391,6 +391,7 @@ class index extends Component {
                   </Bounce>
                 </Col>
                 <Col md="6">
+                  <Span bg={1} />
                   <Bounce right>
                     <Image
                       className="img-fluid"
@@ -398,7 +399,6 @@ class index extends Component {
                       alt="mobile uygun"
                     />
                   </Bounce>
-                  <Span bg={1} />
                 </Col>
               </Row>
             </Container>
@@ -427,10 +427,10 @@ class index extends Component {
             <Container>
               <Row>
                 <Col md="6" className="text-center">
+                  <Span bg={2} />
                   <Fade top>
                     <Image className="img-fluid" src="/static/svg_3.svg" alt="istatistikler" />
                   </Fade>
-                  <Span bg={2} />
                 </Col>
                 <Col md="6">
                   <Fade top>
