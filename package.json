@@ -8,7 +8,8 @@
     "export": "npm run build && next export",
     "start": "node server.js",
     "heroku-postbuild": "npm run build",
-    "test": "jest --watchAll --coverage"
+    "test": "jest --watchAll --coverage",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
