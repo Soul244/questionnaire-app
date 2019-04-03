@@ -1,5 +1,5 @@
 import {
-  addQuestion, deleteQuestion, updatequestionIndex,
+  addQuestion, deleteQuestion,
   onChangeQuestionContent, onChangeQuestionType, onChangeQuestionDesc,
 } from './questionsActions';
 import {
@@ -12,7 +12,8 @@ import {
 } from './settingsActions';
 import {
   onChangeName, onChangeDesc, onChangeLastDesc,
-  getUpdatePoll, onChangeJs, onChangeCss, handleSelectableLastMessage,
+  onChangeJs, onChangeCss, handleSelectableLastMessage,
+  getPoll, postPoll, deletePoll, updatePoll, getPolls,
 } from './pollActions';
 
 
@@ -23,11 +24,15 @@ export {
   onChangeJs,
   onChangeCss,
   handleSelectableLastMessage,
-  getUpdatePoll,
+
+  getPolls,
+  getPoll,
+  postPoll,
+  deletePoll,
+  updatePoll,
 
   addQuestion,
   deleteQuestion,
-  updatequestionIndex,
   onChangeQuestionContent,
   onChangeQuestionType,
   onChangeRightAnswer,

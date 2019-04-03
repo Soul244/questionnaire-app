@@ -7,58 +7,59 @@ import * as pollActions from '../../redux/actions/pollActions';
 
 function Answers(props) {
   const {
+    pollReducer,
     pollActions,
+    answers,
     questionIndex,
-    poll,
+    rightAnswerIndex,
   } = props;
+
   const {
     onChangeAnswerContent,
     onChangeAnswerType,
     onChangeRightAnswer,
     deleteAnswer,
   } = pollActions;
-  const {
-    answers,
-    questions,
-  } = poll;
-  const filteredAnswers = [];
-  for (let index = 0; index < answers.length; index += 1) {
-    if (answers[index].questionIndex === questionIndex) {
-      filteredAnswers.push(
+
+  const { poll } = pollReducer;
+
+  return (
+    <ul>
+      {answers.map((answer, index) => (
         <Answer
           key={index}
           index={index}
-          order={answers[index].index}
           questionIndex={questionIndex}
-        // Answer Functions
+          rightAnswerIndex={rightAnswerIndex}
+          // Answer Functions
           onChangeAnswerContent={onChangeAnswerContent}
           onChangeAnswerType={onChangeAnswerType}
           deleteAnswer={deleteAnswer}
           onChangeRightAnswer={onChangeRightAnswer}
-        // Answer Data
-          type={answers[index].type}
-          content={answers[index].content}
+          // Answer Data
+          type={answer.type}
+          content={answer.content}
           pollType={poll.settings.type}
-          rightAnswerIndex={questions[questionIndex].rightAnswerIndex}
-        />,
-      );
-    }
-  }
-  return (
-    <ul>
-      {filteredAnswers}
+        />
+      ))}
     </ul>
   );
 }
 
+Answers.defaultProps = {
+  rightAnswerIndex: null,
+};
+
 Answers.propTypes = {
-  questionIndex: PropTypes.number.isRequired,
-  poll: PropTypes.object.isRequired,
+  pollReducer: PropTypes.object.isRequired,
   pollActions: PropTypes.object.isRequired,
+  rightAnswerIndex: PropTypes.number,
+  questionIndex: PropTypes.number.isRequired,
+  answers: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
-  poll: state.poll,
+  pollReducer: state.pollReducer,
 });
 
 const mapDispatchToProps = dispatch => ({

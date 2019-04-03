@@ -8,27 +8,17 @@ export function addParticipantAnswerAction(payload) {
     payload,
   };
 }
-export function addParticipantAnswer(questionIndex, index, rightAnswerIndex) {
+export function addParticipantAnswer(questionIndex, answerIndex) {
   return (dispatch, getState) => {
-    const { answers } = getState().participant;
-    let hasRightAnswer = false;
-    let isTrue = false;
-    if (rightAnswerIndex !== null) {
-      if (index === rightAnswerIndex) {
-        hasRightAnswer = true;
-        isTrue = true;
-      } else {
-        hasRightAnswer = true;
-        isTrue = false;
-      }
-    }
+    const { questions } = getState().pollReducer.poll;
+    const { answers } = questions[questionIndex];
+    const userAnswers = getState().participantReducer.answers;
     const newAnswers = [
-      ...answers,
+      ...userAnswers,
       {
-        questionIndex,
-        index,
-        hasRightAnswer,
-        isTrue,
+        questionId: questions[questionIndex]._id,
+        answerId: answers[answerIndex]._id,
+        isTrue: answers[answerIndex].isTrue,
       },
     ];
     dispatch(addParticipantAnswerAction(newAnswers));
@@ -122,7 +112,6 @@ export function postParticipantErrorAction(payload) {
 }
 
 export function postParticipant(participant) {
-  console.log(participant);
   return async (dispatch) => {
     try {
       const response = await axios.post('/participants/', {

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from 'reactstrap';
+import { Button, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 const CountContainer = styled.div`
@@ -22,15 +22,17 @@ function Controls({
   slidePrev, slideNext, questionsLength, slideIndex,
 }) {
   return (
-    <Controls>
-      <Button onClick={slidePrev}>Önceki Soru</Button>
-      <RightContainer>
-        <CountContainer color="secondary">
-          {`${slideIndex + 1}/${questionsLength} soru`}
-        </CountContainer>
-        <Button onClick={slideNext}>Sıradaki Soru</Button>
-      </RightContainer>
-    </Controls>
+    <Col>
+      <Controls>
+        <Button onClick={slidePrev}>Önceki Soru</Button>
+        <RightContainer>
+          <CountContainer color="secondary">
+            {`${slideIndex + 1}/${questionsLength} soru`}
+          </CountContainer>
+          <Button onClick={slideNext}>Sıradaki Soru</Button>
+        </RightContainer>
+      </Controls>
+    </Col>
   );
 }
 

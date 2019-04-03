@@ -168,8 +168,12 @@ function MasonryList({ polls }) {
   );
 }
 
+MasonryList.defaultProps = {
+  polls: [],
+};
+
 MasonryList.propTypes = {
-  polls: PropTypes.array.isRequired,
+  polls: PropTypes.array,
 };
 
 export default MasonryList;

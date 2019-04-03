@@ -39,7 +39,7 @@ const ProgressContainer = styled.div`
 `;
 
 const QuestionContainer = styled.div` 
-  padding: 0.5rem;
+  padding: 0.05rem;
 `;
 
 class SideBySide extends React.Component {
@@ -124,11 +124,9 @@ class SideBySide extends React.Component {
     } = this.props;
 
     const {
-      questions, answers, name, desc, lastDesc,
+      questions, name, desc, lastDesc,
     } = poll;
 
-    const orderedQuestions = _.orderBy(questions, ['index'], ['asc']);
-    const orderedAnswers = _.orderBy(answers, ['index'], ['asc']);
     const {
       hasAnswerAutoChangeTime,
       userDataCollectType,
@@ -180,22 +178,21 @@ class SideBySide extends React.Component {
             )}
             {/* POLL DATA */}
             <Swiper {...params} ref={node => (node ? this.swiper = node.swiper : '')}>
-              {orderedQuestions.map((question, index) => (
+              {questions.map((question, index) => (
                 <QuestionContainer key={`poll${index}`}>
                   <Row>
                     <Question
+                      questionIndex={index}
                       type={question.type}
                       content={question.content}
-                      index={question.index}
                       desc={question.desc}
                     />
                   </Row>
                   <Row>
                     <Options
-                      answers={orderedAnswers}
+                      questionIndex={index}
+                      answers={question.answers}
                       questionCount={question.count}
-                      questionIndex={question.index}
-                      rightAnswerIndex={question.rightAnswerIndex}
                       changeQuestion={this.changeQuestion}
                       addParticipantAnswer={addParticipantAnswer}
                     />

@@ -15,7 +15,7 @@ import Icon, {
 } from '../../css/icons';
 
 import * as participantActions from '../../redux/actions/participantActions';
-import * as pollsActions from '../../redux/actions/pollsActions';
+import * as pollActions from '../../redux/actions/pollActions';
 import PercentTable from '../../components/Statistics/PercentTable';
 import withNavbar from '../../hoc/withNavbar';
 
@@ -83,18 +83,18 @@ const renderCustomizedLabel = ({
 @withNavbar
 class index extends Component {
   componentWillMount() {
-    const { participantActions, pollsActions } = this.props;
+    const { participantActions, pollActions, _id } = this.props;
     const { getParticipants } = participantActions;
-    const { getPoll } = pollsActions;
-    getParticipants(this.props._id);
-    getPoll(this.props._id);
+    const { getPoll } = pollActions;
+    getParticipants(_id);
+    getPoll(_id);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { participant } = this.props;
-    const { message } = participant;
-    if (nextProps.participant.message !== message) {
-      this.notify(nextProps.participant.message);
+    const { participantReducer } = this.props;
+    const { message } = participantReducer;
+    if (nextProps.participantReducer.message !== message) {
+      this.notify(nextProps.participantReducer.message);
     }
   }
 
@@ -128,9 +128,9 @@ class index extends Component {
   }
 
   render() {
-    const { participants } = this.props.participant;
-    const { polls } = this.props;
-    const { poll } = polls;
+    const { pollReducer, participantReducer } = this.props;
+    const { participants } = participantReducer;
+    const { poll } = pollReducer;
     const count = participants.length;
     const percents = this.percents(participants);
     let records = false;
@@ -236,23 +236,24 @@ class index extends Component {
 }
 
 index.propTypes = {
-  pollsActions: PropTypes.object.isRequired,
+  _id: PropTypes.string.isRequired,
+  pollReducer: PropTypes.object.isRequired,
+  pollActions: PropTypes.object.isRequired,
+  participantReducer: PropTypes.object.isRequired,
   participantActions: PropTypes.object.isRequired,
-  participant: PropTypes.object.isRequired,
-  polls: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    participant: state.participant,
-    polls: state.polls,
+    participantReducer: state.participantReducer,
+    pollReducer: state.pollReducer,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     participantActions: bindActionCreators(participantActions, dispatch),
-    pollsActions: bindActionCreators(pollsActions, dispatch),
+    pollActions: bindActionCreators(pollActions, dispatch),
   };
 }
 

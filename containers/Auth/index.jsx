@@ -55,12 +55,12 @@ const CardBodyStyled = styled(CardBody)`
 
 class Auth extends Component {
   static propTypes = {
-    user: PropTypes.object.isRequired,
+    userReducer: PropTypes.object.isRequired,
     userActions: PropTypes.shape({
       postLogin: PropTypes.func.isRequired,
       postSignUp: PropTypes.func.isRequired,
       postResetPassword: PropTypes.func.isRequired,
-    }),
+    }).isRequired,
   };
 
   constructor() {
@@ -71,8 +71,8 @@ class Auth extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.notify(nextProps.user.message);
-    const { token } = nextProps.user;
+    this.notify(nextProps.userReducer.message);
+    const { token } = nextProps.userReducer;
     if (token) {
       setTimeout(() => {
         Router.push({ pathname: '/dashboard' });
@@ -81,10 +81,11 @@ class Auth extends Component {
   }
 
   notify = (message) => {
+    const { userReducer } = this.props;
     if (message) {
       toast.info(message, { position: toast.POSITION.BOTTOM_RIGHT });
     }
-    this.props.user.message = '';
+    userReducer.message = '';
   };
 
   pageHandle = (page) => {
@@ -94,7 +95,8 @@ class Auth extends Component {
   };
 
   render() {
-    const { postLogin, postSignUp, postResetPassword } = this.props.userActions;
+    const { userActions } = this.props;
+    const { postLogin, postSignUp, postResetPassword } = userActions;
     const { page } = this.state;
     return (
       <Container>
@@ -139,7 +141,7 @@ class Auth extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
+  userReducer: state.userReducer,
 });
 
 const mapDispatchToProps = dispatch => ({

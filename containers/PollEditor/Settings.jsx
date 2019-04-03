@@ -19,7 +19,11 @@ const CardHideAble = styled(Card)`
 
 function Settings(props) {
   // Inputs
-  const { poll, pollActions } = props;
+  const { pollReducer, pollActions } = props;
+
+  const { poll } = pollReducer;
+
+  const { settings } = poll;
   // Actions
   const {
     handleHasPollTime,
@@ -48,7 +52,7 @@ function Settings(props) {
     pollTime,
     answerTime,
     answerAutoChangeTime,
-  } = poll.settings;
+  } = settings;
   return (
     <Card body>
       <CardTitle tag="h5">Ayarlar</CardTitle>
@@ -184,15 +188,19 @@ function Settings(props) {
 }
 
 Settings.propTypes = {
-  poll: PropTypes.shape({
-    hasPollTime: PropTypes.bool,
-    hasAnswerTime: PropTypes.bool,
-    hasAnswerAutoChangeTime: PropTypes.bool,
-    isPollActive: PropTypes.bool,
-    showType: PropTypes.string,
-    pollTime: PropTypes.string,
-    answerTime: PropTypes.string,
-    answerAutoChangeTime: PropTypes.string,
+  pollReducer: PropTypes.shape({
+    poll: PropTypes.shape({
+      settings: PropTypes.shape({
+        hasPollTime: PropTypes.bool,
+        hasAnswerTime: PropTypes.bool,
+        hasAnswerAutoChangeTime: PropTypes.bool,
+        isPollActive: PropTypes.string,
+        showType: PropTypes.string,
+        pollTime: PropTypes.string,
+        answerTime: PropTypes.string,
+        answerAutoChangeTime: PropTypes.string,
+      }),
+    }),
   }).isRequired,
   pollActions: PropTypes.shape({
     handlePollTime: PropTypes.func.isRequired,
@@ -202,7 +210,7 @@ Settings.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  poll: state.poll,
+  pollReducer: state.pollReducer,
 });
 
 const mapDispatchToProps = dispatch => ({

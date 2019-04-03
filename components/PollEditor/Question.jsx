@@ -8,7 +8,6 @@ import Desc from './Desc';
 import Icon, { arrowDown, plus } from '../../css/icons';
 import { ContentViewer, AnswerTool } from '../Shared';
 import InputBox from './Shared/InputBox';
-import Answers from '../../containers/PollEditor/Answers';
 
 const QuestionContainer = styled.div`
   display: flex;
@@ -61,8 +60,8 @@ const ButtonWithIcon = styled.button`
   }
 `;
 
-const ContentContainer = styled.div` 
-    margin: 1rem 0 0 1rem;
+const ContentContainer = styled.div`
+  margin: 1rem 0 0 1rem;
 `;
 
 class Question extends Component {
@@ -88,35 +87,32 @@ class Question extends Component {
         showDesc: true,
       });
     }
-  }
+  };
 
   // Hide-Show answer tool
   answerToolToggle = () => {
     this.setState(prevState => ({
       answerToolShow: !prevState.answerToolShow,
     }));
-  }
+  };
 
   // Hide-Show question div
   toggle = () => {
     this.setState(prevState => ({
       show: !prevState.show,
     }));
-  }
+  };
 
   // Hide-Show Delete Modal
   toggleDelete = () => {
     this.setState(prevState => ({
       showDelete: !prevState.showDelete,
     }));
-  }
+  };
 
   render() {
     const {
-      show,
-      showDesc,
-      descText,
-      answerToolShow,
+      show, showDesc, descText, answerToolShow,
     } = this.state;
     const {
       onChangeQuestionContent,
@@ -128,6 +124,7 @@ class Question extends Component {
       index,
       type,
       desc,
+      children,
     } = this.props;
     return (
       <Card className="my-4">
@@ -166,33 +163,34 @@ class Question extends Component {
                 handleDelete={() => deleteQuestion(index)}
               />
               {type !== 'heading'
-                    && (type !== 'text' && (
-                      <>
-                        <PlusButtonContainer>
-                          <button
-                            type="button"
-                            className="clear-btn bttn"
-                            onClick={this.descToggle}
-                          >
-                            <Icon size="12px" icon={plus} />
-                            {' '}
-                            {descText}
-                          </button>
-                        </PlusButtonContainer>
-                        <Desc
-                          type={type}
-                          show={showDesc}
-                          value={desc}
-                          onChange={e => onChangeQuestionDesc(e.target.value, index)}
-                        />
-                      </>
-                    ))}
+                && (type !== 'text' && (
+                  <>
+                    <PlusButtonContainer>
+                      <button
+                        type="button"
+                        className="clear-btn bttn"
+                        onClick={this.descToggle}
+                      >
+                        <Icon size="12px" icon={plus} />
+                        {' '}
+                        {descText}
+                      </button>
+                    </PlusButtonContainer>
+                    <Desc
+                      type={type}
+                      show={showDesc}
+                      value={desc}
+                      onChange={e => onChangeQuestionDesc(e.target.value, index)
+                      }
+                    />
+                  </>
+                ))}
               <ContentContainer>
                 <ContentViewer type={type} content={content} />
               </ContentContainer>
-              <Answers questionIndex={index} />
             </QuestionContainer>
           </Col>
+          {children}
         </CardBodyContainer>
       </Card>
     );

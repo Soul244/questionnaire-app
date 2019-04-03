@@ -2,13 +2,15 @@
 import { asyncTypes, syncTypes } from '../types';
 
 const initialState = {
-  name: '',
-  surname: '',
-  email: '',
-  message: '',
-  pollId: Number,
-  answers: [],
+  participant: {
+    name: '',
+    surname: '',
+    email: '',
+    pollId: Number,
+    answers: [],
+  },
   participants: [],
+  message: '',
 };
 
 const participantReducer = (state = initialState, action) => {
@@ -16,25 +18,37 @@ const participantReducer = (state = initialState, action) => {
     case syncTypes.ADD_PARTICIPANT_ANSWER:
       state = {
         ...state,
-        answers: action.payload,
+        participant: {
+          ...state.participant,
+          answers: action.payload,
+        },
       };
       break;
     case syncTypes.ADD_PARTICIPANT_NAME:
       state = {
         ...state,
-        name: action.payload,
+        participant: {
+          ...state.participant,
+          name: action.payload,
+        },
       };
       break;
     case syncTypes.ADD_PARTICIPANT_SURNAME:
       state = {
         ...state,
-        surname: action.payload,
+        participant: {
+          ...state.participant,
+          surname: action.payload,
+        },
       };
       break;
     case syncTypes.ADD_PARTICIPANT_EMAIL:
       state = {
         ...state,
-        email: action.payload,
+        participant: {
+          ...state.participant,
+          email: action.payload,
+        },
       };
       break;
     case asyncTypes.GET_PARTICIPANTS:

@@ -73,10 +73,9 @@ class Full extends React.Component {
                 </Row>
                 <Row>
                   <Options
-                    answers={answers}
+                    answers={question.answers}
                     questionCount={question.count}
                     questionIndex={question.index}
-                    rightAnswerIndex={question.rightAnswerIndex}
                     changeQuestion={() => {}}
                     addParticipantAnswer={addParticipantAnswer}
                   />

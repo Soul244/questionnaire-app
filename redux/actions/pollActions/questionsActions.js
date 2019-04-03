@@ -1,4 +1,3 @@
-import { arrayMove } from 'react-sortable-hoc';
 import { List } from 'immutable';
 import { syncTypes } from '../../types';
 
@@ -11,13 +10,12 @@ export function addQuestionAction(payload) {
 }
 export function addQuestion(type) {
   return (dispatch, getState) => {
-    const { questions } = getState().poll;
+    const { questions } = getState().pollReducer.poll;
     const newQuestion = {
-      index: questions.length > 0 ? questions[questions.length - 1].index + 1 : 0,
       type,
       content: '',
-      rightAnswerIndex: null,
       desc: '',
+      answers: [],
     };
     const newQuestions = List(questions).push(newQuestion).toArray();
     dispatch(
@@ -36,30 +34,10 @@ export function deleteQuestionAction(payload) {
 }
 export function deleteQuestion(index) {
   return (dispatch, getState) => {
-    const { questions } = getState().poll;
+    const { questions } = getState().pollReducer.poll;
     const newQuestions = List(questions).delete(index).toArray();
     dispatch(
       deleteQuestionAction(newQuestions),
-    );
-  };
-}
-/* #endregion */
-
-/* #region Update Question Order NOT IN USE FOR NOW */
-export function updatequestionIndexAction(payload) {
-  return {
-    type: syncTypes.UPDATE_QUESTION_ORDER,
-    payload,
-  };
-}
-export function updatequestionIndex({ oldIndex, newIndex }) {
-  return (dispatch, getState) => {
-    const { questions } = getState().poll;
-    const q = arrayMove(questions, oldIndex, newIndex);
-    dispatch(
-      updatequestionIndexAction({
-        questions: [...q],
-      }),
     );
   };
 }
@@ -75,7 +53,7 @@ export function onChangeQuestionAction(payload) {
 
 export function onChangeQuestionContent(content, index) {
   return (dispatch, getState) => {
-    const { questions } = getState().poll;
+    const { questions } = getState().pollReducer.poll;
     const newQuestions = List(questions).setIn([index, 'content'], content).toArray();
     dispatch(
       onChangeQuestionAction(newQuestions),
@@ -93,7 +71,7 @@ export function onChangeQuestionTypeAction(payload) {
 }
 export function onChangeQuestionType(type, index) {
   return (dispatch, getState) => {
-    const { questions } = getState().poll;
+    const { questions } = getState().pollReducer.poll;
     const newQuestions = List(questions).setIn([index, 'type'], type).toArray();
     dispatch(
       onChangeQuestionTypeAction(newQuestions),
@@ -111,7 +89,7 @@ export function onChangeQuestionDescAction(payload) {
 }
 export function onChangeQuestionDesc(desc, index) {
   return (dispatch, getState) => {
-    const { questions } = getState().poll;
+    const { questions } = getState().pollReducer.poll;
     const newQuestions = List(questions).setIn([index, 'desc'], desc).toArray();
     dispatch(
       onChangeQuestionDescAction(newQuestions),

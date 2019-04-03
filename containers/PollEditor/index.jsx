@@ -16,7 +16,6 @@ import {
 import { checkEmpty } from '../../validation/validationFunctions';
 
 import * as pollActions from '../../redux/actions/pollActions';
-import * as pollsActions from '../../redux/actions/pollsActions';
 import withNavbar from '../../hoc/withNavbar';
 
 @withNavbar
@@ -54,21 +53,21 @@ class PollEditor extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { polls } = this.props;
-    const { message } = polls;
-    if (nextProps.polls.message !== message) {
-      this.notify({ apiMessage: nextProps.polls.message });
+    const { pollReducer } = this.props;
+    const { message } = pollReducer;
+    if (nextProps.pollReducer.message !== message) {
+      this.notify({ apiMessage: nextProps.pollReducer.message });
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { pollsActions } = this.props;
-    const { postPoll, updatePoll } = pollsActions;
-    const { poll } = this.props;
+    const { pollReducer, pollActions } = this.props;
+    const { postPoll, updatePoll } = pollActions;
+    const { poll } = pollReducer;
     // Errors
     const questionsErrors = checkEmpty(poll.questions);
-    const answersErrors = checkEmpty(poll.answers);
+    const answersErrors = false;
     const settingsError = false; // checkObjectEmpty(poll.settings);
     const inputsErrors = poll.name === '';
 
@@ -135,13 +134,17 @@ class PollEditor extends Component {
   }
 
   render() {
-    const { poll, pollActions } = this.props;
+    const { pollReducer, pollActions } = this.props;
     const {
       addQuestion,
       onChangeName,
       onChangeDesc,
       onChangeLastDesc,
     } = pollActions;
+
+    const {
+      poll,
+    } = pollReducer;
 
     const {
       name,
@@ -200,32 +203,40 @@ class PollEditor extends Component {
   }
 }
 
+PollEditor.defaultProps = {
+  _id: null,
+  pollReducer: PropTypes.shape({
+    message: '',
+  }),
+};
+
 PollEditor.propTypes = {
-  polls: PropTypes.object.isRequired,
-  poll: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    desc: PropTypes.string.isRequired,
-  }).isRequired,
+  _id: PropTypes.string,
+  pollReducer: PropTypes.shape({
+    poll: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      desc: PropTypes.string.isRequired,
+    }).isRequired,
+    message: PropTypes.string,
+  }),
   pollActions: PropTypes.shape({
-    updatePoll: PropTypes.func.isRequired,
-    postPoll: PropTypes.func.isRequired,
     addQuestion: PropTypes.func.isRequired,
     onChangeName: PropTypes.func.isRequired,
     onChangeDesc: PropTypes.func.isRequired,
+    updatePoll: PropTypes.func.isRequired,
+    postPoll: PropTypes.func.isRequired,
   }).isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    poll: state.poll,
-    polls: state.polls,
+    pollReducer: state.pollReducer,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     pollActions: bindActionCreators(pollActions, dispatch),
-    pollsActions: bindActionCreators(pollsActions, dispatch),
   };
 }
 

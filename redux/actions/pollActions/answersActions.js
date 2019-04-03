@@ -14,20 +14,17 @@ export function addAnswerAction(payload) {
 }
 export function addAnswer(type, questionIndex) {
   return (dispatch, getState) => {
-    const {
-      answers,
-    } = getState().poll;
-    const filteredAnswers = answers.filter(answer => answer.questionIndex === questionIndex);
+    const { questions } = getState().pollReducer.poll;
+    const { answers } = questions[questionIndex];
     const newAnswer = {
-      index: filteredAnswers.length > 0 ? filteredAnswers[filteredAnswers.length - 1].index + 1 : 0,
-      questionIndex,
       type,
       count: 0,
       content: '',
     };
     const newAnswers = List(answers).push(newAnswer).toArray();
+    const newQuestions = List(questions).setIn([questionIndex, 'answers'], newAnswers).toArray();
     dispatch(
-      addAnswerAction(newAnswers),
+      addAnswerAction(newQuestions),
     );
   };
 }
@@ -40,14 +37,14 @@ export function onChangeAnswerContentAction(payload) {
     payload,
   };
 }
-export function onChangeAnswerContent(content, index) {
+export function onChangeAnswerContent(content, answerIndex, questionIndex) {
   return (dispatch, getState) => {
-    const {
-      answers,
-    } = getState().poll;
-    const newAnswers = List(answers).setIn([index, 'content'], content).toArray();
+    const { questions } = getState().pollReducer.poll;
+    const { answers } = questions[questionIndex];
+    const newAnswers = List(answers).setIn([answerIndex, 'content'], content).toArray();
+    const newQuestions = List(questions).setIn([questionIndex, 'answers'], newAnswers).toArray();
     dispatch(
-      onChangeAnswerContentAction(newAnswers),
+      onChangeAnswerContentAction(newQuestions),
     );
   };
 }
@@ -60,14 +57,14 @@ export function onChangeAnswerTypeAction(payload) {
     payload,
   };
 }
-export function onChangeAnswerType(type, index) {
+export function onChangeAnswerType(type, answerIndex, questionIndex) {
   return (dispatch, getState) => {
-    const {
-      answers,
-    } = getState().poll;
-    const newAnswers = List(answers).setIn([index, 'type'], type).toArray();
+    const { questions } = getState().pollReducer.poll;
+    const { answers } = questions[questionIndex];
+    const newAnswers = List(answers).setIn([answerIndex, 'type'], type).toArray();
+    const newQuestions = List(questions).setIn([questionIndex, 'answers'], newAnswers).toArray();
     dispatch(
-      onChangeAnswerTypeAction(newAnswers),
+      onChangeAnswerTypeAction(newQuestions),
     );
   };
 }
@@ -80,16 +77,10 @@ export function onChangeRightAnswerAction(payload) {
     payload,
   };
 }
-export function onChangeRightAnswer(questionIndex, answerIndex) {
+export function onChangeRightAnswer(answerIndex, questionIndex) {
   return (dispatch, getState) => {
-    let newQuestions;
-    const { questions } = getState().poll;
-    const question = questions[questionIndex];
-    if (question.rightAnswerIndex === answerIndex) {
-      newQuestions = List(questions).setIn([questionIndex, 'rightAnswerIndex'], null).toArray();
-    } else {
-      newQuestions = List(questions).setIn([questionIndex, 'rightAnswerIndex'], answerIndex).toArray();
-    }
+    const { questions } = getState().pollReducer.poll; // Get Questions
+    const newQuestions = List(questions).setIn([questionIndex, 'rightAnswerIndex'], answerIndex).toArray();
     dispatch(
       onChangeRightAnswerAction(newQuestions),
     );
@@ -104,27 +95,15 @@ export function deleteAnswerAction(payload) {
     payload,
   };
 }
-export function deleteAnswer(questionIndex, index) {
+export function deleteAnswer(answerIndex, questionIndex) {
   return (dispatch, getState) => {
-    const { answers, questions } = getState().poll;
-    const newAnswers = List(answers).delete(index).toArray();
+    const { questions } = getState().pollReducer.poll;
+    const { answers } = questions[questionIndex];
+    const newAnswers = List(answers).delete(answerIndex).toArray();
+    const newQuestions = List(questions).setIn([questionIndex, 'answers'], newAnswers).toArray();
     dispatch(
-      deleteAnswerAction(newAnswers),
+      deleteAnswerAction(newQuestions),
     );
-    // Change RightAnswerIndex
-    const question = questions[questionIndex];
-    let newRightAnswerIndex;
-    if (question.rightAnswerIndex > index) {
-      newRightAnswerIndex = question.rightAnswerIndex - 1;
-    } else if (question.rightAnswerIndex === index) {
-      newRightAnswerIndex = null;
-    }
-    if (newRightAnswerIndex !== undefined) {
-      const newQuestions = List(questions).setIn([questionIndex, 'rightAnswerIndex'], newRightAnswerIndex).toArray();
-      dispatch(
-        onChangeRightAnswerAction(newQuestions),
-      );
-    }
   };
 }
 /* #endregion */

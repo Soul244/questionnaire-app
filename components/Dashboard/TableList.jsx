@@ -46,9 +46,13 @@ function TableList({ polls, deletePoll }) {
   );
 }
 
+TableList.defaultProps = {
+  polls: [],
+};
+
 TableList.propTypes = {
   deletePoll: PropTypes.func.isRequired,
-  polls: PropTypes.array.isRequired,
+  polls: PropTypes.array,
 };
 
 export default TableList;

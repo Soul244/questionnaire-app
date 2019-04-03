@@ -34,7 +34,7 @@ function ToolButton(props) {
           )}
         </Text>
       </ButtonStyled>
-      <UncontrolledTooltip placement="left" target={rest.id}>{tooltip}</UncontrolledTooltip>
+      {/*<UncontrolledTooltip placement="left" target={rest.id}>{tooltip}</UncontrolledTooltip> */}
     </>
   );
 }

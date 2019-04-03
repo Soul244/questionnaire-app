@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+const glob = require('glob-all');
 
 module.exports = {
   mode: 'production',
@@ -16,6 +18,7 @@ module.exports = {
     modulesDirectories: ['node_modules'],
   },
   plugins: [
+    new PurgecssPlugin({ paths: glob.sync('css/index.css', { nodir: true }) }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',

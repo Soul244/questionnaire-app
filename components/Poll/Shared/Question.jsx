@@ -13,13 +13,13 @@ const DescContainer = styled.div`
 `;
 
 function Question({
-  type, content, index, desc,
+  type, content, questionIndex, desc,
 }) {
   return (
     <Col md={12}>
       <Card className="text-center">
         <CardHeader tag="h6">
-          <p>{`SORU ${index + 1}`}</p>
+          <p>{`SORU ${questionIndex + 1}`}</p>
         </CardHeader>
         <CardBody>
           <ContentViewer type={type} content={content} />
@@ -42,7 +42,7 @@ Question.defaultProps = {
 Question.propTypes = {
   type: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
+  questionIndex: PropTypes.number.isRequired,
   desc: PropTypes.string,
 };
 

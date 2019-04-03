@@ -4,71 +4,65 @@ import PropTypes from 'prop-types';
 import {
   Card,
   CardBody,
-  Input,
   Col,
   Row,
 } from 'reactstrap';
 import styled from 'styled-components';
+import CountUp from 'react-countup';
 
 import { ContentViewer } from '../../Shared';
 
 const CardStyled = styled(Card)`
   border-width: ${props => (props.checked ? '5px' : '0')};
-  border-color: ${props => (
-    props.checked && props.bg !== null && (props.index === props.bg ? '#009800' : '#cb1010')
-  )};
-  background-color: ${props => (
-    props.checked && props.bg !== null && (props.index === props.bg ? '#1dcb10' : 'red')
-  )};
-  background-color: ${props => (
-    props.checked && (props.bg === null ? 'lightgray' : '')
-  )};
+  background-color: ${(props) => {
+    const { checked, istrue } = props;
+    if (checked && istrue) {
+      return '#009800';
+    }
+    if (checked && !istrue) {
+      return '#cb1010';
+    }
+    if (checked && istrue === null) {
+      return 'lightgray';
+    }
+    return 'white';
+  }};
+  color: ${props => (props.checked ? 'white' : 'black')};
 `;
 
-const Text = styled.p`
-  margin: 0.5rem 0;
+const TextContainer = styled.div`
   display: ${props => (props.show ? 'block' : 'none')};
 `;
 
 function Option({
-  index,
-  questionIndex,
-  order,
-  rightAnswerIndex,
+  answerIndex,
   type,
   content,
-  checked,
+  checkedAnswerIndex,
+  isTrue,
   onClick,
   answerCount,
-  questionCount,
   showPercent,
 }) {
   return (
     <Col md={6}>
       <CardStyled
         className="my-1"
-        onClick={() => onClick(order)}
-        checked={checked === order}
-        index={index}
-        bg={rightAnswerIndex}
+        onClick={() => onClick(answerIndex)}
+        checked={checkedAnswerIndex === answerIndex}
+        istrue={isTrue}
       >
         <CardBody className="text-center ">
           <Row>
-            <Col>
-              {questionCount > 0 && answerCount > 0 && (
-                <>
-                  <Text show={showPercent}>{`${Math.round((answerCount / questionCount) * 100)}%`}</Text>
-                </>
-              )}
-              {answerCount === 0 && (
-                <>
-                  <Text show={showPercent}>0%</Text>
-                </>
-              )}
+            <Col sm={2}>
+              <TextContainer show={showPercent}>
+                <CountUp end={answerCount} />
+                {' '}
+                {'kişi'}
+              </TextContainer>
+            </Col>
+            <Col sm={checkedAnswerIndex === null ? { size: 12 } : { size: 10 }} className="text-center">
               <ContentViewer type={type} content={content} />
-              <Text show={showPercent}>
-                {`${answerCount} kişi sizinle aynı fikirde`}
-              </Text>
             </Col>
           </Row>
         </CardBody>
@@ -78,20 +72,18 @@ function Option({
 }
 
 Option.defaultProps = {
-  rightAnswerIndex: null,
+  checkedAnswerIndex: null,
 };
 
 Option.propTypes = {
-  index: PropTypes.number.isRequired,
-  questionIndex: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
+  answerIndex: PropTypes.number.isRequired,
   content: PropTypes.string.isRequired,
-  rightAnswerIndex: PropTypes.number,
-  checked: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  checkedAnswerIndex: PropTypes.number,
   onClick: PropTypes.func.isRequired,
   answerCount: PropTypes.number.isRequired,
   showPercent: PropTypes.bool.isRequired,
-  questionCount: PropTypes.number.isRequired,
+  isTrue: PropTypes.bool.isRequired,
 };
 
 export default Option;

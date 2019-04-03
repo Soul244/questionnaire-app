@@ -10723,8 +10723,8 @@ a.text-custom:hover, a.text-custom:focus {
 }
 
 .row {
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: -5px;
+  margin-left: -5px;
 }
 
 .row [class*="col-"] {

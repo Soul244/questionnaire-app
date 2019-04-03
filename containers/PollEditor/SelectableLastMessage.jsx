@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import dynamic from 'next/dynamic';
+import { bindActionCreators } from 'redux';
 
 import {
   Card, CardBody, Input, CardTitle, CardHeader, CardText, Col, Row,
@@ -166,11 +166,15 @@ class SelectableLastMessage extends Component {
 
 function mapStateToProps(state) {
   return {
-    poll: state.poll,
+    pollReducer: state.pollReducer,
   };
 }
 
+const mapDispatchToProps = dispatch => ({
+  pollActions: bindActionCreators(pollActions, dispatch),
+});
+
 export default connect(
   mapStateToProps,
-  pollActions,
+  mapDispatchToProps,
 )(SelectableLastMessage);

@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import Poll from '../Poll';
 import PreviewControls from '../../components/Preview/PreviewControls';
 
-class index extends Component {
-  render() {
-    const { isPreview } = this.props;
-    return (
-      <>
-        <PreviewControls />
-        <Poll isPreview={isPreview} />
-      </>
-    );
-  }
+
+function index({ isPreview }) {
+  return (
+    <>
+      <PreviewControls />
+      <Poll isPreview={isPreview} />
+    </>
+  );
 }
+
+index.propTypes = {
+  isPreview: PropTypes.bool.isRequired,
+};
 
 export default index;

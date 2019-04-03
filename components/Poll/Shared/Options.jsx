@@ -7,65 +7,56 @@ class Options extends React.Component {
   constructor() {
     super();
     this.state = {
-      checked: '',
+      checkedAnswerIndex: null,
       showPercent: false,
     };
   }
 
-  onClick = (value) => {
+  onClick = (answerIndex) => {
     const {
-      questionIndex, rightAnswerIndex, addParticipantAnswer, changeQuestion,
+      questionIndex, addParticipantAnswer, changeQuestion,
     } = this.props;
-    const { checked } = this.state;
-    if (checked !== '') return;
     this.setState({
-      checked: value,
+      checkedAnswerIndex: answerIndex,
       showPercent: true,
     });
-    addParticipantAnswer(questionIndex, value, rightAnswerIndex);
+    addParticipantAnswer(questionIndex, answerIndex);
     changeQuestion();
   };
 
   render() {
     const {
       answers,
-      questionIndex,
-      rightAnswerIndex,
       questionCount,
+      questionIndex,
     } = this.props;
-    const { checked, showPercent } = this.state;
+    const { checkedAnswerIndex, showPercent } = this.state;
     return (
       <Fragment>
-        {answers
-          .filter(answer => answer.questionIndex === questionIndex)
-          .map((answer, index) => (
-            <Option
-              key={index}
-              index={index}
-              order={answer.index}
-              questionIndex={answer.questionIndex}
-              answerCount={answer.count}
-              questionCount={questionCount}
-              rightAnswerIndex={rightAnswerIndex}
-              type={answer.type}
-              showPercent={showPercent}
-              content={answer.content}
-              checked={checked}
-              onClick={this.onClick}
-            />
-          ))}
+        {answers.map((answer, index) => (
+          <Option
+            key={index}
+            answerIndex={index}
+            questionCount={questionCount}
+            questionIndex={questionIndex}
+
+            answerCount={answer.count}
+            isTrue={answer.isTrue}
+            type={answer.type}
+            content={answer.content}
+
+            showPercent={showPercent}
+            checkedAnswerIndex={checkedAnswerIndex}
+            onClick={this.onClick}
+          />
+        ))}
       </Fragment>
     );
   }
 }
 
-Options.defaultProps = {
-  rightAnswerIndex: null,
-};
-
 Options.propTypes = {
   questionIndex: PropTypes.number.isRequired,
-  rightAnswerIndex: PropTypes.number,
   changeQuestion: PropTypes.func.isRequired,
   questionCount: PropTypes.number.isRequired,
   answers: PropTypes.array.isRequired,

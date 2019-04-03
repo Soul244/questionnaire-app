@@ -38,8 +38,8 @@ class Answer extends Component {
   render() {
     const {
       index,
-      order,
       questionIndex,
+      rightAnswerIndex,
       // Answer Functions
       onChangeAnswerContent,
       onChangeAnswerType,
@@ -49,13 +49,12 @@ class Answer extends Component {
       type,
       content,
       pollType,
-      rightAnswerIndex,
     } = this.props;
-    const checked = rightAnswerIndex === index;
+    const isTrue = rightAnswerIndex === index;
     return (
-      <Card className="my-4" outline={checked} checked={checked} color={checked ? 'success' : ''}>
-        <CardHeaderStyled tag="h6" checked={checked}>
-          {`${order + 1}. Cevap`}
+      <Card className="my-4" outline={isTrue} color={isTrue ? 'success' : ''}>
+        <CardHeaderStyled tag="h6" checked={isTrue ? 1 : 0}>
+          {`${index + 1}. Cevap`}
           {' '}
         </CardHeaderStyled>
         <CardBody>
@@ -65,11 +64,11 @@ class Answer extends Component {
               typeValue={type}
               inputValue={content}
               hasRadio={pollType === 'test'}
-              checked={checked ? 1 : 0}
-              radioChange={() => onChangeRightAnswer(questionIndex, index)}
-              onChangeInput={e => onChangeAnswerContent(e.target.value, index)}
-              onChangeType={e => onChangeAnswerType(e.target.value, index)}
-              handleDelete={() => deleteAnswer(questionIndex, index)}
+              checked={isTrue ? 1 : 0}
+              radioChange={() => onChangeRightAnswer(index, questionIndex)}
+              onChangeInput={e => onChangeAnswerContent(e.target.value, index, questionIndex)}
+              onChangeType={e => onChangeAnswerType(e.target.value, index, questionIndex)}
+              handleDelete={() => deleteAnswer(index, questionIndex)}
             />
             <ContentContainer>
               <ContentViewer type={type} content={content} />

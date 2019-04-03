@@ -5,16 +5,14 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
-import poll from './reducers/pollReducer';
-import polls from './reducers/pollsReducer';
-import participant from './reducers/participantReducer';
-import user from './reducers/userReducer';
+import pollReducer from './reducers/pollReducer';
+import participantReducer from './reducers/participantReducer';
+import userReducer from './reducers/userReducer';
 
 const reducers = combineReducers({
-  poll,
-  polls,
-  participant,
-  user,
+  pollReducer,
+  participantReducer,
+  userReducer,
 });
 
 export const initStore = () => createStore(

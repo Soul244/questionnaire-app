@@ -3,7 +3,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 import {
-  Button, Card, CardBody, UncontrolledTooltip,
+  Button, Card, CardBody,
 } from 'reactstrap';
 import styled from 'styled-components';
 import ToolButton from '../Button/ToolButton';
@@ -82,18 +82,18 @@ class QuestionTool extends React.Component {
     const { addQuestion } = this.props;
     const { show } = this.state;
     return (
-      <Container show={show}>
+      <Container show={show ? 1 : 0}>
         <PlusIcon
           size="md"
           outline
           block
           onClick={this.toggle}
-          show={show}
+          show={show ? 1 : 0}
           id="toggle"
         >
           <Icon size="48px" icon={arrowUp} />
         </PlusIcon>
-        <CardStyled className="text-center" show={show}>
+        <CardStyled className="text-center" show={show ? 1 : 0}>
           <CardBody>
             <ToolButton
               content="Yazılı Soru"
@@ -168,9 +168,6 @@ class QuestionTool extends React.Component {
               color="success"
               id="publish"
             />
-            <UncontrolledTooltip placement="left" target="toggle">
-            Soru ekleme aracını aç veya kapa.
-            </UncontrolledTooltip>
           </CardBody>
         </CardStyled>
       </Container>
