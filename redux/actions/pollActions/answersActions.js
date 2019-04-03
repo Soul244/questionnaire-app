@@ -80,7 +80,11 @@ export function onChangeRightAnswerAction(payload) {
 export function onChangeRightAnswer(answerIndex, questionIndex) {
   return (dispatch, getState) => {
     const { questions } = getState().pollReducer.poll; // Get Questions
-    const newQuestions = List(questions).setIn([questionIndex, 'rightAnswerIndex'], answerIndex).toArray();
+    let newRightAnswerIndex = answerIndex;
+    if (questions[questionIndex].rightAnswerIndex === newRightAnswerIndex) {
+      newRightAnswerIndex = null;
+    }
+    const newQuestions = List(questions).setIn([questionIndex, 'rightAnswerIndex'], newRightAnswerIndex).toArray();
     dispatch(
       onChangeRightAnswerAction(newQuestions),
     );

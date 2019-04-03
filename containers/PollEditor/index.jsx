@@ -48,7 +48,7 @@ class PollEditor extends Component {
   componentWillMount() {
     const { _id, pollActions } = this.props;
     if (_id) {
-      pollActions.getUpdatePoll(_id);
+      pollActions.getPoll(_id);
     }
   }
 
