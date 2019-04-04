@@ -172,7 +172,7 @@ class Index extends React.Component {
             />
           </>
         )}
-        {/* IF POLL IS FINISHED SHOW FINISH PAGE */}
+        {/* IF POLL FINISH, SHOW FINISH PAGE */}
         {testFinished && (
         <Last
           name={name}

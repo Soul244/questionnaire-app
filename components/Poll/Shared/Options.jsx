@@ -7,8 +7,7 @@ class Options extends React.Component {
   constructor() {
     super();
     this.state = {
-      checkedAnswerIndex: null,
-      showPercent: false,
+      checked: false,
     };
   }
 
@@ -17,8 +16,7 @@ class Options extends React.Component {
       questionIndex, addParticipantAnswer, changeQuestion,
     } = this.props;
     this.setState({
-      checkedAnswerIndex: answerIndex,
-      showPercent: true,
+      checked: true,
     });
     addParticipantAnswer(questionIndex, answerIndex);
     changeQuestion();
@@ -29,8 +27,9 @@ class Options extends React.Component {
       answers,
       questionCount,
       questionIndex,
+      rightAnswerIndex,
     } = this.props;
-    const { checkedAnswerIndex, showPercent } = this.state;
+    const { checked } = this.state;
     return (
       <Fragment>
         {answers.map((answer, index) => (
@@ -41,12 +40,11 @@ class Options extends React.Component {
             questionIndex={questionIndex}
 
             answerCount={answer.count}
-            isTrue={answer.isTrue}
             type={answer.type}
             content={answer.content}
 
-            showPercent={showPercent}
-            checkedAnswerIndex={checkedAnswerIndex}
+            rightAnswerIndex={rightAnswerIndex}
+            checked={checked}
             onClick={this.onClick}
           />
         ))}
@@ -55,10 +53,15 @@ class Options extends React.Component {
   }
 }
 
+Options.defaultProps = {
+  rightAnswerIndex: null,
+};
+
 Options.propTypes = {
   questionIndex: PropTypes.number.isRequired,
   changeQuestion: PropTypes.func.isRequired,
   questionCount: PropTypes.number.isRequired,
+  rightAnswerIndex: PropTypes.number,
   answers: PropTypes.array.isRequired,
   addParticipantAnswer: PropTypes.func.isRequired,
 };

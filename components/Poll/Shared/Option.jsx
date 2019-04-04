@@ -38,30 +38,29 @@ function Option({
   answerIndex,
   type,
   content,
-  checkedAnswerIndex,
-  isTrue,
+  rightAnswerIndex,
+  checked,
   onClick,
   answerCount,
-  showPercent,
 }) {
   return (
     <Col md={6}>
       <CardStyled
         className="my-1"
         onClick={() => onClick(answerIndex)}
-        checked={checkedAnswerIndex === answerIndex}
-        istrue={isTrue}
+        checked={checked}
+        istrue={rightAnswerIndex === answerIndex}
       >
         <CardBody className="text-center ">
           <Row>
             <Col sm={2}>
-              <TextContainer show={showPercent}>
+              <TextContainer show={checked}>
                 <CountUp end={answerCount} />
                 {' '}
                 {'kişi'}
               </TextContainer>
             </Col>
-            <Col sm={checkedAnswerIndex === null ? { size: 12 } : { size: 10 }} className="text-center">
+            <Col sm={checked ? { size: 10 } : { size: 12 }} className="text-center">
               <ContentViewer type={type} content={content} />
             </Col>
           </Row>
@@ -72,18 +71,17 @@ function Option({
 }
 
 Option.defaultProps = {
-  checkedAnswerIndex: null,
+  rightAnswerIndex: null,
 };
 
 Option.propTypes = {
   type: PropTypes.string.isRequired,
   answerIndex: PropTypes.number.isRequired,
   content: PropTypes.string.isRequired,
-  checkedAnswerIndex: PropTypes.number,
+  checked: PropTypes.bool.isRequired,
+  rightAnswerIndex: PropTypes.number,
   onClick: PropTypes.func.isRequired,
   answerCount: PropTypes.number.isRequired,
-  showPercent: PropTypes.bool.isRequired,
-  isTrue: PropTypes.bool.isRequired,
 };
 
 export default Option;

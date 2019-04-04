@@ -33,10 +33,10 @@ function Full({
           </Row>
           <Row>
             <Options
-              answers={question.answers}
-              questionCount={question.count}
               questionIndex={index}
               rightAnswerIndex={question.rightAnswerIndex}
+              answers={question.answers}
+              questionCount={question.count}
               changeQuestion={() => {}}
               addParticipantAnswer={addParticipantAnswer}
             />
