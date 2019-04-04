@@ -11,7 +11,8 @@ import {
 
 import * as pollActions from '../../redux/actions/pollActions';
 import * as participantActions from '../../redux/actions/participantActions';
-import { Full, SideBySide, PollActive } from '../../components/Poll';
+import Poll from '../../components/Poll';
+import { PollActive } from '../../components/Poll/Shared';
 
 class index extends Component {
   constructor(props) {
@@ -58,23 +59,13 @@ class index extends Component {
     if (!settings.isPollActive) {
       return <PollActive />;
     }
+    //          {settings.showType === 'sideBySide full' && (
+
     return (
       <>
         <Container className="my-4">
-          {settings.showType === 'sideBySide' && (
-          <SideBySide
-            testStarted={testStarted}
-            testFinished={testFinished}
-            poll={poll}
-            handleTestStarted={this.handleTestStarted}
-            handleTestFinished={this.handleTestFinished}
-            addParticipantAnswer={addParticipantAnswer}
-            participant={participantReducer}
-            postParticipant={postParticipant}
-          />
-          )}
-          {settings.showType === 'full' && (
-          <Full
+          <Poll
+            showType={settings.showType}
             testStarted={testStarted}
             testFinished={testFinished}
             poll={poll}
@@ -84,7 +75,6 @@ class index extends Component {
             participant={participant}
             postParticipant={postParticipant}
           />
-          )}
         </Container>
       </>
     );

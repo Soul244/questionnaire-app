@@ -16,6 +16,14 @@ $navbar-color: #009fd4;
     -moz-osx-font-smoothing: grayscale;
     background-color: $body-color;
     color: black;
+    ::selection {
+        background-color: $navbar-color;
+        color: white;
+      }
+      ::-moz-selection {
+        color: white;
+        background-color: $navbar-color;
+      }
     //background-color: rgba($color: darkgrey, $alpha: 0.05) !important;
 }
 

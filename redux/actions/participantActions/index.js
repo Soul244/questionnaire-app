@@ -12,7 +12,7 @@ export function addParticipantAnswer(questionIndex, answerIndex) {
   return (dispatch, getState) => {
     const { questions } = getState().pollReducer.poll;
     const { answers } = questions[questionIndex];
-    const userAnswers = getState().participantReducer.answers;
+    const userAnswers = getState().participantReducer.participant.answers;
     const newAnswers = [
       ...userAnswers,
       {

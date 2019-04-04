@@ -10785,6 +10785,21 @@ a.text-custom:hover, a.text-custom:focus {
   color: black;
 }
 
+#__next ::-moz-selection, body ::-moz-selection {
+  background-color: #009fd4;
+  color: white;
+}
+
+#__next ::selection, body ::selection {
+  background-color: #009fd4;
+  color: white;
+}
+
+#__next ::-moz-selection, body ::-moz-selection {
+  color: white;
+  background-color: #009fd4;
+}
+
 html {
   height: 100%;
   width: 100%;
