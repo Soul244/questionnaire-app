@@ -9,6 +9,7 @@ import Desc from './Desc';
 import Icon, { arrowDown, plus } from '../../css/icons';
 import { ContentViewer, AnswerTool } from '../Shared';
 import InputBox from './Shared/InputBox';
+import { SortableButton } from '../Sortable';
 
 const QuestionContainer = styled.div`
   display: flex;
@@ -143,6 +144,7 @@ class Question extends Component {
             />
           </LeftContainer>
           <RightContainer show={!answerToolShow}>
+            <SortableButton />
             <ButtonWithIcon
               type="button"
               className="clear-btn"
@@ -160,7 +162,8 @@ class Question extends Component {
                 index={index}
                 typeValue={type}
                 inputValue={content}
-                onChangeInput={e => onChangeQuestionContent(e.target.value, index)}
+                onChangeInput={e => onChangeQuestionContent(e.target.value, index)
+                }
                 onChangeType={e => onChangeQuestionType(e.target.value, index)}
                 handleDelete={() => deleteQuestion(index)}
               />

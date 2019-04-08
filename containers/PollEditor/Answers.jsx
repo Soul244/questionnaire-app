@@ -60,7 +60,7 @@ class SortableComponent extends Component {
 
   render() {
     const { props } = this;
-    return <Answers {...props} onSortEnd={this.onSortEnd} />;
+    return <Answers {...props} onSortEnd={this.onSortEnd} lockAxis="y" transitionDuration={0} useDragHandle />;
   }
 }
 

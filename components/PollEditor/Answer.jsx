@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { SortableElement } from 'react-sortable-hoc';
 import { ContentViewer } from '../Shared';
 import InputBox from './Shared/InputBox';
+import { SortableButton } from '../Sortable';
 
 const AnswerContainer = styled.div`
   padding-top: 1rem;
@@ -20,6 +21,10 @@ const CardHeaderStyled = styled(CardHeader)`
 
 const ContentContainer = styled.div` 
     margin: 1rem 0 0 1rem;
+`;
+
+const RightContainer = styled.div`
+    margin-left: auto;
 `;
 
 @SortableElement
@@ -58,6 +63,9 @@ class Answer extends Component {
         <CardHeaderStyled tag="h6" checked={isTrue ? 1 : 0}>
           {`${index + 1}. Cevap`}
           {' '}
+          <RightContainer>
+            <SortableButton />
+          </RightContainer>
         </CardHeaderStyled>
         <CardBody>
           <AnswerContainer>

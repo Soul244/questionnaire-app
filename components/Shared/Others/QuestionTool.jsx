@@ -68,9 +68,31 @@ class QuestionTool extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: true,
+      show: false,
     };
   }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    if (window.innerWidth <= 992) {
+      this.setState({
+        show: false,
+      });
+    } else {
+      this.setState({
+        show: true,
+      });
+    }
+  };
+
 
   toggle = () => {
     this.setState(prevState => ({

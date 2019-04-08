@@ -27,10 +27,13 @@ import {
   ic_more_vert,
 } from 'react-icons-kit/md';
 
+import { arrowMove } from 'react-icons-kit/ionicons';
+
 const IconContainer = styled.div`
   color: ${props => props.color};
   vertical-align: text-bottom;
   display:inline-block;
+  margin: ${props => props.margin};
 `;
 
 export default Icon;
@@ -62,6 +65,7 @@ export {
   ic_phone as phone,
   ic_email as mail,
   ic_more_vert as threedot,
+  arrowMove,
 };
 
 /* Example

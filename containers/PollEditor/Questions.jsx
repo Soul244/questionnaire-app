@@ -25,6 +25,7 @@ class Questions extends React.Component {
         {questions.map((question, index) => (
           <Question
             index={index}
+            key={index}
             // Question Functions
             onChangeQuestionContent={onChangeQuestionContent}
             onChangeQuestionType={onChangeQuestionType}
@@ -59,7 +60,7 @@ class SortableComponent extends Component {
 
   render() {
     const { props } = this;
-    return <Questions {...props} onSortEnd={this.onSortEnd} />;
+    return <Questions {...props} onSortEnd={this.onSortEnd} lockAxis="y" transitionDuration={0} useDragHandle />;
   }
 }
 

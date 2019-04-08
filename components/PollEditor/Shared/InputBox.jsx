@@ -11,9 +11,10 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Icon, { remove2, unchecked, done } from '../../../css/icons';
+import Icon, {
+  remove2, unchecked, done,
+} from '../../../css/icons';
 import types from './toolTypes';
-
 
 const CustomSelect = styled.div`
   position: relative;
