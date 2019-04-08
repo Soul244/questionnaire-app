@@ -65,11 +65,12 @@ class PollEditor extends Component {
     const { pollReducer, pollActions } = this.props;
     const { postPoll, updatePoll } = pollActions;
     const { poll } = pollReducer;
+    const { questions, name, id } = poll;
     // Errors
-    const questionsErrors = checkEmpty(poll.questions);
+    const questionsErrors = checkEmpty(questions);
     const answersErrors = false;
     const settingsError = false; // checkObjectEmpty(poll.settings);
-    const inputsErrors = poll.name === '';
+    const inputsErrors = name === '';
 
     // If there is a error, won't post anything
     // If poll has id, update that poll
@@ -87,7 +88,7 @@ class PollEditor extends Component {
         inputsErrors,
         handleOK: false,
       });
-    } else if (poll.id === '') {
+    } else if (id === '') {
       postPoll(poll);
     } else {
       updatePoll(poll);

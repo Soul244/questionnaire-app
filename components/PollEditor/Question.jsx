@@ -4,6 +4,7 @@ import {
   Card, CardBody, CardHeader, Col,
 } from 'reactstrap';
 import styled from 'styled-components';
+import { SortableElement } from 'react-sortable-hoc';
 import Desc from './Desc';
 import Icon, { arrowDown, plus } from '../../css/icons';
 import { ContentViewer, AnswerTool } from '../Shared';
@@ -64,6 +65,7 @@ const ContentContainer = styled.div`
   margin: 1rem 0 0 1rem;
 `;
 
+@SortableElement
 class Question extends Component {
   constructor(props) {
     super(props);

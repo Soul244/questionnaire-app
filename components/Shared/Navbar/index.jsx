@@ -100,11 +100,8 @@ class index extends Component {
             </SidebarToggle>
             )}
             <NavbarBrandStyled href="/dashboard">
-
-
-
-              Dashboard
-</NavbarBrandStyled>
+              {'Dashboard'}
+            </NavbarBrandStyled>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={isOpen} navbar>
               <Nav className="ml-auto" navbar>

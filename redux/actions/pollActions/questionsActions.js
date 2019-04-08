@@ -1,4 +1,5 @@
 import { List } from 'immutable';
+import arrayMove from 'array-move';
 import { syncTypes } from '../../types';
 
 /* #region Add Question IMMUTABLE */
@@ -17,6 +18,7 @@ export function addQuestion(type) {
       desc: '',
       answers: [],
     };
+
     const newQuestions = List(questions).push(newQuestion).toArray();
     dispatch(
       addQuestionAction(newQuestions),
@@ -97,3 +99,19 @@ export function onChangeQuestionDesc(desc, index) {
   };
 }
 /* #endregion */
+
+export function reOrderQuestionActions(payload) {
+  return {
+    type: syncTypes.RE_ORDER_QUESTION,
+    payload,
+  };
+}
+
+export function reOrderQuestion(oldIndex, newIndex) {
+  return (dispatch, getState) => {
+    const { questions } = getState().pollReducer.poll;
+    dispatch(
+      reOrderQuestionActions(arrayMove(questions, oldIndex, newIndex)),
+    );
+  };
+}

@@ -14,7 +14,7 @@ function withNavbar(WrappedComponent) {
     constructor(props) {
       super(props);
       this.state = {
-        show: true,
+        show: false,
         navMode: 'inside',
       };
     }

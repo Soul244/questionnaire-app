@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import Icon, { remove2, unchecked, done } from '../../../css/icons';
 import types from './toolTypes';
 
+
 const CustomSelect = styled.div`
   position: relative;
   select {
@@ -55,7 +56,7 @@ const AppendInput = styled(Input)`
   padding-right: 2rem;
 `;
 
-const InputText = styled(Input)`
+const InputStyled = styled(Input)`
   height: 40px;
 `;
 
@@ -147,7 +148,7 @@ class InputBox extends React.Component {
             </RadioButton>
           )}
         </InputGroupAddon>
-        <InputText
+        <InputStyled
           type="text"
           value={inputValue}
           placeholder="..."

@@ -37,7 +37,7 @@ export function postPollAction(payload) {
 
 export function postPollErrorAction(payload) {
   return {
-    type: asyncTypes.UPDATE_POLL_ERROR,
+    type: asyncTypes.POST_POLL_ERROR,
     payload,
   };
 }
@@ -50,7 +50,7 @@ export function postPoll(poll) {
       const response = await axios.post('/polls', poll);
       dispatch(postPollAction(response.data));
     } catch (error) {
-      dispatch(postPollErrorAction(error));
+      dispatch(postPollErrorAction(`${error}`));
     }
   };
 }
@@ -133,10 +133,9 @@ export function deletePoll(_id) {
 /* #endregion */
 
 /* #region Get User Polls */
-export function getPollsStartAction(payload) {
+export function getPollsStartAction() {
   return {
     type: asyncTypes.GET_POLLS_START,
-    payload,
   };
 }
 

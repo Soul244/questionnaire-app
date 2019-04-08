@@ -1,6 +1,7 @@
 import {
   List,
 } from 'immutable';
+import arrayMove from 'array-move';
 import {
   syncTypes,
 } from '../../types';
@@ -111,3 +112,22 @@ export function deleteAnswer(answerIndex, questionIndex) {
   };
 }
 /* #endregion */
+
+export function reOrderAnswerActions(payload) {
+  return {
+    type: syncTypes.RE_ORDER_ANSWER,
+    payload,
+  };
+}
+
+export function reOrderAnswer(oldIndex, newIndex, questionIndex) {
+  return (dispatch, getState) => {
+    const { questions } = getState().pollReducer.poll;
+    const { answers } = questions[questionIndex];
+    const newAnswers = arrayMove(answers, oldIndex, newIndex);
+    const newQuestions = List(questions).setIn([questionIndex, 'answers'], newAnswers).toArray();
+    dispatch(
+      reOrderAnswerActions(newQuestions),
+    );
+  };
+}

@@ -4,6 +4,7 @@ import {
   Card, CardBody, CardHeader,
 } from 'reactstrap';
 import styled from 'styled-components';
+import { SortableElement } from 'react-sortable-hoc';
 import { ContentViewer } from '../Shared';
 import InputBox from './Shared/InputBox';
 
@@ -21,6 +22,7 @@ const ContentContainer = styled.div`
     margin: 1rem 0 0 1rem;
 `;
 
+@SortableElement
 class Answer extends Component {
   constructor(props) {
     super(props);

@@ -1,17 +1,18 @@
 /* eslint-disable no-param-reassign */
 import { asyncTypes, syncTypes } from '../types';
 
+const uuidv4 = require('uuid/v4');
+
 const initialState = {
   poll: {
     id: '',
     user: '',
-    css: '',
-    js: '',
     name: '',
     desc: '',
     lastDesc: 'Anketimize katıldığınız için teşekkür ederiz.',
     selectableLastMessages: [],
     questions: [{
+      tempId: uuidv4(),
       type: 'text',
       content: '',
       desc: '',
@@ -354,6 +355,15 @@ const pollReducer = (state = initialState, action) => {
         },
       };
       break;
+    case syncTypes.RE_ORDER_QUESTION:
+      state = {
+        ...state,
+        poll: {
+          ...state.poll,
+          questions: action.payload,
+        },
+      };
+      break;
     case syncTypes.ADD_ANSWER:
       state = {
         ...state,
@@ -382,6 +392,15 @@ const pollReducer = (state = initialState, action) => {
       };
       break;
     case syncTypes.ON_CHANGE_TYPE_ANSWER:
+      state = {
+        ...state,
+        poll: {
+          ...state.poll,
+          questions: action.payload,
+        },
+      };
+      break;
+    case syncTypes.RE_ORDER_ANSWER:
       state = {
         ...state,
         poll: {
