@@ -10,6 +10,7 @@ import Icon, { arrowDown, plus } from '../../css/icons';
 import { ContentViewer, AnswerTool } from '../Shared';
 import InputBox from './Shared/InputBox';
 import { SortableButton } from '../Sortable';
+import colors from '../../css/colors';
 
 const QuestionContainer = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const CardHeaderStyled = styled(CardHeader)`
   position: sticky;
   top: 0px;
   z-index: 4;
-  background-color: #f3f3f3;
+  background-color: ${colors.color12};
 `;
 
 const RightContainer = styled.div`

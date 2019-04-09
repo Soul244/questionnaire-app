@@ -5,7 +5,7 @@ import Navbar from './Navbar/index';
 import CustomInput from './Custom/CustomInput';
 import Paginate from './Others/Paginate';
 import Loading from './Others/Loading';
-import PageHeader from './Others/PageHeader';
+import SectionHeader from './Others/SectionHeader';
 import Sidebar from './Sidebar/Sidebar';
 import Backdrop from './Sidebar/Backdrop';
 import FormInput from './Card/FormInput';
@@ -25,5 +25,5 @@ export {
   FormInput,
   FormEditor,
   ToolButton,
-  PageHeader,
+  SectionHeader,
 };

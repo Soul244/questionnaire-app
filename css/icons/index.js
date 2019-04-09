@@ -1,5 +1,7 @@
+/* eslint-disable camelcase */
 import { Icon } from 'react-icons-kit';
 import styled from 'styled-components';
+
 import { bullhorn, statsDots } from 'react-icons-kit/icomoon/';
 import { question, close } from 'react-icons-kit/fa';
 import {
@@ -20,20 +22,23 @@ import {
   ic_screen_share,
   ic_done,
   ic_panorama_fish_eye,
+  ic_fiber_manual_record,
   ic_people,
   ic_menu,
   ic_phone,
   ic_email,
   ic_more_vert,
+  ic_view_quilt,
+  ic_view_stream,
+  ic_open_with,
 } from 'react-icons-kit/md';
-
-import { arrowMove } from 'react-icons-kit/ionicons';
 
 const IconContainer = styled.div`
   color: ${props => props.color};
   vertical-align: text-bottom;
   display:inline-block;
   margin: ${props => props.margin};
+  cursor: pointer;
 `;
 
 export default Icon;
@@ -60,12 +65,16 @@ export {
   ic_done as done,
   ic_clear as cross,
   ic_panorama_fish_eye as unchecked,
+  ic_panorama_fish_eye as emptyScore,
+  ic_fiber_manual_record as filledScore,
   ic_people as users,
   ic_menu as menu,
   ic_phone as phone,
   ic_email as mail,
   ic_more_vert as threedot,
-  arrowMove,
+  ic_open_with as arrowMove,
+  ic_view_quilt as masonry,
+  ic_view_stream as list,
 };
 
 /* Example

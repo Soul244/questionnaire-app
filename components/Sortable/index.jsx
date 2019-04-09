@@ -1,3 +1,4 @@
 import SortableButton from './SortableButton';
+import SortableContainer from './SortableContainer';
 
-export { SortableButton };
+export { SortableButton, SortableContainer };

@@ -60,7 +60,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #f8f9fa;
+  color: #212529;
   text-align: left;
   background-color: #fff;
 }
@@ -1663,7 +1663,7 @@ pre code {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #f8f9fa;
+  color: #212529;
 }
 
 .table th,
@@ -1713,7 +1713,7 @@ pre code {
 }
 
 .table-hover tbody tr:hover {
-  color: #f8f9fa;
+  color: #212529;
   background-color: rgba(0, 0, 0, 0.075);
 }
 
@@ -2130,7 +2130,7 @@ select.form-control:focus::-ms-value {
   padding-bottom: 0.375rem;
   margin-bottom: 0;
   line-height: 1.5;
-  color: #f8f9fa;
+  color: #212529;
   background-color: transparent;
   border: solid transparent;
   border-width: 1px 0;
@@ -2577,7 +2577,7 @@ textarea.form-control {
 .btn {
   display: inline-block;
   font-weight: 400;
-  color: #f8f9fa;
+  color: #212529;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
@@ -2604,7 +2604,7 @@ textarea.form-control {
 }
 
 .btn:hover {
-  color: #f8f9fa;
+  color: #212529;
   text-decoration: none;
 }
 
@@ -3376,7 +3376,7 @@ input[type="button"].btn-block {
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 1rem;
-  color: #f8f9fa;
+  color: #212529;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -5811,7 +5811,7 @@ a.badge-custom:focus, a.badge-custom.focus {
 }
 
 .list-group-item-action:active {
-  color: #f8f9fa;
+  color: #212529;
   background-color: #e9ecef;
 }
 
@@ -6726,7 +6726,7 @@ a.close.disabled {
 
 .popover-body {
   padding: 0.5rem 0.75rem;
-  color: #f8f9fa;
+  color: #212529;
 }
 
 .carousel {
@@ -10598,7 +10598,7 @@ a.text-custom:hover, a.text-custom:focus {
 }
 
 .text-body {
-  color: #f8f9fa !important;
+  color: #212529 !important;
 }
 
 .text-muted {
@@ -10786,18 +10786,18 @@ a.text-custom:hover, a.text-custom:focus {
 }
 
 #__next ::-moz-selection, body ::-moz-selection {
-  background-color: #009fd4;
+  background-color: #2a6171;
   color: white;
 }
 
 #__next ::selection, body ::selection {
-  background-color: #009fd4;
+  background-color: #2a6171;
   color: white;
 }
 
 #__next ::-moz-selection, body ::-moz-selection {
   color: white;
-  background-color: #009fd4;
+  background-color: #2a6171;
 }
 
 html {
@@ -10834,7 +10834,7 @@ ul {
 }
 
 .nav-bg {
-  background-color: #009fd4;
+  background-color: #2a6171;
 }
 
 .nav-link {

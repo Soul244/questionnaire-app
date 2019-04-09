@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Router from 'next/router';
+import colors from '../../../css/colors';
 
 const Container = styled.div` 
   height: 100%;
@@ -36,12 +37,12 @@ const NavItem = styled.li`
   padding: 12px 0 12px 24px;
   font-size: 16px;
   height:48px;
-  background-color: rgba(${props => (props.currentUrl === props.url ? '0,159,212,0.07' : '')});
-  color: ${props => (props.currentUrl === props.url ? '#009fd4' : 'black')};
+  background-color: ${props => (props.currentUrl === props.url ? colors.color12 : '')};
+  color: ${props => (props.currentUrl === props.url ? colors.color2 : 'black')};
   cursor: pointer;
   :hover{
-    color: #009fd4;
-    background-color: rgba(0,159,212,0.07)
+    color: ${colors.color2} ;
+    background-color: ${colors.color12}
   }
  `;
 

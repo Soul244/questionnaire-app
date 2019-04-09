@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Icon, {
   arrowLeft,
 } from '../../css/icons';
+import colors from '../../css/colors';
 
 const Container = styled.div`
   display:flex;
@@ -15,7 +16,7 @@ const Container = styled.div`
   width: 120px;
   align-items: center;
   z-index: 99;
-  background-color: #E3E3E3;
+  background-color: ${colors.color11};
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   :hover {

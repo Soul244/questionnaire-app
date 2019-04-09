@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { SortableContainer } from 'react-sortable-hoc';
+import { SortableContainer } from '../../components/Sortable';
 import { Answer } from '../../components/PollEditor';
 import * as pollActions from '../../redux/actions/pollActions';
 
-@SortableContainer
 class Answers extends React.Component {
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    const { pollActions, questionIndex } = this.props;
+    const { reOrderAnswer } = pollActions;
+    reOrderAnswer(oldIndex, newIndex, questionIndex);
+  };
+
   render() {
     const {
       pollReducer,
@@ -16,7 +20,6 @@ class Answers extends React.Component {
       answers,
       questionIndex,
       rightAnswerIndex,
-      uniqueKey,
     } = this.props;
 
     const {
@@ -28,7 +31,7 @@ class Answers extends React.Component {
 
     const { poll } = pollReducer;
     return (
-      <ul>
+      <SortableContainer onSortEnd={this.onSortEnd} lockAxis="y" transitionDuration={0} useDragHandle>
         {answers.map((answer, index) => (
           <Answer
             key={index}
@@ -46,29 +49,16 @@ class Answers extends React.Component {
             pollType={poll.settings.type}
           />
         ))}
-      </ul>
+      </SortableContainer>
     );
   }
 }
 
-class SortableComponent extends Component {
-  onSortEnd = ({ oldIndex, newIndex }) => {
-    const { pollActions, questionIndex } = this.props;
-    const { reOrderAnswer } = pollActions;
-    reOrderAnswer(oldIndex, newIndex, questionIndex);
-  };
-
-  render() {
-    const { props } = this;
-    return <Answers {...props} onSortEnd={this.onSortEnd} lockAxis="y" transitionDuration={0} useDragHandle />;
-  }
-}
-
-SortableComponent.defaultProps = {
+Answers.defaultProps = {
   rightAnswerIndex: null,
 };
 
-SortableComponent.propTypes = {
+Answers.propTypes = {
   pollReducer: PropTypes.object.isRequired,
   pollActions: PropTypes.object.isRequired,
   rightAnswerIndex: PropTypes.number,
@@ -87,4 +77,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SortableComponent);
+)(Answers);

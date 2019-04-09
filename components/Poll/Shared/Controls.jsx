@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
+import colors from '../../../css/colors';
 
 const CountContainer = styled.div`
 border: 1px solid transparent;
 padding: 0.375rem 0.75rem;
-background-color: lightsteelblue;
+background-color: ${colors.color10};
 border-radius: 50px;
 text-align: center;
 font-size: 1rem;

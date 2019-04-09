@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
+import colors from '../../../css/colors';
 
 const InputStyled = styled.input` 
     border: 0 !important;
@@ -11,7 +12,7 @@ const InputStyled = styled.input`
     transition: .5s;
     padding: 0 !important;
     width: 100%;
-    border-color: ${props => (props.error ? 'red !important' : '')};
+    border-color: ${props => (props.error ? colors.wrongColor : '')};
 `;
 
 const LabelStyled = styled.label` 
@@ -23,7 +24,7 @@ const LabelStyled = styled.label`
     transition: 0.5s;
     pointer-events: none;
     bottom: 1px;
-    color: ${props => (props.error ? 'red !important' : '#999')};
+    color: ${props => (props.error ? colors.wrongColor : '#999')};
     ${InputStyled}:focus & {
     top: -25px;
   }

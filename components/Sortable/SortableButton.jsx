@@ -4,6 +4,7 @@ import {
 } from 'react-sortable-hoc';
 import styled from 'styled-components';
 import Icon, { arrowMove } from '../../css/icons';
+import colors from '../../css/colors';
 
 const IconContainer = styled.div`
   color: gray;
@@ -11,7 +12,7 @@ const IconContainer = styled.div`
   display:inline-block;
   margin: 0.5rem;
   :hover{
-    color: #009fd4;
+    color: ${colors.color2};
     cursor: all-scroll;
   }
 `;

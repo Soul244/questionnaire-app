@@ -8,6 +8,7 @@ import { SortableElement } from 'react-sortable-hoc';
 import { ContentViewer } from '../Shared';
 import InputBox from './Shared/InputBox';
 import { SortableButton } from '../Sortable';
+import colors from '../../css/colors';
 
 const AnswerContainer = styled.div`
   padding-top: 1rem;
@@ -16,7 +17,7 @@ const AnswerContainer = styled.div`
 const CardHeaderStyled = styled(CardHeader)`
   display: flex;
   align-items: center;
-  background-color: ${props => (props.checked ? '#5cb85c' : '')};
+  background-color: ${props => (props.checked ? colors.wrongColor : '')};
 `;
 
 const ContentContainer = styled.div` 

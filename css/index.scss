@@ -1,10 +1,8 @@
 $border-radius: 8px;
-$body-color: #f8f9fa;
-$component-color: #fff;
-$navbar-color: #009fd4;
 
 @import "_custom";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import '_colors';
 @import '_b';
 
 #__next, body {
@@ -17,12 +15,12 @@ $navbar-color: #009fd4;
     background-color: $body-color;
     color: black;
     ::selection {
-        background-color: $navbar-color;
+        background-color: $color1;
         color: white;
       }
       ::-moz-selection {
         color: white;
-        background-color: $navbar-color;
+        background-color: $color1;
       }
     //background-color: rgba($color: darkgrey, $alpha: 0.05) !important;
 }
@@ -39,7 +37,7 @@ ul {
 }
 
 .field-error {
-    color: red;
+    color: $error-color;
     border-radius: 50px;
 }
 
@@ -61,7 +59,7 @@ ul {
 }
 
 .nav-bg {
-    background-color: $navbar-color;
+    background-color: $color1;
 }
 
 .nav-link {
@@ -94,7 +92,7 @@ input {
 }
 
 .error {
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid $error-color;
 }
 
 .masonry-card-list {

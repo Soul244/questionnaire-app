@@ -157,6 +157,13 @@ class QuestionTool extends React.Component {
               onClick={() => addQuestion('gif')}
             />
             <ToolButton
+              content="Aralık Sorusu"
+              tooltip="Aralık Sorusu."
+              color="secondary"
+              id="scoring"
+              onClick={() => addQuestion('scoring')}
+            />
+            <ToolButton
               content="Başlık"
               tooltip="Büyük fontlu metin sorusu ekle."
               color="secondary"

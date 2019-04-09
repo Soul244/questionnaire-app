@@ -5,6 +5,7 @@ import Heading from './Heading';
 import Image from './Image';
 import Text from './Text';
 import Video from './Video';
+import Scoring from './Scoring';
 
 export {
   Audio, Gif, Heading, Image, Text, Video,
@@ -24,6 +25,8 @@ const Type = ({ type, content }) => {
       return <Gif content={content} data-test="gif" />;
     case 'audio':
       return <Audio content={content} data-test="audio" />;
+    case 'scoring':
+      return <Scoring content={content} data-test="audio" />;
     default:
       return 'unknown type';
   }

@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { SortableContainer } from 'react-sortable-hoc';
 import { Question } from '../../components/PollEditor';
 import Answers from './Answers';
 import * as pollActions from '../../redux/actions/pollActions';
+import { SortableContainer } from '../../components/Sortable';
 
-@SortableContainer
-class Questions extends React.Component {
+class Questions extends Component {
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    const { pollActions } = this.props;
+    const { reOrderQuestion } = pollActions;
+    reOrderQuestion(oldIndex, newIndex);
+  };
+
   render() {
     const { pollActions, pollReducer } = this.props;
     const { poll } = pollReducer;
@@ -21,7 +26,7 @@ class Questions extends React.Component {
       addAnswer,
     } = pollActions;
     return (
-      <ul>
+      <SortableContainer onSortEnd={this.onSortEnd} lockAxis="y" transitionDuration={0} useDragHandle>
         {questions.map((question, index) => (
           <Question
             index={index}
@@ -46,26 +51,13 @@ class Questions extends React.Component {
             />
           </Question>
         ))}
-      </ul>
+      </SortableContainer>
     );
   }
 }
 
-class SortableComponent extends Component {
-  onSortEnd = ({ oldIndex, newIndex }) => {
-    const { pollActions } = this.props;
-    const { reOrderQuestion } = pollActions;
-    reOrderQuestion(oldIndex, newIndex);
-  };
 
-  render() {
-    const { props } = this;
-    return <Questions {...props} onSortEnd={this.onSortEnd} lockAxis="y" transitionDuration={0} useDragHandle />;
-  }
-}
-
-
-SortableComponent.propTypes = {
+Questions.propTypes = {
   pollReducer: PropTypes.object.isRequired,
   pollActions: PropTypes.object.isRequired,
 };
@@ -81,4 +73,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SortableComponent);
+)(Questions);
