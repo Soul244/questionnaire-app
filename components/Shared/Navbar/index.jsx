@@ -100,7 +100,7 @@ class index extends Component {
             </SidebarToggle>
             )}
             <NavbarBrandStyled href="/dashboard">
-              {'Dashboard'}
+              {'LOGO'}
             </NavbarBrandStyled>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={isOpen} navbar>

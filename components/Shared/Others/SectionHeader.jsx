@@ -15,7 +15,7 @@ const RightContainer = styled.div`
 `;
 
 const Title = styled.h4`
-  color: ${colors.color2};
+  color: ${colors.color3};
   margin:0;
 `;
 

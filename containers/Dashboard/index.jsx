@@ -61,7 +61,7 @@ class Dashboard extends Component {
       <>
         <Row>
           <Col md="12">
-            <SectionHeader title="Anketlerim">
+            <SectionHeader title="Dashboard">
               <IconContainer color={viewType === 0 ? 'gray' : 'lightgray'} onClick={() => this.onClick(0)}>
                 <Icon size={32} icon={masonry} />
               </IconContainer>

@@ -30,7 +30,6 @@ const CardHeaderStyled = styled(CardHeader)`
   position: sticky;
   top: 0px;
   z-index: 4;
-  background-color: ${colors.color12};
 `;
 
 const RightContainer = styled.div`

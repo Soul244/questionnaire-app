@@ -37,11 +37,12 @@ const NavItem = styled.li`
   padding: 12px 0 12px 24px;
   font-size: 16px;
   height:48px;
-  background-color: ${props => (props.currentUrl === props.url ? colors.color12 : '')};
-  color: ${props => (props.currentUrl === props.url ? colors.color2 : 'black')};
+  background-color: ${props => (props.currentUrl === props.url ? colors.color3 : '')};
+  color: ${props => (props.currentUrl === props.url ? 'white' : 'black')};
+  transition: 0.2s;
   cursor: pointer;
   :hover{
-    color: ${colors.color2} ;
+    color: ${colors.color3} ;
     background-color: ${colors.color12}
   }
  `;

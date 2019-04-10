@@ -6,7 +6,7 @@ export default {
 
   color10: 'lightsteelblue',
   color11: '#f3f3f3',
-  color12: 'rgba(0,159,212,0.07)',
+  color12: 'rgba(221, 107, 77,0.15)',
   trueColor: '#5cb85c',
   wrongColor: 'red !important',
 };

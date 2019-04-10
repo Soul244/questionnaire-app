@@ -16,6 +16,11 @@ function withNavbar(WrappedComponent) {
       this.state = {
         show: false,
         navMode: 'inside',
+        items: [
+          { href: '/dashboard', name: 'Dashboard', as: '/dashboard' },
+          { href: '/test', name: 'Test 1', as: '/test1' },
+          { href: '/test', name: 'Test 2', as: '/test2' },
+        ],
       };
     }
 
@@ -56,11 +61,11 @@ function withNavbar(WrappedComponent) {
     };
 
     render() {
-      const { show, navMode } = this.state;
+      const { show, navMode, items } = this.state;
       return (
         <>
           <Sidebar
-            items={[{ href: '/dashboard', name: 'Dashboard', as: '/dashboard' }]}
+            items={items}
             show={show}
             navMode={navMode}
           />

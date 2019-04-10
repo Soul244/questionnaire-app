@@ -17,7 +17,7 @@ const AnswerContainer = styled.div`
 const CardHeaderStyled = styled(CardHeader)`
   display: flex;
   align-items: center;
-  background-color: ${props => (props.checked ? colors.wrongColor : '')};
+  background-color: ${props => (props.checked ? colors.trueColor : '')};
 `;
 
 const ContentContainer = styled.div` 
