@@ -5,7 +5,7 @@ import Router from 'next/router';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 
-
+import InfiniteScroll from 'react-infinite-scroller';
 import * as userActions from '../../redux/actions/userActions';
 import * as pollActions from '../../redux/actions/pollActions';
 import { TableList, MasonryList } from '../../components/Dashboard';
@@ -21,6 +21,7 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       viewType: null,
+      page: 0,
     };
   }
 
@@ -34,61 +35,81 @@ class Dashboard extends Component {
       Router.push({ pathname: '/giris-yap' });
     } else {
       const { getPolls } = pollActions;
-      getPolls();
+      getPolls(0);
     }
   }
 
-  onClick=(value) => {
+  onClick = (value) => {
     this.setState({
       viewType: value,
     });
     localStorage.setItem('viewType', value);
+  };
+
+  loadMore = (page) => {
+    const { pollActions } = this.props;
+    const { getPolls } = pollActions;
+    this.setState(prevState => ({
+      page: prevState.page + 1,
+    }));
+    getPolls(page);
   }
 
   render() {
     const { pollReducer, pollActions } = this.props;
-    const { viewType } = this.state;
+    const { viewType, page } = this.state;
     const {
-      polls, message, fetching, fetched,
+      polls, message, fetching, fetched, pageCount,
     } = pollReducer;
     const { deletePoll } = pollActions;
     if (fetching && !fetched) {
-      return (
-        <Loading />
-      );
+      return <Loading />;
     }
     return (
       <>
         <Row>
           <Col md="12">
             <SectionHeader title="Dashboard">
-              <IconContainer color={viewType === 0 ? 'gray' : 'lightgray'} onClick={() => this.onClick(0)}>
+              <IconContainer
+                color={viewType === 0 ? 'gray' : 'lightgray'}
+                onClick={() => this.onClick(0)}
+              >
                 <Icon size={32} icon={masonry} />
               </IconContainer>
-              <IconContainer color={viewType === 1 ? 'gray' : 'lightgray'} onClick={() => this.onClick(1)}>
+              <IconContainer
+                color={viewType === 1 ? 'gray' : 'lightgray'}
+                onClick={() => this.onClick(1)}
+              >
                 <Icon size={32} icon={list} />
               </IconContainer>
             </SectionHeader>
           </Col>
         </Row>
-        {(viewType === 0) && (
-          <Row>
-            <Col md="12">
-              <MasonryList polls={polls} />
-            </Col>
-          </Row>
-        )}
-        {viewType === 1 && (
-        <Row>
-          <Col md="12">
-            <TableList
-              polls={polls}
-              message={message}
-              deletePoll={deletePoll}
-            />
-          </Col>
-        </Row>
-        )}
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={this.loadMore}
+          hasMore={page < pageCount}
+          loader={(<div className="loader" key={0}>Loading ...</div>)}
+        >
+          {viewType === 0 && (
+            <Row>
+              <Col md="12">
+                <MasonryList polls={polls} />
+              </Col>
+            </Row>
+          )}
+          {viewType === 1 && (
+            <Row>
+              <Col md="12">
+                <TableList
+                  polls={polls}
+                  message={message}
+                  deletePoll={deletePoll}
+                />
+              </Col>
+            </Row>
+          )}
+        </InfiniteScroll>
       </>
     );
   }

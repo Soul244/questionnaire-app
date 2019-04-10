@@ -153,15 +153,12 @@ export function getPollsErrorAction(payload) {
   };
 }
 
-export function getPolls() {
+export function getPolls(page) {
   axios.defaults.headers.authorization = localStorage.getItem('token');
-  const endPoint = '/polls';
   return async (dispatch) => {
     try {
       dispatch(getPollsStartAction());
-      const response = await axios.get(
-        endPoint,
-      );
+      const response = await axios.get(`/polls/paginate/${page}`);
       dispatch(getPollsAction(response.data));
     } catch (error) {
       dispatch(getPollsErrorAction(error));

@@ -40,6 +40,7 @@ const initialState = {
     },
   },
   polls: [],
+  pageCount: 0,
   message: '',
   fetching: false,
   fetched: false,
@@ -51,7 +52,8 @@ const pollReducer = (state = initialState, action) => {
     case asyncTypes.GET_POLLS:
       state = {
         ...state,
-        polls: action.payload.polls,
+        polls: state.polls.concat(action.payload.polls),
+        pageCount: action.payload.pageCount,
         message: action.payload.message,
         fetching: false,
         fethed: true,
