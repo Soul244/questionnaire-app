@@ -13,6 +13,7 @@ import { Loading, SectionHeader } from '../../components/Shared';
 import withAuth from '../../hoc/withAuth';
 import withNavbar from '../../hoc/withNavbar';
 import Icon, { IconContainer, masonry, list } from '../../css/icons';
+import colors from '../../css/colors';
 
 @withNavbar
 @withAuth
@@ -71,13 +72,13 @@ class Dashboard extends Component {
           <Col md="12">
             <SectionHeader title="Dashboard">
               <IconContainer
-                color={viewType === 0 ? 'gray' : 'lightgray'}
+                color={viewType === 0 ? colors.color3 : 'lightgray'}
                 onClick={() => this.onClick(0)}
               >
                 <Icon size={32} icon={masonry} />
               </IconContainer>
               <IconContainer
-                color={viewType === 1 ? 'gray' : 'lightgray'}
+                color={viewType === 1 ? colors.color3 : 'lightgray'}
                 onClick={() => this.onClick(1)}
               >
                 <Icon size={32} icon={list} />
