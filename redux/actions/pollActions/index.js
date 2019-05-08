@@ -13,7 +13,7 @@ import {
 import {
   onChangeName, onChangeDesc, onChangeLastDesc,
   onChangeJs, onChangeCss, handleSelectableLastMessage,
-  getPoll, postPoll, deletePoll, updatePoll, getPolls,
+  getPoll, postPoll, deletePoll, updatePoll, getPolls, copyPoll,
 } from './pollActions';
 
 
@@ -30,6 +30,7 @@ export {
   postPoll,
   deletePoll,
   updatePoll,
+  copyPoll,
 
   addQuestion,
   deleteQuestion,

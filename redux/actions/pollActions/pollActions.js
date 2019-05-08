@@ -56,6 +56,29 @@ export function postPoll(poll) {
 }
 /* #endregion */
 
+export function copyPollAction(payload) {
+  return {
+    type: asyncTypes.COPY_POLL,
+    payload,
+  };
+}
+
+export function copyPoll(_id) {
+  return async (dispatch, getState) => {
+    try {
+      const { polls } = getState().pollReducer;
+      const filteredPolls = polls.filter(poll => poll._id === _id);
+      const poll = filteredPolls[0];
+      poll._id = null;
+      poll.name += ' kopyası';
+      const response = await axios.post('/polls', poll);
+      dispatch(copyPollAction(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 /* #region Update Poll */
 export function updatePollAction(payload) {
   return {
@@ -96,6 +119,7 @@ export function updatePoll(poll) {
 }
 /* #endregion */
 
+
 /* #region Delete Poll */
 export function deletePollAction(payload) {
   return {
@@ -115,7 +139,7 @@ export function deletePoll(_id) {
   axios.defaults.headers.authorization = localStorage.getItem('token');
   return async (dispatch, getState) => {
     try {
-      const { polls } = getState().getState().pollReducer;
+      const { polls } = getState().pollReducer;
       const newPolls = polls.filter(poll => poll._id !== _id);
       const response = await axios.delete(`/polls/${_id}`, _id);
       const { message } = response.data;

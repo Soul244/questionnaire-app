@@ -62,7 +62,7 @@ class Dashboard extends Component {
     const {
       polls, message, fetching, fetched, pageCount,
     } = pollReducer;
-    const { deletePoll } = pollActions;
+    const { deletePoll, copyPoll } = pollActions;
     if (fetching && !fetched) {
       return <Loading />;
     }
@@ -106,6 +106,7 @@ class Dashboard extends Component {
                   polls={polls}
                   message={message}
                   deletePoll={deletePoll}
+                  copyPoll={copyPoll}
                 />
               </Col>
             </Row>

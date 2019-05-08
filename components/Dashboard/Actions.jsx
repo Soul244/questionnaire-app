@@ -16,7 +16,7 @@ import {
 import styled from 'styled-components';
 
 import Icon, {
-  remove2, edit, stats, iframe, showPoll,
+  remove2, edit, stats, iframe, showPoll, copy,
 } from '../../css/icons';
 import Iframe from './Iframe';
 
@@ -61,7 +61,7 @@ class Actions extends React.Component {
   }
 
   render() {
-    const { _id } = this.props;
+    const { _id, copyPoll } = this.props;
     const {
       dropdownOpen, modal, showDelete,
     } = this.state;
@@ -84,6 +84,10 @@ class Actions extends React.Component {
                 <LinkText>Güncelle</LinkText>
               </DropdownItem>
             </Link>
+            <DropdownItem onClick={() => copyPoll(_id)}>
+              <Icon size="16px" icon={copy} />
+              <LinkText>Kopyasını Oluştur</LinkText>
+            </DropdownItem>
             <DropdownItem onClick={this.toggleDeleteModal} id={`delete${_id}`}>
               <Icon size="16px" icon={remove2} />
               <LinkText>Sil</LinkText>

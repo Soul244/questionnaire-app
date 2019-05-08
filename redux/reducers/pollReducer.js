@@ -95,6 +95,15 @@ const pollReducer = (state = initialState, action) => {
         message: action.payload.message,
       };
       break;
+    case asyncTypes.COPY_POLL:
+      state = {
+        ...state,
+        polls: [
+          ...state.polls,
+          action.payload.poll,
+        ],
+      };
+      break;
     case asyncTypes.UPDATE_POLL:
       state = {
         ...state,

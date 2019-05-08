@@ -13,7 +13,7 @@ const TableStyled = styled(Table)`
   background-color: #fff;
 `;
 
-function TableList({ polls, deletePoll }) {
+function TableList({ polls, deletePoll, copyPoll }) {
   return (
     <>
       <Card>
@@ -34,7 +34,7 @@ function TableList({ polls, deletePoll }) {
                   <td>{item._id}</td>
                   <td>{moment(item.createdAt).format('DD-MM-YYYY')}</td>
                   <td>
-                    <Actions _id={item._id} deletePoll={deletePoll} />
+                    <Actions _id={item._id} deletePoll={deletePoll} copyPoll={copyPoll} />
                   </td>
                 </tr>
               ))

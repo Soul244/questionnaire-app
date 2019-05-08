@@ -31,6 +31,7 @@ import {
   ic_view_quilt,
   ic_view_stream,
   ic_open_with,
+  ic_content_copy,
 } from 'react-icons-kit/md';
 
 const IconContainer = styled.div`
@@ -75,6 +76,7 @@ export {
   ic_open_with as arrowMove,
   ic_view_quilt as masonry,
   ic_view_stream as list,
+  ic_content_copy as copy,
 };
 
 /* Example
