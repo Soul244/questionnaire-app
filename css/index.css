@@ -10783,6 +10783,7 @@ a.text-custom:hover, a.text-custom:focus {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f8f9fa;
   color: black;
+  font-weight: 400;
 }
 
 #__next ::-moz-selection, body ::-moz-selection {
@@ -10805,6 +10806,10 @@ html {
   width: 100%;
   margin: 0;
   background-color: rgba(169, 169, 169, 0.05) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
 }
 
 ul {

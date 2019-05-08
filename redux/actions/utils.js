@@ -1,13 +1,14 @@
-export function statusHandler({ status, statusText }) {
+export default function ({ status, statusText }) {
+  let message;
   if (status >= 200 && status < 300) {
-    status = 'success';
+    message = 'success';
   } else if (status >= 300 && status < 500) {
-    status = 'warning';
+    message = 'warning';
   } else {
-    status = 'danger';
+    message = 'danger';
   }
   return {
-    status,
+    message,
     statusText,
   };
 }

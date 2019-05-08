@@ -33,8 +33,7 @@ class MyApp extends App {
           <link rel="icon" type="image" href="/static/favicon.jpg" />
           <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
-          <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
-
+          <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet" />
           <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"

@@ -14,6 +14,7 @@ $border-radius: 8px;
     -moz-osx-font-smoothing: grayscale;
     background-color: $body-color;
     color: black;
+    font-weight: 400;
     ::selection {
         background-color: $color1;
         color: white;
@@ -30,6 +31,10 @@ html {
     width: 100%;
     margin: 0;
     background-color: rgba($color: darkgrey, $alpha: 0.05) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
 }
 
 ul {
