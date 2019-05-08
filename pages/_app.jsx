@@ -1,18 +1,19 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 import { Provider } from 'react-redux';
+import * as $ from 'jquery';
 import withRedux from 'next-redux-wrapper';
 import Head from 'next/head';
 
 import { initStore } from '../redux/store';
 import '../css/index.css';
-import * as $ from 'jquery';
 import 'react-toastify/dist/ReactToastify.css';
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 import 'froala-editor/css/froala_style.min.css';
 import 'froala-editor/css/froala_editor.pkgd.min.css';
 import 'font-awesome/css/font-awesome.css';
 import 'react-id-swiper/src/styles/css/swiper.css';
+import GlobalStyles from '../css/globalStyles';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -42,6 +43,7 @@ class MyApp extends App {
         </Head>
         <Provider store={store}>
           <>
+            <GlobalStyles />
             <Component {...pageProps} />
           </>
         </Provider>

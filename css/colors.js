@@ -7,6 +7,9 @@ export default {
   color10: 'lightsteelblue',
   color11: '#f3f3f3',
   color12: 'rgba(221, 107, 77,0.15)',
+  bodyColor: '#f8f9fa',
+  componentColor: '#fff',
+  errorColor: 'red',
   trueColor: '#5cb85c',
   wrongColor: 'red !important',
 };
