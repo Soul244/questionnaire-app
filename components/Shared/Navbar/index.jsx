@@ -10,8 +10,12 @@ import {
   Nav,
 } from 'reactstrap';
 import styled from 'styled-components';
+import { bindActionCreators } from 'redux';
+import {
+  Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
+} from 'reactstrap';
+import * as generalActions from '../../../redux/actions/generalActions';
 import Icon, { threedot } from '../../../css/icons';
-import * as userActions from '../../../redux/actions/userActions';
 import Logged from './Logged';
 import Anonim from './Anonim';
 
@@ -54,6 +58,7 @@ class index extends Component {
       isOpen: false,
       dropdownOpen: false,
       isLogged: false,
+      languageOpen: false,
     };
   }
 
@@ -81,6 +86,12 @@ class index extends Component {
     }));
   }
 
+  languageToggle = () => {
+    this.setState(prevState => ({
+      languageOpen: !prevState.languageOpen,
+    }));
+  }
+
   toggleDropDownToggle = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
@@ -88,8 +99,9 @@ class index extends Component {
   }
 
   render() {
-    const { isLogged, isOpen } = this.state;
-    const { sideBarToggle, sideBarShow } = this.props;
+    const { isLogged, isOpen, languageOpen } = this.state;
+    const { sideBarToggle, sideBarShow, generalActions } = this.props;
+    const { onChangeLanguage } = generalActions;
     return (
       <>
         <NavbarStyled className="nav-bg" light expand="md">
@@ -103,6 +115,15 @@ class index extends Component {
               {'LOGO'}
             </NavbarBrandStyled>
             <NavbarToggler onClick={this.toggle} />
+            <Dropdown isOpen={languageOpen} toggle={this.languageToggle}>
+              <DropdownToggle caret>
+                {'Language'}
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={() => onChangeLanguage('tr')}>Türkçe</DropdownItem>
+                <DropdownItem onClick={() => onChangeLanguage('en')}>English</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
             <Collapse isOpen={isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 {isLogged && <Logged logOut={this.onClick} />}
@@ -116,6 +137,13 @@ class index extends Component {
   }
 }
 
+
+function mapDispatchToProps(dispatch) {
+  return {
+    generalActions: bindActionCreators(generalActions, dispatch),
+  };
+}
+
 function mapStateToProps(state) {
   return {
     user: state.user,
@@ -124,5 +152,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  userActions,
+  mapDispatchToProps,
 )(index);

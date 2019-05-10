@@ -19,6 +19,7 @@ import {
   CardSubtitle,
 } from 'reactstrap';
 
+import { FormattedMessage } from 'react-intl';
 import axios from '../../redux/axios';
 import Icon, { arrowDown, phone, mail } from '../../css/icons';
 import withJustNavbar from '../../hoc/withJustNavbar';
@@ -31,6 +32,7 @@ const ContainerBackground = styled.div`
   background-size: cover;
   align-items: center;
   justify-content: center;
+  text-align: center;
   height: ${props => props.height};
   background-image: url(${props => props.image});
   background-color: #fff;
@@ -51,7 +53,8 @@ const ContainerBackground = styled.div`
     width: 100%;
     height: 100%;
     top:0;
-    background-color: rgba(0, 0, 0, 0.7);
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
   }
   `}
   ${({ image }) => image
@@ -62,30 +65,41 @@ const ContainerBackground = styled.div`
     width: 100%;
     height: 100%;
     top:0;
+    right: 0;
     background-color: rgba(0, 0, 0,0.2);
   }
   `}
   p{
     color: ${props => (props.image ? 'white' : 'black')};
   }
+  @media(max-width: 992px){
+    padding: 6rem 0;
+  }
+  @media(max-width: 767px){
+    padding: 4rem 0;
+  }
+  @media(max-width: 568px){
+    padding: 2rem 0;
+  }
 `;
 
 const H1 = styled.h1`
   color: ${props => (props.light ? 'white' : '#17a2b8')};
   font-weight: 600;
-  margin: 2rem 0;
+  margin-bottom: 2rem;
 `;
 
 const H2 = styled.h2`
-  color: ${props => (props.light ? 'white' : '#17a2b8')};
-  font-weight: 600;
-  margin: 2rem 0;
+  color: ${props => (props.black ? 'black' : '#17a2b8')};
+  font-weight: 500;
+  margin-bottom: 2rem;
 `;
 
 const List = styled.ul`
   text-align: center;
   list-style-type: none;
   font-size: 1.4rem;
+  margin-bottom: 2rem;
 `;
 
 const iconAnimation = keyframes`
@@ -227,6 +241,10 @@ const FooterIconContainer = styled.div`
   }
 `;
 
+const ButtonList = styled.div`
+  margin-bottom: 2rem;
+`;
+
 @withJustNavbar
 class index extends Component {
   constructor(props) {
@@ -280,20 +298,27 @@ class index extends Component {
               <Row>
                 <Col md="6">
                   <Fade top>
-                    <H1>Ücretsiz anketlerinizi oluşturun ve paylaşın.</H1>
-                    <H2>Tamamen ücretsiz!</H2>
+                    <H1>
+                      <FormattedMessage id="home.header1" />
+                    </H1>
+                    <H2 black>
+                      {' '}
+                      <FormattedMessage id="home.subtitle1" />
+                    </H2>
                   </Fade>
-                  <Link as="/giris-yap" href="/auth">
-                    <Button type="button" color="info">
-                      {' Ücretsiz hesap'}
-                    </Button>
-                  </Link>
-                  {' '}
-                  <Link as="/giris-yap" href="/auth">
-                    <Button type="button" color="success">
-                      {'Giriş yapın'}
-                    </Button>
-                  </Link>
+                  <ButtonList>
+                    <Link as="/giris-yap" href="/auth">
+                      <Button type="button" color="info">
+                        {' Ücretsiz hesap'}
+                      </Button>
+                    </Link>
+                    {' '}
+                    <Link as="/giris-yap" href="/auth">
+                      <Button type="button" color="success">
+                        {'Giriş yapın'}
+                      </Button>
+                    </Link>
+                  </ButtonList>
                 </Col>
                 <Col md="6">
                   <Span bg={0} />
@@ -426,12 +451,6 @@ class index extends Component {
           <ContainerBackground id="istatistikler">
             <Container>
               <Row>
-                <Col md="6" className="text-center">
-                  <Span bg={2} />
-                  <Fade top>
-                    <Image className="img-fluid" src="/static/svg_3.svg" alt="istatistikler" />
-                  </Fade>
-                </Col>
                 <Col md="6">
                   <Fade top>
                     <TextContainer>
@@ -442,6 +461,12 @@ class index extends Component {
                         <li>Kolayca takip edin.</li>
                       </List>
                     </TextContainer>
+                  </Fade>
+                </Col>
+                <Col md="6" className="text-center">
+                  <Span bg={2} />
+                  <Fade top>
+                    <Image className="img-fluid" src="/static/svg_3.svg" alt="istatistikler" />
                   </Fade>
                 </Col>
               </Row>

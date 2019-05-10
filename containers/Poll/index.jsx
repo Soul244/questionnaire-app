@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 import {
@@ -120,7 +119,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default withRouter(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(index));
+)(index);
