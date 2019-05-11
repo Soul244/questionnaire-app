@@ -146,7 +146,6 @@ class PollEditor extends Component {
     const {
       poll,
     } = pollReducer;
-
     const {
       name,
       desc,

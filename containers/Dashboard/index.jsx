@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 
 import InfiniteScroll from 'react-infinite-scroller';
+import styled from 'styled-components';
 import * as userActions from '../../redux/actions/userActions';
 import * as pollActions from '../../redux/actions/pollActions';
 import { TableList, MasonryList } from '../../components/Dashboard';
@@ -15,6 +16,15 @@ import withNavbar from '../../hoc/withNavbar';
 import Icon, { IconContainer, masonry, list } from '../../css/icons';
 import colors from '../../css/colors';
 
+const PageContainer = styled.div`
+  position: fixed;
+  bottom: 0;
+  left:0;
+  z-index: 99;
+  color: white;
+  background-color: black;
+`;
+
 @withNavbar
 @withAuth
 class Dashboard extends Component {
@@ -23,6 +33,7 @@ class Dashboard extends Component {
     this.state = {
       viewType: null,
       page: 0,
+      initialLoad: true,
     };
   }
 
@@ -48,11 +59,13 @@ class Dashboard extends Component {
   };
 
   loadMore = (page) => {
+    console.log(page);
     const { pollActions } = this.props;
     const { getPolls } = pollActions;
-    this.setState(prevState => ({
-      page: prevState.page + 1,
-    }));
+    this.setState({
+      page,
+      initialLoad: false,
+    });
     getPolls(page);
   }
 
@@ -86,18 +99,24 @@ class Dashboard extends Component {
             </SectionHeader>
           </Col>
         </Row>
+        <PageContainer>
+          {`page:${page}`}
+          {' '}
+          {`pageCount:${pageCount}`}
+        </PageContainer>
         <InfiniteScroll
           pageStart={0}
+          initialLoad={this.state.initialLoad}
           loadMore={this.loadMore}
           hasMore={page < pageCount}
           loader={(<div className="loader" key={0}>Loading ...</div>)}
         >
           {viewType === 0 && (
-            <Row>
-              <Col md="12">
-                <MasonryList polls={polls} />
-              </Col>
-            </Row>
+          <Row>
+            <Col md="12">
+              <MasonryList polls={polls} />
+            </Col>
+          </Row>
           )}
           {viewType === 1 && (
             <Row>

@@ -168,7 +168,7 @@ const pollReducer = (state = initialState, action) => {
         poll: {
           ...state.poll,
           settings: {
-            ...state.settings,
+            ...state.poll.settings,
             hasAnswerAutoChangeTime: action.payload.hasAnswerAutoChangeTime,
           },
         },
@@ -180,7 +180,7 @@ const pollReducer = (state = initialState, action) => {
         poll: {
           ...state.poll,
           settings: {
-            ...state.settings,
+            ...state.poll.settings,
             answerAutoChangeTime: action.payload.answerAutoChangeTime,
           },
         },
@@ -192,7 +192,7 @@ const pollReducer = (state = initialState, action) => {
         poll: {
           ...state.poll,
           settings: {
-            ...state.settings,
+            ...state.poll.settings,
             hasAnswerTime: action.payload.hasAnswerTime,
           },
         },
@@ -204,7 +204,7 @@ const pollReducer = (state = initialState, action) => {
         poll: {
           ...state.poll,
           settings: {
-            ...state.settings,
+            ...state.poll.settings,
             answerTime: action.payload.answerTime,
           },
         },
@@ -216,7 +216,7 @@ const pollReducer = (state = initialState, action) => {
         poll: {
           ...state.poll,
           settings: {
-            ...state.settings,
+            ...state.poll.settings,
             hasPollTime: action.payload.hasPollTime,
           },
         },
@@ -228,7 +228,7 @@ const pollReducer = (state = initialState, action) => {
         poll: {
           ...state.poll,
           settings: {
-            ...state.settings,
+            ...state.poll.settings,
             pollTime: action.payload.pollTime,
           },
         },
@@ -240,7 +240,7 @@ const pollReducer = (state = initialState, action) => {
         poll: {
           ...state.poll,
           settings: {
-            ...state.settings,
+            ...state.poll.settings,
             showType: action.payload.showType,
           },
         },
@@ -252,7 +252,7 @@ const pollReducer = (state = initialState, action) => {
         poll: {
           ...state.poll,
           settings: {
-            ...state.settings,
+            ...state.poll.settings,
             type: action.payload.type,
           },
         },
@@ -264,7 +264,7 @@ const pollReducer = (state = initialState, action) => {
         poll: {
           ...state.poll,
           settings: {
-            ...state.settings,
+            ...state.poll.settings,
             userDataCollectType: action.payload.userDataCollectType,
           },
         },
@@ -276,7 +276,7 @@ const pollReducer = (state = initialState, action) => {
         poll: {
           ...state.poll,
           settings: {
-            ...state.settings,
+            ...state.poll.settings,
             isPollActive: action.payload.isPollActive,
           },
         },
@@ -288,7 +288,7 @@ const pollReducer = (state = initialState, action) => {
         poll: {
           ...state.poll,
           settings: {
-            ...state.settings,
+            ...state.poll.settings,
             hasAnswerPercent: action.payload.hasAnswerPercent,
           },
         },

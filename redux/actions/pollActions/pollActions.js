@@ -64,14 +64,9 @@ export function copyPollAction(payload) {
 }
 
 export function copyPoll(_id) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
-      const { polls } = getState().pollReducer;
-      const filteredPolls = polls.filter(poll => poll._id === _id);
-      const poll = filteredPolls[0];
-      poll._id = null;
-      poll.name += ' kopyası';
-      const response = await axios.post('/polls', poll);
+      const response = await axios.get(`/polls/copy/${_id}`);
       dispatch(copyPollAction(response.data));
     } catch (error) {
       console.log(error);
@@ -181,7 +176,6 @@ export function getPolls(page) {
   axios.defaults.headers.authorization = localStorage.getItem('token');
   return async (dispatch) => {
     try {
-      dispatch(getPollsStartAction());
       const response = await axios.get(`/polls/paginate/${page}`);
       dispatch(getPollsAction(response.data));
     } catch (error) {

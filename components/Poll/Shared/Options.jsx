@@ -7,7 +7,7 @@ class Options extends React.Component {
   constructor() {
     super();
     this.state = {
-      checked: false,
+      checkedAnswerIndex: undefined,
     };
   }
 
@@ -15,11 +15,14 @@ class Options extends React.Component {
     const {
       questionIndex, addParticipantAnswer, changeQuestion,
     } = this.props;
-    this.setState({
-      checked: true,
-    });
-    addParticipantAnswer(questionIndex, answerIndex);
-    changeQuestion();
+    const { checkedAnswerIndex } = this.state;
+    if (!checkedAnswerIndex) {
+      this.setState({
+        checkedAnswerIndex: answerIndex,
+      });
+      addParticipantAnswer(questionIndex, answerIndex);
+      changeQuestion();
+    }
   };
 
   render() {
@@ -29,7 +32,7 @@ class Options extends React.Component {
       questionIndex,
       rightAnswerIndex,
     } = this.props;
-    const { checked } = this.state;
+    const { checkedAnswerIndex } = this.state;
     return (
       <Fragment>
         {answers.map((answer, index) => (
@@ -44,7 +47,7 @@ class Options extends React.Component {
             content={answer.content}
 
             rightAnswerIndex={rightAnswerIndex}
-            checked={checked}
+            checkedAnswerIndex={checkedAnswerIndex}
             onClick={this.onClick}
           />
         ))}
