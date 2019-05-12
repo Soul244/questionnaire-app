@@ -1,4 +1,45 @@
 {
     "home.header1": "Create your free polls and share it!",
-    "home.subtitle1": "Fully Free!"
+    "home.subtitle1": "Fully Free!",
+
+    "general.loading": "yükleniyor",
+    "general.yes": "Yes",
+    "general.no": "No",
+    "general.in-progress":"In Progress",
+
+    "editor.poll-name": "Poll Name",
+    "editor.poll-name-placeholder": "Please type your poll name",
+    "editor.poll-desc": "Poll Description",
+    "editor.poll-desc-placeholder":"Please type your poll description",
+    "editor.poll-end-message": "Poll End Message",
+    "editor.poll-end-message-placeholder": "Please type your poll end message",
+
+    "editor.settings-header": "Settings",
+    "editor.settings-handle-type": "Work Type",
+    "editor.settings-handle-type-label1": "Test",
+    "editor.settings-handle-type-label2": "Poll",
+
+    "editor.settings-show-type": "Show Type",
+    "editor.settings-show-type-label1": "Side by Side",
+    "editor.settings-show-type-label2": "One Page",
+
+    "editor.settings-poll-active": "Work State",
+    "editor.settings-poll-active-label1": "Active",
+    "editor.settings-poll-active-label2": "Inactive",
+
+    "editor.settings-answer-percent": "Answer Percent",
+
+    "editor.settings-user-data-collect-type": "User Data Collect Type",
+    "editor.settings-user-data-collect-type-label1": "Show a form",
+    "editor.settings-user-data-collect-type-label2": "Anonim",
+
+    "editor.settings-poll-time": "Work Time",
+    "editor.settings-poll-time-input-placeholder": "minutes",
+
+    "editor.settings-answer-time": "Answer Time",
+    "editor.settings-answer-time-input-placeholder": "seconds",
+
+    "editor.settings-auto-change": "Auto Change",
+    "editor.settings-auto-change-input-placeholder": "milliseconds"
 }
+

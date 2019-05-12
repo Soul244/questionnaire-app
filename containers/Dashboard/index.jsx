@@ -7,6 +7,7 @@ import { Row, Col } from 'reactstrap';
 
 import InfiniteScroll from 'react-infinite-scroller';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 import * as userActions from '../../redux/actions/userActions';
 import * as pollActions from '../../redux/actions/pollActions';
 import { TableList, MasonryList } from '../../components/Dashboard';

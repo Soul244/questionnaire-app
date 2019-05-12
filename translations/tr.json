@@ -1,4 +1,46 @@
 {
     "home.header1": "Ücretsiz anketlerinizi oluşturun ve paylaşın.",
-    "home.subtitle1": "Tamamen ücretsiz!"
+    "home.subtitle1": "Tamamen ücretsiz!",
+
+    "general.loading": "yükleniyor",
+    "general.yes": "Evet",
+    "general.no": "Hayır",
+    "general.in-progress":"Geliştirilme sürecinde",
+
+    "editor.poll-name": "Anket Adı",
+    "editor.poll-name-placeholder": "Lütfen anket adını giriniz",
+    "editor.poll-desc": "Anket Açıklaması",
+    "editor.poll-desc-placeholder":"Lütfen anket açıklamanızı giriniz",
+    "editor.poll-end-message": "Anket Sonu Mesajı",
+    "editor.poll-end-message-placeholder": "Anket sonu mesajınızı giriniz",
+
+    "editor.settings-header": "Ayarlar",
+    
+    "editor.settings-handle-type": "Çalışma Tipi",
+    "editor.settings-handle-type-label1": "Test",
+    "editor.settings-handle-type-label2": "Anket",
+
+    "editor.settings-show-type": "Görünüm Tipi",
+    "editor.settings-show-type-label1": "Yan yana",
+    "editor.settings-show-type-label2": "Tek Sayfada",
+
+    "editor.settings-poll-active": "Çalışma Durumu",
+    "editor.settings-poll-active-label1": "Aktif",
+    "editor.settings-poll-active-label2": "İnaktif",
+
+    "editor.settings-answer-percent": "Cevap Yüzdeleri",
+
+    "editor.settings-user-data-collect-type": "Kullanıcı Verisi",
+    "editor.settings-user-data-collect-type-label1": "Form Sunulsun",
+    "editor.settings-user-data-collect-type-label2": "Anonim",
+
+    "editor.settings-poll-time": "Çalışma Süresi",
+    "editor.settings-poll-time-input-placeholder": "dakika",
+
+    "editor.settings-answer-time": "Soru Süresi",
+    "editor.settings-answer-time-input-placeholder": "saniye",
+
+    "editor.settings-auto-change": "Otomatik Geçiş",
+    "editor.settings-auto-change-input-placeholder": "milisaniye"
+
 }

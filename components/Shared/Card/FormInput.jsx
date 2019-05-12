@@ -4,19 +4,16 @@ import PropTypes from 'prop-types';
 import {
   Card, CardTitle, FormGroup, Input,
 } from 'reactstrap';
-import styled from 'styled-components';
-
-const CardStyled = styled(Card)` 
-`;
+import { FormattedMessage } from 'react-intl';
 
 function FormInput({ title, ...rest }) {
   return (
-    <CardStyled body className="br" data-test="form-input">
-      <CardTitle data-test="title">{title}</CardTitle>
+    <Card body className="br" data-test="form-input">
+      <CardTitle data-test="title"><FormattedMessage id={title} /></CardTitle>
       <FormGroup>
         <Input {...rest} />
       </FormGroup>
-    </CardStyled>
+    </Card>
   );
 }
 

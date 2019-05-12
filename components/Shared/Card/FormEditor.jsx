@@ -6,6 +6,7 @@ import {
   Card, CardTitle, FormGroup,
 } from 'reactstrap';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 
 const CardStyled = styled(Card)` 
 `;
@@ -22,7 +23,7 @@ const FroalaEditorInput = dynamic(import('react-froala-wysiwyg'), {
 function FormEditor({ title, ...rest }) {
   return (
     <CardStyled body className="br" data-test="form-editor">
-      <CardTitle data-test="title">{title}</CardTitle>
+      <CardTitle data-test="title"><FormattedMessage id={title} /></CardTitle>
       <FormGroup>
         <FroalaEditorInput tag="textarea" {...rest} />
       </FormGroup>

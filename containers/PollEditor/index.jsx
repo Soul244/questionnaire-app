@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
 
+import { FormattedMessage } from 'react-intl';
 import Settings from './Settings';
 import Questions from './Questions';
 import {
@@ -21,7 +22,6 @@ import withNavbar from '../../hoc/withNavbar';
 @withNavbar
 class PollEditor extends Component {
   config = {
-    placeholderText: 'Anket açıklamanızı giriniz...',
     heightMin: 100,
     heightMax: 400,
     iframe: true,
@@ -33,7 +33,6 @@ class PollEditor extends Component {
   };
 
   configText = {
-    placeholderText: 'Anket sonu başlığınızı giriniz...',
     heightMin: 100,
     heightMax: 400,
     iframe: true,
@@ -158,30 +157,43 @@ class PollEditor extends Component {
           <QuestionTool addQuestion={addQuestion} />
           <Row>
             <Col md="12" className="mb-2">
-              <FormInput
-                title="Anket Başlığı"
-                value={name}
-                onChange={e => onChangeName(e.target.value)}
-                placeholder="Anket başlığınızı giriniz..."
-              />
+              <FormattedMessage id="editor.poll-name-placeholder">
+                {placeholder => (
+                  <FormInput
+                    title="editor.poll-name"
+                    value={name}
+                    onChange={e => onChangeName(e.target.value)}
+                    placeholder={placeholder}
+                  />
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
           <Row>
             <Col md="12" className="mb-2">
-              <FormEditor
-                title="Anket Açıklaması"
-                config={this.config}
-                model={desc}
-                onModelChange={onChangeDesc}
-              />
+              <FormattedMessage id="editor.poll-desc-placeholder">
+                {placeholder => (
+                  <FormEditor
+                    title="editor.poll-desc"
+                    config={{ placeholderText: placeholder, ...this.config }}
+                    model={desc}
+                    onModelChange={onChangeDesc}
+                  />
+                )}
+              </FormattedMessage>
             </Col>
+
             <Col md="12" className="mb-2">
-              <FormEditor
-                title="Anket Sonu Mesajı"
-                config={this.configText}
-                model={lastDesc}
-                onModelChange={onChangeLastDesc}
-              />
+              <FormattedMessage id="editor.poll-end-message-placeholder">
+                {placeholder => (
+                  <FormEditor
+                    title="editor.poll-end-message"
+                    config={{ placeholderText: placeholder, ...this.configText }}
+                    model={lastDesc}
+                    onModelChange={onChangeLastDesc}
+                  />
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
           <Row>
@@ -189,9 +201,6 @@ class PollEditor extends Component {
               <Settings />
             </Col>
           </Row>
-
-          {/* <Inject /> */}
-          {/* {poll.settings.type === 'test' && <SelectableLastMessage />} */}
           <Row>
             <Col md="12" className="mb-2">
               <Questions />

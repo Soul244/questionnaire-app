@@ -9,7 +9,7 @@ const initialState = {
     user: '',
     name: '',
     desc: '',
-    lastDesc: 'Anketimize katıldığınız için teşekkür ederiz.',
+    lastDesc: '',
     selectableLastMessages: [],
     questions: [{
       tempId: uuidv4(),

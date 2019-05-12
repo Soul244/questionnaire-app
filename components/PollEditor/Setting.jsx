@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { FormattedMessage } from 'react-intl';
 import {
   Button, CustomInput, FormGroup, Label, Input,
 } from 'reactstrap';
@@ -81,7 +81,7 @@ class Setting extends React.Component {
     return (
       <FormGroupStyled id={id}>
         <HeaderContainer>
-          <Label>{header}</Label>
+          <Label><FormattedMessage id={header} /></Label>
           <ButtonStyled type="button" onClick={this.toggle}>
             <Icon
               size="14px"
@@ -116,7 +116,7 @@ class Setting extends React.Component {
             id={`${values[0] + name}`}
             type="radio"
             name={name}
-            label={labels[0]}
+            label={<FormattedMessage id={labels[0]} />}
             value={values[0]}
             checked={values[0] === checkedValue}
             onChange={onChange}
@@ -125,22 +125,26 @@ class Setting extends React.Component {
             id={`${values[1] + name}`}
             type="radio"
             name={name}
-            label={labels[1]}
+            label={<FormattedMessage id={labels[1]} />}
             value={values[1]}
             checked={values[1] === checkedValue}
             onChange={onChange}
           />
           {hasInput && (
-            <InputShowAble
-              type="text"
-              placeholder={inputPlaceHolder}
-              show={values[0] ? 1 : 0}
-              value={inputValue}
-              onChange={inputChange}
-            />
+          <FormattedMessage id={inputPlaceHolder}>
+            {placeholder => (
+              <InputShowAble
+                type="text"
+                placeholder={placeholder}
+                show={values[0] ? 1 : 0}
+                value={inputValue}
+                onChange={inputChange}
+              />
+            )}
+          </FormattedMessage>
+
           )}
         </div>
-        {/* <UncontrolledTooltip placement="bottom" target={id}>{tooltip}</UncontrolledTooltip> */}
       </FormGroupStyled>
     );
   }

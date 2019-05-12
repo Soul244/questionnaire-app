@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 import {
   Card, CardBody, CardTitle, Row, Col, Badge,
@@ -55,18 +56,17 @@ function Settings(props) {
   } = settings;
   return (
     <Card body>
-      <CardTitle tag="h5">Ayarlar</CardTitle>
+      <CardTitle tag="h5"><FormattedMessage id="editor.settings-header" /></CardTitle>
       <Row>
         <Col md={3}>
           <Card body className="mb-2">
             <Setting
               values={['test', 'poll']}
-              labels={['Test', 'Anket']}
+              labels={['editor.settings-handle-type-label1', 'editor.settings-handle-type-label2']}
               checkedValue={type}
               name="type"
-              header="Çalışma Tipi"
+              header="editor.settings-handle-type"
               onChange={handleType}
-              tooltip="Çalışma tipini seçin"
               info={settingsInfo.type}
             />
           </Card>
@@ -75,12 +75,11 @@ function Settings(props) {
           <Card body className="mb-2">
             <Setting
               values={['sideBySide', 'onePage']}
-              labels={['Yan yana', 'Tek Sayfada']}
+              labels={['editor.settings-show-type-label1', 'editor.settings-show-type-label2']}
               checkedValue={showType}
               name="showType"
-              header="Görünüm"
+              header="editor.settings-show-type"
               onChange={handleShowType}
-              tooltip="Anket görünümünü seçin"
               info={settingsInfo.showType}
             />
           </Card>
@@ -89,12 +88,11 @@ function Settings(props) {
           <Card body className="mb-2">
             <Setting
               values={['active', 'inactive']}
-              labels={['Aktif', 'İnaktif']}
+              labels={['editor.settings-poll-active-label1', 'editor.settings-poll-active-label2']}
               checkedValue={isPollActive}
               name="isPollActive"
-              header="Anket Durumu"
+              header="editor.settings-poll-active"
               onChange={handleIsPollActive}
-              tooltip="Anket durumunu seçin"
               info={settingsInfo.isPollActive}
             />
           </Card>
@@ -103,10 +101,10 @@ function Settings(props) {
           <Card body className="mb-2">
             <Setting
               checkedValue={hasAnswerPercent}
+              labels={['general.yes', 'general.no']}
               name="hasAnswerPercent"
-              header="Cevap Yüzdeleri"
+              header="editor.settings-answer-percent"
               onChange={handleHasAnswerPercent}
-              tooltip="Her cevap için verilen cevap yüzdelerini gösterecektir."
               info={settingsInfo.hasAnswerPercent}
             />
           </Card>
@@ -118,10 +116,10 @@ function Settings(props) {
             <CardBody>
               <Setting
                 values={['form', 'anonim']}
-                labels={['Form Sunulsun', 'Anonim']}
+                labels={['editor.settings-user-data-collect-type-label1', 'editor.settings-user-data-collect-type-label2']}
                 checkedValue={userDataCollectType}
                 name="userDataCollectType"
-                header="Kullanıcı Verisi"
+                header="editor.settings-user-data-collect-type"
                 onChange={handleUserDataCollectType}
                 info={settingsInfo.userDataCollectType}
               />
@@ -130,18 +128,19 @@ function Settings(props) {
         </Col>
         <Col md={3}>
           <CardHideAble show={!hasAnswerTime ? 1 : 0} className="mb-2">
-            <Badge color="warning">IN PROGRESS</Badge>
+            <Badge color="warning"><FormattedMessage id="general.in-progress" /></Badge>
             <CardBody>
               <Setting
                 checkedValue={hasPollTime}
+                labels={['general.yes', 'general.no']}
                 name="hasPollTime"
-                header="Test Süresi"
+                header="editor.settings-poll-time"
                 onChange={handleHasPollTime}
                 hasInput
                 inputValue={pollTime}
                 inputChange={e => handlePollTime(e.target.value)}
-                inputPlaceHolder="dakika"
-                tooltip="Bu seçenek geliştirilme sürecinde"
+                inputPlaceHolder="editor.settings-poll-time-input-placeholder"
+                tooltip="general.in-progress"
                 info={settingsInfo.hasPollTime}
               />
             </CardBody>
@@ -149,18 +148,19 @@ function Settings(props) {
         </Col>
         <Col md={3}>
           <CardHideAble show={showType === 'sideBySide' && !hasPollTime ? 1 : 0} className="mb-2">
-            <Badge color="warning">IN PROGRESS</Badge>
+            <Badge color="warning"><FormattedMessage id="general.in-progress" /></Badge>
             <CardBody>
               <Setting
                 checkedValue={hasAnswerTime}
+                labels={['general.yes', 'general.no']}
                 name="hasAnswerTime"
-                header="Soru Süresi"
+                header="editor.settings-answer-time"
                 onChange={handleHasAnswerTime}
                 hasInput
                 inputValue={answerTime}
                 inputChange={e => handleAnswerTime(e.target.value)}
-                inputPlaceHolder="saniye"
-                tooltip="Bu seçenek geliştirilme sürecinde"
+                inputPlaceHolder="editor.settings-answer-time-input-placeholder"
+                tooltip="general.in-progress"
                 info={settingsInfo.hasAnswerTime}
               />
             </CardBody>
@@ -170,13 +170,14 @@ function Settings(props) {
           <CardHideAble body show={showType === 'sideBySide' ? 1 : 0} className="mb-2">
             <Setting
               checkedValue={hasAnswerAutoChangeTime}
+              labels={['general.yes', 'general.no']}
               name="hasAnswerAutoChangeTime"
-              header="Otomatik Geçiş"
+              header="editor.settings-auto-change"
               onChange={handleHasAnswerAutoChangeTime}
               hasInput
               inputValue={answerAutoChangeTime}
               inputChange={e => handleAnswerAutoChangeTime(e.target.value)}
-              inputPlaceHolder="Milisaniye"
+              inputPlaceHolder="editor.settings-auto-change-input-placeholder"
               tooltip="Her soru arasındaki otomatik geçiş süresi"
               info={settingsInfo.hasAnswerAutoChangeTime}
             />

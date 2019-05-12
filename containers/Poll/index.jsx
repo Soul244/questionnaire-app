@@ -58,8 +58,6 @@ class index extends Component {
     if (!settings.isPollActive) {
       return <PollActive />;
     }
-    //          {settings.showType === 'sideBySide full' && (
-
     return (
       <>
         <Container className="my-4">
