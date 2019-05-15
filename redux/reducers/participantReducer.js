@@ -20,7 +20,10 @@ const participantReducer = (state = initialState, action) => {
         ...state,
         participant: {
           ...state.participant,
-          answers: action.payload,
+          answers: [
+            ...state.participant.answers,
+            action.payload,
+          ],
         },
       };
       break;

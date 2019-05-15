@@ -51,7 +51,7 @@ class index extends Component {
     const { testStarted, testFinished } = this.state;
     const { participantActions, participantReducer, pollReducer } = this.props;
     const { addParticipantAnswer, postParticipant } = participantActions;
-    const { participant } = participantReducer;
+    const { participant, message } = participantReducer;
     const { poll } = pollReducer;
     const { settings } = poll;
     if (settings === undefined) return null;
@@ -71,6 +71,7 @@ class index extends Component {
             addParticipantAnswer={addParticipantAnswer}
             participant={participant}
             postParticipant={postParticipant}
+            message={message}
           />
         </Container>
       </>
@@ -97,6 +98,7 @@ index.propTypes = {
 
   participantReducer: PropTypes.shape({
     participant: PropTypes.object,
+    message: PropTypes.string,
   }).isRequired,
   participantActions: PropTypes.shape({
     addParticipantAnswer: PropTypes.func.isRequired,

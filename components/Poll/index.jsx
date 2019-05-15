@@ -116,6 +116,7 @@ class Index extends React.Component {
       postParticipant,
       participant,
       poll,
+      message,
     } = this.props;
 
     const {
@@ -183,12 +184,17 @@ class Index extends React.Component {
           postParticipant={postParticipant}
           userDataCollectType={userDataCollectType}
           type={type}
+          message={message}
         />
         )}
       </>
     );
   }
 }
+
+Index.defaultProps = {
+  message: null,
+};
 
 Index.propTypes = {
   showType: PropTypes.oneOf(['sideBySide', 'full']).isRequired,
@@ -199,6 +205,7 @@ Index.propTypes = {
   postParticipant: PropTypes.func.isRequired,
   participant: PropTypes.object.isRequired,
   handleTestFinished: PropTypes.func.isRequired,
+  message: PropTypes.string,
   poll: PropTypes.shape({
     settings: PropTypes.shape({
       answerAutoChangeTime: PropTypes.string.isRequired,

@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { asyncTypes, syncTypes } from '../types';
 
-const uuidv4 = require('uuid/v4');
 
 const initialState = {
   poll: {
@@ -12,7 +11,6 @@ const initialState = {
     lastDesc: '',
     selectableLastMessages: [],
     questions: [{
-      tempId: uuidv4(),
       type: 'text',
       content: '',
       desc: '',

@@ -12,16 +12,14 @@ export function addParticipantAnswer(questionIndex, answerIndex) {
   return (dispatch, getState) => {
     const { questions } = getState().pollReducer.poll;
     const { answers } = questions[questionIndex];
-    const userAnswers = getState().participantReducer.participant.answers;
-    const newAnswers = [
-      ...userAnswers,
-      {
-        questionId: questions[questionIndex]._id,
-        answerId: answers[answerIndex]._id,
-        isTrue: answers[answerIndex].isTrue,
-      },
-    ];
-    dispatch(addParticipantAnswerAction(newAnswers));
+    const newAnswer = {
+      questionId: questions[questionIndex]._id,
+      answerId: answers[answerIndex]._id,
+      questionIndex,
+      answerIndex,
+      isTrue: answerIndex === questions[questionIndex].rightAnswerIndex,
+    };
+    dispatch(addParticipantAnswerAction(newAnswer));
   };
 }
 /* #endregion */

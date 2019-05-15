@@ -32,15 +32,15 @@ class Last extends React.Component {
   render() {
     const {
       name, lastDesc, participant, pollId, userDataCollectType, type, postParticipant,
+      message,
     } = this.props;
-    const { answers, message } = participant;
+    const { answers } = participant;
     const answerCount = answers.length;
     const right = _.filter(answers, (item) => {
-      if (item.hasRightAnswer && item.isTrue) { return item; }
+      if (item.isTrue) { return item; }
     }).length;
     const wrong = _.filter(answers, (item) => {
-      if (item.hasRightAnswer
-      && item.isTrue === false) return item;
+      if (!item.isTrue) return item;
     }).length;
     const rightPercent = right > 0 ? Math.round((right / answerCount) * 100) : 0;
     const wrongPercent = wrong > 0 ? Math.round((wrong / answerCount) * 100) : 0;
@@ -158,12 +158,14 @@ class Last extends React.Component {
 
 Last.defaultProps = {
   lastDesc: '',
+  message: null,
 };
 
 Last.propTypes = {
   name: PropTypes.string.isRequired,
   lastDesc: PropTypes.string,
   participant: PropTypes.object.isRequired,
+  message: PropTypes.string,
   pollId: PropTypes.string.isRequired,
   postParticipant: PropTypes.func.isRequired,
   userDataCollectType: PropTypes.string.isRequired,

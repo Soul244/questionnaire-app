@@ -6,6 +6,35 @@
     "general.yes": "Evet",
     "general.no": "Hayır",
     "general.in-progress":"Geliştirilme sürecinde",
+    "general.participant": "katılımcı",
+    "general.answer": "cevap",
+    "general.question": "soru",
+    "general.no-record": "Hiçbir kayıt bulunamadı",
+    "general.submit": "Gönder",
+    "general.back": "Geri dön",
+    "general.update": "Güncelle",
+    "general.clone": "Kopyala",
+    "general.delete": "Sil",
+    "general.stats": "İstatistikler",
+    "general.are-you-sure": "Silmek istediğinize emin misiniz?",
+    "general.width": "Genişlik",
+    "general.height": "Yükseklik",
+    "general.close": "Kapat",
+    "general.created-date": "Oluşturulma tarihi",
+    "general.action": "Aksiyon",
+    "general.date": "Tarih",
+
+    "auth.login": "Oturum aç",
+    "auth.email": "E-posta adresi",
+    "auth.password": "Şifre",
+    "auth.signup": "Kayıt ol",
+    "auth.reset-password": "Şifre sıfırla",
+
+    "dashboard.open-poll": "Ankete git",
+    "dashboard.add-your-website": "Sitene ekle",
+    "dashboard.create-new-work": "Yeni Çalışma oluştur",
+    "dashboard.work-name": "Çalışma Adı",
+    "dashboard.work-link": "Çalışma Linki",
 
     "editor.poll-name": "Anket Adı",
     "editor.poll-name-placeholder": "Lütfen anket adını giriniz",
@@ -15,32 +44,35 @@
     "editor.poll-end-message-placeholder": "Anket sonu mesajınızı giriniz",
 
     "editor.settings-header": "Ayarlar",
-    
     "editor.settings-handle-type": "Çalışma Tipi",
     "editor.settings-handle-type-label1": "Test",
     "editor.settings-handle-type-label2": "Anket",
-
     "editor.settings-show-type": "Görünüm Tipi",
     "editor.settings-show-type-label1": "Yan yana",
     "editor.settings-show-type-label2": "Tek Sayfada",
-
     "editor.settings-poll-active": "Çalışma Durumu",
     "editor.settings-poll-active-label1": "Aktif",
     "editor.settings-poll-active-label2": "İnaktif",
-
     "editor.settings-answer-percent": "Cevap Yüzdeleri",
-
     "editor.settings-user-data-collect-type": "Kullanıcı Verisi",
     "editor.settings-user-data-collect-type-label1": "Form Sunulsun",
     "editor.settings-user-data-collect-type-label2": "Anonim",
-
     "editor.settings-poll-time": "Çalışma Süresi",
     "editor.settings-poll-time-input-placeholder": "dakika",
-
     "editor.settings-answer-time": "Soru Süresi",
     "editor.settings-answer-time-input-placeholder": "saniye",
-
     "editor.settings-auto-change": "Otomatik Geçiş",
-    "editor.settings-auto-change-input-placeholder": "milisaniye"
+    "editor.settings-auto-change-input-placeholder": "milisaniye",
 
+
+    "statistics.user-count": "Katılımcı Sayısı",
+    "statistics.total-right": "doğru cevap",
+    "statistics.participant-total-right": "Katılımcıların Toplam Doğru Sayısı",
+    "statistics.total-wrong": "yanlış cevap",
+    "statistics.participant-total-wrong": "Katılımcıların Toplam Yanlış Sayısı",
+    "statistics.participant-total-has-not": "Doğru ya da Yanlış Olarak İşaretlenmemiş ve Cevaplanmış Sorular Toplamı",
+    "statistics.question-count": "Soru Sayısı",
+    "statistics.answers-stats": "Cevap İstatistikleri",
+    "statistics.answers-desc": "Cevap istatistiklerini yüzdesel, sayısal olarak görün.",
+    "statistics.participant-list": "Katılımcı Listesi"
 }

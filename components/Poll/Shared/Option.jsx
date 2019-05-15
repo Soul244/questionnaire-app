@@ -48,13 +48,13 @@ function Option({
       <CardStyled
         className="my-1"
         onClick={() => onClick(answerIndex)}
-        checked={checkedAnswerIndex === answerIndex}
-        istrue={rightAnswerIndex === answerIndex}
+        checked={checkedAnswerIndex === answerIndex ? 1 : 0}
+        istrue={rightAnswerIndex === answerIndex ? 1 : 0}
       >
         <CardBody className="text-center ">
           <Row>
             <Col sm={2}>
-              <TextContainer show={checkedAnswerIndex !== undefined}>
+              <TextContainer show={checkedAnswerIndex !== null}>
                 <CountUp end={answerCount} />
                 {' '}
                 {'kişi'}
@@ -72,13 +72,14 @@ function Option({
 
 Option.defaultProps = {
   rightAnswerIndex: null,
+  checkedAnswerIndex: null,
 };
 
 Option.propTypes = {
   type: PropTypes.string.isRequired,
   answerIndex: PropTypes.number.isRequired,
   content: PropTypes.string.isRequired,
-  checkedAnswerIndex: PropTypes.number.isRequired,
+  checkedAnswerIndex: PropTypes.number,
   rightAnswerIndex: PropTypes.number,
   onClick: PropTypes.func.isRequired,
   answerCount: PropTypes.number.isRequired,

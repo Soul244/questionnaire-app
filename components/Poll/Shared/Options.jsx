@@ -7,7 +7,7 @@ class Options extends React.Component {
   constructor() {
     super();
     this.state = {
-      checkedAnswerIndex: undefined,
+      checkedAnswerIndex: null,
     };
   }
 
@@ -16,7 +16,7 @@ class Options extends React.Component {
       questionIndex, addParticipantAnswer, changeQuestion,
     } = this.props;
     const { checkedAnswerIndex } = this.state;
-    if (!checkedAnswerIndex) {
+    if (checkedAnswerIndex === null) {
       this.setState({
         checkedAnswerIndex: answerIndex,
       });
