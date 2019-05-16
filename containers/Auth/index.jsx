@@ -74,9 +74,7 @@ class Auth extends Component {
     this.notify(nextProps.userReducer.message);
     const { token } = nextProps.userReducer;
     if (token) {
-      setTimeout(() => {
-        Router.push({ pathname: '/dashboard' });
-      }, 2000);
+      Router.push({ pathname: '/dashboard' });
     }
   }
 

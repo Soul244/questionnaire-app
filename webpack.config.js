@@ -17,6 +17,9 @@ module.exports = {
   resolve: {
     modulesDirectories: ['node_modules'],
   },
+  performance: {
+    hints: 'warning',
+  },
   plugins: [
     new PurgecssPlugin({ paths: glob.sync('css/index.css', { nodir: true }) }),
     new webpack.ProvidePlugin({
