@@ -10,6 +10,7 @@ import styled from 'styled-components';
 
 const NavLinkCursor = styled(NavLink)`
   cursor: pointer !important;
+  font-size: 1rem !important;
   color:white !important;
 `;
 

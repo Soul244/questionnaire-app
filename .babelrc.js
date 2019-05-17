@@ -4,6 +4,9 @@ module.exports= {
     "plugins": [
         "babel-plugin-styled-components",
         "transform-define",
+        ["babel-plugin-root-import", {
+            "rootPathPrefix": "~"
+        }],
         [
             "@babel/plugin-proposal-decorators",
             {

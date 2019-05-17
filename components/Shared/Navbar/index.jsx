@@ -7,15 +7,16 @@ import {
   Navbar,
   NavbarToggler,
   NavbarBrand,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
   Nav,
+  UncontrolledDropdown,
 } from 'reactstrap';
 import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
-import {
-  Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
-} from 'reactstrap';
-import * as generalActions from '../../../redux/actions/generalActions';
-import Icon, { threedot } from '../../../css/icons';
+import * as generalActions from '~redux/actions/generalActions';
+import Icon, { threedot } from '~css/icons';
 import Logged from './Logged';
 import Anonim from './Anonim';
 
@@ -58,7 +59,6 @@ class index extends Component {
       isOpen: false,
       dropdownOpen: false,
       isLogged: false,
-      languageOpen: false,
     };
   }
 
@@ -86,12 +86,6 @@ class index extends Component {
     }));
   }
 
-  languageToggle = () => {
-    this.setState(prevState => ({
-      languageOpen: !prevState.languageOpen,
-    }));
-  }
-
   toggleDropDownToggle = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
@@ -99,7 +93,7 @@ class index extends Component {
   }
 
   render() {
-    const { isLogged, isOpen, languageOpen } = this.state;
+    const { isLogged, isOpen } = this.state;
     const { sideBarToggle, sideBarShow, generalActions } = this.props;
     const { onChangeLanguage } = generalActions;
     return (
@@ -115,17 +109,17 @@ class index extends Component {
               {'LOGO'}
             </NavbarBrandStyled>
             <NavbarToggler onClick={this.toggle} />
-            <Dropdown isOpen={languageOpen} toggle={this.languageToggle}>
-              <DropdownToggle caret>
-                {'Language'}
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={() => onChangeLanguage('tr')}>Türkçe</DropdownItem>
-                <DropdownItem onClick={() => onChangeLanguage('en')}>English</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
             <Collapse isOpen={isOpen} navbar>
               <Nav className="ml-auto" navbar>
+                <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret color="white">
+                    <span style={{ color: 'white', fontSize: '1rem' }}>Language</span>
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem onClick={() => onChangeLanguage('tr')}>Türkçe</DropdownItem>
+                    <DropdownItem onClick={() => onChangeLanguage('en')}>English</DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
                 {isLogged && <Logged logOut={this.onClick} />}
                 {!isLogged && <Anonim />}
               </Nav>
