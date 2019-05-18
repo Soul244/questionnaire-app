@@ -27,7 +27,8 @@ module.exports = {
     "class-methods-use-this":0,
     "react/no-multi-comp":0,
     "import/no-extraneous-dependencies": 0,
-    "import/no-unresolved": 0
+    "import/no-unresolved": 0,
+    "camelcase": 0
   },
   plugins: [
     'react',

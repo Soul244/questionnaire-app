@@ -175,9 +175,8 @@ class PollEditor extends Component {
                 {placeholder => (
                   <FormEditor
                     title="editor.poll-desc"
-                    config={{ placeholderText: placeholder, ...this.config }}
-                    model={desc}
-                    onModelChange={onChangeDesc}
+                    onChange={onChangeDesc}
+                    data={desc}
                   />
                 )}
               </FormattedMessage>
@@ -188,9 +187,8 @@ class PollEditor extends Component {
                 {placeholder => (
                   <FormEditor
                     title="editor.poll-end-message"
-                    config={{ placeholderText: placeholder, ...this.configText }}
-                    model={lastDesc}
-                    onModelChange={onChangeLastDesc}
+                    data={lastDesc}
+                    onChange={onChangeLastDesc}
                   />
                 )}
               </FormattedMessage>

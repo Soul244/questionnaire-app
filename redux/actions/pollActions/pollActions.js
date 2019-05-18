@@ -225,9 +225,11 @@ export function onChangeDescAction(payload) {
     payload,
   };
 }
-export function onChangeDesc(desc) {
+export function onChangeDesc(event, editor) {
+  console.log(editor);
+
   return (dispatch) => {
-    dispatch(onChangeDescAction(desc));
+    dispatch(onChangeDescAction(editor.getData()));
   };
 }
 /* #endregion */
@@ -239,9 +241,10 @@ export function onChangeLastDescAction(payload) {
     payload,
   };
 }
-export function onChangeLastDesc(lastDesc) {
+export function onChangeLastDesc(event, editor) {
+  console.log(editor);
   return (dispatch) => {
-    dispatch(onChangeLastDescAction(lastDesc));
+    dispatch(onChangeLastDescAction(editor.getData()));
   };
 }
 

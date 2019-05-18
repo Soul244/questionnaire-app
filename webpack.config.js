@@ -22,10 +22,6 @@ module.exports = {
   },
   plugins: [
     new PurgecssPlugin({ paths: glob.sync('css/index.css', { nodir: true }) }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
