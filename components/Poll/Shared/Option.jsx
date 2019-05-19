@@ -60,7 +60,7 @@ function Option({
                 {'kişi'}
               </TextContainer>
             </Col>
-            <Col sm={checkedAnswerIndex !== undefined ? { size: 10 } : { size: 12 }} className="text-center">
+            <Col sm={checkedAnswerIndex !== null ? { size: 10 } : { size: 12 }} className="text-center">
               <ContentViewer type={type} content={content} />
             </Col>
           </Row>
