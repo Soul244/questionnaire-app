@@ -7,7 +7,7 @@ import withRedux from 'next-redux-wrapper';
 import Head from 'next/head';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { initStore } from '../redux/store';
-import '../css/index.css';
+import '~node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-id-swiper/src/styles/css/swiper.css';
 import GlobalStyles from '../css/globalStyles';

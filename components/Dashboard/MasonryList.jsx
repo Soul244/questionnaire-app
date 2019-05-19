@@ -119,7 +119,7 @@ function MasonryList({ polls }) {
                   as="/dashboard/editor/yeni-anket"
                   href="/dashboard/editor"
                 >
-                  <Button color="custom">
+                  <Button color="secondary">
                     <Icon size={64} icon={plus} />
                   </Button>
                 </Link>
@@ -151,7 +151,7 @@ function MasonryList({ polls }) {
               <ButtonContainer>
                 <Link as={`/anket/${poll._id}`} href={`/poll?_id=${poll._id}`}>
                   <a target="_blank">
-                    <Button color="custom">
+                    <Button color="secondary">
                       {'Ankete Git'}
                       <IconContainer>
                         <Icon size={24} icon={preview} />
