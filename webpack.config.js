@@ -1,7 +1,14 @@
 const webpack = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
+const path = require('path');
+const glob = require('glob');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
-const glob = require('glob-all');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const PATHS = {
+  src: path.join(__dirname, 'src'),
+};
 
 module.exports = {
   mode: 'production',
@@ -17,11 +24,46 @@ module.exports = {
   resolve: {
     modulesDirectories: ['node_modules'],
   },
+  optimization: {
+    namedModules: false,
+    namedChunks: false,
+    nodeEnv: 'production',
+    flagIncludedChunks: true,
+    occurrenceOrder: true,
+    sideEffects: true,
+    usedExports: true,
+    concatenateModules: true,
+    splitChunks: {
+      hidePathInfo: true,
+      minSize: 30000,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+    },
+    noEmitOnErrors: true,
+    checkWasmTypes: true,
+    minimize: true,
+  },
   performance: {
     hints: 'warning',
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true,
+        },
+      },
+    },
   },
   plugins: [
-    new PurgecssPlugin({ paths: glob.sync('css/index.css', { nodir: true }) }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+    new PurgecssPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+    }),
+    new ExtractTextPlugin('[name].css?[hash]'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
@@ -34,6 +76,17 @@ module.exports = {
     }),
   ],
   module: {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+          ],
+        },
+      ],
+    },
     loaders: [
       {
         test: /\.(scss|sass)$/i,
