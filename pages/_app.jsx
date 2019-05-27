@@ -11,6 +11,7 @@ import '~node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-id-swiper/src/styles/css/swiper.css';
 import GlobalStyles from '../css/globalStyles';
+import colors from '../css/colors';
 
 addLocaleData([...locale_en, ...locale_tr]);
 
@@ -34,6 +35,7 @@ class MyApp extends App {
             <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
             <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
             <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet" />
+            <meta name="theme-color" content={colors.color1} />
             <link
               href="https://fonts.googleapis.com/icon?family=Material+Icons"
               rel="stylesheet"

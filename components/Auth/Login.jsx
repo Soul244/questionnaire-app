@@ -5,12 +5,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
   CardTitle,
-  CardSubtitle,
   FormGroup,
   InputGroup,
   Button,
 } from 'reactstrap';
-import { CustomInput } from '../Shared';
+import { CustomInput, SpinnerButton } from '../Shared';
 
 const ButtonList = styled.div`
     display:flex;
@@ -21,7 +20,9 @@ const Header = styled.div`
     margin: 1rem 1rem 2rem 1rem;
 `;
 
-function Login({ validationSchema, postLogin, pageHandle }) {
+function Login({
+  validationSchema, postLogin, pageHandle, fetched, fetching,
+}) {
   return (
     <>
       <Header>
@@ -75,7 +76,7 @@ function Login({ validationSchema, postLogin, pageHandle }) {
               </FormGroup>
               <ButtonList>
                 <div>
-                  <Button type="submit" color="info">Giriş Yap </Button>
+                  <SpinnerButton fetched={fetched} fetching={fetching} type="submit" color="info">Giriş Yap</SpinnerButton>
                   {' '}
                   <Button type="button" onClick={() => pageHandle('signup')} color="secondary">Kayıt Ol</Button>
                 </div>
@@ -95,6 +96,8 @@ Login.propTypes = {
   validationSchema: PropTypes.object.isRequired,
   postLogin: PropTypes.func.isRequired,
   pageHandle: PropTypes.func.isRequired,
+  fetched: PropTypes.bool.isRequired,
+  fetching: PropTypes.bool.isRequired,
 };
 
 export default Login;

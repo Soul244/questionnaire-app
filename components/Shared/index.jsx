@@ -11,6 +11,7 @@ import Backdrop from './Sidebar/Backdrop';
 import FormInput from './Card/FormInput';
 import FormEditor from './Card/FormEditor';
 import ToolButton from './Button/ToolButton';
+import SpinnerButton from './Button/SpinnerButton';
 
 export {
   ContentViewer,
@@ -25,5 +26,6 @@ export {
   FormInput,
   FormEditor,
   ToolButton,
+  SpinnerButton,
   SectionHeader,
 };

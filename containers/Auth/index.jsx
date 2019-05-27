@@ -93,7 +93,8 @@ class Auth extends Component {
   };
 
   render() {
-    const { userActions } = this.props;
+    const { userActions, userReducer } = this.props;
+    const { fetching, fetched } = userReducer;
     const { postLogin, postSignUp, postResetPassword } = userActions;
     const { page } = this.state;
     return (
@@ -112,6 +113,8 @@ class Auth extends Component {
                       postLogin={postLogin}
                       pageHandle={this.pageHandle}
                       validationSchema={LoginSchema}
+                      fetching={fetching}
+                      fetched={fetched}
                     />
                   )}
                   {page === 'signup' && (

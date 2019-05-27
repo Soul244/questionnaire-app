@@ -42,7 +42,7 @@ class Actions extends React.Component {
     }));
   }
 
-  dropdownToggle= () => {
+  dropdownToggle = () => {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen,
     }));

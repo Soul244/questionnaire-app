@@ -9,6 +9,9 @@ const initialState = {
   isTokenValid: undefined,
   token: '',
   message: '',
+  fetching: false,
+  fetched: false,
+  error: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,6 +22,12 @@ const userReducer = (state = initialState, action) => {
         message: action.payload.message,
       };
       break;
+    case asyncTypes.POST_LOGIN_START:
+      state = {
+        ...state,
+        fetching: true,
+      };
+      break;
     case asyncTypes.POST_LOGIN:
       state = {
         ...state,
@@ -26,6 +35,8 @@ const userReducer = (state = initialState, action) => {
         email: action.payload.email,
         token: action.payload.token,
         message: action.payload.message,
+        fetching: false,
+        fetched: true,
       };
       break;
     case asyncTypes.POST_RESET_PASSWORD:

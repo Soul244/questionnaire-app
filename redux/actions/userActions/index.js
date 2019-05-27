@@ -28,9 +28,16 @@ export function postLoginAction(payload) {
   };
 }
 
+export function postLoginActionStart() {
+  return {
+    type: asyncTypes.POST_LOGIN_START,
+  };
+}
+
 export function postLogin(user) {
   return async (dispatch) => {
     try {
+      dispatch(postLoginActionStart());
       const response = await axios.post('/users/login', user);
       localStorage.setItem('_id', response.data._id);
       localStorage.setItem('email', response.data.email);
