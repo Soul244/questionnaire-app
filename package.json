@@ -52,7 +52,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.1.2",
-    "yup": "^0.26.6"
+    "yup": "^0.26.6",
+    "webpack-bundle-size-analyzer": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
@@ -77,7 +78,6 @@
     "jest": "^24.1.0",
     "jest-styled-components": "^6.3.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "purgecss-webpack-plugin": "^1.4.0",
-    "webpack-bundle-size-analyzer": "^3.0.0"
+    "purgecss-webpack-plugin": "^1.4.0"
   }
 }
