@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
-import colors from '../../../css/colors';
+import colors from '~css/colors';
 
 const CountContainer = styled.div`
 border: 1px solid transparent;

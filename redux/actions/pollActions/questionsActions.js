@@ -1,6 +1,6 @@
 import { List } from 'immutable';
 import arrayMove from 'array-move';
-import { syncTypes } from '../../types';
+import { syncTypes } from '~redux/types';
 
 /* #region Add Question IMMUTABLE */
 export function addQuestionAction(payload) {

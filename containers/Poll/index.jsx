@@ -8,10 +8,9 @@ import {
   Container,
 } from 'reactstrap';
 
-import * as pollActions from '../../redux/actions/pollActions';
-import * as participantActions from '../../redux/actions/participantActions';
-import Poll from '../../components/Poll';
-import { PollActive } from '../../components/Poll/Shared';
+import {pollActions, participantActions} from '~actions';
+import Poll from '~components/Poll';
+import { PollActive } from '~components/Poll/Shared';
 
 class index extends Component {
   constructor(props) {

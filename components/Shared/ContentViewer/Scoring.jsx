@@ -1,6 +1,6 @@
 import React from 'react';
 import Rating from 'react-rating';
-import Icon, { emptyScore, filledScore } from '../../../css/icons';
+import Icon, { emptyScore, filledScore } from '~css/icons';
 
 
 function Scoring() {

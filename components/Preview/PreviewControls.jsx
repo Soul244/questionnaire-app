@@ -3,8 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Icon, {
   arrowLeft,
-} from '../../css/icons';
-import colors from '../../css/colors';
+} from '~css/icons';
+import colors from '~css/colors';
 
 const Container = styled.div`
   display:flex;

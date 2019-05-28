@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { SortableContainer } from '../../components/Sortable';
-import { Answer } from '../../components/PollEditor';
-import * as pollActions from '../../redux/actions/pollActions';
+import { SortableContainer } from '~components/Sortable';
+import { Answer } from '~components/PollEditor';
+import { pollActions } from '~redux/actions';
 
 class Answers extends React.Component {
   onSortEnd = ({ oldIndex, newIndex }) => {

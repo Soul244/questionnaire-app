@@ -9,7 +9,7 @@ import {
   InputGroup,
   Button,
 } from 'reactstrap';
-import { CustomInput, SpinnerButton } from '../Shared';
+import { CustomInput, SpinnerButton } from '~components/Shared';
 
 const ButtonList = styled.div`
     display:flex;

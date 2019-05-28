@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import {
   Last, First, ShowType,
 } from './Shared';
-import colors from '../../css/colors';
+import colors from '~css/colors';
 
 const RightContainer = styled.div`
   margin-left: auto;

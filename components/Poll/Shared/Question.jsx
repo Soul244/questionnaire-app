@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 
-import { ContentViewer } from '../../Shared';
+import { ContentViewer } from '~Shared';
 
 const DescContainer = styled.div`
   margin: 1rem 0;

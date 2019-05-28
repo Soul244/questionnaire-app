@@ -10,14 +10,13 @@ import {
 import { PieChart, Pie, Tooltip } from 'recharts';
 import { ToastContainer, toast } from 'react-toastify';
 import styled from 'styled-components';
+
 import Icon, {
   users, done, cross, unchecked,
-} from '../../css/icons';
-
-import * as participantActions from '../../redux/actions/participantActions';
-import * as pollActions from '../../redux/actions/pollActions';
-import PercentTable from '../../components/Statistics/PercentTable';
-import withNavbar from '../../hoc/withNavbar';
+} from '~css/icons';
+import { pollActions, participantActions } from '~redux/actions';
+import PercentTable from '~components/Statistics/PercentTable';
+import { withNavbar } from '~hoc';
 
 const IconContainer = styled.div`
   display: flex;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import findByAttr from '../../../utils';
-import { FormEditor } from '../../../../components/Shared';
+import { FormEditor } from '~components/Shared';
 
 const setUp = (props = {}) => {
   const component = shallow(<FormEditor {...props} />);

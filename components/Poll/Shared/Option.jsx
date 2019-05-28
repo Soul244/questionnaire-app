@@ -10,7 +10,7 @@ import {
 import styled from 'styled-components';
 import CountUp from 'react-countup';
 
-import { ContentViewer } from '../../Shared';
+import { ContentViewer } from '~Shared';
 
 const CardStyled = styled(Card)`
   border-width: ${props => (props.checked ? '5px' : '0')};

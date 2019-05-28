@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import colors from '../../../css/colors';
+import colors from '~css/colors';
 
 const Container = styled.div`
   display: flex;
@@ -12,6 +12,8 @@ const Container = styled.div`
 
 const RightContainer = styled.div`
   margin-left: auto;
+  display: flex;
+  
 `;
 
 const Title = styled.h4`

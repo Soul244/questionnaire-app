@@ -10,13 +10,14 @@ import {
 import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 
-import * as userActions from '../../redux/actions/userActions';
+
+import { userActions } from '~redux/actions';
 import {
   LoginSchema,
   SignUpSchema,
   ResetPasswordSchema,
-} from '../../validation/validationSchemas';
-import { SignUp, Login, ResetPassword } from '../../components/Auth';
+} from '~validation/validationSchemas';
+import { SignUp, Login, ResetPassword } from '~components/Auth';
 
 const LogoContainer = styled.div`
   background-image: url(${props => props.src});

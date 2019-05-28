@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 
-import * as pollActions from '../../redux/actions/pollActions';
+import { pollActions } from '~redux/actions';
 
 const InputStyled = styled(Input)` 
   width:240px;

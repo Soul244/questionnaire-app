@@ -14,7 +14,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import Masonry from 'react-masonry-component';
-import Icon, { IconContainer, plus, preview } from '../../css/icons';
+import Icon, { IconContainer, plus, preview } from '~css/icons';
 
 const CardContainer = styled.div`
   position: relative;

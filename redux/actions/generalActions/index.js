@@ -1,7 +1,7 @@
 
-import { syncTypes } from '../../types';
-import en from '../../../translations/en';
-import tr from '../../../translations/tr';
+import { syncTypes } from '~redux/types';
+import en from '~translations/en';
+import tr from '~/translations/tr';
 
 export function onChangeLanguageAction(payload) {
   return {

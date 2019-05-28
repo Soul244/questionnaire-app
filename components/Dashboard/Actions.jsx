@@ -17,7 +17,7 @@ import styled from 'styled-components';
 
 import Icon, {
   remove2, edit, stats, iframe, showPoll, copy,
-} from '../../css/icons';
+} from '~css/icons';
 import Iframe from './Iframe';
 
 const LinkText = styled.p`

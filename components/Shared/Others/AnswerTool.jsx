@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import Icon, {
   video, text, image, audio, arrowLeft,
-} from '../../../css/icons';
+} from '~css/icons';
 
 const ButtonStyled = styled(Button)`
   width: 40px;

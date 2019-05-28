@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Statistics from '../../containers/Statistics';
+import Statistics from '~containers/Statistics';
 
 class StatisticsPage extends Component {
   static getInitialProps = async function (context) {

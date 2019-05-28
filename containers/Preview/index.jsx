@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Poll from '../Poll';
-import PreviewControls from '../../components/Preview/PreviewControls';
+import PreviewControls from '~components/Preview/PreviewControls';
 
 
 function index({ isPreview }) {

@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import {
   Question, Options,
-} from '..';
+} from '~components/Poll/Shared';
 
 
 const QuestionContainer = styled.div`

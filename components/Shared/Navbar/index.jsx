@@ -15,7 +15,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
-import * as generalActions from '~redux/actions/generalActions';
+import { generalActions } from '~redux/actions';
 import Icon, { threedot } from '~css/icons';
 import Logged from './Logged';
 import Anonim from './Anonim';

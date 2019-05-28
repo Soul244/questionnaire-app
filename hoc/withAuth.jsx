@@ -12,20 +12,29 @@ function withAuth(WrappedComponent) {
     }
 
     componentDidMount() {
-      axios.post('/users/token', {
-        token: localStorage.getItem('token'),
-      })
-        .then((response) => {
-          const { isTokenValid } = response.data;
-          if (!isTokenValid) {
-            Router.push({ pathname: '/anasayfa' });
-            localStorage.setItem('token', '');
-          }
+      const token = localStorage.getItem('token');
+      if (!token && token === '') {
+        this.BackLoginPage();
+      } else {
+        axios.post('/users/token', {
+          token,
         })
-        .catch(() => {
-          Router.push({ pathname: '/anasayfa' });
-          localStorage.setItem('token', '');
-        });
+          .then((response) => {
+            const { isTokenValid } = response.data;
+            if (!isTokenValid) {
+              this.BackLoginPage();
+              localStorage.setItem('token', '');
+            }
+          })
+          .catch(() => {
+            this.BackLoginPage();
+            localStorage.setItem('token', '');
+          });
+      }
+    }
+
+    BackLoginPage = () => {
+      Router.push({ pathname: '/giris-yap' });
     }
 
     render() {

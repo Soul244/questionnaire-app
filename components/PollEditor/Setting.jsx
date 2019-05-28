@@ -5,7 +5,7 @@ import {
   Button, CustomInput, FormGroup, Label, Input,
 } from 'reactstrap';
 import styled from 'styled-components';
-import Icon, { question, remove3 } from '../../css/icons';
+import Icon, { question, remove3 } from '~css/icons';
 
 const InputShowAble = styled(Input)`
   display: ${props => (props.show ? 'block' : 'none')};

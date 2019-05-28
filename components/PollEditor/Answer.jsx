@@ -5,10 +5,9 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import { SortableElement } from 'react-sortable-hoc';
-import { ContentViewer } from '../Shared';
-import InputBox from './Shared/InputBox';
-import { SortableButton } from '../Sortable';
-import colors from '../../css/colors';
+import { ContentViewer, InputBox } from '~Shared';
+import { SortableButton } from '~Sortable';
+import colors from '~css/colors';
 
 const AnswerContainer = styled.div`
   padding-top: 1rem;

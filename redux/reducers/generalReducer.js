@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { syncTypes } from '../types';
-import tr from '../../translations/tr';
+import tr from '~translations/tr';
 
 
 const initialState = {

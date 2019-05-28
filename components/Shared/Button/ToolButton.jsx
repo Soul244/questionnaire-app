@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  Button, UncontrolledTooltip,
+  Button,
 } from 'reactstrap';
 import styled from 'styled-components';
 
-import Icon from '../../../css/icons';
+import Icon from '~css/icons';
 
 const ButtonStyled = styled(Button)`
   margin: 0 auto;
@@ -34,7 +34,7 @@ function ToolButton(props) {
           )}
         </Text>
       </ButtonStyled>
-      {/*<UncontrolledTooltip placement="left" target={rest.id}>{tooltip}</UncontrolledTooltip> */}
+      {/* <UncontrolledTooltip placement="left" target={rest.id}>{tooltip}</UncontrolledTooltip> */}
     </>
   );
 }

@@ -5,7 +5,6 @@ import Swiper from 'react-id-swiper';
 import {
   Row,
 } from 'reactstrap';
-import { Question, Options } from '..';
 
 const QuestionContainer = styled.div` 
   padding: 0.05rem;

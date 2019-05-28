@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
-import colors from '../../../css/colors';
+import colors from '~css/colors';
 
 const InputStyled = styled.input` 
     border: 0 !important;

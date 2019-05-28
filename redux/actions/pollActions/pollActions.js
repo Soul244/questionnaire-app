@@ -1,5 +1,5 @@
-import axios from '../../axios';
-import { syncTypes, asyncTypes } from '../../types';
+import axios from '~redux/axios';
+import { syncTypes, asyncTypes } from '~redux/types';
 
 /* #region Get Poll */
 export function getPollAction(payload) {

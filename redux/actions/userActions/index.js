@@ -1,5 +1,5 @@
-import axios from '../../axios';
-import { asyncTypes } from '../../types';
+import axios from '~redux/axios';
+import { asyncTypes } from '~redux/types';
 
 /* #region Sign Up */
 export function postSignUpAction(payload) {

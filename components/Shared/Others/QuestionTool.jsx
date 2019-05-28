@@ -16,7 +16,7 @@ import Icon, {
   preview,
   arrowUp,
   publish,
-} from '../../../css/icons';
+} from '~css/icons';
 
 const ButtonStyled = styled(Button)`
   width: 40px;

@@ -9,8 +9,8 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 
-import Setting from '../../components/PollEditor/Setting';
-import * as pollActions from '../../redux/actions/pollActions';
+import Setting from '~components/PollEditor/Setting';
+import { pollActions } from '~redux/actions';
 import settingsInfo from './settingsInfo';
 
 const CardHideAble = styled(Card)`

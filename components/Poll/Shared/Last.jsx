@@ -10,8 +10,8 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 
-import { ParticipantSchema } from '../../../validation/validationSchemas';
-import { CustomInput } from '../../Shared';
+import { ParticipantSchema } from '~validation/validationSchemas';
+import { CustomInput } from '~Shared';
 
 const ColStyled = styled(Col)` 
  margin-top: 1rem;

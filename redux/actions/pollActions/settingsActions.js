@@ -1,4 +1,4 @@
-import { syncTypes } from '../../types';
+import { syncTypes } from '~redux/types';
 
 /* #region Actions - Input Type Radio Button */
 

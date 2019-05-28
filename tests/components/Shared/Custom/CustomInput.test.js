@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import findByAttr from '../../../utils';
 import 'jest-styled-components';
-import { CustomInput } from '../../../../components/Shared';
+import { CustomInput } from '~components/Shared';
 
 const setUp = (props = {}, method = 'shallow') => {
   let component;

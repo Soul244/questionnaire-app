@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import findByAttr from '../../../utils';
-import { ContentViewer } from '../../../../components/Shared';
+import { ContentViewer } from '~components/Shared';
 
 const setUp = (props = {}) => {
   const component = mount(<ContentViewer {...props} />);

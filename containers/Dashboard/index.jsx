@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Router from 'next/router';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 
 import InfiniteScroll from 'react-infinite-scroller';
 import styled from 'styled-components';
-import { FormattedMessage } from 'react-intl';
-import * as userActions from '../../redux/actions/userActions';
-import * as pollActions from '../../redux/actions/pollActions';
-import { TableList, MasonryList } from '../../components/Dashboard';
-import { Loading, SectionHeader } from '../../components/Shared';
-import withAuth from '../../hoc/withAuth';
-import withNavbar from '../../hoc/withNavbar';
-import Icon, { IconContainer, masonry, list } from '../../css/icons';
-import colors from '../../css/colors';
+import { userActions, pollActions } from '~redux/actions';
+import { TableList, MasonryList } from '~components/Dashboard';
+import { Loading, SectionHeader } from '~components/Shared';
+import { withAuth, withNavbar } from '~hoc';
+import Icon, { IconContainer, masonry, list } from '~css/icons';
+import colors from '~css/colors';
 
 const PageContainer = styled.div`
-  position: fixed;
-  bottom: 0;
-  left:0;
-  z-index: 99;
   color: white;
-  background-color: black;
+  background-color: darkgray;
+  border-radius: 14px;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.85rem;
 `;
 
 @withNavbar
@@ -39,17 +34,12 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const token = localStorage.getItem('token');
     this.setState({
       viewType: parseInt(localStorage.getItem('viewType'), 10) || 0,
     });
     const { pollActions } = this.props;
-    if (!token && token === '') {
-      Router.push({ pathname: '/giris-yap' });
-    } else {
-      const { getPolls } = pollActions;
-      getPolls(0);
-    }
+    const { getPolls } = pollActions;
+    getPolls(0);
   }
 
   onClick = (value) => {
@@ -60,7 +50,6 @@ class Dashboard extends Component {
   };
 
   loadMore = (page) => {
-    console.log(page);
     const { pollActions } = this.props;
     const { getPolls } = pollActions;
     this.setState({
@@ -72,7 +61,7 @@ class Dashboard extends Component {
 
   render() {
     const { pollReducer, pollActions } = this.props;
-    const { viewType, page } = this.state;
+    const { viewType, page, initialLoad } = this.state;
     const {
       polls, message, fetching, fetched, pageCount,
     } = pollReducer;
@@ -85,6 +74,9 @@ class Dashboard extends Component {
         <Row>
           <Col md="12">
             <SectionHeader title="Dashboard">
+              <PageContainer>
+                {`Anket Sayısı: ${pageCount * 10}`}
+              </PageContainer>
               <IconContainer
                 color={viewType === 0 ? colors.color3 : 'lightgray'}
                 onClick={() => this.onClick(0)}
@@ -100,24 +92,19 @@ class Dashboard extends Component {
             </SectionHeader>
           </Col>
         </Row>
-        <PageContainer>
-          {`page:${page}`}
-          {' '}
-          {`pageCount:${pageCount}`}
-        </PageContainer>
         <InfiniteScroll
           pageStart={0}
-          initialLoad={this.state.initialLoad}
+          initialLoad={initialLoad}
           loadMore={this.loadMore}
           hasMore={page < pageCount}
           loader={(<div className="loader" key={0}>Loading ...</div>)}
         >
           {viewType === 0 && (
-          <Row>
-            <Col md="12">
-              <MasonryList polls={polls} />
-            </Col>
-          </Row>
+            <Row>
+              <Col md="12">
+                <MasonryList polls={polls} />
+              </Col>
+            </Row>
           )}
           {viewType === 1 && (
             <Row>

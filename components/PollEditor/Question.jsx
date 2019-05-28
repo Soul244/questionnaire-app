@@ -6,11 +6,9 @@ import {
 import styled from 'styled-components';
 import { SortableElement } from 'react-sortable-hoc';
 import Desc from './Desc';
-import Icon, { arrowDown, plus } from '../../css/icons';
-import { ContentViewer, AnswerTool } from '../Shared';
-import InputBox from './Shared/InputBox';
-import { SortableButton } from '../Sortable';
-import colors from '../../css/colors';
+import Icon, { arrowDown, plus } from '~css/icons';
+import { ContentViewer, AnswerTool, InputBox } from '~Shared';
+import { SortableButton } from '~Sortable';
 
 const QuestionContainer = styled.div`
   display: flex;

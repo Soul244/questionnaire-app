@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Router from 'next/router';
-import colors from '../../../css/colors';
+import colors from '~css/colors';
 
 const Container = styled.div` 
   height: 100%;

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Parallax } from 'react-parallax';
 import styled, { keyframes } from 'styled-components';
 import { Fade } from 'react-reveal';
-
 import {
   Container,
   Row,
@@ -17,11 +16,11 @@ import {
   CardTitle,
   CardSubtitle,
 } from 'reactstrap';
-
 import { FormattedMessage } from 'react-intl';
-import axios from '../../redux/axios';
-import Icon, { arrowDown, phone, mail } from '../../css/icons';
-import withJustNavbar from '../../hoc/withJustNavbar';
+
+import axios from '~redux/axios';
+import Icon, { arrowDown, phone, mail } from '~css/icons';
+import {withJustNavbar} from '~hoc';
 
 const ContainerBackground = styled.div`
   height: 100%;

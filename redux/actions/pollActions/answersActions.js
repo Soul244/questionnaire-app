@@ -4,7 +4,7 @@ import {
 import arrayMove from 'array-move';
 import {
   syncTypes,
-} from '../../types';
+} from '~redux/types';
 
 /* #region Add Answer IMMUTABLE */
 export function addAnswerAction(payload) {
