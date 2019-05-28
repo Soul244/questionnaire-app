@@ -5,8 +5,8 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import { SortableElement } from 'react-sortable-hoc';
-import { ContentViewer, InputBox } from '~Shared';
-import { SortableButton } from '~Sortable';
+import { ContentViewer, InputBox } from '~components/Shared';
+import { SortableButton } from '~components/Sortable';
 import colors from '~css/colors';
 
 const AnswerContainer = styled.div`

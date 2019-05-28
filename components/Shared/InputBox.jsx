@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 import Icon, {
   remove2, unchecked, done,
 } from '~css/icons';
-import types from './toolTypes';
+import types from '../PollEditor/toolTypes';
 
 const CustomSelect = styled.div`
   position: relative;

@@ -7,8 +7,8 @@ import styled from 'styled-components';
 import { SortableElement } from 'react-sortable-hoc';
 import Desc from './Desc';
 import Icon, { arrowDown, plus } from '~css/icons';
-import { ContentViewer, AnswerTool, InputBox } from '~Shared';
-import { SortableButton } from '~Sortable';
+import { ContentViewer, AnswerTool, InputBox } from '~components/Shared';
+import { SortableButton } from '~components/Sortable';
 
 const QuestionContainer = styled.div`
   display: flex;

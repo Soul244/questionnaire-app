@@ -12,12 +12,14 @@ import FormInput from './Card/FormInput';
 import FormEditor from './Card/FormEditor';
 import ToolButton from './Button/ToolButton';
 import SpinnerButton from './Button/SpinnerButton';
+import InputBox from './InputBox';
 
 export {
   ContentViewer,
   AnswerTool,
   QuestionTool,
   Navbar,
+  InputBox,
   CustomInput,
   Paginate,
   Loading,
