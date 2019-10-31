@@ -8,7 +8,7 @@ import {
   Container,
 } from 'reactstrap';
 
-import {pollActions, participantActions} from '~actions';
+import { pollActions, participantActions } from '~actions';
 import Poll from '~components/Poll';
 import { PollActive } from '~components/Poll/Shared';
 

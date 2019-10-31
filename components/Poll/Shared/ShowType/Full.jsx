@@ -6,9 +6,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 
-import {
-  Question, Options,
-} from '~components/Poll/Shared';
+import { Question, Options } from '..';
 
 
 const QuestionContainer = styled.div`
